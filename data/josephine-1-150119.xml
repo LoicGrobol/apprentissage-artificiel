@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="custom.xsl"?><?xml-stylesheet type="text/xsl"
+  href="/home/bertrand/Stylesheets-master/html/html.xsl">
+  ?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- Projet Corpus 14, Praxiling - représentation d'une correspondance de poilu suivant le modèle:
+     <teiHeader> ... <sourceDoc> ... <body> <opener> <p> ... <closer> </body>
+-->
+<teiHeader xml:lang="fr" type="text">
+    <fileDesc>
+        <titleStmt>
+          <title>Joséphine Pouchet à son époux le 19-01-1915 depuis Baillargues</title>
+        </titleStmt>
+        <editionStmt>
+            <edition>Pré-publication, version 1.0<date>février 2014</date></edition>
+        </editionStmt>
+        <publicationStmt>
+            <distributor><name>Praxiling, UMR 5267</name>
+                <address>
+                    <addrLine>Université Paul-Valéry Montpellier III</addrLine>
+                    <addrLine>34199 Montpellier Cedex 5</addrLine>
+                </address>
+            </distributor>
+            <availability status="free">
+                <ab type="availability_file"><hi>Conditions d'utilisation de ce fichier</hi>
+            Ce fichier numérique est mis à disposition selon les termes de la licence Creative Commons Attribution -
+            Pas d'Utilisation Commerciale - Partage à l'Identique 3.0 France
+            (http://creativecommons.org/licenses/by-nc-sa/3.0/fr)
+        </ab>
+            </availability>
+        </publicationStmt>
+    <sourceDesc>
+         <p>Correspondance de Joséphine Pouchet, numérisée par les Archives Départementales de l'Hérault.</p>
+    </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+        <!-- L'élément <creation> décrit le scripteur (prénom nom), la date d'envoi, le lieu d'envoi et le destinataire (parenté) -->
+        <creation>
+            <name>Joséphine Pouchet</name>
+            <date when="1915-01-19">19-01-1915</date>
+            <rs type="place">Baillargues</rs>
+            <rs type="recipient">époux</rs>
+        </creation>
+    </profileDesc>
+</teiHeader>
+<!-- L'élément <sourceDoc> décrit l'ensemble d'images associées à la correspondance (carte="card", lettre="letter") -->
+
+    <facsimile><surfaceGrp type="card" n="1">
+        <!-- Chaque image doit être décrite suivant le modèle:
+        <surface xml:id="*" type="verso|recto" n="?v|?r"><graphic url="*.jpg"/></surface>
+        -->
+        <surface xml:id="josephine-1-150119-1-a" type="verso" n="1v">
+            <graphic url="../../Images/josephine-1-150119-1-a.jpg"/>
+        </surface>
+        <surface xml:id="josephine-1-150119-1-b" type="verso" n="2v">
+            <graphic url="../../Images/josephine-1-150119-1-b.jpg"/>
+        </surface>
+    </surfaceGrp></facsimile>
+
+<text>
+<!-- L'élément <opener> (optionnel) regroupe une ligne de date (et lieu) <dateline> et une formule de politesse <salute> -->
+<body><pb facs="#josephine-1-150119-1-a"/>
+<opener>
+Baillargues Le 19 janvier 1915<lb/>
+</opener>
+<p>
+cher Laurent<lb/>
+</p>
+<p>
+je reponse a ton aimableux lettres<lb/>
+que nous a fait plaisir en naprenas<lb/>
+que tu et enbonne santes car il<lb/>
+anais de maime pour nous<lb/>
+</p>
+<p>
+cher Laurent je repons a la cartes<lb/>
+de ma mère quelles et venue au<lb/>
+jourdhui pour de faire <del rend="overstrike">partire</del><lb/>
+partir un paquet quil <unclear>aillae</unclear><lb/>
+les chosette sausice chocolas une<lb/>
+paire de chosette pour Louis<lb/>
+je pense que vous magerè ensenbleus<lb/>
+tu feras repons a la maison te<lb/>
+suite que tu rese vras le paquet<lb/>
+je te dirais que ten le midi il<lb/>
+fait frois il fait du vent glasais<lb/>
+et toi au pas de calais tu nous<lb/>
+dit quil pleus mai tu nous parles<lb/>
+pas si tu a ases pour te garendir<lb/>
+du froit cil te maque quelles chose<lb/>
+<pb n="2" facs="#josephine-1-150119-1-b"/>
+tu nas que ledire quon de len <del rend="overstrike">verras</del><lb/>
+verras tu nous dit que charles ta<lb/>
+Ecrie et ta soeux et ta dit que<lb/>
+je lui et envoiez la photot<lb/>
+plurien a te dire pour le moment<lb/>
+que de ten voiez une grose<lb/>
+carriese de tous et boutounase<lb/>
+de ton petit enge <w rend="style3"><gap/></w><lb/>
+adorè Albert encorre une foi<lb/>
+te plui Milles baisées te tous<lb/>
+ta fenme pour la vie<lb/>
+Josephine Pouchet<lb/>
+bien le bonjour de la familles<lb/>
+et casimir et de tous le voisin<lb/>
+et amie et de marie la perdigailles<lb/>
+</p>
+</body>
+<!-- L'élément <closer> (optionnel) regroupe une formule de politesse <salute> et une signature <signed> -->
+</text>
+</TEI>
