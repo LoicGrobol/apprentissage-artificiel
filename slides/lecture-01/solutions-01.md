@@ -188,7 +188,6 @@ def fr_ar(s):
     recherche les pronoms personnels dans la chaîne donnée en argument
     renvoie leurs équivalents en arabe sous forme de liste
     """
-    res = []
     # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
     fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
     trads = [fr_ar_dict.get(w) for w in s.split()]
@@ -204,10 +203,9 @@ def fr_ar(s):
     recherche les pronoms personnels dans la chaîne donnée en argument
     renvoie leurs équivalents en arabe sous forme de liste
     """
-    res = []
     # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
     fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
-    return [m for w in s if (m := fr_ar_dict.get(w)) is not None]
+    return [m for w in s.split() if (m := fr_ar_dict.get(w)) is not None]
 ```
 
 ```python
