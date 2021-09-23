@@ -97,6 +97,7 @@ stack.count(12)
 
 ```python
 stack.sort()
+display(stack)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -105,17 +106,17 @@ Attention à ne pas confondre `append` et `extend`
 
 ```python
 stack.append(23)
-dispaly(stack)
+display(stack)
 ```
 
 ```python
 stack.append([35, 46])
-dispaly(stack)
+display(stack)
 ```
 
 ```python
 stack.extend([51, 52])
-dispaly(stack)
+display(stack)
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -331,7 +332,7 @@ tagalog = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'tayo', 'you_pl':'kayo'
 cebuano = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'kita', 'you_pl':'kamo', 'they':'sila',\
            'this':'kiri', 'that':'kana', 'here':'diri', 'there':'diha', 'who':'kinsa',\
            'what':'unsa', 'where':'asa', 'when':'kanus-a', 'how':'unsaon'}
-set(tagalog.values()).intersection(set(cebuano.values()))
+# Votre code ici
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -394,14 +395,14 @@ dico
 <!-- #region slideshow={"slide_type": "subslide"} -->
 - `Counter`
   
-`Counter` est un dictionnaire où les valeurs attendues sont les nombres d'occurences des clés
+`Counter` est un dictionnaire où les valeurs attendues sont les nombres d'occurrences des clés
 <!-- #endregion -->
 
 ```python
 from collections import Counter
 cnt = Counter()
-list = ['le', 'guépard', 'le', 'poursuit']
-for item in list:
+lst = ['le', 'guépard', 'le', 'poursuit']
+for item in lst:
     cnt[item] += 1
 display(cnt)
 ```

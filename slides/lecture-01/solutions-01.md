@@ -17,7 +17,7 @@ jupyter:
 [comment]: <> "LTeX: language=fr"
 
 Cours 1 : corrections
-========================================
+=====================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
@@ -190,11 +190,16 @@ def fr_ar(s):
     """
     # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
     fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
-    trads = [fr_ar_dict.get(w) for w in s.split()]
-    return [w for w in trads if w is not None]
+    res = []
+    for w in s.split():
+        trad = fr_ar_dict.get(w)
+        if trad is not None:
+            res.append(trad)
+    return res
 ```
 
-Voire un peu plus ésotérique
+Voire un peu plus
+[ésotérique](https://docs.python.org/3/reference/expressions.html?highlight=walrus#assignment-expressions) :
 
 ```python
 def fr_ar(s):
@@ -204,8 +209,15 @@ def fr_ar(s):
     """
     # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
     fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
-    return [m for w in s.split() if (m := fr_ar_dict.get(w)) is not None]
+    res = []
+    for w in s.split():
+        if (trad := fr_ar_dict.get(w)) is not None:
+            res.append(trad)
+    return res
 ```
+
+Un bon tutoriel sur l'opérateur morse `:=` sur
+[RealPython](https://realpython.com/python-walrus-operator/) (en anglais).
 
 ```python
 assert fr_ar("trop bizarre cet exercice") == []
