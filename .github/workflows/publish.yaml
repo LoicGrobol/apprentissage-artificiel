@@ -43,7 +43,7 @@ jobs:
       
       - name: Build slides
         run: |
-          jupyext --to ipynb ${{ github.workspace }}/slides//lecture-*/lecture-*.md
+          jupytext --to ipynb ${{ github.workspace }}/slides//lecture-*/lecture-*.md
           jupyter nbconvert --to slides ${{ github.workspace }}/slides//lecture-*/lecture-*.ipynb
 
       - name: Deploy to GitHub Pages
