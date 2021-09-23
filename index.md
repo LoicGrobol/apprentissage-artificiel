@@ -19,22 +19,23 @@ Tous les supports sont sur [github](https://github.com/loicgrobol/apprentissage-
 notebooks. À défaut, ce sont des fichiers Markdown assez standards, qui devraient se visualiser
 correctement sur la plupart des plateformes (mais ne seront pas dynamiques).
 
- Les slides et les notebooks ci-dessous ont tous des liens Binder pour une
-utilisation sans rien installer.
+Les slides et les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
+sans rien installer. Les slides ont aussi des liens vers une version HTML statique utile si Binder
+est indisponible.
 
 ### 2021-09-22 — Introduction et *crash course* Python
 
 #### Slides
 
-- [Slides 1](slides/lecture-01/lecture-01.md) [![Launch in Binder
+- [Slides 1](slides/lecture-01/lecture-01.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/lecture-01.md)
-- [Slides 2](slides/lecture-02/lecture-02.md) [![Launch in Binder
+- [Slides 2](slides/lecture-02/lecture-02.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/lecture-02.md)
-- [Slides 3](slides/lecture-03/lecture-03.md) [![Launch in Binder
+- [Slides 3](slides/lecture-03/lecture-03.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-03/lecture-03.md)
-- [Slides 4](slides/lecture-04/lecture-04.md) [![Launch in Binder
+- [Slides 4](slides/lecture-04/lecture-04.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-04/lecture-04.md)
-- [Slides 5](slides/lecture-05/lecture-05.md) [![Launch in Binder
+- [Slides 5](slides/lecture-05/lecture-05.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-05/lecture-05.md)
 
 #### Exos
