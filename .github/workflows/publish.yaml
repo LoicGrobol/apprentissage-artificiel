@@ -43,7 +43,7 @@ jobs:
       
       - name: Build slides
         run: |
-          jupyter nbconvert --to slides "$slide" ${{ github.workspace }})/lecture-*/lecture-*.md
+          jupyter nbconvert --to slides "$slide" ${{ github.workspace }}/lecture-*/lecture-*.md
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
