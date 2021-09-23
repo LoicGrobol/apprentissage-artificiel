@@ -4,18 +4,45 @@ name: CI-CD
 
 jobs:
   CI-CD:
-    runs-on: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.os }} (${{ matrix.python-version }})
 
     strategy:
       matrix:
-        config:
-          - {os: ubuntu-20.04}
+        python-version: [3.9]
+        os: [ubuntu-20.04]
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+            python-version: ${{ matrix.python-version }}
+
+      - name: Get pip cache path
+        id: pip-cache
+        run: |
+          from pip._internal.locations import USER_CACHE_DIR
+          print(f"::set-output name=dir::{USER_CACHE_DIR}")
+
+      - name: Restore pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('${{ env.GITHUB_WORKSPACE }}/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install dependencies
+        run: |
+          pip install -U -r "${{ env.GITHUB_WORKSPACE }}/requirements.txt"
+      
+      - name: Build slides
+        run: |
+          jupyter nbconvert --to slides "$slide" ${{ env.GITHUB_WORKSPACE }})/lecture-*/lecture-*.md
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'

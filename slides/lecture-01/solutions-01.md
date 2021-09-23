@@ -194,8 +194,7 @@ def fr_ar(s):
     return [w for w in trads if w is not None]
 ```
 
-Voire, un peu plus ésotérique
-
+Voire un peu plus ésotérique
 
 ```python
 def fr_ar(s):
@@ -213,6 +212,9 @@ assert fr_ar("trop bizarre cet exercice") == []
 assert fr_ar("iel nous a rien dit") == ['هما', 'نحن']
 ```
 
+Dans tous les cas, il fallait se méfier de l'exemple : dans beaucoup d'éditeurs, à cause du
+changement de direction, la liste apparait dans le désordre !
+
 ### 1. Des triangles
 
 1. Écrire une fonction `la_plus_grande(longueur1, longueur2, longueur3)` qui renvoie la longueur du
@@ -220,7 +222,7 @@ assert fr_ar("iel nous a rien dit") == ['هما', 'نحن']
 2. Écrire une fonction `est_equilateral(longueur1, longueur2, longueur3)` qui détermine si un
    triangle est équilatéral ou non (les trois côtés ont la même longueur).
 3. Écrire une fonction `est_isocele(longueur1, longueur2, longueur3)` qui détermine si un triangle
-   est isocèle (deux côtés de même longueur mais pas trois) ou non.
+   est isocèle (deux côtés de même longueur, mais pas trois) ou non.
 4. Écrire une fonction `caracteristiques(longueur1, longueur2, longueur3)` qui renvoie la nature et
    la taille du plus grand côté d'un triangle. On dira qu'un triangle est `quelconque` s'il n'est ni
    équilatéral ni isocèle. Affiche `pas un triangle` si les longueurs données ne font pas un
