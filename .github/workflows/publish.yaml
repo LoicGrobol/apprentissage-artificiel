@@ -33,17 +33,17 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('${{ env.GITHUB_WORKSPACE }}/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('${{ github.workspace }}/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       
       - name: Install dependencies
         run: |
-          pip install -U -r "${{ env.GITHUB_WORKSPACE }}/requirements.txt"
+          pip install -U -r "${{ github.workspace }}/requirements.txt"
       
       - name: Build slides
         run: |
-          jupyter nbconvert --to slides "$slide" ${{ env.GITHUB_WORKSPACE }})/lecture-*/lecture-*.md
+          jupyter nbconvert --to slides "$slide" ${{ github.workspace }})/lecture-*/lecture-*.md
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
