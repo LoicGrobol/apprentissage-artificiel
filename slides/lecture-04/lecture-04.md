@@ -276,6 +276,7 @@ Vous pouvez aussi n'importer que ce que vous intéresse avec `from … import �
 from re import sub
 sub(r"[aeiou]", "💓", "Plurital")
 ```
+
 Ce qui concerne à la fois les membres des modules et les sous-modules.
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -287,7 +288,7 @@ from re import *
 sub(r"[aeiou]", "💓", "Plurital")
 ```
 
-On le trouve souvent dans la nature mais c'est en général une **très mauvaise idéé**:
+On le trouve souvent dans la nature, mais c'est en général une **très mauvaise idéé**:
 
 - Ça rend très difficile de savoir d'où viennent les objets dans votre module
 - En ajoutant les fonctions dans l'espace de nommage du script vous pouvez écraser des fonctions

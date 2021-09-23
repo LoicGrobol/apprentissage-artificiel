@@ -14,6 +14,7 @@ jupyter:
     name: python3
 ---
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 [comment]: <> "LTeX: language=fr"
 
 Cours 2 : Structures de données
@@ -22,58 +23,105 @@ Cours 2 : Structures de données
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
 2021-09-22
+<!-- #endregion -->
 
-## Correction des exos
+```python slideshow={"slide_type": "slide"}
+from IPython.display import display
+```
 
-Voir [https://github.com/LoicGrobol/web-interfaces/tree/main/corrections](https://github.com/LoicGrobol/web-interfaces/tree/main/corrections)  
-
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Les listes : fonctions
 
-- Les listes héritent des fonctions des *sequences*, elles ont également des [fonctions
-  propres](https://docs.python.org/3.6/tutorial/datastructures.html#more-on-lists)
-- Parmi ces fonctions, nous utiliserons principalement :
-  - `append(x)` : ajoute un élément x à la fin de la liste (haut de la pile*)
-  - `extend([x, y, z])` : ajoute tous les éléments de la liste arg à la fin de la liste
-  - `pop(index=-1)` : supprime et renvoie l'élément de la liste à la position `index`
-  - `index(x)` : renvoie l'index du premier élément de valeur x
-  - `count(x)` : renvoie le nombre de fois où x apparaît
-  - `sort(key=None, reverse=False)` : trie et modifie la liste, lire la
-    [doc](https://docs.python.org/3/howto/sorting.html#sortinghowto) pour en savoir plus sur les
-    ordres de tri.
+Les listes héritent des fonctions des *sequences*, elles ont également des [méthodes
+propres](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "-"}
+stack = [12, 15, 12, 7, 18]
+```
+
+Parmi ces fonctions, nous utiliserons principalement :
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `append(x)` : ajoute un élément `x` à la fin de la liste (haut de la pile*)
+<!-- #endregion -->
 
 ```python
-stack = [12, 15, 12, 7, 18]
+stack.append(3)
+display(stack)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `extend(lst)` : ajoute tous les éléments de `lst` à la fin de la liste
+<!-- #endregion -->
+
+```python
+stack.extend([10, 11])
+display(stack)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `pop(index=-1)` : supprime et renvoie l'élément de la liste à la position `index`
+<!-- #endregion -->
+
+```python
+h = stack.pop()
+display(h)
+display(stack)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `index(x)` : renvoie l'index du premier élément de valeur x
+<!-- #endregion -->
+
+```python
 stack.index(12)
 ```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `count(x)` : renvoie le nombre de fois où x apparaît
+
+  **Attention** : si vous avez plusieurs éléments à compter, utilisez plutôt
+  [`collections.Counter`](https://docs.python.org/3/library/collections.html#collections.Counter)
+<!-- #endregion -->
 
 ```python
 stack.count(12)
 ```
 
-**Attention** : si vous avez plusieurs éléments à compter, utilisez plutôt
-[`collections.Counter`](https://docs.python.org/3/library/collections.html#collections.Counter)
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `sort(key=None, reverse=False)` : trie et modifie la liste, lire la
+    [doc](https://docs.python.org/3/howto/sorting.html#sortinghowto) pour en savoir plus sur les
+    ordres de tri.
+<!-- #endregion -->
 
 ```python
 stack.sort()
-stack
+display(stack)
 ```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Attention à ne pas confondre `append` et `extend`
+<!-- #endregion -->
 
 ```python
 stack.append(23)
-stack
+display(stack)
 ```
 
 ```python
 stack.append([35, 46])
-stack
+display(stack)
 ```
 
 ```python
 stack.extend([51, 52])
-stack
+display(stack)
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ### ✍️ Exo 1 ✍️
+<!-- #endregion -->
 
 ```python
 def tokenize(sentence):
@@ -96,13 +144,15 @@ assert tokenize("tout mon cœur est resté là-bas") == \
     ['tout', 'mon', 'cœur', 'est', 'resté', ['là', 'bas']]
 ```
 
-## Les listes en compréhension
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Les listes en compréhension
 
 - Elles permettent de définir des listes par filtrage ou opération sur les éléments d'une autre
   liste
 - La [PEP 202](http://www.python.org/dev/peps/pep-0202/) conseille de préférer les listes en
   compréhension aux fonctions `map()` et `filter()`  
 - C'est puissant et concis, *so pythonic*
+<!-- #endregion -->
 
 ```python
 [i ** 2 for i in range(10)]
@@ -112,14 +162,16 @@ assert tokenize("tout mon cœur est resté là-bas") == \
 [i ** 2 for i in range(10) if i % 2 == 0]
 ```
 
-```python
+```python slideshow={"slide_type": "subslide"}
 [(i, j) for i in range(2) for j in ['a', 'b']]
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ### ✍️ Exo 2 ✍️
 
 Utilisez une liste en compréhension sur la sortie de votre fonction tokenize de manière à ne retenir
 que les noms composés
+<!-- #endregion -->
 
 ```python
 words = tokenize("De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne")
@@ -127,18 +179,22 @@ compounds = [] # ← modifiez ça
 assert compounds == [['De', 'ci'], ['de', 'là,'], ['cahin', 'caha,']]
 ```
 
-## Parcours de liste
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Parcours de liste
 
 La boucle `for` est particulièrement adaptée pour parcourir les itérables et donc les listes
+<!-- #endregion -->
 
-```python slideshow={"slide_type": "subslide"}
+```python slideshow={"slide_type": "-"}
 voyelles = ['a', 'e', 'i', 'o', 'u']
 for item in voyelles:
     print(item)
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 La fonction `enumerate` peut être utile dans certains cas, elle renvoie un `tuple` contenant
 l'indice et la valeur de l'item à l'indice concerné
+<!-- #endregion -->
 
 ```python
 for i, item in enumerate(voyelles):
@@ -147,26 +203,35 @@ for i, item in enumerate(voyelles):
 
 C'est de très loin préférable à itérer sur `range(len(voyelles))`.
 
-## Copie
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Copie
 
 Dans `y = x`, `y` n'est pas une copie de x, les deux pointent vers le même objet. C'st
 particulièrement important pour les objets *mutables* comme les listes.
+<!-- #endregion -->
 
 ```python
 x = [1, 2, 3]
 y = x
 y[0] = 4
-x
 ```
 
+```python
+display(x)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
 Si ce qu'on veut copier est une liste, on peut utiliser
+<!-- #endregion -->
 
 ```python
 x = [1, 2, 3]
 y = x[:]
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ou
+<!-- #endregion -->
 
 ```python
 y = list(x)
@@ -174,15 +239,19 @@ y[0] = 4
 x
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 Il y a d'autres façons de faire. Pour les objets complexes on peut regarder du côté du module
 [`copy`](https://docs.python.org/3/library/copy.html) mais il n'y a pas de réponse universelle et
 copier c'est souvent coûteux. Le mieux à faire quand on a envie de faire une copie c'est de
 commencer par se demander si on en a vraiment besoin.
+<!-- #endregion -->
 
-# Déballage de séquences
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Déballage de séquences
 
 - Le *sequence unpacking* permet d'effectuer plusieurs affectations simultanées
 - L'*unpacking* s'applique souvent sur des tuples
+<!-- #endregion -->
 
 ```python
 x, y, z = (1, 2, 3)
@@ -195,7 +264,9 @@ for ortho, phon in lexique:
     print(phon)
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - On peut aussi utiliser `*` pour déballer une séquence en argument de fonction
+<!-- #endregion -->
 
 ```python
 bornes = (0, 10)
@@ -203,6 +274,7 @@ for i in range(*bornes):
     print(i)
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Les ensembles
 
 Les ensembles (`set`) sont des collections non ordonnées d'élements sans doublons
@@ -214,8 +286,9 @@ Les ensembles supportent les fonctions mathématiques d'union, d'intersection, d
 - `intersection(*sets)` renvoie l'intersection de tous les `sets` (l'ensemble des valeurs contenues
   dans au moins un set).
 
+<!-- #endregion -->
 
-```python
+```python slideshow={"slide_type": "subslide"}
 ens0 = set()  # on crée l'ensemble vide
 ens0
 ```
@@ -230,7 +303,9 @@ ens2 = {"avec", "le", "chandelier", "dans", "la", "cuisine"}
 ens1.intersection(ens2)
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 Attention il y a un piège
+<!-- #endregion -->
 
 ```python
 a = {1}
@@ -242,11 +317,13 @@ b = {}
 type(b)
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## ✍️ Exo 3
 
 Dans cet extrait de données tirées des [listes de Swadesh de langues
 austronésiennes](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists), ici pour le
 tagalog et le cebuano, trouvez les mots en commun.
+<!-- #endregion -->
 
 ```python
 tagalog = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'tayo', 'you_pl':'kayo', 'they':'sila',\
@@ -255,9 +332,10 @@ tagalog = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'tayo', 'you_pl':'kayo'
 cebuano = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'kita', 'you_pl':'kamo', 'they':'sila',\
            'this':'kiri', 'that':'kana', 'here':'diri', 'there':'diha', 'who':'kinsa',\
            'what':'unsa', 'where':'asa', 'when':'kanus-a', 'how':'unsaon'}
-set(tagalog.values()).intersection(set(cebuano.values()))
+# Votre code ici
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Les dictionnaires
 
 - Les dictionnaires (`dict`) sont des structures de données associatives de type clé: valeur
@@ -273,8 +351,9 @@ set(tagalog.values()).intersection(set(cebuano.values()))
     l'argument `default`. Ne modifie pas le dictionnaire.
   - `setdefault(key, default=None)` si `key` n'existe pas, insère `key` avec la valeur `default`
     dans le dictionnaire puis renvoie la valeur associée à la clé.
+<!-- #endregion -->
 
-```python
+```python slideshow={"slide_type": "subslide"}
 d = {'Perl':'Larry Wall', 'Python':'Guido Van Rossum', 'C++':'Bjarne Stroustrup'}
 d['Perl']
 ```
@@ -288,6 +367,7 @@ d.setdefault('Ruby', 'je sais pas')
 d
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Module collections
 
 - Le module *collections* propose des implémentations de structures de données supplémentaires
@@ -302,7 +382,8 @@ d
       `setdefault`
 
 
-```python
+<!-- #endregion -->
+```python slideshow={"slide_type": "subslide"}
 import collections
 lexique = [("couvent", "kuv"), ("couvent", "kuv@")]
 dico = collections.defaultdict(list)
@@ -311,24 +392,29 @@ for ortho, phon in lexique:
 dico
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - `Counter`
   
-`Counter` est un dictionnaire où les valeurs attendues sont les nombres d'occurences des clés
+`Counter` est un dictionnaire où les valeurs attendues sont les nombres d'occurrences des clés
+<!-- #endregion -->
 
 ```python
 from collections import Counter
 cnt = Counter()
-list = ['le', 'guépard', 'le', 'poursuit']
-for item in list:
+lst = ['le', 'guépard', 'le', 'poursuit']
+for item in lst:
     cnt[item] += 1
-cnt
+display(cnt)
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ### ✍️ Exo 4
 
 Faites la même chose avec un dictionnaire
 
+<!-- #endregion -->
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Les fichiers
 
 - Pour travailler avec les fichiers on doit procéder à trois opérations :
@@ -343,28 +429,32 @@ Faites la même chose avec un dictionnaire
     >>> #f = open(filename, mode)	   
     >>> f = open('nom_fichier', 'w')
   ```
+<!-- #endregion -->
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 Les modes sont : 
 
 - `r` : lecture (défaut)
 - `w` : écriture
 - `x` : création et écriture (échec si le fichier existe déjà)
 - `a` : concaténation (append)
-  
-  
 - `b` : mode binaire
 - `t` : mode texte (défaut)
 - `+` : read/write (ex: r+b)
+<!-- #endregion -->
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## Les fichiers : ouverture
 
 La documentation de Python conseille cette façon de faire :
+<!-- #endregion -->
 ```python
 with open('mon_fichier', 'r') as f:
     read_data = f.read()
 ```
 L'utilisation du mot clé `with` garantit la fermeture du fichier même si une exception est soulevée.  
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## Les fichiers : lecture
 
 - `read(size=-1)` lit les `size` premiers octets (mode `b`) ou caractères (mode `t`). Si `size` < 0,
@@ -374,12 +464,14 @@ L'utilisation du mot clé `with` garantit la fermeture du fichier même si une e
 - `readlines(hint=-1)` lit `hint` lignes du fichier. Si `hint` < 0, lit toutes les lignes du
   fichier.
 - un objet `file` est un itérable ! (*the pythonic way*)
+<!-- #endregion -->
 
 ```python
 for line in f:
     process(line)
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## Les fichiers : écriture et fermeture
 
 - `write(text)` écrit `texte` dans le fichier?
@@ -389,32 +481,40 @@ En règle générale veillez à toujours fermer les objets fichiers.
 En mode écriture oublier de fermer un fichier peut réserver des mauvaises surprises
 
 - fonction `print`
-```python
+<!-- #endregion -->
+```python slideshow={"slide_type": "-"}
 with open('mon_fichier', 'w') as output_f:
     for item in words:
         print(item, file=output_f)
 ```
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - `sys.stdin`, `sys.stdout` et `sys.stderr` sont des objets de type `file`
+<!-- #endregion -->
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ### ✍️ Exo 5
 
 Lisez le fichier `data/austronesian_swadesh.csv` et écrivez les mots des langues Ilocano et Malagasy dans deux fichiers distincts.  
 Les données viennent de [Wiktionary](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists).
 
 (Essayez de faire comme si vous ne connaissiez pas le module csv sinon la partie qui suit n'aura aucun intérêt.)
+<!-- #endregion -->
 
 ```python
 # c'est compliqué sans le module csv quand même
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Module csv
 
 La documentation est ici : [https://docs.python.org/3/library/csv.html](https://docs.python.org/3/library/csv.html)  
 Parce que les données au format csv sont très répandues et parce qu'il peut être pénible de le lire correctement, le module csv est là pour vous aider.  
 Pour le dire vite il y a deux façons de l'utiliser : reader/writer ou DictReader/DictWriter.
+<!-- #endregion -->
 
-
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - `csv.reader`
+<!-- #endregion -->
 
 ```python
 import csv
@@ -427,7 +527,9 @@ with open('data/austronesian_swadesh.csv') as csvfile:
         print(' | '.join(row[0:3])) # row est une liste de chaînes de caractères
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - `csv.writer`
+<!-- #endregion -->
 
 ```python
 with open('swadesh_light.csv', 'w') as csvfile:
@@ -437,11 +539,13 @@ with open('swadesh_light.csv', 'w') as csvfile:
         writer.writerow(item) # writerow reçoit une liste de chaînes
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - csv.DictReader  
 Cette classe s'appuie sur la ligne d'en-tête pour créer une suite de dictionnaires.  
 S'il n'y a pas de ligne d'en-tête on peut utiliser une liste `fieldnames` en paramètre.
+<!-- #endregion -->
 
-```python
+```python slideshow={"slide_type": "-"}
 with open('data/austronesian_swadesh.csv') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=',',quotechar='"')
     for row in reader: # ici row est un dictionnaire
@@ -449,8 +553,10 @@ with open('data/austronesian_swadesh.csv') as csvfile:
 
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - csv.DictWriter  
   Cette fois il s'agit de générer un fichier csv à partir d'une séquence de dictionnaires. Le paramètre `fieldnames` est obligatoire.
+<!-- #endregion -->
 
 ```python
 with open('swadesh_light.csv', 'w') as csvfile:
@@ -462,13 +568,15 @@ with open('swadesh_light.csv', 'w') as csvfile:
 
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Module `re`
+<!-- #endregion -->
 
 ```python
 import re
 ```
 
-<!-- #region -->
+<!-- #region slideshow={"slide_type": "subslide"} -->
 - `re` est un module particulièrement important, vous devez lire la [doc](https://docs.python.org/3/library/re.html), absolument
 
 - La doc officielle est parfois aride, ce [howto](https://docs.python.org/3.6/howto/regex.html) rédigé par A.M. Kuchling est plus digeste
@@ -485,7 +593,7 @@ a minima vous devez connaître les fonctions :
 - `compile` : compilation d'un motif (pattern), retourne un objet `Pattern`
 <!-- #endregion -->
 
-```python
+```python slideshow={"slide_type": "subslide"}
 if re.search(r"(\w|\s)+", "Un léopard me pourchasse"):
     print("Cours !")
 ```
@@ -494,6 +602,7 @@ if re.search(r"(\w|\s)+", "Un léopard me pourchasse"):
 re.sub(r'e|é', 'i', 'éléphanteau')
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## `\w` et Python3
 
 `\w` est la classe prédéfinie des caractères alphanumériques :
@@ -503,6 +612,7 @@ re.sub(r'e|é', 'i', 'éléphanteau')
 - En Python 3 `\w` correspond à tous les caractères qui ont la propriété Unicode Letter d'après le
   module `unicodedata` (sauf si le motif est compilé en binaire ou si l'option `re.ASCII` est
   activée)
+<!-- #endregion -->
 
 ```python
 if re.search(r"\w", "馬青區團長成中央代表"):
@@ -514,8 +624,9 @@ if re.search(r"\w", "هيلاري كلينتون"):
     print("Yeah !")
 ```
 
+<!-- #region slideshow={"slide_type": "slide"} -->
 ### ☕ Exos 6 ☕
-
+<!-- #endregion -->
 
 1\. Écrire une fonction qui reçoit deux noms de langue austronésiennes, une liste de mots en anglais
 et renvoie chacun des mots anglais avec leur traduction dans les deux langues.

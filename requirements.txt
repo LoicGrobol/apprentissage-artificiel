@@ -1,5 +1,10 @@
 jupyterlab
 jupytext
 nbconvert
+numpy
+matplotlib
 regex
+scikit-learn
+simpletransformers
+torch
 RISE
