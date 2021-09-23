@@ -48,7 +48,8 @@ est indisponible.
 #### Corrections
 
 - [Exercices slides 1](slides/lecture-01/solutions-01.md) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/solutions-01.md)
+- [Exercices slides 2](slides/lecture-02/solutions-02.md) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/solutions-02.md)
 
 ## Utilisation en local
 
