@@ -70,18 +70,6 @@ tout de suite et on trouvera une solution.
 
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "slide"} -->
-## Programme du cours
-
-- Programmer en Python
-  - On va mettre l'accent sur le concret
-  - Bonnes pratiques, outils de développement
-- Interfaces web, plutôt côté programme
-  - Réseau
-  - API : en utiliser et en faire
-  - Un peu de sites web
-<!-- #endregion -->
-
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ## Aujourd'hui
 
@@ -127,6 +115,18 @@ avec les tests).
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
+def square(num):
+    """Renvoie le nombre donné en argument au carré."""
+    pass # Votre code ici
+```
+
+```python slideshow={"slide_type": "-"}
+assert square(3) == 9
+assert square(0) == 0
+assert square(-2) == 4
+```
+
+```python slideshow={"slide_type": "subslide"}
 def is_even(num):
     """Return True if `num` is even, False otherwise."""
     pass # Votre code ici
@@ -138,18 +138,6 @@ assert is_even(2) == True
 assert is_even(-3) == False
 assert is_even(-42) == True
 assert is_even(0) == True
-```
-
-```python slideshow={"slide_type": "subslide"}
-def square(num):
-    """Renvoie le nombre donné en argument au carré."""
-    pass # Votre code ici
-```
-
-```python slideshow={"slide_type": "-"}
-assert square(3) == 9
-assert square(0) == 0
-assert square(-2) == 4
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -167,7 +155,7 @@ assert square(-2) == 4
 
 ```python slideshow={"slide_type": "-"}
 def on_fait_la_taille(moi, toi):
-    """Vrai ssi `moi` est plus grand que `toi`""""
+    """Vrai ssi `moi` est plus grand que `toi`"""
     pass # Votre code ici
 ```
 
@@ -261,6 +249,7 @@ MAIS ON NE LE FAIT PAS
 
 ```python slideshow={"slide_type": "-"}
 type("Hello")
+
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -365,7 +354,7 @@ print(spam[-3:]) # 3 derniers éléments
 
 ```python slideshow={"slide_type": "-"}
 if 'u' in spam:
-    print("Il y a un u dans {}".format(var))
+    print("Il y a un u dans {}".format(spam))
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -428,8 +417,8 @@ une chaîne intermédiaire à chaque étape.
 ```python slideshow={"slide_type": "fragment"}
 s1 = "Tiens salut " + name
 s2 = s1 + ". T'aurais pas "
-s3 = s2 + + str(coffee_price*2)
-s4 = s3 + + " euros pour 2 cafés ?"
+s3 = s2 + str(coffee_price*2)
+s4 = s3 + " euros pour 2 cafés ?"
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
@@ -518,7 +507,8 @@ stack
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-C'est même le prototype d'une séquence mutable, elles servent à tout, partout, en Python (un peu moins depuis la version 3)
+C'est même le prototype d'une séquence mutable, elles servent à tout, partout, en Python (un peu
+moins depuis la version 3)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -526,7 +516,7 @@ C'est même le prototype d'une séquence mutable, elles servent à tout, partout
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
-def change_char(string, index):
+def change_char(s, idx):
     """In the given string, change the char at given index for 'z' and return the modified str
     ex: change("maison", 2) -> mazson
     """
@@ -573,7 +563,8 @@ couleurs.items()
 - Les tuples (`tuple`) sont des *séquences* similaires aux listes sauf qu'elles ne peuvent pas être
   modifiées (*immutable*)
 - Les tuples sont souvent utilisées comme valeur de retour d'une fonction
-- Contrairement aux listes, les tuples peuvent être utilisées comme clé de dictionnaire, à votre avis pourquoi ?
+- Contrairement aux listes, les tuples peuvent être utilisées comme clé de dictionnaire, à votre
+  avis pourquoi ?
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -598,30 +589,23 @@ else:  # si besoin
 <!-- #region slideshow={"slide_type": "slide"} -->
 ### Opérateurs booléens
 
-``not`` négation  
-``and`` conjonction (True si les deux opérandes sont vraies, False sinon)  
-``or``  disjonction (True si une des deux opérandes est vraie)
+- `not` négation  
+- `and` conjonction (`True` si les deux opérandes sont vraies, `False` sinon)  
+- `or` disjonction (`True` si une des deux opérandes est vraie)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- Les valeurs ci-dessous sont toutes évaluées par l'interpréteur comme ayant la valeur booléenne *false* :
+- Les valeurs ci-dessous sont toutes évaluées par l'interpréteur comme ayant la valeur booléenne
+  `False` :
 
   `False` `None` `0` (et les nombres qui lui sont égaux) `""` `()` `[]` `{}`
 
-- Tout le reste<sup>1</sup> sera évalué comme _true_
+- Tout le reste<sup>1</sup> sera évalué comme `True`
 
-  Vous pouvez écrire :
-  ```python
-  >>> if var: ou while my_list:  
-  ```
-  plutôt que :  
+  Vous pouvez écrire `if var` ou `while my_list` plutôt que `if var != ""` ou `while my_list != []`
 
-  ```python
-  >>> if var != "": ou while my_list != []:
-  ```
-
-<sup>1</sup> <small>Sauf les objets dont vous avez construit les classes. Voir les diapos à venir sur Classes et objets.</small>
-<!-- #endregion -->
+<sup>1</sup> <small>Sauf les objets dont vous avez construit les classes. Voir les diapos à venir
+sur Classes et objets.</small>
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
@@ -658,12 +642,12 @@ while i < 5:
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
-for item in voyelles:
+for item in "aeiouy":
     print(item)
 ```
 
 ```python slideshow={"slide_type": "subslide"}
-for item in couleurs.keys():
+for item in couleurs:
     if item == 'i':
         continue
     print(item)
@@ -692,12 +676,11 @@ for nom, fac, parcours in zip(noms, facs, parcours):
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
-def fr_ar(string):
+def fr_ar(s):
     """
     recherche les pronoms personnels dans la chaîne donnée en argument
     renvoie leurs équivalents en arabe sous forme de liste
     """
-    res = []
     # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
     fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
     # votre code ici
