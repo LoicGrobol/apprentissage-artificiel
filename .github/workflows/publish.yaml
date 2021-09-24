@@ -44,7 +44,7 @@ jobs:
       - name: Build slides
         run: |
           jupytext --to ipynb ${{ github.workspace }}/slides//lecture-*/lecture-*.md
-          jupyter nbconvert --to slides ${{ github.workspace }}/slides//lecture-*/lecture-*.ipynb
+          jupyter nbconvert --output-dir html_slides --to slides ${{ github.workspace }}/slides//lecture-*/lecture-*.ipynb
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
