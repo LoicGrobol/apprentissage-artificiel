@@ -27,15 +27,15 @@ est indisponible.
 
 #### Slides
 
-- [Slides 1](html_slides/lecture-01.html) [![Launch in Binder
+- [Slides 1](slides/lecture-01/lecture-01.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/lecture-01.md)
-- [Slides 2](html_slides/lecture-02.html) [![Launch in Binder
+- [Slides 2](slides/lecture-02/lecture-02.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/lecture-02.md)
-- [Slides 3](html_slides/lecture-03.html) [![Launch in Binder
+- [Slides 3](slides/lecture-03/lecture-03.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-03/lecture-03.md)
-- [Slides 4](html_slides/lecture-04.html) [![Launch in Binder
+- [Slides 4](slides/lecture-04/lecture-04.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-04/lecture-04.md)
-- [Slides 5](html_slides/lecture-05.html) [![Launch in Binder
+- [Slides 5](slides/lecture-05/lecture-05.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-05/lecture-05.md)
 
 #### Exos
