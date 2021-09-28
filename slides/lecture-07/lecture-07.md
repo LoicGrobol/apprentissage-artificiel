@@ -321,5 +321,8 @@ moyenne.
 `scikit-learn` n'est pas fait pour le *deep learning*. Il existe des bibliothèques associées qui
 permettent de combiner Keras ou pytorch avec `scikitlearn` néanmoins.
 
-Essayons ensemble en suivant [la
+Essayez en suivant [la
 doc](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)
+
+
+Il y a encore plein d'autre choses marrantes à faire avec `scikit-learn` et on en verra, mais en attendant vous pouvez aller voir [leur exemple sur ce dataset](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html#sphx-glr-auto-examples-text-plot-document-classification-20newsgroups-py) qui a de bien jolis graphiques.
