@@ -254,7 +254,7 @@ a * c
 a / c
 ```
 
-- Poduit matriciel
+- Produit matriciel
 
 ```python
 m1 = np.array([[1, 2],[ 3, 4]])
@@ -271,6 +271,33 @@ m1@m2
 ```python
 np.dot(m1, m2)
 ```
+
+## Broadcasting
+
+Une notion un peu plus compliquée mais qui sert souvent
+
+```python
+a = np.array([[1, 2, 3], [5, 6, 7], [9, 10, 11]])
+```
+
+```python
+c = np.array([2, 4, 8])
+c
+```
+
+```python
+a*c
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Explication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la conversion pour que tout se passe comme si on avait multiplié par
+<!-- #endregion -->
+
+```python
+np.broadcast_to(c, [3,3])
+```
+
+Multiplier par un tableau à une dimension revient donc à multiplier colonne par colonne
 
 ## Matplotlib
 
@@ -338,3 +365,52 @@ Si vous voulez en savoir plus je vous invite à consulter les pages suivantes 
 
 - <https://matplotlib.org/tutorials/introductory/images.html>
 - <https://www.degeneratestate.org/posts/2016/Oct/23/image-processing-with-numpy/>
+
+## S'entraîner avec NumPy
+
+Pour vous entraîner à manipuler des *arrays* et découvrir les fonctions de NumPy. Je vous recommande
+la série d'exercices corrigés à <https://www.w3resource.com/python-exercises/numpy/index-array.php>.
+Essayez au maximum de les résoudre sans écrire de boucles.
+
+## 👜 Exo : les sacs de mots 👜
+
+### 1. Faire des sacs
+
+- Écrire un script qui prend en entrée un dossier contenant des documents (sous forme de fichier
+  textes) et sort un fichier TSV donnant pour chaque document sa représentation en sac de mots (en
+  nombre d'occurrences des mots du vocabulaire commun)
+  - Dans le sens habituel : un fichier par ligne, un mot par colonne
+  - Pour itérer sur les fichiers dans un dossier on peut utiliser `for f in
+    pathlib.Path(chemin_du_dossier).glob('*')`
+  - Pour récupérer des arguments en ligne de commande :
+    [`argparse`](https://docs.python.org/3/library/argparse.html) ou
+    [`sys.argv`](https://docs.python.org/3/library/argparse.html)
+- Tester sur la partie positive du [mini-corpus imdb](../../data/imdb_smol.tar.gz)
+
+Pensez à ce qu'on a vu les cours précédents pour ne pas réinventer la roue.
+
+### 2. Faire des sacs relatifs
+
+Modifier le script précédent pour qu'il génère des sacs de mots utilisant les fréquences relatives
+plutôt que les nombres d'occurrences.
+
+### 3. Faire des tfidsacs
+
+## Exercice
+
+Modifier le script de précédent pour qu'il renvoie non plus les fréquences relatives de chaque mot
+mais leur tf⋅idf avec la définition suivante pour un mot $w$, un document $D$ et un corpus $C$
+
+- $\mathrm{tf}(w, D)$ est la fréquence relative de $w$ dans $D$
+- $$\mathrm{idf}(w, C) = \log\!\left(\frac{\text{nombre de documents dans $C$}}{\text{nombre de
+  documents de $C$ qui contiennent $w$}}\right)$$
+- $\log$ est le logarithme naturel
+  [`np.log`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.log.html)
+- $\mathrm{tfidf}(w, D, C) = \mathrm{tf}(w, D)×\mathrm{idf}(w, C)$
+
+Pistes de recherche :
+
+- L'option `keepdims` de `np.sum`
+- `np.transpose`
+- `np.count_nonzero`
+- Regarder ce que donne `np.array([[1, 0], [2, 0]]) > 0`
