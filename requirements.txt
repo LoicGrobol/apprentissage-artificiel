@@ -3,6 +3,7 @@ jupytext
 nbconvert
 numpy
 matplotlib
+pandas
 regex
 scikit-learn
 simpletransformers

@@ -51,6 +51,13 @@ est indisponible.
 - [Exercices slides 2](slides/lecture-02/solutions-02.md) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/solutions-02.md)
 
+### 2021-09-29 —  Un peu de théorie, NumPy et scikit-learn
+
+- [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
+- [Slides 7](slides/lecture-07/lecture-07.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-07/lecture-07.md)
+
 ## Utilisation en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
