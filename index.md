@@ -51,6 +51,8 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/solutions-01.md)
 - [Exercices slides 2](slides/lecture-02/solutions-02.md) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/solutions-02.md)
+- Exercices Codingame : voir
+  [Github](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections)
 
 ### 2021-09-29 —  Un peu de théorie, NumPy et scikit-learn
 
@@ -137,9 +139,11 @@ gérer des installations de Python isolées du système pour plus de confort.
 
 ## Ressources
 
+### Python général
+
 Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qui suit n'est qu'une sélection.
 
-## Livres
+#### Livres
 
 - How to think like a computer scientist, by Jeffrey Elkner, Allen B. Downey, and Chris Meyers.
 Vous pouvez l'acheter. Vous pouvez aussi le lire [ici](http://openbookproject.net/thinkcs/python/english3e/)
@@ -153,7 +157,7 @@ Peut-être un peu costaud pour des débutants.
   de sa Vie, by Christoph Dürr and Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code
   Python est clair, les difficultés sont commentées. Les algos sont très costauds.
 
-## Web
+#### Web
 
 Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels ci-dessous.
 
@@ -170,6 +174,14 @@ Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels c
 - [Mooc Python](https://www.fun-mooc.fr/courses/inria/41001S03/session03/about#). Un mooc de
   l'INRIA, carré.
 - [Code combat](https://codecombat.com/)
+
+
+### Divers
+
+- La chaîne YouTube [3blue1brown](https://www.youtube.com/c/3blue1brown) pour des vidéos de maths
+  générales.
+- La chaîne YouTube de [Freya Holmér](https://www.youtube.com/c/Acegikmo) plutôt orientée *game
+  design* mais avec d'excellentes vidéos de géométrie computationnelle.
 
 ## Licences
 

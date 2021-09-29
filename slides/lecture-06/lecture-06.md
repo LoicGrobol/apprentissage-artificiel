@@ -115,13 +115,24 @@ b.shape
 - `np.zeros`
 
 ```python
-np.zeros(4)
+display(np.zeros(4))
+display(np.zeros((3,4)))
+display(np.zeros((3,4,5)))
+display(np.zeros((3,4), dtype=int))
 ```
 
 - np.ones
 
 ```python
 np.ones(3)
+```
+
+```python
+np.full((3,4), fill_value=2)
+```
+
+```python
+np.eye(4)
 ```
 
 - np.arange
@@ -166,7 +177,9 @@ b[1,1] # 2e ligne, 2e colonne
 ```
 
 ```python
-b[1,:] # 2e ligne, toutes les colonnes
+display(b[1,:]) # 2e ligne, toutes les colonnes
+display(b[1])
+display(b[1][:2])
 ```
 
 ```python
@@ -176,11 +189,28 @@ b[:,3] # 4e colonne, toutes les lignes
 - On peut aussi faire des sélections avec des conditions (oui comme dans pandas)
 
 ```python
+a
+```
+
+```python
 a[a > 2]
 ```
 
 ```python
+a > 2
+```
+
+```python
 a[a%2 == 0]
+```
+
+```python
+a[a%2]
+```
+
+```python
+display(a%2 == 0)
+display(a%2)
 ```
 
 ## Changer de dimension
@@ -216,9 +246,17 @@ print(c2)
 c2.T
 ```
 
+```python
+c2.T.flatten()
+```
+
 ## Opérations
 
 - Les trucs classiques
+
+```python
+a
+```
 
 ```python
 a.sum()
@@ -229,14 +267,23 @@ a.max()
 ```
 
 ```python
+a.argmax()
+```
+
+```python
 a.min()
 ```
 
 ```python
 c = np.arange(10,16)
+c
 ```
 
 - Opérations sur *array* à une dimension
+
+```python
+a = np.arange(6)
+```
 
 ```python
 a + c
@@ -251,17 +298,19 @@ a * c
 ```
 
 ```python
-a / c
+a/c
 ```
 
 - Produit matriciel
 
 ```python
 m1 = np.array([[1, 2],[ 3, 4]])
+m1
 ```
 
 ```python
 m2 = np.array([[5, 6],[ 7, 8]])
+m2
 ```
 
 ```python
@@ -269,7 +318,7 @@ m1@m2
 ```
 
 ```python
-np.dot(m1, m2)
+np.matmul(m1, m2)
 ```
 
 ## Broadcasting
@@ -278,6 +327,7 @@ Une notion un peu plus compliquée mais qui sert souvent
 
 ```python
 a = np.array([[1, 2, 3], [5, 6, 7], [9, 10, 11]])
+a
 ```
 
 ```python
@@ -286,18 +336,22 @@ c
 ```
 
 ```python
-a*c
+a+c
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Explication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la conversion pour que tout se passe comme si on avait multiplié par
+Explication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la conversion pour que tout se passe comme si on avait ajouté par
 <!-- #endregion -->
 
 ```python
 np.broadcast_to(c, [3,3])
 ```
 
-Multiplier par un tableau à une dimension revient donc à multiplier colonne par colonne
+Ajouter un tableau à une dimension revient donc à ajouter colonne par colonne
+
+```python
+a*-1
+```
 
 ## Matplotlib
 
@@ -314,7 +368,9 @@ plt.plot(a)
 ```
 
 ```python
-plt.plot(np.random.random(20))
+a = np.random.random(20)
+display(a)
+plt.plot(a)
 ```
 
 Après dès qu'on veut faire des trucs un peu plus compliqué ben ça devient plus compliqué matplotlib.
@@ -338,7 +394,6 @@ Un *array* à trois dimensions : X, Y (les coordonnées du pixel) et la valeur R
 Le pixel `(200, 200)` par exemple est un *array* de 3 éléments `(r,g,b)` :
 
 ```python
-# 
 im[200,200]
 ```
 
@@ -396,7 +451,6 @@ plutôt que les nombres d'occurrences.
 
 ### 3. Faire des tfidsacs
 
-## Exercice
 
 Modifier le script de précédent pour qu'il renvoie non plus les fréquences relatives de chaque mot
 mais leur tf⋅idf avec la définition suivante pour un mot $w$, un document $D$ et un corpus $C$
