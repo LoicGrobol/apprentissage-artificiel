@@ -54,14 +54,29 @@ est indisponible.
 - Exercices Codingame : voir
   [Github](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections)
 
-### 2021-09-29 —  Un peu de théorie, NumPy et scikit-learn
+### 2021-09-29 — Un peu de théorie et NumPy
 
 - [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
+
+### 2021-10-06 — Encore un peu de théorie, scikit-learn et les modèles de langues à n-grams
+
 - [Slides 7](slides/lecture-07/lecture-07.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-07/lecture-07.md)
+- Exercice : écrire deux scripts Python. Le premier doit apprendre à partir d'un corpus de textes un
+  modèle de langue à n-grammes (avec n paramétrable) et le sauvegarder dans un fichier csv. L'autre
+  doit lire le modèle précédent et l'utiliser pour générer une phrase. Tester avec [Le Ventre de
+  Paris](data/zola_ventre-de-paris.txt), puis avec le corpus
+  [CIDRE](https://www.ortolang.fr/market/corpora/cidre).
 
-## Utilisation en local
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 3 « *N-Gram language models* ».
+
+Pour la fois prochaine : lire le chapitre 4 « *Naïve Bayes and Sentiment Classification* » (sauf
+4.9) de [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/). Venir au cours
+avec vos questions !
+
+## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
 [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
@@ -95,49 +110,20 @@ extensions adéquates. Le plus simple est le suivant
 
    JupyterLab est aussi utilisable, mais la fonctionnalité slide n'y fonctionne pas pour l'instant.
 
-## Outils
-
-Vous aurez besoin d'un interpréteur Python et d'un éditeur de texte.
-
-### Python & co
-
-On travaillera avec Python 3.8 et supérieur.
-
-Les supports de cours sont essentiellement sous forme de notebooks [Jupyter](http://jupyter.org/),
-les diapos utilisant [RISE](https://github.com/damianavila/RISE). Pour utiliser les notebooks
-(anciennement ipython notebook maintenant jupyter notebook) vous aurez besoin d'installer sur votre
-machine de travail. Je vous incite également à utiliser le shell interactif `ipython` qui est une
-version améliorée du shell `python` (ipython est inclus dans jupyter).
-
-Deux options pour l'installation :
-
-#### Installer uniquement les outils nécessaires avec pip
-
-1. Installer Python 3, de préférence via le gestionnaire de paquets de votre système, sinon à partir
-   de <https://www.python.org/downloads/>.
-   Pour les distributions dérivées de Debian (y compris Ubuntu) vous aurez également besoin
-   d'installer `pip`
-
-      ```bash
-      sudo apt install python3 python3-pip
-      ```
-
-2. Installer jupyter
-
-      ```bash
-      python3 -m pip install --user jupyter
-      ```
-
-#### Utiliser Anaconda
-
-Ce n'est pas recommandé, mais si vous préférez, vous pouvez installer
-[anaconda](https://www.continuum.io/downloads), qui gère non-seulement Python et les modules Python,
-mais aussi beaucoup d'autres paquets et installera beaucoup de modules tiers dont on se servira pas
-
-Nous verrons également dans le cours comment utiliser [virtualenv](https://virtualenv.pypa.io) pour
-gérer des installations de Python isolées du système pour plus de confort.
-
 ## Ressources
+
+### Apprentissage artificiel
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et
+  James H. Martin est **indispensable**. Il parle de bien plus de chose que simplement de
+  l'apprentissage artificiel, mais sur le plan théorique il contient tout ce dont on parlera
+  concernant l'apprentissage pour le TAL. Il est disponible gratuitement, donc n'hésitez pas à le
+  consulter très fréquemment. J'essaierai d'indiquer pour chaque cours les chapitres en rapport.
+- [*Apprentissage artificiel - Concepts et
+  algorithmes*](https://www.eyrolles.com/Informatique/Livre/apprentissage-artificiel-9782416001048/)
+  d'Antoine Cornuéjols et Laurent Miclet. Plus ancien mais en français et une référence très
+  complète sur l'apprentissage (en particulier non-neuronal). Il est un peu cher alors si vous
+  voulez l'utiliser, commencez par me demander et je vous prêterai le mien.
 
 ### Python général
 
@@ -145,14 +131,15 @@ Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qu
 
 #### Livres
 
-- How to think like a computer scientist, by Jeffrey Elkner, Allen B. Downey, and Chris Meyers.
-Vous pouvez l'acheter. Vous pouvez aussi le lire [ici](http://openbookproject.net/thinkcs/python/english3e/)
-- Dive into Python, by Mark Pilgrim.
-[Ici](http://www.diveintopython3.net/) vous pouvez le lire ou télécharger le pdf.
+- How to think like a computer scientist, by Jeffrey Elkner, Allen B. Downey, and Chris Meyers. Vous
+  pouvez l'acheter. Vous pouvez aussi le lire
+  [ici](http://openbookproject.net/thinkcs/python/english3e/)
+- Dive into Python, by Mark Pilgrim. [Ici](http://www.diveintopython3.net/) vous pouvez le lire ou
+  télécharger le pdf.
 - Learning Python, by Mark Lutz.
 - Beginning Python, by Magnus Lie Hetland.
 - Python Algorithms: Mastering Basic Algorithms in the Python Language, by Magnus Lie Hetland.
-Peut-être un peu costaud pour des débutants.
+  Peut-être un peu costaud pour des débutants.
 - Programmation Efficace. Les 128 Algorithmes Qu'Il Faut Avoir Compris et Codés en Python au Cours
   de sa Vie, by Christoph Dürr and Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code
   Python est clair, les difficultés sont commentées. Les algos sont très costauds.
@@ -181,7 +168,7 @@ Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels c
 - La chaîne YouTube [3blue1brown](https://www.youtube.com/c/3blue1brown) pour des vidéos de maths
   générales.
 - La chaîne YouTube de [Freya Holmér](https://www.youtube.com/c/Acegikmo) plutôt orientée *game
-  design* mais avec d'excellentes vidéos de géométrie computationnelle.
+  design*, mais avec d'excellentes vidéos de géométrie computationnelle.
 
 ## Licences
 
