@@ -17,11 +17,12 @@ jupyter:
 [comment]: <> "LTeX: language=fr"
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 7 : scikit-learn
-======================
+Cours 7 : `scikit-learn`
+=======================
+
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-09-29
+2021-10-05
 <!-- #endregion -->
 
 ```python
@@ -51,7 +52,7 @@ modèle.
 
 Dit autrement, on a un échantillon d'entraînement composé de $n$ couples $Z_{i}=(X_{i}, Y_{i}),
 i=1...n$ où les $X_{i}$ sont les inputs avec plusieurs traits et les $Y_{i}$ seront les outputs, les
-catégories à prédire.  
+catégories à prédire.
 
 L'objectif du problème d'apprentissage est de trouver une fonction $g:X→Y$ de prédiction, qui
 minimise les erreurs de prédiction.
@@ -64,7 +65,7 @@ supervisé](https://scikit-learn.org/stable/unsupervised_learning.html).
 Mais `scikit-learn` offre également les outils pour mener à bien les étapes d'une tâche de
 d'apprentissage :
 
-- Manipuler les donneés, constituter un jeu de données d'entraînement et de test
+- Manipuler les données, constituer un jeu de données d'entraînement et de test
 - Entraînement du modèle
 - Évaluation
 - Optimisation des hyperparamètres
@@ -201,7 +202,7 @@ print(classification_report(y_test, y_pred))
 ## ✍️ Exo ✍️
 
 
-1. Essayez un autre algo de classification (Un SVM linéaire par exemple) et comparez les résultats.
+1. Essayez un autre algo de classification (Un SVM polynomial par exemple) et comparez les résultats.
 2. Sur ce même algo, refaites une partition train/test et comparez l'évaluation avec les résultats
    précédents. 
 
@@ -309,7 +310,8 @@ print(classification_report(y_test, y_pred))
 ## 🤖 Exo  🤖
 
 ### 1. D'autres traits
-Essayez avec d'autres *features* : La longueur moyennes des mots, le nombre d'adjectifs, la présence d'entités nommées, …
+Essayez avec d'autres *features* : La longueur moyennes des mots, le nombre d'adjectifs, la présence
+d'entités nommées, …
 
 
 ### 2. Et les réseaux de neurones ?
