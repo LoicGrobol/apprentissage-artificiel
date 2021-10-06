@@ -121,7 +121,7 @@ display(np.zeros((3,4,5)))
 display(np.zeros((3,4), dtype=int))
 ```
 
-- np.ones
+- `np.ones`
 
 ```python
 np.ones(3)
@@ -135,20 +135,20 @@ np.full((3,4), fill_value=2)
 np.eye(4)
 ```
 
-- np.arange
+- `np.arange`
 
 ```python
 np.arange(10)
 ```
 
-- np.linspace(start, stop) (crée un *array* avec des valeurs réparties uniformément entre start et
+- `np.linspace(start, stop)` (crée un *array* avec des valeurs réparties uniformément entre start et
    stop (50 valeurs par défaut))
 
 ```python
 np.linspace(0, 10, num=5)
 ```
 
-- np.empty (crée un array vide, enfin avec des valeurs aléatoires)
+- `np.empty` (crée un array vide, enfin avec des valeurs aléatoires)
 
 ```python
 np.empty(8)
