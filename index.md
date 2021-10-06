@@ -59,6 +59,10 @@ est indisponible.
 - [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
 
+#### Corrections
+
+- [Exo sacs de mots](corrections/tfidf.py) dans sa version la plus sale possible.
+
 ### 2021-10-06 — Encore un peu de théorie, scikit-learn et les modèles de langues à n-grams
 
 - [Slides 7](slides/lecture-07/lecture-07.slides.html) [![Launch in Binder
