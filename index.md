@@ -61,7 +61,7 @@ est indisponible.
 
 #### Corrections
 
-- [Exo sacs de mots](corrections/tfidf.py) dans sa version la plus sale possible.
+- [Exo sacs de mots](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections/tfidf.py) dans sa version la plus sale possible.
 
 ### 2021-10-06 — Encore un peu de théorie, scikit-learn et les modèles de langues à n-grams
 
