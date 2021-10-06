@@ -58,7 +58,7 @@ L'objectif du problème d'apprentissage est de trouver une fonction $g:X→Y$ de
 minimise les erreurs de prédiction.
 
 `scikit-learn` offre beaucoup d'algorithmes d'apprentissage. Vous en trouverez un aperçu sur
-[https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html](cette carte) et sur ces
+[cette carte](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) et sur ces
 listes : [supervisé](https://scikit-learn.org/stable/supervised_learning.html) / [non
 supervisé](https://scikit-learn.org/stable/unsupervised_learning.html).
 
