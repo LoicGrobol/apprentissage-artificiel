@@ -1,26 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>lecture-05</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
-<title>lecture-07 slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<!-- General and theme style sheets -->
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-}
-</script>
 
 <style type="text/css">
     pre { line-height: 125%; }
@@ -14474,122 +14460,20 @@ a.anchor-link {
 .highlight  {
     margin: 0.4em;
 }
-.jp-Notebook {
-    padding: 0;
+
+/* Input area styling */
+.jp-InputArea {
+    overflow: hidden;
 }
-:root {
-    --jp-ui-font-size1: 20px;       /* instead of 14px */
-    --jp-content-font-size1: 20px;  /* instead of 14px */
-    --jp-code-font-size: 19px;      /* instead of 13px */
-    --jp-cell-prompt-width: 110px;  /* instead of 64px */
+
+.jp-InputArea-editor {
+    overflow: hidden;
 }
+
 @media print {
   body {
     margin: 0;
   }
-}
-</style>
-
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-.reveal {
-  font-size: 160%;
-}
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-}
-.reveal pre code {
-  padding: 0px;
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
-}
-
-div.jp-InputArea-editor {
-  padding: 0.06em;
-}
-
-div.code_cell {
-  background-color: transparent;
-}
-
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-
-div.jp-OutputPrompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-
-/* Reveal navigation controls */
-
-.reveal .controls .navigate-left,
-.reveal .controls .navigate-left.enabled {
-  border-right-color: #727272;
-}
-.reveal .controls .navigate-left.enabled:hover,
-.reveal .controls .navigate-left.enabled.enabled:hover {
-  border-right-color: #dfdfdf;
-}
-.reveal .controls .navigate-right,
-.reveal .controls .navigate-right.enabled {
-  border-left-color: #727272;
-}
-.reveal .controls .navigate-right.enabled:hover,
-.reveal .controls .navigate-right.enabled.enabled:hover {
-  border-left-color: #dfdfdf;
-}
-.reveal .controls .navigate-up,
-.reveal .controls .navigate-up.enabled {
-  border-bottom-color: #727272;
-}
-.reveal .controls .navigate-up.enabled:hover,
-.reveal .controls .navigate-up.enabled.enabled:hover {
-  border-bottom-color: #dfdfdf;
-}
-.reveal .controls .navigate-down,
-.reveal .controls .navigate-down.enabled {
-  border-top-color: #727272;
-}
-.reveal .controls .navigate-down.enabled:hover,
-.reveal .controls .navigate-down.enabled.enabled:hover {
-  border-top-color: #dfdfdf;
-}
-.reveal .progress span {
-  background: #727272;
-}
-
-/* Scrollbars */
-
-::-webkit-scrollbar
-{
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar *
-{
-  background:transparent;
-}
-::-webkit-scrollbar-thumb
-{
-  background: #727272 !important;
 }
 </style>
 
@@ -14626,82 +14510,85 @@ div.jp-OutputPrompt {
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --><!-- Reveal Theme -->
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/simple.css" id="theme">
-
-</head>
-
+    <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="reveal">
-<div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 
 </div>
-</div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Cours-7%E2%80%AF:-scikit-learn">Cours 7&#8239;: <code>scikit-learn</code><a class="anchor-link" href="#Cours-7%E2%80%AF:-scikit-learn">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
-<p>2021-10-05</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="scikit-learn%E2%80%AF?"><code>scikit-learn</code>&#8239;?<a class="anchor-link" href="#scikit-learn%E2%80%AF?">&#182;</a></h2><p><a href="https://scikit-learn.org/stable/index.html"><code>scikit-learn</code></a>.</p>
-<p><code>scikit-learn</code> est une bibliothèque Python dédiée à l'apprentissage artificiel. Ce package est
-développé sur licence libre. Il y a une forte proportion de français parmi les développeurs, le
-projet est soutenu par l'INRIA notamment.</p>
-<p><code>scikit-learn</code> repose sur NumPy et SciPy. Il est écrit en Python et Cython. Il s'interface très
-bien avec <code>matplotlib</code>, <code>plotly</code> ou <code>pandas</code>. C'est devenu un incontournable du <em>machine learning</em>
-et de la <em>datascience</em> en Python.</p>
-<p>Dans ce notebook nous nous limiterons à la classification, une partie seulement du package <a href="https://scikit-learn.org/stable/index.html">scikit-learn</a>.</p>
-<p>La classification est souvent utilisée en TAL, par exemple dans les tâches d'analyse de sentiment,
-de détection d'émotion ou l'identification de la langue.</p>
-<p>On va faire de l'apprentissage <em>supervisé</em>, vous connaissez la chanson : l'idée est d'apprendre un
-modèle à partir de données étiquetées et de prédire la bonne étiquette pour une donnée inconnue du
-modèle.</p>
-<p>Dit autrement, on a un échantillon d'entraînement composé de $n$ couples $Z_{i}=(X_{i}, Y_{i}),
-i=1...n$ où les $X_{i}$ sont les inputs avec plusieurs traits et les $Y_{i}$ seront les outputs, les
-catégories à prédire.</p>
-<p>L'objectif du problème d'apprentissage est de trouver une fonction $g:X→Y$ de prédiction, qui
-minimise les erreurs de prédiction.</p>
-<p><code>scikit-learn</code> offre beaucoup d'algorithmes d'apprentissage. Vous en trouverez un aperçu sur
-<a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">cette carte</a> et sur ces
-listes : <a href="https://scikit-learn.org/stable/supervised_learning.html">supervisé</a> / <a href="https://scikit-learn.org/stable/unsupervised_learning.html">non
-supervisé</a>.</p>
-<p>Mais <code>scikit-learn</code> offre également les outils pour mener à bien les étapes d'une tâche de
-d'apprentissage :</p>
-<ul>
-<li>Manipuler les données, constituer un jeu de données d'entraînement et de test</li>
-<li>Entraînement du modèle</li>
-<li>Évaluation</li>
-<li>Optimisation des hyperparamètres</li>
+<h1 id="Cours-5%E2%80%AF:-Pip-et-Virtualenv">Cours 5&#8239;: Pip et Virtualenv<a class="anchor-link" href="#Cours-5%E2%80%AF:-Pip-et-Virtualenv">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
+<p>2021-09-22</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Les-modules-sont-vos-amis">Les modules sont vos amis<a class="anchor-link" href="#Les-modules-sont-vos-amis">&#182;</a></h1><p>Rappel des épisodes précédents</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Ils-cachent-vos-impl%C3%A9mentations">Ils cachent vos impl&#233;mentations<a class="anchor-link" href="#Ils-cachent-vos-impl%C3%A9mentations">&#182;</a></h2><ul>
+<li>Quand on code une interface, on a pas envie de voir le code fonctionnel</li>
+<li>Et vice-versa</li>
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ce qu'on fait quand on code proprement (ou presque)</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span><span class="c1"># malib.py</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span><span class="c1"># moninterface.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">malib</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_stream</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">in_stream</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">malib</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">l</span><span class="p">))))</span>
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Comme ça quand je code mon interface, je n'ai pas besoin de me souvenir ou même de voir comment est codé <code>tokenize</code></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Il-y-en-a-d%C3%A9j%C3%A0-plein">Il y en a d&#233;j&#224; plein<a class="anchor-link" href="#Il-y-en-a-d%C3%A9j%C3%A0-plein">&#182;</a></h2>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -U scikit-learn
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s2">&quot;modules&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14709,28 +14596,216 @@ d'apprentissage :</p>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+Please wait a moment while I gather a list of all available modules...
+
+</pre>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Un-premier-exemple">Un premier exemple<a class="anchor-link" href="#Un-premier-exemple">&#182;</a></h2>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages/IPython/kernel/__init__.py:12: ShimWarning: The `IPython.kernel` package has been deprecated since IPython 4.0.You should import from ipykernel or jupyter_client instead.
+  warn(&#34;The `IPython.kernel` package has been deprecated since IPython 4.0.&#34;
+/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/pkgutil.py:93: MatplotlibDeprecationWarning: 
+The matplotlib.compat module was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
+  __import__(info.name)
+Created a temporary directory at /tmp/tmplcovv1xs
+2021-10-10 15:51:58.642 INFO    torch.distributed.nn.jit.instantiator: Created a temporary directory at /tmp/tmplcovv1xs
+Writing /tmp/tmplcovv1xs/_remote_module_non_sriptable.py
+2021-10-10 15:51:58.645 INFO    torch.distributed.nn.jit.instantiator: Writing /tmp/tmplcovv1xs/_remote_module_non_sriptable.py
+</pre>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Les-donn%C3%A9es">Les donn&#233;es<a class="anchor-link" href="#Les-donn%C3%A9es">&#182;</a></h3><p>C'est la clé de voute du <em>machine learning</em>, vous le savez n'est-ce pas ? Nous allons travailler
-avec un des jeux de données fourni par scikit-learn : <a href="https://scikit-learn.org/stable/datasets/toy_dataset.html#wine-recognition-dataset">le jeu de données de reconnaissance des vins</a></p>
-<p>C'est plus facile pour commencer parce que les données sont déjà nettoyées et organisées.</p>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>IPython             backcall            jupyterlab          sentry_sdk
+PIL                 backports           jupyterlab_pygments seqeval
+__future__          base58              jupyterlab_server   setuptools
+_abc                base64              jupyterlab_widgets  shelve
+_aix_support        bdb                 jupytext            shlex
+_ast                binascii            keyword             shortuuid
+_asyncio            binhex              kiwisolver          shutil
+_bisect             bisect              lib2to3             signal
+_blake2             bleach              linecache           simpletransformers
+_bootlocale         blinker             locale              site
+_bootsubprocess     builtins            logging             six
+_bz2                bz2                 lzma                sklearn
+_cffi_backend       cProfile            mailbox             smmap
+_codecs             cachetools          mailcap             smtpd
+_codecs_cn          caffe2              markdown            smtplib
+_codecs_hk          calendar            markdown_it         sndhdr
+_codecs_iso2022     certifi             markupsafe          sniffio
+_codecs_jp          cffi                marshal             socket
+_codecs_kr          cgi                 math                socketserver
+_codecs_tw          cgitb               matplotlib          spwd
+_collections        chardet             matplotlib_inline   sqlite3
+_collections_abc    charset_normalizer  mdit_py_plugins     sre_compile
+_compat_pickle      chunk               mimetypes           sre_constants
+_compression        click               mistune             sre_parse
+_contextvars        cmath               mmap                ssl
+_crypt              cmd                 modulefinder        stat
+_csv                code                multidict           statistics
+_ctypes             codecs              multiprocess        storemagic
+_ctypes_test        codeop              multiprocessing     streamlit
+_curses             collections         nbclassic           string
+_curses_panel       colorsys            nbclient            stringprep
+_datetime           compileall          nbconvert           struct
+_dbm                concurrent          nbformat            subprocess
+_decimal            configparser        nest_asyncio        subprocess32
+_distutils_hack     contextlib          netrc               sunau
+_elementtree        contextvars         nis                 symbol
+_functools          copy                nntplib             sympyprinting
+_gdbm               copyreg             notebook            symtable
+_hashlib            crypt               ntpath              sys
+_heapq              csv                 nturl2path          sysconfig
+_imp                ctypes              numbers             syslog
+_io                 curses              numpy               tabnanny
+_json               cycler              oauthlib            tarfile
+_locale             cythonmagic         opcode              telnetlib
+_lsprof             dataclasses         operator            tempfile
+_lzma               datasets            optparse            tensorboard
+_markupbase         datetime            os                  tensorboard_data_server
+_md5                dateutil            ossaudiodev         tensorboard_plugin_wit
+_multibytecodec     dbm                 packaging           termcolor
+_multiprocess       debugpy             pandas              terminado
+_multiprocessing    decimal             pandocfilters       termios
+_opcode             decorator           parser              test
+_operator           defusedxml          parso               testpath
+_osx_support        difflib             pathlib             tests
+_peg_parser         dill                pathtools           textwrap
+_pickle             dis                 pdb                 this
+_posixshmem         distutils           pexpect             threading
+_posixsubprocess    dockerpycreds       pickle              threadpoolctl
+_py_abc             doctest             pickleshare         time
+_pydecimal          email               pickletools         timeit
+_pyio               encodings           pip                 tkinter
+_pyrsistent_version ensurepip           pipes               tlz
+_queue              entrypoints         pkg_resources       token
+_random             enum                pkgutil             tokenize
+_sha1               errno               platform            tokenizers
+_sha256             faulthandler        plistlib            toml
+_sha3               fcntl               poplib              toolz
+_sha512             filecmp             posix               torch
+_signal             fileinput           posixpath           tornado
+_sitebuiltins       filelock            pprint              tqdm
+_socket             fnmatch             profile             trace
+_sqlite3            formatter           prometheus_client   traceback
+_sre                fractions           promise             tracemalloc
+_ssl                fsspec              prompt_toolkit      traitlets
+_stat               ftplib              pstats              transformers
+_statistics         functools           psutil              tty
+_string             gc                  pty                 turtle
+_strptime           genericpath         ptyprocess          turtledemo
+_struct             getopt              pvectorc            types
+_symtable           getpass             pwd                 typing
+_sysconfigdata__linux_x86_64-linux-gnu gettext             py_compile          typing_extensions
+_testbuffer         git                 pyarrow             tzlocal
+_testcapi           gitdb               pyasn1              unicodedata
+_testimportmultiple glob                pyasn1_modules      unittest
+_testinternalcapi   google_auth_oauthlib pyclbr              urllib
+_testmultiphase     graphlib            pycparser           urllib3
+_thread             grp                 pydeck              uu
+_threading_local    grpc                pydoc               uuid
+_tkinter            gzip                pydoc_data          validators
+_tracemalloc        hashlib             pyexpat             venv
+_uuid               heapq               pygments            wandb
+_warnings           hmac                pylab               warnings
+_weakref            html                pyparsing           watchdog
+_weakrefset         http                pyrsistent          wave
+_xxsubinterpreters  huggingface_hub     pytz                wcwidth
+_xxtestfuzz         idlelib             queue               weakref
+_yaml               idna                quopri              webbrowser
+_zoneinfo           imaplib             random              webencodings
+abc                 imghdr              re                  websocket
+absl                imp                 readline            werkzeug
+aifc                importlib           regex               wheel
+aiohttp             inspect             reprlib             widgetsnbextension
+altair              io                  requests            wsgiref
+antigravity         ipaddress           requests_oauthlib   xdrlib
+anyio               ipykernel           requests_unixsocket xml
+argon2              ipykernel_launcher  resource            xmlrpc
+argparse            ipython_genutils    rise                xxhash
+array               ipywidgets          rlcompleter         xxlimited
+ast                 itertools           rmagic              xxsubtype
+astor               jedi                rsa                 yaml
+async_timeout       jinja2              runpy               yarl
+asynchat            joblib              sacremoses          yaspin
+asyncio             json                sched               zipapp
+asyncore            json5               scipy               zipfile
+atexit              jsonschema          secrets             zipimport
+attr                jupyter             select              zlib
+audioop             jupyter_client      selectors           zmq
+autoreload          jupyter_core        send2trash          zoneinfo
+babel               jupyter_server      sentencepiece       
+
+Enter any module name to get more help.  Or, type &#34;modules spam&#34; to search
+for modules whose name or summary contain the string &#34;spam&#34;.
+
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/pkgutil.py:108: VisibleDeprecationWarning: zmq.eventloop.minitornado is deprecated in pyzmq 14.0 and will be removed.
+    Install tornado itself to use zmq with the tornado IOLoop.
+    
+  yield from walk_packages(path, info.name+&#39;.&#39;, onerror)
+</pre>
+</div>
+</div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Ils-vous-simplifient-la-vie">Ils vous simplifient la vie<a class="anchor-link" href="#Ils-vous-simplifient-la-vie">&#182;</a></h2>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="n">wine</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_wine</span><span class="p">()</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">wine</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">)))</span>
+<span class="n">projet</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;assignments&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">exos</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)))</span>
 </pre></div>
 
      </div>
@@ -14738,30 +14813,288 @@ avec un des jeux de données fourni par scikit-learn : <a href="https://scikit
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>PosixPath(&#39;/home/runner/work/apprentissage-artificiel/apprentissage-artificiel/slides/lecture-05&#39;)</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>[PosixPath(&#39;/home/runner/work/apprentissage-artificiel/apprentissage-artificiel/slides/lecture-05/lecture-05.ipynb&#39;)]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_1953/1821779469.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> display<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">.</span>glob<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;*.ipynb&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> projet <span class="ansi-blue-fg">=</span> p<span class="ansi-blue-fg">.</span>parent <span class="ansi-blue-fg">/</span> <span class="ansi-blue-fg">&#34;assignments&#34;</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span>display<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>exos<span class="ansi-blue-fg">.</span>glob<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;*&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;exos&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>(La recommandation des développeureuses de <code>scikit-learn</code> est d'importer uniquement les parties qui
-nous intéresse plutôt que tout le package. Notez aussi le nom <code>sklearn</code> pour l'import.)</p>
-<p>Ces jeux de données sont des objets <code>sklearn.utils.Bunch</code>. Organisés un peu comme des dictionnaires
-Python, ces objets contiennent :</p>
+<h1 id="stdlib-ne-suffit-plus"><code>stdlib</code> ne suffit plus<a class="anchor-link" href="#stdlib-ne-suffit-plus">&#182;</a></h1><p>Parfois la bibliothèque standard est trop limitée</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Je veux repérer dans un texte toutes les occurrences de « omelette » qui ne sont pas précédées par
+« une »</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;oui très bien maintenant il reste plus que quelques petites questions pour sit-</span>
+<span class="s2">oui c&#39; était les c&#39; était la dernière chose que je voulais vous demander les Anglais prétendent que même dans les moindres choses y a des différences entre euh la façon de vivre des Français et des Anglais et euh c&#39; est pourquoi euh ils demandent euh ils se demandaient comment en France par exemple on faisait une omelette et s&#39; il y avait des différences entre euh la façon française de faire une omelette et la façon anglaise alors si vous pouviez décrire comment vous vous faites une  omelette ?</span>
+<span class="s2">tout d&#39; abord on m- on casse les oeufs dans un saladier euh on mélange le le blanc et le jaune et puis on on bat avec soit avec une fourchette soit avec un appareil parce qu&#39; il existe des appareils pour battre les oeufs euh vous prenez une poêle vous y mettez du beurre et quand il est fondu euh vous versez l&#39; omelette par dessus euh t- j&#39; ai oublié de dire qu&#39; on mettait du sel et du poivre dans dans les oeufs</span>
+<span class="s2">hm hm ?</span>
+<span class="s2">et quand euh vous avez versé le les oeufs dans la dans la poêle euh vous euh vous quand ça prend consistance vous retournez votre omelette en faisant attention de euh de la retourner comme il faut évidemment qu&#39; elle ne se mette pas en miettes et vous la faites cuire de l&#39; autre côté et pour la présenter on la plie en deux maintenant on peut mettre aussi dans le dans le dans les oeufs euh des fines herbes&quot;&quot;&quot;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?&lt;!une )omelette&quot;</span>
+<span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&#39;omelette&#39;, &#39;omelette&#39;, &#39;omelette&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Mais je veux pouvoir le faire même s'il y a plusieurs espaces</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?&lt;!une\s+)omelette&quot;</span>
+<span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">error</span>                                     Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_1953/3766294327.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> pattern <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">r&#34;(?&lt;!une\s+)omelette&#34;</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>re<span class="ansi-blue-fg">.</span>findall<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> text<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/re.py</span> in <span class="ansi-cyan-fg">findall</span><span class="ansi-blue-fg">(pattern, string, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    239</span> 
+<span class="ansi-green-intense-fg ansi-bold">    240</span>     Empty matches are included in the result.&#34;&#34;&#34;
+<span class="ansi-green-fg">--&gt; 241</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _compile<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>findall<span class="ansi-blue-fg">(</span>string<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    242</span> 
+<span class="ansi-green-intense-fg ansi-bold">    243</span> <span class="ansi-green-fg">def</span> finditer<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> string<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/re.py</span> in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(pattern, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    302</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> sre_compile<span class="ansi-blue-fg">.</span>isstring<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    303</span>         <span class="ansi-green-fg">raise</span> TypeError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;first argument must be string or compiled pattern&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 304</span><span class="ansi-red-fg">     </span>p <span class="ansi-blue-fg">=</span> sre_compile<span class="ansi-blue-fg">.</span>compile<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    305</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> <span class="ansi-blue-fg">(</span>flags <span class="ansi-blue-fg">&amp;</span> DEBUG<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    306</span>         <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>_cache<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;=</span> _MAXCACHE<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">compile</span><span class="ansi-blue-fg">(p, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    766</span>         pattern <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">    767</span> 
+<span class="ansi-green-fg">--&gt; 768</span><span class="ansi-red-fg">     </span>code <span class="ansi-blue-fg">=</span> _code<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    769</span> 
+<span class="ansi-green-intense-fg ansi-bold">    770</span>     <span class="ansi-green-fg">if</span> flags <span class="ansi-blue-fg">&amp;</span> SRE_FLAG_DEBUG<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">_code</span><span class="ansi-blue-fg">(p, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    605</span> 
+<span class="ansi-green-intense-fg ansi-bold">    606</span>     <span class="ansi-red-fg"># compile the pattern</span>
+<span class="ansi-green-fg">--&gt; 607</span><span class="ansi-red-fg">     </span>_compile<span class="ansi-blue-fg">(</span>code<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    608</span> 
+<span class="ansi-green-intense-fg ansi-bold">    609</span>     code<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>SUCCESS<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(code, pattern, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    180</span>                 lo<span class="ansi-blue-fg">,</span> hi <span class="ansi-blue-fg">=</span> av<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>getwidth<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    181</span>                 <span class="ansi-green-fg">if</span> lo <span class="ansi-blue-fg">!=</span> hi<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 182</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> error<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;look-behind requires fixed-width pattern&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    183</span>                 emit<span class="ansi-blue-fg">(</span>lo<span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># look behind</span>
+<span class="ansi-green-intense-fg ansi-bold">    184</span>             _compile<span class="ansi-blue-fg">(</span>code<span class="ansi-blue-fg">,</span> av<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">error</span>: look-behind requires fixed-width pattern</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>re</code> ne permet pas de faire ce genre de choses (un <em>lookbehind</em> de taille variable) mais
+<a href="https://pypi.org/project/regex"><code>regex</code></a> oui</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">regex</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?&lt;!une\s+)omelette&quot;</span>
+<span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&#39;omelette&#39;, &#39;omelette&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="pip,-le-gestionnaire"><code>pip</code>, le gestionnaire<a class="anchor-link" href="#pip,-le-gestionnaire">&#182;</a></h2><p><a href="https://pip.pypa.io"><code>pip</code></a> est le gestionnaire de paquets intégré à python (sauf sous Debian 😠).
+Comme tout bon gestionnaire de paquet il sait</p>
 <ul>
-<li><code>data</code> : array NumPy à deux dimensions d'échantillons de données (n_samples * n_features), les
-inputs, les X</li>
-<li><code>target</code> : les variables à prédire, les catégories des échantillons si vous voulez, les outputs,
-les y</li>
-<li><code>feature_names</code> </li>
-<li><code>target_names</code></li>
+<li>Installer un paquet <code>pip install regex</code></li>
+<li>Donner des infos <code>pip show regex</code></li>
+<li>Le mettre à jour <code>pip install -U regex</code></li>
+<li>Le désinstaller <code>pip uninstall regex</code></li>
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Pypi,-le-cheeseshop">Pypi, le <em>cheeseshop</em><a class="anchor-link" href="#Pypi,-le-cheeseshop">&#182;</a></h2><p>Situé à <a href="https://pypi.org">https://pypi.org</a>, Pypi liste les paquets tiers — conçus et maintenus par la communauté — pour Python.</p>
+<p>Quand vous demandez à <code>pip</code> d'installer un paquet, c'est là qu'il va le chercher par défaut.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip search regex
 </pre></div>
 
      </div>
@@ -14769,13 +15102,142 @@ les y</li>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre><span class="ansi-red-fg">ERROR: XMLRPC request failed [code: -32500]
+RuntimeError: PyPI&#39;s XMLRPC API is currently disabled due to unmanageable load and will be deprecated in the near future. See https://status.python.org/ for more information.</span>
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Vous pouvez aussi le parcourir dans l'inteface web, c'est un bon point de départ pour éviter de
+réinventer la roue.</p>
+<p>Le moteur de pypi est libre et rien ne vous empêche d'héberger votre propre instance, il suffira
+alors d'utiliser pip avec l'option <code>--index-url &lt;url&gt;</code></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>pip</code> sait faire plein d'autres choses et installer depuis beaucoup de sources. Par exemple un dépôt
+git</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --force-reinstall git+https://github.com/psf/requests.git
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Collecting git+https://github.com/psf/requests.git
+  Cloning https://github.com/psf/requests.git to /tmp/pip-req-build-igg2abp6
+  Running command git clone -q https://github.com/psf/requests.git /tmp/pip-req-build-igg2abp6
+  Resolved https://github.com/psf/requests.git to commit 9dd6e47b5b4d25ee34701a1a0111a3332b1478d7
+Collecting urllib3&lt;1.27,&gt;=1.21.1
+  Using cached urllib3-1.26.7-py2.py3-none-any.whl (138 kB)
+Collecting certifi&gt;=2017.4.17
+  Using cached certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
+Collecting charset_normalizer~=2.0.0
+  Using cached charset_normalizer-2.0.6-py3-none-any.whl (37 kB)
+Collecting idna&lt;4,&gt;=2.5
+  Using cached idna-3.2-py3-none-any.whl (59 kB)
+Building wheels for collected packages: requests
+  Building wheel for requests (setup.py) ... - done
+  Created wheel for requests: filename=requests-2.26.0-py2.py3-none-any.whl size=62589 sha256=20ff5e9fa97385f96cf6fb445b6988a95f920afbdfc3d6d90dddca9656d690a0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-whs8t01_/wheels/6a/08/02/9be83a8cfb48047f043fe9f98fe2777866f9542ead6a17bcff
+Successfully built requests
+Installing collected packages: urllib3, idna, charset-normalizer, certifi, requests
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 1.26.7
+    Uninstalling urllib3-1.26.7:
+      Successfully uninstalled urllib3-1.26.7
+  Attempting uninstall: idna
+    Found existing installation: idna 3.2
+    Uninstalling idna-3.2:
+      Successfully uninstalled idna-3.2
+  Attempting uninstall: charset-normalizer
+    Found existing installation: charset-normalizer 2.0.6
+    Uninstalling charset-normalizer-2.0.6:
+      Successfully uninstalled charset-normalizer-2.0.6
+  Attempting uninstall: certifi
+    Found existing installation: certifi 2021.10.8
+    Uninstalling certifi-2021.10.8:
+      Successfully uninstalled certifi-2021.10.8
+  Attempting uninstall: requests
+    Found existing installation: requests 2.26.0
+    Uninstalling requests-2.26.0:
+      Successfully uninstalled requests-2.26.0
+Successfully installed certifi-2021.10.8 charset-normalizer-2.0.6 idna-3.2 requests-2.26.0 urllib3-1.26.7
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Les-choses-d%C3%A9sagr%C3%A9ables">Les choses d&#233;sagr&#233;ables<a class="anchor-link" href="#Les-choses-d%C3%A9sagr%C3%A9ables">&#182;</a></h1><p>Il y a des choses pour lesquelles <code>pip</code> n'est pas bon</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note</strong> ce qui suit est un tissu de calomnies : ces problèmes ont été en large partie résolus en
+2020-2021, mais il est bon de savoir qu'ils ont existé car Pip n'est pas à jour partout…</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="R%C3%A9soudre-des-conflits-de-d%C3%A9pendances">R&#233;soudre des conflits de d&#233;pendances<a class="anchor-link" href="#R%C3%A9soudre-des-conflits-de-d%C3%A9pendances">&#182;</a></h2>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">feature_names</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U --force-reinstall <span class="nv">botocore</span><span class="o">==</span><span class="m">1</span>.13.9 python-dateutil&gt;<span class="o">=</span><span class="m">2</span>.1
 </pre></div>
 
      </div>
@@ -14786,16 +15248,72 @@ les y</li>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Si on a installé <code>pandas</code></p>
+<p><a href="https://github.com/pypa/pip/issues/988">Mais plus pour longtemps !</a></p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Checker-ses-privil%C3%A8ges">Checker ses privil&#232;ges<a class="anchor-link" href="#Checker-ses-privil%C3%A8ges">&#182;</a></h2><div class="highlight"><pre><span></span>$ pip install regex
+ERROR: Could not install packages due to an EnvironmentError: <span class="o">[</span>Errno <span class="m">13</span><span class="o">]</span> Permission denied: <span class="err">&#39;</span>/usr/local/lib/python2.7/dist-packages/
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Un remède simple : n'installer que pour soi</p>
+<div class="highlight"><pre><span></span>$ pip install --user regex
+Successfully installed regex-2019.11.1
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="R%C3%A9pondre-quand-on-l'appelle">R&#233;pondre quand on l'appelle<a class="anchor-link" href="#R%C3%A9pondre-quand-on-l'appelle">&#182;</a></h2><p>Ou plutôt c'est python qui a un souci</p>
+<div class="highlight"><pre><span></span>$ pip install --user regex
+Successfully installed regex-2019.11.1
+$ python3 -c <span class="s2">&quot;import regex;print(regex.__version__)&quot;</span>
+ModuleNotFoundError: No module named <span class="err">&#39;</span>regex
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span>$ pip --version
+pip <span class="m">19</span>.3.1 from /home/lgrobol/.local/lib/python3.8/site-packages/pip <span class="o">(</span>python <span class="m">3</span>.8<span class="o">)</span>
+$ python3 --version
+Python <span class="m">3</span>.7.5rc1
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>La solution : exiger le bon python</p>
+<div class="highlight"><pre><span></span>$ python3 -m pip install --user regex
+Successfully installed regex-2019.11.1
+$ python3 -c <span class="s2">&quot;import regex;print(regex.__version__)&quot;</span>
+<span class="m">2</span>.5.65
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Freeze%E2%80%AF!">Freeze&#8239;!<a class="anchor-link" href="#Freeze%E2%80%AF!">&#182;</a></h1><p>Une fonction importante de <code>pip</code> est la capacité de geler les versions des paquets installés et de
+les restaurer</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -U pandas
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip freeze
 </pre></div>
 
      </div>
@@ -14803,23 +15321,201 @@ les y</li>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>absl-py==0.14.1
+aiohttp==3.7.4.post0
+altair==4.1.0
+anyio==3.3.2
+argon2-cffi==21.1.0
+astor==0.8.1
+async-timeout==3.0.1
+attrs==21.2.0
+Babel==2.9.1
+backcall==0.2.0
+base58==2.1.0
+bleach==4.1.0
+blinker==1.4
+botocore==1.13.9
+cachetools==4.2.4
+certifi==2021.10.8
+cffi==1.14.6
+chardet==4.0.0
+charset-normalizer==2.0.6
+click==7.1.2
+configparser==5.0.2
+cycler==0.10.0
+datasets==1.12.1
+debugpy==1.5.0
+decorator==5.1.0
+defusedxml==0.7.1
+dill==0.3.4
+docker-pycreds==0.4.0
+docutils==0.15.2
+entrypoints==0.3
+filelock==3.3.0
+fsspec==2021.10.0
+gitdb==4.0.7
+GitPython==3.1.24
+google-auth==1.35.0
+google-auth-oauthlib==0.4.6
+grpcio==1.41.0
+huggingface-hub==0.0.19
+idna==3.2
+ipykernel==6.4.1
+ipython==7.28.0
+ipython-genutils==0.2.0
+ipywidgets==7.6.5
+jedi==0.18.0
+Jinja2==3.0.2
+jmespath==0.10.0
+joblib==1.1.0
+json5==0.9.6
+jsonschema==4.1.0
+jupyter-client==7.0.6
+jupyter-core==4.8.1
+jupyter-server==1.11.1
+jupyterlab==3.1.18
+jupyterlab-pygments==0.1.2
+jupyterlab-server==2.8.2
+jupyterlab-widgets==1.0.2
+jupytext==1.13.0
+kiwisolver==1.3.2
+Markdown==3.3.4
+markdown-it-py==1.1.0
+MarkupSafe==2.0.1
+matplotlib==3.4.3
+matplotlib-inline==0.1.3
+mdit-py-plugins==0.2.8
+mistune==0.8.4
+multidict==5.2.0
+multiprocess==0.70.12.2
+nbclassic==0.3.2
+nbclient==0.5.4
+nbconvert==6.2.0
+nbformat==5.1.3
+nest-asyncio==1.5.1
+notebook==6.4.4
+numpy==1.21.2
+oauthlib==3.1.1
+packaging==21.0
+pandas==1.3.3
+pandocfilters==1.5.0
+parso==0.8.2
+pathtools==0.1.2
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow==8.3.2
+prometheus-client==0.11.0
+promise==2.3
+prompt-toolkit==3.0.20
+protobuf==3.18.1
+psutil==5.8.0
+ptyprocess==0.7.0
+pyarrow==5.0.0
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser==2.20
+pydeck==0.7.0
+Pygments==2.10.0
+pyparsing==2.4.7
+pyrsistent==0.18.0
+python-dateutil==2.8.0
+pytz==2021.3
+PyYAML==5.4.1
+pyzmq==22.3.0
+regex==2021.10.8
+requests @ git+https://github.com/psf/requests.git@9dd6e47b5b4d25ee34701a1a0111a3332b1478d7
+requests-oauthlib==1.3.0
+requests-unixsocket==0.2.0
+rise==5.7.1
+rsa==4.7.2
+sacremoses==0.0.46
+scikit-learn==1.0
+scipy==1.7.1
+Send2Trash==1.8.0
+sentencepiece==0.1.96
+sentry-sdk==1.4.3
+seqeval==1.2.2
+shortuuid==1.0.1
+simpletransformers==0.62.2
+six==1.16.0
+smmap==4.0.0
+sniffio==1.2.0
+streamlit==1.0.0
+subprocess32==3.5.4
+tensorboard==2.6.0
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.0
+termcolor==1.1.0
+terminado==0.12.1
+testpath==0.5.0
+threadpoolctl==3.0.0
+tokenizers==0.10.3
+toml==0.10.2
+toolz==0.11.1
+torch==1.9.1
+tornado==6.1
+tqdm==4.62.3
+traitlets==5.1.0
+transformers==4.11.3
+typing-extensions==3.10.0.2
+tzlocal==3.0
+urllib3==1.25.11
+validators==0.18.2
+wandb==0.12.4
+watchdog==2.1.6
+wcwidth==0.2.5
+webencodings==0.5.1
+websocket-client==1.2.1
+Werkzeug==2.0.2
+widgetsnbextension==3.5.1
+xxhash==2.0.2
+yarl==1.7.0
+yaspin==2.1.0
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On peut convertir ces données en <code>Dataframe</code> pandas si on veut.</p>
+<p>(Traditionnellement, pour les sauvegarder : <code>pip freeze &gt; requirements.txt</code>)</p>
+<p>Il est <strong>fortement</strong> recommandé de le faire quand on lance une expérience pour pouvoir la reproduire
+dans les mêmes conditions si besoin.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Pour restaurer les mêmes versions</p>
+<div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+<p>(éventuellement avec <code>-U</code> et <code>--force-reinstall</code> en plus et bien sûr <code>--user</code>)</p>
+<p>On peut aussi écrire des <code>requirements.txt</code> à la main pour préciser les dépendances d'un projet</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">wine</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat ../requirements.txt
 </pre></div>
 
      </div>
@@ -14827,19 +15523,58 @@ les y</li>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>cat: ../requirements.txt: No such file or directory
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Mais l'essentiel est de retrouver nos inputs X et outputs y nécessaires à l'apprentissage.</p>
+<h1 id="virtualenv"><code>virtualenv</code><a class="anchor-link" href="#virtualenv">&#182;</a></h1><p>À force d'installer tout et n'importe quoi, il finit fatalement par arriver que</p>
+<ul>
+<li>Des paquets que vous utilisez dans des projets séparés aient des conflits de version</li>
+<li>Vous passiez votre temps à installer depuis des <code>requirements.txt</code></li>
+<li>Vos <code>requirements.txt</code> soient soit incomplets soit trop complets</li>
+</ul>
+<p>Et arrive la conclusion</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>En fait il me faudrait une installation différente de python pour chaque projet !</strong></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Et c'est précisément ce qu'on va faire</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">wine</span><span class="o">.</span><span class="n">target</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install virtualenv
 </pre></div>
 
      </div>
@@ -14847,405 +15582,124 @@ les y</li>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Collecting virtualenv
+  Downloading virtualenv-20.8.1-py2.py3-none-any.whl (5.3 MB)
+     |████████████████████████████████| 5.3 MB 7.4 MB/s 
+Collecting backports.entry-points-selectable&gt;=1.0.4
+  Downloading backports.entry_points_selectable-1.1.0-py2.py3-none-any.whl (6.2 kB)
+Collecting distlib&lt;1,&gt;=0.3.1
+  Downloading distlib-0.3.3-py2.py3-none-any.whl (496 kB)
+     |████████████████████████████████| 496 kB 74.8 MB/s 
+Requirement already satisfied: six&lt;2,&gt;=1.9.0 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from virtualenv) (1.16.0)
+Requirement already satisfied: filelock&lt;4,&gt;=3.0.0 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from virtualenv) (3.3.0)
+Collecting platformdirs&lt;3,&gt;=2
+  Downloading platformdirs-2.4.0-py3-none-any.whl (14 kB)
+Installing collected packages: platformdirs, distlib, backports.entry-points-selectable, virtualenv
+Successfully installed backports.entry-points-selectable-1.1.0 distlib-0.3.3 platformdirs-2.4.0 virtualenv-20.8.1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Vous pouvez séparer les données en train et test facilement à l'aide de <code>sklearn.model_selection.train_test_split</code> ( voir la <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split">doc</a>)</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">y_train</span>
+<h2 id="Comment%E2%80%AF?">Comment&#8239;?<a class="anchor-link" href="#Comment%E2%80%AF?">&#182;</a></h2><ul>
+<li>Placez-vous dans un répertoire vide</li>
+</ul>
+<div class="highlight"><pre><span></span>mkdir -p ~/tmp/python-crashcourse <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/tmp/python-crashcourse
+</pre></div>
+<ul>
+<li>Entrez</li>
+</ul>
+<div class="highlight"><pre><span></span>python3 -m virtualenv .virtenv
+</pre></div>
+<ul>
+<li>Vous avez créé un environnement virtuel \o/ activez-le</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nb">source</span> .virtenv/bin/activate
 </pre></div>
 
-     </div>
 </div>
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Et-alors%E2%80%AF?">Et alors&#8239;?<a class="anchor-link" href="#Et-alors%E2%80%AF?">&#182;</a></h2>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;classe&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;nombre d&#39;exemples&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;répartition des classes&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span>$ pip list
+Package    Version
+---------- -------
+pip        <span class="m">19</span>.3.1 
+setuptools <span class="m">41</span>.6.0 
+wheel      <span class="m">0</span>.33.6
 </pre></div>
 
-     </div>
 </div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Il ne faut pas hésiter à recourir à des représentations graphiques quand vous manipulez les données.
-Ici on voit que la répartition des classes à prédire n'est pas homogène pour les données de test.<br>
-On peut y remédier en utilisant le paramètre <code>stratify</code>, qui fait appel à <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedShuffleSplit.html"><code>StratifiedShuffleSplit</code></a> pour préserver la même répartition des classes dans le train et dans le test.</p>
+<p>Alors vous avez ici une installation isolée du reste !</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_wine</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;classe&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;nombre d&#39;exemples&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;répartition des classes avec échantillonnage stratifié&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/LoicGrobol/web-interfaces/master/requirements.txt
+pip install -r requirements.txt
 </pre></div>
 
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Entra%C3%AEnement">Entra&#238;nement<a class="anchor-link" href="#Entra%C3%AEnement">&#182;</a></h2><p>L'étape suivante est de choisir un algorithme (un <em>estimator</em>), de l'entraîner sur nos données train
-(avec la fonction <code>fit()</code>) puis de faire la prédiction (avec la fonction <code>predict</code>).<br>
-Quelque soit l'algo choisi vous allez retrouver les fonctions <code>fit</code> et <code>predict</code>. Ce qui changera ce
-seront les paramètres à passer au constructeur de la classe de l'algo. Votre travail portera sur le
-choix de ces paramètres.</p>
-<p>Exemple un peu bateau avec une méthode de type SVM.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%C3%89valuation">&#201;valuation<a class="anchor-link" href="#%C3%89valuation">&#182;</a></h2><p>On fait l'évaluation en confrontant les prédictions sur les <code>X_test</code> et les <code>y_test</code>. La fonction <code>score</code> nous donne l'exactitude (<em>accuracy</em>) moyenne du modèle.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Pour la classification il existe une classe bien pratique : <code>sklearn.metrics.classification_report</code></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
-
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%E2%9C%8D%EF%B8%8F-Exo-%E2%9C%8D%EF%B8%8F">&#9997;&#65039; Exo &#9997;&#65039;<a class="anchor-link" href="#%E2%9C%8D%EF%B8%8F-Exo-%E2%9C%8D%EF%B8%8F">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Essayez un autre algo de classification (Un SVM polynomial par exemple) et comparez les résultats.</li>
-<li>Sur ce même algo, refaites une partition train/test et comparez l'évaluation avec les résultats
-précédents. </li>
-</ol>
+<p>Et maintenant vous avez tous les paquets utilisés dans ce cours. En bonus</p>
+<ul>
+<li><code>pip</code> est le bon <code>pip</code></li>
+<li><code>python</code> est le bon <code>python</code></li>
+<li>Tout ce que vous faites avec python n'agira que sur <code>.virtenv</code>, votre système reste propre !</li>
+</ul>
+<p>En particulier, si rien ne va plus, il suffit de supprimer <code>.virtenv</code></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Validation-crois%C3%A9e">Validation crois&#233;e<a class="anchor-link" href="#Validation-crois%C3%A9e">&#182;</a></h2><p>Pour améliorer la robustesse de l'évaluation on va utiliser la validation croisé
-(<em>cross-validation</em>). <code>scikit-learn</code> a des classes pour ça.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">cross_val_score</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">),</span> <span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">))</span> <span class="c1"># infos d&#39;accuracy mais aussi de temps</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">),</span> <span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">))</span> <span class="c1"># uniquement accuracy</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Optimisation-des-hyperparam%C3%A8tres">Optimisation des hyperparam&#232;tres<a class="anchor-link" href="#Optimisation-des-hyperparam%C3%A8tres">&#182;</a></h2><p>L'optimisation des hyperparamètres est la dernière étape. Ici encore <code>scikit-learn</code> nous permet de
-le faire de manière simple et efficace. Nous utiliserons <code>sklearn.model_selection.GridSearchCV</code> qui
-fait une recherche exhaustive sur tous les paramètres donnés au constructeur. Cette classe utilise
-aussi la validation croisée.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-
-<span class="n">param_grid</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;linear&#39;</span><span class="p">]}</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">estimator</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">)</span>
-<span class="n">estimator</span><span class="o">.</span><span class="n">cv_results_</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;rank_test_score&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Classification-de-textes">Classification de textes<a class="anchor-link" href="#Classification-de-textes">&#182;</a></h2><p>Le <a href="https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html">dataset 20
-newsgroups</a>
-est un exemple de classification de textes proposé par <code>scikit-learn</code>. Il y a aussi <a href="https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction">de la
-doc</a> sur
-les traits (<em>features</em>) des documents textuels.</p>
-<p>La classification avec des techniques non neuronales repose en grande partie sur les traits
-utilisées pour représenter les textes.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
-
-<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;sci.crypt&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.electronics&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.med&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.space&#39;</span><span class="p">]</span>
-
-<span class="n">data_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
-    <span class="n">subset</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
-    <span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span>
-    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">data_test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
-    <span class="n">subset</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
-    <span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span>
-    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Ici on a un jeu de 2373 textes catégorisés pour train. À nous d'en extraire les features désirées.
-tf⋅idf est un grand classique.</p>
-<p>Attention aux valeurs par défaut des paramètres. Ici par exemple on passe tout en minuscule et la
-tokenisation est rudimentaire. Ça fonctionnera mal pour d'autres langues que l'anglais.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
-
-<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span>
-    <span class="n">sublinear_tf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">max_df</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span>
-<span class="p">)</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="c1"># données de train vectorisées</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">target</span>
-<span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">data_test</span><span class="o">.</span><span class="n">target</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Pour l'entraînement et l'évaluation on reprend le code vu auparavant</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%A4%96-Exo-%E2%80%AF%F0%9F%A4%96">&#129302; Exo &#8239;&#129302;<a class="anchor-link" href="#%F0%9F%A4%96-Exo-%E2%80%AF%F0%9F%A4%96">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.-D'autres-traits">1. D'autres traits<a class="anchor-link" href="#1.-D'autres-traits">&#182;</a></h3><p>Essayez avec d'autres <em>features</em> : La longueur moyenne des mots, le nombre d'adjectifs, la présence
-d'entités nommées, …</p>
-<p>Pour récupérer ce genre de features, vous pouvez regarder du côté de <a href="http://spacy.io/">spaCy</a>.</p>
+<h2 id="virtualenv-vs-venv"><code>virtualenv</code> vs <code>venv</code><a class="anchor-link" href="#virtualenv-vs-venv">&#182;</a></h2><p>Il existe dans la distribution standard (sauf pour Debian 🙃) le module <code>venv</code> et un module tiers
+<code>virtualenv</code>.</p>
+<p><code>venv</code> est essentiellement une version minimale de <code>virtualenv</code> avec uniquement les fonctionnalités
+strictement nécessaires. En pratique on a rarement besoin de plus <strong>sauf</strong> quand on veut installer
+plusieurs versions de Python en parallèle.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="2.-Et-les-r%C3%A9seaux-de-neurones-?">2. Et les r&#233;seaux de neurones ?<a class="anchor-link" href="#2.-Et-les-r%C3%A9seaux-de-neurones-?">&#182;</a></h3><p><code>scikit-learn</code> permet d'utiliser un Multi-layer Perceptron (MLP). Et comme la bibliothèque ne permet
-pas d'utiliser un GPU pour les calculs, son utilisation est limitée à des jeux de données de taille
-moyenne.</p>
-<p><code>scikit-learn</code> n'est pas fait pour le <em>deep learning</em>. Il existe des bibliothèques associées qui
-permettent de combiner Keras ou pytorch avec <code>scikitlearn</code> néanmoins.</p>
-<p>Essayez en suivant <a href="https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html">la
-doc</a></p>
+<h1 id="Comment-travailler-proprement">Comment travailler proprement<a class="anchor-link" href="#Comment-travailler-proprement">&#182;</a></h1><p>À partir de maintenant vous pouvez (et je vous recommande de)</p>
+<ul>
+<li><strong>Toujours</strong> travailler dans un virtualenv</li>
+<li><strong>Toujours</strong> lister vos dépendances tierces dans un requirements.txt</li>
+<li><strong>Toujours</strong> <code>pip freeze</code>er les versions exactes pour vos expés (dans un <code>frozen-requirements.txt</code>
+par exemple.</li>
+</ul>
 
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Il y a encore plein d'autre choses marrantes à faire avec <code>scikit-learn</code> et on en verra, mais en attendant vous pouvez aller voir <a href="https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html#sphx-glr-auto-examples-text-plot-document-classification-20newsgroups-py">leur exemple sur ce dataset</a> qui a de bien jolis graphiques.</p>
-
-</div>
-</div></section></section>
 </div>
 </div>
 </body>
@@ -15255,55 +15709,5 @@ doc</a></p>
 
 
 
-
-<script>
-require(
-    {
-      // it makes sense to wait a little bit when you are loading
-      // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
-    },
-    [
-      "https://unpkg.com/reveal.js@4.0.2/dist/reveal.js",
-      "https://unpkg.com/reveal.js@4.0.2/plugin/notes/notes.js"
-    ],
-
-    function(Reveal, RevealNotes){
-        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-            transition: "slide",
-            plugins: [RevealNotes]
-        });
-
-        var update = function(event){
-          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
-            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
-          }
-        };
-
-        Reveal.addEventListener('slidechanged', update);
-
-        function setScrollingSlide() {
-            var scroll = false
-            if (scroll === true) {
-              var h = $('.reveal').height() * 0.95;
-              $('section.present').find('section')
-                .filter(function() {
-                  return $(this).height() > h;
-                })
-                .css('height', 'calc(95vh)')
-                .css('overflow-y', 'scroll')
-                .css('margin-top', '20px');
-            }
-        }
-
-        // check and set the scrolling slide every time the slide change
-        Reveal.addEventListener('slidechanged', setScrollingSlide);
-    }
-);
-</script>
 
 </html>
