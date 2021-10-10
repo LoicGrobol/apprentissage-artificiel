@@ -43,8 +43,9 @@ jobs:
       
       - name: Build slides
         run: |
-          jupytext --to ipynb ${{ github.workspace }}/slides//lecture-*/lecture-*.md
-          jupyter nbconvert --to slides ${{ github.workspace }}/slides//lecture-*/lecture-*.ipynb
+          jupytext --to ipynb ${{ github.workspace }}/slides/lecture-*/*.md
+          jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/slides/lecture-*/*.ipynb
+          jupyter nbconvert --to slides ${{ github.workspace }}/slides/lecture-*/lecture-*.ipynb
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
@@ -52,4 +53,16 @@ jobs:
         with:
           branch: gh-pages
           folder: .
+
+  prebuild-binder:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: update jupyter dependencies with repo2docker
+      uses: jupyterhub/repo2docker-action@master
+      with:
+        NO_PUSH: true
+        MYBINDERORG_TAG: ${{ github.event.ref }}
 

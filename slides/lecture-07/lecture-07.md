@@ -79,7 +79,7 @@ d'apprentissage :
 ### Les données
 
 C'est la clé de voute du *machine learning*, vous le savez n'est-ce pas ? Nous allons travailler
-avec un des jeux de données fourni par scikit-learn : [le jeu de données de reconnaissance des vins](https://scikit-learn.org/stable/datasets/index.html#wine-recognition-dataset)
+avec un des jeux de données fourni par scikit-learn : [le jeu de données de reconnaissance des vins](https://scikit-learn.org/stable/datasets/toy_dataset.html#wine-recognition-dataset)
 
 C'est plus facile pour commencer parce que les données sont déjà nettoyées et organisées.
 
@@ -145,20 +145,26 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 
 plt.hist(y_train, align="right", label="train") 
-plt.hist(y_test, align="left", label="test") 
+plt.hist(y_test, align="left", label="test")
+plt.legend()
+plt.xlabel("classe")
+plt.ylabel("nombre d'exemples")
 plt.title("répartition des classes") 
 plt.show()
 ```
 
 Il ne faut pas hésiter à recourir à des représentations graphiques quand vous manipulez les données.
 Ici on voit que la répartition des classes à prédire n'est pas homogène pour les données de test.  
-On peut y remédier en utilisant le paramètre `stratify`
+On peut y remédier en utilisant le paramètre `stratify`, qui fait appel à [`StratifiedShuffleSplit`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedShuffleSplit.html) pour préserver la même répartition des classes dans le train et dans le test.
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X_wine, y_wine, test_size=0.25, stratify=y_wine)
 plt.hist(y_train, align="right", label="train") 
 plt.hist(y_test, align="left", label="test") 
-plt.title("répartition des classes") 
+plt.legend()
+plt.xlabel("classe")
+plt.ylabel("nombre d'exemples")
+plt.title("répartition des classes avec échantillonnage stratifié") 
 plt.show()
 ```
 
@@ -184,7 +190,7 @@ clf.predict(X_test)
 
 ## Évaluation
 
-On fait l'évaluation en confrontant les prédictions sur les `X_test` et les `y_test`. La fonction `score` nous donne l'exactitude (*accuracy*)) moyenne du modèle.
+On fait l'évaluation en confrontant les prédictions sur les `X_test` et les `y_test`. La fonction `score` nous donne l'exactitude (*accuracy*) moyenne du modèle.
 
 ```python
 clf.score(X_test, y_test)
@@ -291,6 +297,7 @@ vectorizer = TfidfVectorizer(
 )
 X_train = vectorizer.fit_transform(data_train.data) # données de train vectorisées
 y_train = data_train.target
+X_train.shape
 ```
 
 ```python
@@ -310,8 +317,10 @@ print(classification_report(y_test, y_pred))
 ## 🤖 Exo  🤖
 
 ### 1. D'autres traits
-Essayez avec d'autres *features* : La longueur moyennes des mots, le nombre d'adjectifs, la présence
+Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre d'adjectifs, la présence
 d'entités nommées, …
+
+Pour récupérer ce genre de features, vous pouvez regarder du côté de [spaCy](http://spacy.io/).
 
 
 ### 2. Et les réseaux de neurones ?
