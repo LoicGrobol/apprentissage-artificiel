@@ -14592,8 +14592,8 @@ concerne</a>.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (1.21.2)
 Requirement already satisfied: scikit-learn in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (1.0)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from scikit-learn) (3.0.0)
 Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from scikit-learn) (1.1.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from scikit-learn) (3.0.0)
 Requirement already satisfied: scipy&gt;=1.1.0 in /opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages (from scikit-learn) (1.7.1)
 <span class="ansi-yellow-fg">WARNING: You are using pip version 21.2.4; however, version 21.3 is available.
 You should consider upgrading via the &#39;/opt/hostedtoolcache/Python/3.9.7/x64/bin/python -m pip install --upgrade pip&#39; command.</span>
@@ -14633,10 +14633,12 @@ Note: you may need to restart the kernel to use updated packages.
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
 
-<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;sci.crypt&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.electronics&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.med&#39;</span><span class="p">,</span>
- <span class="s1">&#39;sci.space&#39;</span><span class="p">]</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;sci.crypt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sci.electronics&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sci.med&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sci.space&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
 <span class="n">data_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
     <span class="n">subset</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
@@ -15578,7 +15580,10 @@ tel que le contenu de la cellule <code>(i, j)</code> soit le nombre d'occurrence
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%F0%9F%A7%99%F0%9F%8F%BB-Exo-%F0%9F%A7%99%F0%9F%8F%BB">&#129497;&#127995; Exo &#129497;&#127995;<a class="anchor-link" href="#%F0%9F%A7%99%F0%9F%8F%BB-Exo-%F0%9F%A7%99%F0%9F%8F%BB">&#182;</a></h2><p>À vous de bosser maintenant. Écrivez</p>
-<p>1. Une fonction qui prend en argument un tableau comme <code>data_train.target</code> et qui renvoie un tableau <code>class_probs</code> tel que <code>class_probs[c]</code> soit $P(c)$. On choisira le modèle de vraisemblance maximal, soit ici simplement celui qui utilise pour probabilités les fréquences empiriques $P(c) = \frac{\text{nombre d'occurrences de $c$}}{\text{taille de l'échantillon}}$.</p>
+<p>1. Une fonction qui prend en argument un tableau comme <code>data_train.target</code> et qui renvoie un
+tableau <code>class_probs</code> tel que <code>class_probs[c]</code> soit $P(c)$. On choisira le modèle de vraisemblance
+maximal, soit ici simplement celui qui utilise pour probabilités les fréquences empiriques $P(c) =
+\frac{\text{nombre d'occurrences de $c$}}{\text{taille de l'échantillon}}$.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15599,7 +15604,11 @@ tel que le contenu de la cellule <code>(i, j)</code> soit le nombre d'occurrence
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>2. Une fonction qui prend en argument un tableau comme <code>bow_array</code> et renvoie un tableau <code>word_probs</code> tel que <code>word_probs[c][w]</code> soit $P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais en considérant des occurrences booléenne : $P(w|c)=\frac{\text{nombre de documents de $c$ dans lesquels $w$ apparraît}}{\text{nombre d'occurrences de $c$}}$.</p>
+<p>2. Une fonction qui prend en argument un tableau comme <code>bow_array</code> et renvoie un tableau
+<code>word_probs</code> tel que <code>word_probs[c][w]</code> soit $P(w|c)$. On utilise toujours le modèle de
+vraisemblance maximal mais en considérant des occurrences booléenne et un lissage laplacien :
+$P(w|c)=\frac{\text{nombre de documents de $c$ dans lesquels $w$ apparaît} + 1}{\text{nombre de mots
+dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 <p>N'hésitez pas à écrire des boucles, au moins pour commencer, avant de passer à du NumPy fancy.</p>
 
 </div>
@@ -15627,13 +15636,14 @@ tel que le contenu de la cellule <code>(i, j)</code> soit le nombre d'occurrence
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Il reste à savoir comment s'en servir. Je vous laisse coder ça vous-mêmes. N'hésitez pas à faire des fonctions auxiliaires.</p>
+<p>Il reste à savoir comment s'en servir. Je vous laisse coder ça vous-mêmes. N'hésitez pas à faire des
+fonctions auxiliaires.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>3. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre modèle</p>
+<p>3. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre modèle. Pensez à travailler en log-probabilités</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15660,19 +15670,42 @@ tel que le contenu de la cellule <code>(i, j)</code> soit le nombre d'occurrence
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>4. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.</p>
+<p>4. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
+appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir <a href="https://click.palletsprojects.com/en/8.0.x/">click</a>.</p>
+<p>5. Comme ultime raffinement</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="R%C3%A9gression-logistique">R&#233;gression logistique<a class="anchor-link" href="#R%C3%A9gression-logistique">&#182;</a></h2>
+<h2 id="Classifieur-logistique">Classifieur logistique<a class="anchor-link" href="#Classifieur-logistique">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#129504; Exo &#129504;<a class="anchor-link" href="#%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#182;</a></h2><p>1. Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
+<p>2. À l'aide d'un lexique de sentiment, écrivez un classifieur logistique à deux features : nombre
+de mots positifs et nombre de mots négatifs avec les poids respectifs $0.6$ et $0.4$ et pas de terme
+de biais. Appliquez ce classifieur sur le mini-corpus LMDB et calculez son exactitude.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Apprendre-un-classifieur-logistique">Apprendre un classifieur logistique<a class="anchor-link" href="#Apprendre-un-classifieur-logistique">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>1. Coder la log-vraisemblance négative et son gradient</p>
+<p>2. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du mini-corpus LMDB</p>
+
 </div>
 </div>
 </body>
