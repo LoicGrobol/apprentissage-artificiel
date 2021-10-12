@@ -115,9 +115,9 @@ probs = dict(probs)
 probs
 ```
 
-Un autre truc un peu pénible c'est qu'en tenant compte de la casse comme on le fait, on sépare en
+Un autre truc un peu pénible, c'est qu'en tenant compte de la casse comme on le fait, on sépare en
 deux les comptes de chaque mot (suivant qu'il se trouve ou non en début de phrase). C'est pas
-complètement une erreur mais c'est un peu désagréable, on va normaliser tout ça.
+complètement une erreur, mais c'est un peu désagréable, on va normaliser tout ça.
 
 ```python
 def poor_mans_tokenizer_and_normalizer(s):
