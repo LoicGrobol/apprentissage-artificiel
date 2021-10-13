@@ -216,8 +216,8 @@ def get_class_probs(target):
 
 2\. Une fonction qui prend en argument un tableau comme `bow_array` et renvoie un tableau
 `word_probs` tel que `word_probs[c][w]` soit $P(w|c)$. On utilise toujours le modèle de
-vraisemblance maximal mais en considérant des occurrences booléenne et un lissage laplacien :
-$P(w|c)=\frac{\text{nombre de documents de $c$ dans lesquels $w$ apparaît} + 1}{\text{nombre de mots
+vraisemblance maximal mais avec un **lissage laplacien** :
+$P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.
 
 N'hésitez pas à écrire des boucles, au moins pour commencer, avant de passer à du NumPy fancy.
@@ -256,7 +256,7 @@ Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon momen
 
 1\. Tracer avec matplotlib la courbe représentative de la fonction logistique.
 
-2\. À l'aide d'un lexique de sentiment, écrivez un classifieur logistique à deux features : nombre
+2\. À l'aide d'un lexique de sentiment (par exemple [VADER](https://github.com/cjhutto/vaderSentiment)), écrivez un classifieur logistique à deux features : nombre
 de mots positifs et nombre de mots négatifs avec les poids respectifs $0.6$ et $0.4$ et pas de terme
 de biais. Appliquez ce classifieur sur le mini-corpus LMDB et calculez son exactitude.
 
