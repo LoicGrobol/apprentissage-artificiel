@@ -250,8 +250,6 @@ appropriée) et un qui charge le modèle et prédit la classe de chacun des docu
 
 Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
 
-5\. Comme ultime raffinement
-
 ## Classifieur logistique
 
 ## 🧠 Exo 🧠
