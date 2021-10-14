@@ -14,7 +14,7 @@ jupyter:
     name: python3
 ---
 
-[comment]: <> "LTeX: language=fr"
+<!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 Cours 9 : *Naïve Bayes*
