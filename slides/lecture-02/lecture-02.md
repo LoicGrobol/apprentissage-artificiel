@@ -15,7 +15,7 @@ jupyter:
 ---
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-[comment]: <> "LTeX: language=fr"
+<!-- LTeX: language=fr -->
 
 Cours 2 : Structures de données
 ===============================

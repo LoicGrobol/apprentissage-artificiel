@@ -14,7 +14,7 @@ jupyter:
     name: python3
 ---
 
-[comment]: <> "LTeX: language=fr"
+<!-- LTeX: language=fr -->
 
 Cours 2 : corrections
 =====================

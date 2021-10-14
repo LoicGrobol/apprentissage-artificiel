@@ -14,7 +14,7 @@ jupyter:
     name: python3
 ---
 
-[comment]: <> "LTeX: language=fr"
+<!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "-"} -->
 Cours 3 : POO
