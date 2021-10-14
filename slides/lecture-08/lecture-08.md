@@ -42,9 +42,9 @@ corpus CIDRE](https://www.ortolang.fr/market/corpora/cidre) pour passer à l'éc
 pourrait aussi utiliser Wikipedia (par exemple en utilisant
 [WikiExtractor](https://github.com/attardi/wikiextractor)) ou [OSCAR](https://oscar-corpus.com/).
 
-On va devoir faire les choses suivantes
+On va devoir faire les choses suivantes (pour un modèle à bigrammes)
 
-- Extraire les unigrammes et le n-grammes d'un corpus (pour un certain n)
+- Extraire les unigrammes et les bigrammes d'un corpus
 - Calculer les probas normalisées des bigrammes
 - Les sauvegarder (par exemple dans un TSV)
 - Sampler des phrases à partir du modèle
@@ -101,7 +101,7 @@ $w_0$. On le fait en utilisant la formule du maximum de vraissemblance:
 \end{equation}
 
 Pour que ce soit plus agréable à sampler on va utiliser un dictionnaire de dictionnaires :
-`prob[v][w]` stockera $P(w|v)$.
+`probs[v][w]` stockera $P(w|v)$.
 
 ```python
 from collections import defaultdict
@@ -150,6 +150,12 @@ Oups
 
 
 Allez, on corrige
+
+```python
+l = [1,2,3,4,5]
+l2 = [-1, 0, *l]
+l2
+```
 
 ```python
 unigrams = Counter()

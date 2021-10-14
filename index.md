@@ -80,7 +80,7 @@ Pour la fois prochaine : lire le chapitre 4 « *Naïve Bayes and Sentiment C
 4.9) de [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/). Venir au cours
 avec vos questions !
 
-### 2021-10-13 — Modèles de langue à n-grammes (suite et fin), *Naïve Bayes* et régression logistique
+### 2021-10-13 — Modèles de langue à n-grammes (suite et fin) et *Naïve Bayes*
 
 - [Slides 8](slides/lecture-08/lecture-08.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-08/lecture-08.md)
@@ -88,10 +88,12 @@ avec vos questions !
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/lecture-09.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
-chapitres 4 « *Naïve Bayes and Sentiment Classification* » et 5 « *Logistic Regression* ».
+chapitre 4 « *Naïve Bayes and Sentiment Classification* ».
 
-Pour la fois prochaine : bien relire le chapitre 5 « *Naïve Bayes and Sentiment Classification* ».
-Venir au cours avec vos questions !
+Pour la fois prochaine :
+
+- Faites de votre mieux pour les exercices à la fin du slide 9
+- Relire le chapitre 4 « *Naïve Bayes and Sentiment Classification* » et lire le chapitre 5 « *Logistic Regression* », venir au cours avec vos questions !
 
 ## Lire les slides en local
 

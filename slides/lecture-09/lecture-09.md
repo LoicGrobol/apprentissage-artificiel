@@ -17,8 +17,8 @@ jupyter:
 [comment]: <> "LTeX: language=fr"
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 9 : Classification de documents partie 1, *Naïve Bayes* et Régression Logistique
-======================================================================================
+Cours 9 : *Naïve Bayes*
+=======================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
@@ -249,21 +249,3 @@ appropriée) et un qui charge le modèle et prédit la classe de chacun des docu
 
 
 Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
-
-## Classifieur logistique
-
-## 🧠 Exo 🧠
-
-1\. Tracer avec matplotlib la courbe représentative de la fonction logistique.
-
-2\. À l'aide d'un lexique de sentiment (par exemple [VADER](https://github.com/cjhutto/vaderSentiment)), écrivez un classifieur logistique à deux features : nombre
-de mots positifs et nombre de mots négatifs avec les poids respectifs $0.6$ et $0.4$ et pas de terme
-de biais. Appliquez ce classifieur sur le mini-corpus LMDB et calculez son exactitude.
-
-## Apprendre un classifieur logistique
-
-## 😩 Exo 😩
-
-1\. Coder la log-vraisemblance négative et son gradient
-
-2\. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du mini-corpus LMDB
