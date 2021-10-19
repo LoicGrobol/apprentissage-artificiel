@@ -214,10 +214,10 @@ def get_class_probs(target):
     pass  # Votre code ici
 ```
 
-2\. Une fonction qui prend en argument un tableau comme `bow_array` et renvoie un tableau
-`word_probs` tel que `word_probs[c][w]` soit $P(w|c)$. On utilise toujours le modèle de
-vraisemblance maximal mais avec un **lissage laplacien** :
-$P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
+2\. Une fonction qui prend en argument un tableau comme `bow_array` et un tableau de classes
+`target` comme précédemment et renvoie un tableau `word_probs` tel que `word_probs[c][w]` soit
+$P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais avec un **lissage
+laplacien** : $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.
 
 N'hésitez pas à écrire des boucles, au moins pour commencer, avant de passer à du NumPy fancy.
@@ -234,14 +234,15 @@ Il reste à savoir comment s'en servir. Je vous laisse coder ça vous-mêmes. N'
 fonctions auxiliaires.
 
 
-3\. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre modèle. Pensez à travailler en log-probabilités
+3\. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre
+modèle. Pensez à travailler en log-probabilités
 
 ```python
 def predict_class(doc):
-    pass  # Votre code cic
+    pass  # Votre code ici
 ```
 
-Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test. 
+Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.
 
 
 4\. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus

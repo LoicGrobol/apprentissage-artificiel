@@ -14541,27 +14541,79 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Classifieur-logistique">Classifieur logistique<a class="anchor-link" href="#Classifieur-logistique">&#182;</a></h2>
+<h2 id="Classifieur-lin%C3%A9aire">Classifieur lin&#233;aire<a class="anchor-link" href="#Classifieur-lin%C3%A9aire">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#129504; Exo &#129504;<a class="anchor-link" href="#%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#182;</a></h2><p>1. Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
-<p>2. À l'aide d'un lexique de sentiment (par exemple <a href="https://github.com/cjhutto/vaderSentiment">VADER</a>), écrivez un classifieur logistique à deux features : nombre
-de mots positifs et nombre de mots négatifs avec les poids respectifs $0.6$ et $0.4$ et pas de terme
-de biais. Appliquez ce classifieur sur le mini-corpus LMDB et calculez son exactitude.</p>
+<h2 id="%F0%9F%98%B4-Exo-%F0%9F%98%B4">&#128564; Exo &#128564;<a class="anchor-link" href="#%F0%9F%98%B4-Exo-%F0%9F%98%B4">&#182;</a></h2><p>Écrire une fonction qui prend en entrée un vecteur de features et un vecteur de poids sous forme de
+tableaux numpy $x$ et $w$ de dimensions <code>(n,)</code> et un biais $b$ sous forme d'un tableau numpy de
+dimensions <code>(1,)</code> et renvoie $z=\sum_iw_ix_i + b$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Apprendre-un-classifieur-logistique">Apprendre un classifieur logistique<a class="anchor-link" href="#Apprendre-un-classifieur-logistique">&#182;</a></h2>
+<h2 id="La-fonction-logistique">La fonction logistique<a class="anchor-link" href="#La-fonction-logistique">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>1. Coder la log-vraisemblance négative et son gradient</p>
-<p>2. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du mini-corpus LMDB</p>
+<h2 id="%F0%9F%93%88-Exo-%F0%9F%93%88">&#128200; Exo &#128200;<a class="anchor-link" href="#%F0%9F%93%88-Exo-%F0%9F%93%88">&#182;</a></h2><p>Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Classifieur-logistique">Classifieur logistique<a class="anchor-link" href="#Classifieur-logistique">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#129504; Exo &#129504;<a class="anchor-link" href="#%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#182;</a></h2><p>1. À l'aide d'un lexique de sentiment (par exemple
+<a href="https://github.com/cjhutto/vaderSentiment">VADER</a>), écrivez une fonction qui prend en entrée un
+texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
+nombre de mots positifs et nombre de mot négatifs.</p>
+<p>2. Appliquer la fonction précédente sur le mini-corpus IMDB</p>
+<p>3. Écrire un classifieur logistique (en une fonction) qui prend en entrée les vecteurs de features
+précédents et utilise les poids respectifs $0.6$ et $0.4$ et pas de terme de biais. Appliquez ce
+classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%93%89-Exo-%F0%9F%93%89">&#128201; Exo &#128201;<a class="anchor-link" href="#%F0%9F%93%89-Exo-%F0%9F%93%89">&#182;</a></h2><p>Écrire une fonction qui prend en entrée</p>
+<ul>
+<li>Un vecteur de features $x$ de taille $n$</li>
+<li>Un vecteur de poids $w$ de taille $n$ et un biais $b$ (de taille $1$)</li>
+<li>Une classe cible $c$ ($0$ ou $1$)</li>
+</ul>
+<p>Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
+$(x, c)$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Descente-de-gradient">Descente de gradient<a class="anchor-link" href="#Descente-de-gradient">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
+le gradient en $(x, c)$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du mini-corpus LMDB</p>
 
 </div>
 </div>
