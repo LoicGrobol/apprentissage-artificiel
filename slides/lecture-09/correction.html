@@ -16269,7 +16269,7 @@ sur quelle dimension on somme.</p>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_2160/1890787321.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">/tmp/ipykernel_2162/1890787321.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counts<span class="ansi-blue-fg">/</span>total_per_class
 
 <span class="ansi-red-fg">ValueError</span>: operands could not be broadcast together with shapes (4,31116) (4,) </pre>
@@ -16300,7 +16300,7 @@ sortir de deux façons :</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">total_per_class</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">counts</span><span class="o">/</span><span class="n">total_per_class</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">counts</span><span class="o">/</span><span class="n">total_per_class</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -16330,12 +16330,12 @@ sortir de deux façons :</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
 <pre>array([[1.66864952e-02, 1.14395534e-05, 3.81318447e-06, ...,
         3.81318447e-06, 3.81318447e-06, 3.81318447e-06],
        [1.99128018e-02, 6.37413630e-06, 1.91224089e-05, ...,
@@ -16366,7 +16366,7 @@ sortir de deux façons :</p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">total_per_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">total_per_class</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">counts</span><span class="o">/</span><span class="n">total_per_class</span>
+<span class="n">display</span><span class="p">(</span><span class="n">counts</span><span class="o">/</span><span class="n">total_per_class</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16396,12 +16396,12 @@ sortir de deux façons :</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
 <pre>array([[1.66864952e-02, 1.14395534e-05, 3.81318447e-06, ...,
         3.81318447e-06, 3.81318447e-06, 3.81318447e-06],
        [1.99128018e-02, 6.37413630e-06, 1.91224089e-05, ...,
@@ -16493,7 +16493,7 @@ modèle. Pensez à travailler en log-probabilités</p>
 <p>D'abord on calcule les log-paramètres du modèle</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
@@ -16501,11 +16501,57 @@ modèle. Pensez à travailler en log-probabilités</p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">log_prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">get_class_probs</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
 <span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">get_word_probs</span><span class="p">(</span><span class="n">bow_array</span><span class="p">,</span> <span class="n">data_train</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">log_prior</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>array([-1.38334885, -1.39009424, -1.38503094, -1.38671586])</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>array([[ -4.09315556, -11.37843361, -12.4770459 , ..., -12.4770459 ,
+        -12.4770459 , -12.4770459 ],
+       [ -3.91639245, -11.96326196, -10.86464967, ..., -11.96326196,
+        -10.5769676 , -11.96326196],
+       [ -4.09865676, -12.26629248, -12.26629248, ..., -11.5731453 ,
+        -12.26629248, -11.5731453 ],
+       [ -4.08231011, -12.25898288, -12.25898288, ..., -12.25898288,
+        -12.25898288, -12.25898288]])</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -16528,11 +16574,11 @@ modèle. Pensez à travailler en log-probabilités</p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_class</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
     <span class="c1"># D&#39;abord on récupère sa représenation en sacs de mots</span>
-    <span class="n">bow_dict</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">poor_mans_tokenizer_and_normalizer</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+    <span class="n">bow_dict</span> <span class="o">=</span> <span class="n">get_counts</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
     <span class="n">bow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w_to_i</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bow_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="c1"># On ne garde que les mots connus (on peut faire plus compact, à votre avis comment ?)</span>
-        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bow_dict</span><span class="p">:</span>
+        <span class="c1"># On ne garde que les mots connus (on peut économiser un lookup, à votre avis comment ?)</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">w_to_i</span><span class="p">:</span>
             <span class="k">continue</span>
         <span class="n">bow</span><span class="p">[</span><span class="n">w_to_i</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span>
     <span class="n">class_likelihoods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
@@ -16541,7 +16587,7 @@ modèle. Pensez à travailler en log-probabilités</p>
         <span class="k">for</span> <span class="n">word_count</span><span class="p">,</span> <span class="n">word_log_likelihood</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bow</span><span class="p">,</span> <span class="n">class_log_likelihood</span><span class="p">):</span>
             <span class="n">acc</span> <span class="o">+=</span> <span class="n">word_count</span><span class="o">*</span><span class="n">word_log_likelihood</span>
         <span class="n">class_likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">class_log_prior</span>
-    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_likelihoods</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_likelihoods</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16549,30 +16595,78 @@ modèle. Pensez à travailler en log-probabilités</p>
 </div>
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Ou en plus compact</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">300</span><span class="p">])</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">predict_class</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La classe prédite pour le premier document est </span><span class="si">{</span><span class="n">predicted</span><span class="si">}</span><span class="s2">, soit </span><span class="si">{</span><span class="n">data_train</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">predicted</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La classe correcte était </span><span class="si">{</span><span class="n">data_train</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, soit </span><span class="si">{</span><span class="n">data_train</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">data_train</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>From: al@escom.com (Al Donaldson)
+Subject: Re: Once tapped, your code is no good any more.
+Reply-To: al@escom.COM (Al Donaldson)
+Organization: ESCOM Corp., Oakton VA (USA)
+Distribution: na
+Lines: 16
+
+amolitor@nmsu.edu (Andrew Molitor) writes:
+&gt;Yes, those evil guys in the FBI can probably, with some
+
+La classe prédite pour le premier document est 0, soit sci.crypt
+La classe correcte était 0, soit sci.crypt
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ou en plus rapide et compact avec un <a href="https://numpy.org/doc/stable/reference/generated/numpy.inner">produit scalaire</a> vecteur-vecteur</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_class</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
-    <span class="n">bow_dict</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">poor_mans_tokenizer_and_normalizer</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+    <span class="n">bow_dict</span> <span class="o">=</span> <span class="n">get_counts</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
     <span class="n">bow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w_to_i</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bow_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="c1"># On ne garde que les mots connus (on peut faire plus compact, à votre avis comment ?)</span>
-        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bow_dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">w_to_i</span><span class="p">:</span>
             <span class="k">continue</span>
         <span class="n">bow</span><span class="p">[</span><span class="n">w_to_i</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span>
-    <span class="n">class_likelihoods</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">log_prior</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">class_log_likelihood</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">):</span>
-        <span class="n">class_likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">bow</span><span class="o">*</span><span class="n">class_log_likelihood</span>
-    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_likelihoods</span><span class="p">)</span>
+    <span class="n">class_likelihoods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">class_log_prior</span><span class="p">,</span> <span class="n">class_log_likelihood</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">log_prior</span><span class="p">,</span> <span class="n">log_likelihood</span><span class="p">)):</span>
+        <span class="n">class_likelihoods</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_log_prior</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">bow</span><span class="p">,</span> <span class="n">class_log_likelihood</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_likelihoods</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16583,26 +16677,197 @@ modèle. Pensez à travailler en log-probabilités</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Ou encore</p>
+<p>Ou encore plus rapide et compact avec une <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul">multiplication matrice-vecteur</a></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_class</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="n">bow_dict</span> <span class="o">=</span> <span class="n">get_counts</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="n">bow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w_to_i</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bow_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">w_to_i</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">bow</span><span class="p">[</span><span class="n">w_to_i</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="n">class_likelihoods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">bow</span><span class="p">)</span> <span class="o">+</span> <span class="n">log_prior</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_likelihoods</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Si vous voulez vous motiver à mieux apprendre numpy, je vous recommande de chronométrer les temps d'exécution de la suite avec les différentes versions de cette fonction.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.</p>
+<blockquote><p>Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.</p>
+</blockquote>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>4. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
+<p>On va déjà le faire sur l'ensemble de train</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">predict_class</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="n">predictions</span> <span class="o">==</span> <span class="n">data_train</span><span class="o">.</span><span class="n">target</span>
+<span class="n">display</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Il y a </span><span class="si">{</span><span class="n">correct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> exemples bien classés parmis </span><span class="si">{</span><span class="n">correct</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">, soit </span><span class="si">{</span><span class="n">correct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">correct</span><span class="o">.</span><span class="n">size</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2"> d&#39;exactitude&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>array([0, 1, 3, ..., 3, 3, 1])</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>array([ True,  True,  True, ...,  True,  True,  True])</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Il y a 2369 exemples bien classés parmis 2373, soit 99.83% d&#39;exactitude
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Plutôt encourageant ! on va écrire une fonction pour le faire sur n'importe quel ensemble de textes</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">predict_class</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">])</span>
+    <span class="n">correct</span> <span class="o">=</span> <span class="n">predictions</span> <span class="o">==</span> <span class="n">target</span>
+    <span class="n">correct</span>
+    <span class="k">return</span> <span class="n">correct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">correct</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0.9392020265991133</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<blockquote><p>4. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
 appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.</p>
+</blockquote>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir <a href="https://click.palletsprojects.com/en/8.0.x/">click</a>.</p>
+<blockquote><p>Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir <a href="https://click.palletsprojects.com/en/8.0.x/">click</a>.</p>
+</blockquote>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Voir <a href="nb_script.py"><code>nb_script.py</code></a></p>
 
 </div>
 </div>

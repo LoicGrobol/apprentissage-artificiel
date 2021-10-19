@@ -337,7 +337,7 @@ En ajoutant un axe à la somme
 
 ```python
 display(total_per_class[:, np.newaxis].shape)
-counts/total_per_class[:, np.newaxis]
+display(counts/total_per_class[:, np.newaxis])
 ```
 
 Ou en conservant l'axe $1$ lors de la somme
@@ -345,7 +345,7 @@ Ou en conservant l'axe $1$ lors de la somme
 ```python
 total_per_class = np.sum(counts, axis=1, keepdims=True)
 display(total_per_class.shape)
-counts/total_per_class
+display(counts/total_per_class)
 ```
 
 On pourrait aussi remplacer la première boucle par
@@ -377,6 +377,8 @@ D'abord on calcule les log-paramètres du modèle
 ```python
 log_prior = np.log(get_class_probs(data_train.target))
 log_likelihood = np.log(get_word_probs(bow_array, data_train.target))
+display(log_prior)
+display(log_likelihood)
 ```
 
 Et on se rappelle qu'on a déjà le vocabulaire dans `w_to_i`
@@ -387,11 +389,11 @@ Ensuite on les exploite
 ```python
 def predict_class(doc):
     # D'abord on récupère sa représenation en sacs de mots
-    bow_dict = Counter(poor_mans_tokenizer_and_normalizer(doc))
+    bow_dict = get_counts(doc)
     bow = np.zeros(len(w_to_i))
     for w, c in bow_dict.items():
-        # On ne garde que les mots connus (on peut faire plus compact, à votre avis comment ?)
-        if w not in bow_dict:
+        # On ne garde que les mots connus (on peut économiser un lookup, à votre avis comment ?)
+        if w not in w_to_i:
             continue
         bow[w_to_i[w]] = c
     class_likelihoods = np.empty(n_classes)
@@ -400,34 +402,81 @@ def predict_class(doc):
         for word_count, word_log_likelihood in zip(bow, class_log_likelihood):
             acc += word_count*word_log_likelihood
         class_likelihoods[i] = acc + class_log_prior
-    return numpy.argmax(class_likelihoods)
+    return np.argmax(class_likelihoods)
 ```
 
-Ou en plus compact
+```python
+print(data_train.data[0][:300])
+predicted = predict_class(data_train.data[0])
+print(f"La classe prédite pour le premier document est {predicted}, soit {data_train.target_names[predicted]}")
+print(f"La classe correcte était {data_train.target[0]}, soit {data_train.target_names[data_train.target[0]]}")
+```
+
+Ou en plus rapide et compact avec un [produit scalaire](https://numpy.org/doc/stable/reference/generated/numpy.inner) vecteur-vecteur
 
 ```python
 def predict_class(doc):
-    bow_dict = Counter(poor_mans_tokenizer_and_normalizer(doc))
+    bow_dict = get_counts(doc)
     bow = np.zeros(len(w_to_i))
     for w, c in bow_dict.items():
-        # On ne garde que les mots connus (on peut faire plus compact, à votre avis comment ?)
-        if w not in bow_dict:
+        if w not in w_to_i:
             continue
         bow[w_to_i[w]] = c
-    class_likelihoods = numpy.copy(log_prior)
-    for i, class_log_likelihood in enumerate(log_likelihood):
-        class_likelihoods[i] = acc + bow*class_log_likelihood
-    return numpy.argmax(class_likelihoods)
+    class_likelihoods = np.empty(n_classes)
+    for i, (class_log_prior, class_log_likelihood) in enumerate(zip(log_prior, log_likelihood)):
+        class_likelihoods[i, ...] = class_log_prior + np.inner(bow, class_log_likelihood)
+    return np.argmax(class_likelihoods)
 ```
 
-Ou encore
+Ou encore plus rapide et compact avec une [multiplication matrice-vecteur](https://numpy.org/doc/stable/reference/generated/numpy.matmul)
+
+```python
+def predict_class(doc):
+    bow_dict = get_counts(doc)
+    bow = np.zeros(len(w_to_i))
+    for w, c in bow_dict.items():
+        if w not in w_to_i:
+            continue
+        bow[w_to_i[w]] = c
+    class_likelihoods = np.matmul(log_likelihood, bow) + log_prior
+    return np.argmax(class_likelihoods)
+```
+
+Si vous voulez vous motiver à mieux apprendre numpy, je vous recommande de chronométrer les temps d'exécution de la suite avec les différentes versions de cette fonction.
 
 
-Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.
+> Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.
 
 
-4\. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
-appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.
+On va déjà le faire sur l'ensemble de train
+
+```python
+predictions = np.array([predict_class(text) for text in data_train.data])
+display(predictions)
+correct = predictions == data_train.target
+display(correct)
+print(f"Il y a {correct.sum()} exemples bien classés parmis {correct.size}, soit {correct.sum()/correct.size:.2%} d'exactitude")
+```
+
+Plutôt encourageant ! on va écrire une fonction pour le faire sur n'importe quel ensemble de textes
+
+```python
+def evaluate(documents, target):
+    predictions = np.array([predict_class(text) for text in documents])
+    correct = predictions == target
+    correct
+    return correct.sum()/correct.size
+```
+
+```python
+evaluate(data_test.data, data_test.target)
+```
+
+> 4\. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
+> appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.
 
 
-Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
+> Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
+
+
+Voir [`nb_script.py`](nb_script.py)
