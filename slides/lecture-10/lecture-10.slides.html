@@ -14643,7 +14643,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Cours-10%E2%80%AF:-R%C3%A9gression-logistique">Cours 10&#8239;: R&#233;gression logistique<a class="anchor-link" href="#Cours-10%E2%80%AF:-R%C3%A9gression-logistique">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
-<p>2021-10-11</p>
+<p>2021-10-20</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14663,7 +14663,15 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Classifieur-lin%C3%A9aire">Classifieur lin&#233;aire<a class="anchor-link" href="#Classifieur-lin%C3%A9aire">&#182;</a></h2>
+<h2 id="Classifieur-lin%C3%A9aire">Classifieur lin&#233;aire<a class="anchor-link" href="#Classifieur-lin%C3%A9aire">&#182;</a></h2><p>On considère des vecteurs de <em>features</em> de dimension $n$</p>
+$$\mathbf{x} = (x₁, …, x_n)$$<p>Un vecteur de poids de dimension $n$</p>
+$$\mathbf{w} = (w₁, …, w_n)$$<p>et un biais $b$ scalaire (un nombre quoi).</p>
+<p>Pour réaliser une classification on considère le nombre $z$ (on parle parfois de <em>logit</em>)</p>
+$$z=w₁×x₁ + … + w_n×x_n + b = \sum_iw_ix_i + b$$<p>Ce qu'on note aussi</p>
+$$z = \mathbf{w}⋅\mathbf{x}+b$$<p>$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de <em>produit scalaire</em> en français et de <em>inner product</em> en anglais.</p>
+<p>(ou pour les mathématicien⋅ne⋅s acharné⋅e⋅s $z = \langle w\ |\ x \rangle + b$)</p>
+<p>Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la classe $0$ si $z &lt; 0$ et la classe $1$ sinon.</p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14681,13 +14689,27 @@ dimensions <code>(1,)</code> et renvoie $z=\sum_iw_ix_i + b$.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <em>normaliser</em> $z$ : $z$ peut être n'importe quel nombre entre $-∞$ et $+∞$, mais on aura toujours $0 &lt; σ(z) &lt; 1$, ce qui permet de l'interpréter facilement comme une <em>vraisemblance</em>. Autrement dit, $σ(z)$ sera proche de $1$ s'il paraît vraisemblable que $x$ appartienne à la classe $1$ et proche de $0$ sinon.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%F0%9F%93%88-Exo-%F0%9F%93%88">&#128200; Exo &#128200;<a class="anchor-link" href="#%F0%9F%93%88-Exo-%F0%9F%93%88">&#182;</a></h2><p>Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Classifieur-logistique">Classifieur logistique<a class="anchor-link" href="#Classifieur-logistique">&#182;</a></h2>
+<h2 id="R%C3%A9gression-logistique">R&#233;gression logistique<a class="anchor-link" href="#R%C3%A9gression-logistique">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On approcher cette fonction par une fonction $g$ de la forme</p>
+$$g(x) = σ(w⋅x+b)$$<p>Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur notre ensemble d'apprentissage, on dit que $g$ est la <em>régression logistique de $f$</em> sur cet ensemble.</p>
+<p>Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si $g(x) &lt; 0.5$ et $1$ sinon.</p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14698,14 +14720,38 @@ texte en anglais et renvoie sa représentation sous forme d'un vecteur de featur
 nombre de mots positifs et nombre de mot négatifs.</p>
 <p>2. Appliquer la fonction précédente sur le mini-corpus IMDB</p>
 <p>3. Écrire un classifieur logistique (en une fonction) qui prend en entrée les vecteurs de features
-précédents et utilise les poids respectifs $0.6$ et $0.4$ et pas de terme de biais. Appliquez ce
+précédents et utilise les poids respectifs $0.6$ et $0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2>
+<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2><p>On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine fonction de coût (<em>loss</em>) $L$.</p>
+<p>Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité du classifieur logistique $g$</p>
+$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>Dans le cas de la régression logistique, on va utiliser la <em>log-vraisemblance négative</em> (<em>negative log-likelihood</em>) :</p>
+<p>On définit la <em>vraisemblance</em> $V$ comme
+$$
+V(a, y) =
+    \begin{cases}
+        a &amp; \text{si $y = 1$}\\
+        1-a &amp; \text{sinon}
+    \end{cases}
+$$</p>
+<p>Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne s'agit donc pas d'un coût, mais d'un <em>gain</em> (si sa valeur est haute, c'est que le modèle est bon)</p>
+<p>La <em>log-vraisemblance négative</em> $L$ est alors définie par</p>
+$$L(a, y) = -\log(V(a, y))$$<p>Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).</p>
+<p>Une autre façon de le voir : $L(a, y)$, c'est la <a href="https://en.wikipedia.org/wiki/Information_content">surprise</a> de $y$ au sens de la théorie de l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$, $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On peut l'écrire en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est</p>
+$$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$<p>C'est un <em>trick</em>, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.</p>
+<p>La formule diffère un peu de celle de <em>Speech and Language Processing</em> mais les résultats sont les mêmes et celle-ci est mieux pour notre problème !</p>
+<p><small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle nous complique la vie.</small></p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14718,6 +14764,7 @@ classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 </ul>
 <p>Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
 $(x, c)$.</p>
+<p>Servez vous-en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.</p>
 
 </div>
 </div>
@@ -14735,7 +14782,7 @@ le gradient en $(x, c)$.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du mini-corpus LMDB</p>
+<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  <a href="../../data/imdb_smol.tar.gz">mini-corpus IMDB</a></p>
 
 </div>
 </div></section></section>
