@@ -95,6 +95,22 @@ Pour la fois prochaine :
 - Faites de votre mieux pour les exercices à la fin du slide 9
 - Relire le chapitre 4 « *Naïve Bayes and Sentiment Classification* » et lire le chapitre 5 « *Logistic Regression* », venir au cours avec vos questions !
 
+### 2021-10-20 — Naïve Bayes (suite et fin) et régression logistique.
+
+- [Correction slide 9](slides/lecture-09/correction.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/correction.md)
+- [Slides 10](slides/lecture-09/lecture-10.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 5 « *Logistic Regression* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 6 « *Vector Semantics and Embeddings* ».
+
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
