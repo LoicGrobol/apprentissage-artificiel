@@ -14706,9 +14706,14 @@ $$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On approcher cette fonction par une fonction $g$ de la forme</p>
-$$g(x) = σ(w⋅x+b)$$<p>Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur notre ensemble d'apprentissage, on dit que $g$ est la <em>régression logistique de $f$</em> sur cet ensemble.</p>
-<p>Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si $g(x) &lt; 0.5$ et $1$ sinon.</p>
+<p>Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
+telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
+approcher cette fonction par une fonction $g$ de la forme</p>
+$$g(x) = σ(w⋅x+b)$$<p>Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
+notre ensemble d'apprentissage, on dit que $g$ est la <em>régression logistique de $f$</em> sur cet
+ensemble.</p>
+<p>Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
+$g(x) &lt; 0.5$ et $1$ sinon.</p>
 
 </div>
 </div>
@@ -14727,9 +14732,12 @@ classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2><p>On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine fonction de coût (<em>loss</em>) $L$.</p>
-<p>Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité du classifieur logistique $g$</p>
-$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>Dans le cas de la régression logistique, on va utiliser la <em>log-vraisemblance négative</em> (<em>negative log-likelihood</em>) :</p>
+<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2><p>On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
+fonction de coût (<em>loss</em>) $L$.</p>
+<p>Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité
+du classifieur logistique $g$</p>
+$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>Dans le cas de la régression logistique, on va utiliser la <em>log-vraisemblance négative</em> (<em>negative
+log-likelihood</em>) :</p>
 <p>On définit la <em>vraisemblance</em> $V$ comme
 $$
 V(a, y) =
@@ -14738,19 +14746,28 @@ V(a, y) =
         1-a &amp; \text{sinon}
     \end{cases}
 $$</p>
-<p>Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne s'agit donc pas d'un coût, mais d'un <em>gain</em> (si sa valeur est haute, c'est que le modèle est bon)</p>
+<p>Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne
+s'agit donc pas d'un coût, mais d'un <em>gain</em> (si sa valeur est haute, c'est que le modèle est bon)</p>
 <p>La <em>log-vraisemblance négative</em> $L$ est alors définie par</p>
-$$L(a, y) = -\log(V(a, y))$$<p>Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).</p>
-<p>Une autre façon de le voir : $L(a, y)$, c'est la <a href="https://en.wikipedia.org/wiki/Information_content">surprise</a> de $y$ au sens de la théorie de l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$, $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.</p>
+$$L(a, y) = -\log(V(a, y))$$<p>Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer
+qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).</p>
+<p>Une autre façon de le voir : $L(a, y)$, c'est la
+<a href="https://en.wikipedia.org/wiki/Information_content">surprise</a> de $y$ au sens de la théorie de
+l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$,
+$L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On peut l'écrire en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est</p>
-$$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$<p>C'est un <em>trick</em>, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.</p>
-<p>La formule diffère un peu de celle de <em>Speech and Language Processing</em> mais les résultats sont les mêmes et celle-ci est mieux pour notre problème !</p>
-<p><small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle nous complique la vie.</small></p>
+$$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$<p>C'est un <em>trick</em>, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et
+donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.</p>
+<p>La formule diffère un peu de celle de <em>Speech and Language Processing</em> mais les résultats sont les
+mêmes et celle-ci est mieux pour notre problème !</p>
+<p><small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
+à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
+nous complique la vie.</small></p>
 
 </div>
 </div>
@@ -14760,29 +14777,32 @@ $$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$<p>C'est un <em>tric
 <ul>
 <li>Un vecteur de features $x$ de taille $n$</li>
 <li>Un vecteur de poids $w$ de taille $n$ et un biais $b$ (de taille $1$)</li>
-<li>Une classe cible $c$ ($0$ ou $1$)</li>
+<li>Une classe cible $y$ ($0$ ou $1$)</li>
 </ul>
 <p>Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
-$(x, c)$.</p>
+$(x, y)$.</p>
 <p>Servez vous-en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Descente-de-gradient">Descente de gradient<a class="anchor-link" href="#Descente-de-gradient">&#182;</a></h2>
+<h2 id="Descente-de-gradient">Descente de gradient<a class="anchor-link" href="#Descente-de-gradient">&#182;</a></h2><p>Pour un classifieur logistique</p>
+$$\frac{∂L(g(x, y))}{∂w_i} = (g(x)-y)×x_i$$<p>et</p>
+$$\frac{∂L(g(x, y))}{∂b} = (g(x)-y)$$
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
-le gradient en $(x, c)$.</p>
+le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  <a href="../../data/imdb_smol.tar.gz">mini-corpus IMDB</a></p>
+<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  <a href="../../data/imdb_smol.tar.gz">mini-corpus
+IMDB</a> en utilisant l'algorithme de descente de gradient stochastique.</p>
 
 </div>
 </div></section></section>

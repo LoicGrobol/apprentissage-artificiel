@@ -139,7 +139,7 @@ len(vocab)
 
 Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme
 `len(train_data)×len(vocab)` qui tel que le contenu de la cellule `(i, j)` soit le nombre
-d'occurrence du mot `i` dans le document `j`. On a
+d'occurrences du mot `i` dans le document `j`. On a
 [déjà](../lecture-06/lecture-06.md#%F0%9F%91%9C-Exo%E2%80%AF:-les-sacs-de-mots-%F0%9F%91%9C) fait
 ça.
 
@@ -161,7 +161,7 @@ bow_array
 ## 🧙🏻 Exo 🧙🏻
 
 > À vous de bosser maintenant. Écrivez
-> 
+>
 > 1\. Une fonction qui prend en argument un tableau comme `data_train.target` et qui renvoie un
 > tableau `class_probs` tel que `class_probs[c]` soit $P(c)$. On choisira le modèle de vraisemblance
 > maximal, soit ici simplement celui qui utilise pour probabilités les fréquences empiriques $P(c) =
@@ -213,12 +213,12 @@ def get_class_probs(target):
 get_class_probs(data_train.target)
 ```
 
-> 2\. Une fonction qui prend en argument un tableau comme `bow_array` et un tableau de classes `target` comme précédemment et renvoie un tableau
-> `word_probs` tel que `word_probs[c][w]` soit $P(w|c)$. On utilise toujours le modèle de
-> vraisemblance maximal mais avec un **lissage laplacien** :
-> $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
+> 2\. Une fonction qui prend en argument un tableau comme `bow_array` et un tableau de classes
+> `target` comme précédemment et renvoie un tableau `word_probs` tel que `word_probs[c][w]` soit
+> $P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais avec un **lissage
+> laplacien** : $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 > dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.
-> 
+>
 > N'hésitez pas à écrire des boucles, au moins pour commencer, avant de passer à du NumPy fancy.
 
 

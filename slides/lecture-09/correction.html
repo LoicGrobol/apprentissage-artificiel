@@ -15439,7 +15439,7 @@ the ``--filter`` option to compare the results.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme
 <code>len(train_data)×len(vocab)</code> qui tel que le contenu de la cellule <code>(i, j)</code> soit le nombre
-d'occurrence du mot <code>i</code> dans le document <code>j</code>. On a
+d'occurrences du mot <code>i</code> dans le document <code>j</code>. On a
 <a href="../lecture-06/lecture-06.md#%F0%9F%91%9C-Exo%E2%80%AF:-les-sacs-de-mots-%F0%9F%91%9C">déjà</a> fait
 ça.</p>
 
@@ -15697,10 +15697,10 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<blockquote><p>2. Une fonction qui prend en argument un tableau comme <code>bow_array</code> et un tableau de classes <code>target</code> comme précédemment et renvoie un tableau
-<code>word_probs</code> tel que <code>word_probs[c][w]</code> soit $P(w|c)$. On utilise toujours le modèle de
-vraisemblance maximal mais avec un <strong>lissage laplacien</strong> :
-$P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
+<blockquote><p>2. Une fonction qui prend en argument un tableau comme <code>bow_array</code> et un tableau de classes
+<code>target</code> comme précédemment et renvoie un tableau <code>word_probs</code> tel que <code>word_probs[c][w]</code> soit
+$P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais avec un <strong>lissage
+laplacien</strong> : $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 <p>N'hésitez pas à écrire des boucles, au moins pour commencer, avant de passer à du NumPy fancy.</p>
 </blockquote>
@@ -16269,7 +16269,7 @@ sur quelle dimension on somme.</p>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_2155/1890787321.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">/tmp/ipykernel_2089/1890787321.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counts<span class="ansi-blue-fg">/</span>total_per_class
 
 <span class="ansi-red-fg">ValueError</span>: operands could not be broadcast together with shapes (4,31116) (4,) </pre>

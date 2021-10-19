@@ -75,13 +75,18 @@ Tracer avec matplotlib la courbe représentative de la fonction logistique.
 ## Régression logistique
 
 
-Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On approcher cette fonction par une fonction $g$ de la forme
+Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
+telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
+approcher cette fonction par une fonction $g$ de la forme
 
 $$g(x) = σ(w⋅x+b)$$
 
-Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur notre ensemble d'apprentissage, on dit que $g$ est la *régression logistique de $f$* sur cet ensemble.
+Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
+notre ensemble d'apprentissage, on dit que $g$ est la *régression logistique de $f$* sur cet
+ensemble.
 
-Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si $g(x) < 0.5$ et $1$ sinon.
+Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
+$g(x) < 0.5$ et $1$ sinon.
 
 ## 🧠 Exo 🧠
 
@@ -98,13 +103,16 @@ classifieur sur le mini-corpus IMDB et calculez son exactitude.
 
 ## Fonction de coût
 
-On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine fonction de coût (*loss*) $L$.
+On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
+fonction de coût (*loss*) $L$.
 
-Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité du classifieur logistique $g$
+Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité
+du classifieur logistique $g$
 
 $$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$
 
-Dans le cas de la régression logistique, on va utiliser la *log-vraisemblance négative* (*negative log-likelihood*) :
+Dans le cas de la régression logistique, on va utiliser la *log-vraisemblance négative* (*negative
+log-likelihood*) :
 
 On définit la *vraisemblance* $V$ comme
 $$
@@ -115,26 +123,35 @@ V(a, y) =
     \end{cases}
 $$
 
-Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne s'agit donc pas d'un coût, mais d'un *gain* (si sa valeur est haute, c'est que le modèle est bon)
+Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne
+s'agit donc pas d'un coût, mais d'un *gain* (si sa valeur est haute, c'est que le modèle est bon)
 
 La *log-vraisemblance négative* $L$ est alors définie par
 
 $$L(a, y) = -\log(V(a, y))$$
 
-Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).
+Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer
+qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).
 
-Une autre façon de le voir : $L(a, y)$, c'est la [surprise](https://en.wikipedia.org/wiki/Information_content) de $y$ au sens de la théorie de l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$, $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.
+Une autre façon de le voir : $L(a, y)$, c'est la
+[surprise](https://en.wikipedia.org/wiki/Information_content) de $y$ au sens de la théorie de
+l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$,
+$L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.
 
 
 On peut l'écrire en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est
 
 $$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$
 
-C'est un *trick*, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.
+C'est un *trick*, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et
+donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.
 
-La formule diffère un peu de celle de *Speech and Language Processing* mais les résultats sont les mêmes et celle-ci est mieux pour notre problème !
+La formule diffère un peu de celle de *Speech and Language Processing* mais les résultats sont les
+mêmes et celle-ci est mieux pour notre problème !
 
-<small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle nous complique la vie.</small>
+<small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
+à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
+nous complique la vie.</small>
 
 ## 📉 Exo 📉
 
@@ -142,20 +159,29 @@ La formule diffère un peu de celle de *Speech and Language Processing* mais les
 
 - Un vecteur de features $x$ de taille $n$
 - Un vecteur de poids $w$ de taille $n$ et un biais $b$ (de taille $1$)
-- Une classe cible $c$ ($0$ ou $1$)
+- Une classe cible $y$ ($0$ ou $1$)
 
 Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
-$(x, c)$.
+$(x, y)$.
 
 Servez vous-en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.
 
 ## Descente de gradient
 
+Pour un classifieur logistique
+
+$$\frac{∂L(g(x, y))}{∂w_i} = (g(x)-y)×x_i$$
+
+et
+
+$$\frac{∂L(g(x, y))}{∂b} = (g(x)-y)$$
+
 ## 🧐 Exo 🧐
 
 Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
-le gradient en $(x, c)$.
+le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
 
 ## 😩 Exo 😩
 
-S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus IMDB](../../data/imdb_smol.tar.gz)
+S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus
+IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
