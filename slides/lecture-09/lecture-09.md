@@ -52,9 +52,10 @@ est donc bon de garder à portée de main.
 Pour éviter d'avoir à prédater des données, on va se servir du [dataset d'exemple de `scikit-learn`
 *20
 newsgroups*](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html)
-qu'on a [déjà](../lecture-07/lecture-07.md#Classification-de-textes) rencontré, en revanche on évitera de se servir directement des fonctions de `scikit-learn`. On sait déjà faire et l'objectif ici est de le faire à la mano pour bien comprendre ce qui se passe. On se servira aussi
-pas mal de NumPy, n'hésitez donc pas à aller revoir [le cours qui le
-concerne](../lecture-06/lecture-06.md).
+qu'on a [déjà](../lecture-07/lecture-07.md#Classification-de-textes) rencontré, en revanche on
+évitera de se servir directement des fonctions de `scikit-learn`. On sait déjà faire et l'objectif
+ici est de le faire à la mano pour bien comprendre ce qui se passe. On se servira aussi pas mal de
+NumPy, n'hésitez donc pas à aller revoir [le cours qui le concerne](../lecture-06/lecture-06.md).
 
 **C'est parti !**
 
@@ -151,7 +152,7 @@ def get_counts(doc):
 get_counts(data_train.data[0])
 ```
 
-Maintenant il faut le faire pour tous les docs 🏹
+Maintenant, il faut le faire pour tous les docs 🏹
 
 ```python
 bows = [get_counts(doc) for doc in data_train.data]
