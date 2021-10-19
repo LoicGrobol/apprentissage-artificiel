@@ -409,7 +409,7 @@ def predict_class(doc):
 print(data_train.data[0][:300])
 predicted = predict_class(data_train.data[0])
 print(f"La classe prédite pour le premier document est {predicted}, soit {data_train.target_names[predicted]}")
-print(f"La classe correcte était {data_train.target[0]}, soit {data_train.target_names[data_train.target[0]]}")
+print(f"La classe correcte était {data_train.target[0]}, soit npdependency{data_train.target_names[data_train.target[0]]}")
 ```
 
 Ou en plus rapide et compact avec un [produit scalaire](https://numpy.org/doc/stable/reference/generated/numpy.inner) vecteur-vecteur
