@@ -122,7 +122,7 @@ def logistic(z):
 %matplotlib inline
 import matplotlib.pyplot as plt
 x = np.linspace(-10, 10, 5000)
-y = 1/(1+np.exp(-x))
+y = logistic(x)
 plt.plot(x, y)
 ```
 
@@ -173,19 +173,27 @@ def featurize(text, lexicon):
 
 lexicon = read_vader("../../data/vader_lexicon.txt")
 doc = "I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I'm on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler's List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I've ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito's Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can't be told often enough. This one is an excellent addition to that genre."
-featurize(doc, lexicon)
+doc_features = featurize(doc, lexicon)
+doc_features
 ```
 
 2\. Appliquer la fonction précédente sur [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
 
 
 3\. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
-précédents et utilise les poids respectifs $0.6$ et $0.4$ et un biais de $0$. Appliquez ce
+précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.
 
 ```python
 def hardcoded_classifier(x):
-    return logistic(np.inner(np.array([0.6, 0.4], x)))
+    return logistic(
+        np.inner(
+            np.array([0.6, -0.4]),
+            x,
+        )
+    )
+
+hardcoded_classifier(doc_features)
 ```
 
 ## Fonction de coût

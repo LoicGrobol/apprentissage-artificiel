@@ -14727,7 +14727,7 @@ $$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
@@ -14750,7 +14750,7 @@ $$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7faeaf6a2a00&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f6d69c688b0&gt;]</pre>
 </div>
 
 </div>
@@ -14831,7 +14831,8 @@ nombre de mots positifs et nombre de mot négatifs.</p>
 
 <span class="n">lexicon</span> <span class="o">=</span> <span class="n">read_vader</span><span class="p">(</span><span class="s2">&quot;../../data/vader_lexicon.txt&quot;</span><span class="p">)</span>
 <span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I&#39;m on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler&#39;s List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I&#39;ve ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito&#39;s Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can&#39;t be told often enough. This one is an excellent addition to that genre.&quot;</span>
-<span class="n">featurize</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">)</span>
+<span class="n">doc_features</span> <span class="o">=</span> <span class="n">featurize</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">)</span>
+<span class="n">doc_features</span>
 </pre></div>
 
      </div>
@@ -14872,23 +14873,53 @@ nombre de mots positifs et nombre de mot négatifs.</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>3. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
-précédents et utilise les poids respectifs $0.6$ et $0.4$ et un biais de $0$. Appliquez ce
+précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">hardcoded_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="n">x</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">logistic</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]),</span>
+            <span class="n">x</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">hardcoded_classifier</span><span class="p">(</span><span class="n">doc_features</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0.9986414800495711</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
