@@ -14559,6 +14559,133 @@ tableaux numpy $x$ et $w$ de dimensions <code>(n,)</code> et un biais $b$ sous f
 dimensions <code>(1,)</code> et renvoie $z=\sum_iw_ix_i + b$.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">affine_combination</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">pass</span> <span class="c1"># À vous de jouer !</span>
+
+<span class="n">affine_combination</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">999.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">affine_combination</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">xi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">wi</span><span class="o">*</span><span class="n">xi</span>
+    <span class="n">res</span> <span class="o">+=</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="n">affine_combination</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">999.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([3.6])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">affine_combination</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">affine_combination</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">999.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([3.6])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14576,6 +14703,78 @@ $$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <
 <h2 id="%F0%9F%93%88-Exo-%F0%9F%93%88">&#128200; Exo &#128200;<a class="anchor-link" href="#%F0%9F%93%88-Exo-%F0%9F%93%88">&#182;</a></h2><p>Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&lt;matplotlib.lines.Line2D at 0x7faeaf6a2a00&gt;]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14601,12 +14800,97 @@ $g(x) &lt; 0.5$ et $1$ sinon.</p>
 <a href="https://github.com/cjhutto/vaderSentiment">VADER</a>), écrivez une fonction qui prend en entrée un
 texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
 nombre de mots positifs et nombre de mot négatifs.</p>
-<p>2. Appliquer la fonction précédente sur le mini-corpus IMDB</p>
-<p>3. Écrire un classifieur logistique (en une fonction) qui prend en entrée les vecteurs de features
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">poor_mans_tokenizer_and_normalizer</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s|\W&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">w</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">read_vader</span><span class="p">(</span><span class="n">vader_path</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">vader_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_stream</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">in_stream</span><span class="p">:</span>
+            <span class="n">word</span><span class="p">,</span> <span class="n">polarity</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">is_positive</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">polarity</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_positive</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span> <span class="nf">featurize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">poor_mans_tokenizer_and_normalizer</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+    <span class="n">features</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">features</span>
+
+<span class="n">lexicon</span> <span class="o">=</span> <span class="n">read_vader</span><span class="p">(</span><span class="s2">&quot;../../data/vader_lexicon.txt&quot;</span><span class="p">)</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I&#39;m on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler&#39;s List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I&#39;ve ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito&#39;s Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can&#39;t be told often enough. This one is an excellent addition to that genre.&quot;</span>
+<span class="n">featurize</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([13.,  3.])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>2. Appliquer la fonction précédente sur <a href="../../data/imdb_smol.tar.gz">le mini-corpus IMDB</a></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>3. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
 précédents et utilise les poids respectifs $0.6$ et $0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">hardcoded_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="n">x</span><span class="p">)))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">

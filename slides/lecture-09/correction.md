@@ -214,7 +214,7 @@ get_class_probs(data_train.target)
 ```
 
 > 2\. Une fonction qui prend en argument un tableau comme `bow_array` et un tableau de classes
-> `target` comme précédemment et renvoie un tableau `word_probs` tel que `word_probs[c][w]` soit
+> `target` comme précédemment et renvoie un tableau `word_probs` tel que `word_probs[c,w]` soit
 > $P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais avec un **lissage
 > laplacien** : $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 > dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.
@@ -241,6 +241,10 @@ vocabulary_size = bow_array.shape[1]
 ```
 
 Comme précédemment, `data_train.target` contient les comptes des classes dont il y a
+
+```python
+data_train.target
+```
 
 ```python
 n_classes = np.max(data_train.target)+1
@@ -305,7 +309,7 @@ On le fait pour tout le monde
 word_probs = np.empty((n_classes, vocabulary_size))
 # `enumerate` pour savoir quelle ligne remplir
 for i, class_count in enumerate(counts):
-    word_probs[i] = counts[i]/np.sum(counts[i])
+    word_probs[i] = class_count/np.sum(class_count)
 word_probs
 ```
 
@@ -369,7 +373,7 @@ Voilà, on a un modèle de classification *Naïve Bayes* 👏🏻
 > 3\. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre
 > modèle. Pensez à travailler en log-probabilités
 
-On va s'inspirer de l'algo 4.2 de *Speech and Language Procseeing* en le compactifiant un peu.
+On va s'inspirer de l'algo 4.2 de *Speech and Language Processing* en le compactifiant un peu.
 
 
 D'abord on calcule les log-paramètres du modèle
@@ -388,7 +392,7 @@ Ensuite on les exploite
 
 ```python
 def predict_class(doc):
-    # D'abord on récupère sa représenation en sacs de mots
+    # D'abord on récupère sa représentation en sacs de mots
     bow_dict = get_counts(doc)
     bow = np.zeros(len(w_to_i))
     for w, c in bow_dict.items():
@@ -409,7 +413,7 @@ def predict_class(doc):
 print(data_train.data[0][:300])
 predicted = predict_class(data_train.data[0])
 print(f"La classe prédite pour le premier document est {predicted}, soit {data_train.target_names[predicted]}")
-print(f"La classe correcte était {data_train.target[0]}, soit npdependency{data_train.target_names[data_train.target[0]]}")
+print(f"La classe correcte était {data_train.target[0]}, soit {data_train.target_names[data_train.target[0]]}")
 ```
 
 Ou en plus rapide et compact avec un [produit scalaire](https://numpy.org/doc/stable/reference/generated/numpy.inner) vecteur-vecteur
@@ -464,7 +468,6 @@ Plutôt encourageant ! on va écrire une fonction pour le faire sur n'importe 
 def evaluate(documents, target):
     predictions = np.array([predict_class(text) for text in documents])
     correct = predictions == target
-    correct
     return correct.sum()/correct.size
 ```
 
