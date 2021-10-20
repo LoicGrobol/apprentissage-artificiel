@@ -61,6 +61,47 @@ Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la class
 tableaux numpy $x$ et $w$ de dimensions `(n,)` et un biais $b$ sous forme d'un tableau numpy de
 dimensions `(1,)` et renvoie $z=\sum_iw_ix_i + b$.
 
+```python
+import numpy as np
+```
+
+```python
+def affine_combination(x, w, b):
+    pass # À vous de jouer !
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
+```python
+def affine_combination(x, w, b):
+    res = np.zeros(1)
+    for wi, xi in zip(w, x):
+        res += wi*xi
+    res += b
+    return res
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
+```python
+def affine_combination(x, w, b):
+    return np.inner(w, x) + b
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
 ## La fonction logistique
 
 
@@ -71,6 +112,19 @@ Elle permet de *normaliser* $z$ : $z$ peut être n'importe quel nombre entre $
 ## 📈 Exo 📈
 
 Tracer avec matplotlib la courbe représentative de la fonction logistique.
+
+```python
+def logistic(z):
+    return 1/(1+np.exp(-z))
+```
+
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+x = np.linspace(-10, 10, 5000)
+y = 1/(1+np.exp(-x))
+plt.plot(x, y)
+```
 
 ## Régression logistique
 
@@ -95,11 +149,44 @@ $g(x) < 0.5$ et $1$ sinon.
 texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
 nombre de mots positifs et nombre de mot négatifs.
 
-2\. Appliquer la fonction précédente sur le mini-corpus IMDB
+```python
+import re
 
-3\. Écrire un classifieur logistique (en une fonction) qui prend en entrée les vecteurs de features
+def poor_mans_tokenizer_and_normalizer(s):
+    return [w.lower() for w in re.split(r"\s|\W", s.strip()) if w and all(c.isalpha() for c in w)]
+
+def read_vader(vader_path):
+    res = dict()
+    with open(vader_path) as in_stream:
+        for row in in_stream:
+            word, polarity, *_ = row.lstrip().split("\t", maxsplit=2)
+            is_positive = float(polarity) > 0
+            res[word] = is_positive
+    return res
+
+def featurize(text, lexicon):
+    words = poor_mans_tokenizer_and_normalizer(text)
+    features = np.empty(2)
+    features[0] = sum(1 for w in words if lexicon.get(w, False))
+    features[1] = sum(1 for w in words if not lexicon.get(w, True))
+    return features
+
+lexicon = read_vader("../../data/vader_lexicon.txt")
+doc = "I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I'm on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler's List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I've ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito's Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can't be told often enough. This one is an excellent addition to that genre."
+featurize(doc, lexicon)
+```
+
+2\. Appliquer la fonction précédente sur [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
+
+
+3\. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
 précédents et utilise les poids respectifs $0.6$ et $0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.
+
+```python
+def hardcoded_classifier(x):
+    return logistic(np.inner(np.array([0.6, 0.4], x)))
+```
 
 ## Fonction de coût
 
