@@ -97,10 +97,26 @@ Pour la fois prochaine :
 
 ### 2021-10-20 — Naïve Bayes (suite et fin) et régression logistique.
 
-- [Correction slide 9](slides/lecture-09/correction.slides.html) [![Launch in Binder
+- [Correction slide 9](slides/lecture-09/correction.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/correction.md)
-- [Slides 10](slides/lecture-09/lecture-10.slides.html) [![Launch in Binder
+- [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 5 « *Logistic Regression* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 6 « *Vector Semantics and Embeddings* ».
+
+### 2021-10-27 — Régression logistique (suite et fin) et représentations lexicales vectorielles
+
+- [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
+- [Slides 10](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
+
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 5 « *Logistic Regression* ».
