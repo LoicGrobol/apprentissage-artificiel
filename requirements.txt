@@ -7,5 +7,6 @@ pandas
 regex
 scikit-learn
 simpletransformers
+tol-colors
 torch
 RISE

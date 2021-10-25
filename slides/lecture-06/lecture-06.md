@@ -340,7 +340,7 @@ a+c
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Explication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la conversion pour que tout se passe comme si on avait ajouté par
+nversion pour que tout se passe comme si on avait ajouté parExplication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la co
 <!-- #endregion -->
 
 ```python
