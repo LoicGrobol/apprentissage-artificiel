@@ -227,6 +227,10 @@ import matplotlib.pyplot as plt
 x = np.linspace(-10, 10, 5000)
 y = logistic(x)
 plt.plot(x, y)
+plt.xlabel("$x$")
+plt.ylabel("$σ(x)$")
+plt.title("Courbe représentative de la fonction logistique sur $[-10, 10]$")
+plt.show()
 ```
 
 ## Régression logistique
@@ -352,7 +356,8 @@ $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$
 
 On peut vérifier qu'il s'agit bien d'un coût :
 
-- Si le classifieur prend une décision correcte avec une confiance parfaite :
+- C'est un nombre positif
+- Si le classifieur prend une décision correcte avec une confiance parfaite le coût est nul :
 
   $$
     \begin{cases}
@@ -360,12 +365,12 @@ On peut vérifier qu'il s'agit bien d'un coût :
         L(0.0, 0) = -\log(1.0-0.0) = -\log(1.0) = 0
     \end{cases}
   $$
-- Si le classifieur prend une décision erronée avec une confiance parfaite :
+- Si le classifieur prend une décision erronée avec une confiance parfaite le coût est infini :
 
   $$
     \begin{cases}
-        L(0.0, 1) = -\log(0.0) = \infty\\
-        L(1.0, 0) = -\log(1.0-1.0) = \log(0.0) = \infty
+        L(0.0, 1) = -\log(0.0) = +\infty\\
+        L(1.0, 0) = -\log(1.0-1.0) = \log(0.0) = +\infty
     \end{cases}
   $$
 
@@ -387,6 +392,10 @@ mêmes et celle-ci est mieux pour notre problème !
 <small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
 à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
 nous complique la vie.</small>
+
+Une dernière façon de l'écrire en une ligne :
+
+$$L(g(x), y) = -\log\left[g(x)\mathbb{1}_{y=1} + (1-g(x))\mathbb{1}_{y=0}\right]$$
 
 ## 📉 Exo 📉
 
@@ -475,6 +484,13 @@ l'opposé du nombre dérivé : <https://uclaacm.github.io/gradient-descent-vis
 
 En plus de dimensions, c'est plus compliqué, mais on peut s'en sortir en suivant le *gradient* qui
 est une généralisation du nombre dérivé : <https://jackmckew.dev/3d-gradient-descent-in-python.html>
+
+
+Ce qui fait marcher la machine c'est que **le gradient indique la direction dans laquelle la
+fonction croît le plus vite**. Et que l'opposé du gradient indique la direction dans laquelle la
+fonction décroît le plus vite.
+
+(localement)
 
 <!-- #region -->
 Concrètement si on veut trouver $\theta$ tel que $f(\theta)$ soit minimale pour une certaine
