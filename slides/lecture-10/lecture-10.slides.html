@@ -14765,74 +14765,6 @@ dimensions <code>(1,)</code> et renvoie $z=\sum_iw_ix_i + b$.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="La-fonction-logistique">La fonction logistique<a class="anchor-link" href="#La-fonction-logistique">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-$$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <em>normaliser</em> $z$ : $z$ peut être n'importe quel nombre entre $-∞$ et $+∞$, mais on aura toujours $0 &lt; σ(z) &lt; 1$, ce qui permet de l'interpréter facilement comme une <em>vraisemblance</em>. Autrement dit, $σ(z)$ sera proche de $1$ s'il paraît vraisemblable que $x$ appartienne à la classe $1$ et proche de $0$ sinon.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%93%88-Exo-%F0%9F%93%88">&#128200; Exo &#128200;<a class="anchor-link" href="#%F0%9F%93%88-Exo-%F0%9F%93%88">&#182;</a></h2><p>Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="R%C3%A9gression-logistique">R&#233;gression logistique<a class="anchor-link" href="#R%C3%A9gression-logistique">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
-telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
-approcher cette fonction par une fonction $g$ de la forme</p>
-$$g(x) = σ(w⋅x+b)$$<p>Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
-notre ensemble d'apprentissage, on dit que $g$ est la <em>régression logistique de $f$</em> sur cet
-ensemble.</p>
-<p>Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
-$g(x) &lt; 0.5$ et $1$ sinon.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#129504; Exo &#129504;<a class="anchor-link" href="#%F0%9F%A7%A0-Exo-%F0%9F%A7%A0">&#182;</a></h2><p>1. À l'aide d'un lexique de sentiment (par exemple
 <a href="https://github.com/cjhutto/vaderSentiment">VADER</a>), écrivez une fonction qui prend en entrée un
 texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
@@ -14886,9 +14818,74 @@ nombre de mots positifs et nombre de mot négatifs.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Commençons par l'extraire</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="nb">cd</span> ../../local
+tar -xzf ../data/imdb_smol.tar.gz 
+ls -lah imdb_smol
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Maintenant on parcourt le dossier pour construire nos représentations</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>  <span class="c1"># Manipuler des chemins et des fichiers agréablement</span>
+
+<span class="k">def</span> <span class="nf">featurize_dir</span><span class="p">(</span><span class="n">corpus_root</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">):</span>
+    <span class="n">corpus_root</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">corpus_root</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">clss</span> <span class="ow">in</span> <span class="n">corpus_root</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+        <span class="c1"># On peut aussi utiliser une compréhension de liste et avoir un dict pas default</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">clss</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+            <span class="c1"># `stem` et `read_text` c&#39;est de la magie de `pathlib`, check it out</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">clss</span><span class="o">.</span><span class="n">stem</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">featurize</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="n">lexicon</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="c1"># On réutilise le lexique précédent</span>
+<span class="n">imdb_features</span> <span class="o">=</span> <span class="n">featurize_dir</span><span class="p">(</span><span class="s2">&quot;../../local/imdb_smol&quot;</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">)</span>
+<span class="n">imdb_features</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>3. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
 précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $0$. Appliquez ce
 classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On commence par définir le classifieur : on va renvoyer <code>True</code> pour la classe positive et <code>False</code>
+pour la classe négative.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14898,12 +14895,14 @@ classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">hardcoded_classifier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">logistic</span><span class="p">(</span>
+    <span class="k">return</span> <span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]),</span>
             <span class="n">x</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="o">&gt;</span> <span class="mf">0.0</span>
     <span class="p">)</span>
+
 
 <span class="n">hardcoded_classifier</span><span class="p">(</span><span class="n">doc_features</span><span class="p">)</span>
 </pre></div>
@@ -14916,13 +14915,216 @@ classifieur sur le mini-corpus IMDB et calculez son exactitude.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2><p>On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
-fonction de coût (<em>loss</em>) $L$.</p>
-<p>Autrement dit, étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on va mesurer la qualité
-du classifieur logistique $g$</p>
-$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>Dans le cas de la régression logistique, on va utiliser la <em>log-vraisemblance négative</em> (<em>negative
-log-likelihood</em>) :</p>
-<p>On définit la <em>vraisemblance</em> $V$ comme
+<p>Maintenant on le teste</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">imdb_features</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">hardcoded_classifier</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recall for &#39;pos&#39;: </span><span class="si">{</span><span class="n">correct_pos</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">correct_pos</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">correct_neg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">imdb_features</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">hardcoded_classifier</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recall for &#39;neg&#39;: </span><span class="si">{</span><span class="n">correct_neg</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">correct_neg</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">correct_pos</span><span class="o">+</span><span class="n">correct_neg</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="p">(</span><span class="n">correct_pos</span><span class="o">+</span><span class="n">correct_neg</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">]))</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="La-fonction-logistique">La fonction logistique<a class="anchor-link" href="#La-fonction-logistique">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$<p>Elle permet de <em>normaliser</em> $z$ : $z$ peut être n'importe quel nombre entre $-∞$ et $+∞$, mais on
+aura toujours $0 &lt; σ(z) &lt; 1$, ce qui permet de l'interpréter facilement comme une <em>vraisemblance</em>.
+Autrement dit, $σ(z)$ sera proche de $1$ s'il paraît vraisemblable que $x$ appartienne à la classe
+$1$ et proche de $0$ sinon.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%93%88-Exo-%F0%9F%93%88">&#128200; Exo &#128200;<a class="anchor-link" href="#%F0%9F%93%88-Exo-%F0%9F%93%88">&#182;</a></h2><p>Tracer avec matplotlib la courbe représentative de la fonction logistique.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="R%C3%A9gression-logistique">R&#233;gression logistique<a class="anchor-link" href="#R%C3%A9gression-logistique">&#182;</a></h2><p>Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
+telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
+approcher cette fonction par une fonction $g$ de la forme</p>
+$$g(x) = σ(w⋅x+b)$$<p>Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
+notre ensemble d'apprentissage, on dit que $g$ est la <em>régression logistique de $f$</em> sur cet
+ensemble.</p>
+<p>Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
+$g(x) &lt; 0.5$ et $1$ sinon. Il a exactement les mêmes capacités de discrimination qu'un classifieur
+linéaire (il ne sait pas prendre de décisions plus complexes), mais on peut interpréter la confiance
+qu'il a dans sa décision.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Par exemple voici la confiance que notre classifieur codé en dur a en ses décisions</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">classifier_confidence</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">logistic</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]),</span>
+            <span class="n">x</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="n">classifier_confidence</span><span class="p">(</span><span class="n">doc_features</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Autrement dit, d'après notre classifieur, il y a un peu plus de $99.86\%$ de chances que le document
+soit de la classe $1$ (review positive dans ce cas), ou encore, la vraisemblance de la classe $1$
+est vraisemblable à plus de $99.68\%$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Quelle est la vraisemblance de la classe $0$ (review négative) ? Et bien le reste</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">classifier_confidence</span><span class="p">(</span><span class="n">doc_features</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Soit un peu plus de $0.1%$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Comme l'exemple en question appartient bien à cette classe, ça signifie que notre classifieur et
+plutôt bon <strong>sur cet exemple</strong>. L'est-il sur le reste du corpus ?</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pos_confidence</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">classifier_confidence</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">imdb_features</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average confidence for &#39;pos&#39;: </span><span class="si">{</span><span class="n">pos_confidence</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">neg_confidence</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">classifier_confidence</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">imdb_features</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average confidence for &#39;neg&#39;: </span><span class="si">{</span><span class="n">neg_confidence</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average confidence for the correct class: </span><span class="si">{</span><span class="p">(</span><span class="n">pos_confidence</span><span class="o">+</span><span class="n">neg_confidence</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">]))</span><span class="si">:</span><span class="s2">.02%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Autrement dit, pour un exemple pris au hasard dans le corpus, la vraisemblance de sa classe telle
+que jugée par le classifieur sera de $59.47\%$. Un classifieur parfait obtiendrait $100\%$, un
+classifieur qui prendrait systématiquement la mauvaise décision $0\%$ et un classifieur aléatoire
+uniforme $50\%$ (puisque notre corpus a autant d'exemples de chaque classe).</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Moralité nos poids ne sont pas très bien choisis, et notre préoccupation dans la suite va être de
+chercher comment choisir des poids pour que la confiance moyenne de la classe correcte soit aussi
+haute que possible.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Fonction-de-co%C3%BBt">Fonction de co&#251;t<a class="anchor-link" href="#Fonction-de-co%C3%BBt">&#182;</a></h2><p>On a dit que notre objectif était</p>
+<blockquote><p>Chercher les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
+notre ensemble d'apprentissage</p>
+</blockquote>
+<p>On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
+fonction de coût (<em>loss</em>) $L$ qui mesure l'erreur faite par le classifieur sur un exemple.</p>
+$$L(g(x), y) = \text{l'écart entre la classe prédite par $g$ pour $x$ et la classe correcte $y$}$$<p>Étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on estime l'erreur faite par le
+classifieur logistique $g$ pour chaque exemple $(x_i, y_i)$ comme le coût local $L(g(xᵢ), yᵢ)$ et
+son erreur sur tout l'ensemble de test par le coût global $\mathcal{L}$ :</p>
+$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>Plus $\mathcal{L}$ sera bas, meilleur sera notre classifieur.</p>
+<p>Dans le cas de la régression logistique, on va s'inspirer de ce qu'on a vu dans la section
+précédente et utiliser la <em>log-vraisemblance négative</em> (<em>negative log-likelihood</em>) :</p>
+<p>On définit la <em>vraisemblance</em> $V$ comme précédemment par
 $$
 V(a, y) =
     \begin{cases}
@@ -14933,9 +15135,12 @@ $$</p>
 <p>Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne
 s'agit donc pas d'un coût, mais d'un <em>gain</em> (si sa valeur est haute, c'est que le modèle est bon)</p>
 <p>La <em>log-vraisemblance négative</em> $L$ est alors définie par</p>
-$$L(a, y) = -\log(V(a, y))$$<p>Le $\log$ permet de régulariser la valeur (c'est plus facile à apprendre) et le $-$ à s'assurer
-qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).</p>
-<p>Une autre façon de le voir : $L(a, y)$, c'est la
+$$L(a, y) = -\log(V(a, y))$$<p>Le $\log$ est là pour plusieurs raisons, calculatoires et théoriques<sup>1</sup> et le $-$ à
+s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).</p>
+<p><small>1. Entre autres, comme pour *Naïve Bayes*, parce qu'une somme de $\log$-vraisemblance peut
+être vue comme le $\log$ de la probabilité d'une conjonction d'événements indépendants. Mais surtout
+parce qu'il rend la fonction de coût **convexe** par rapport à $w$</small>.</p>
+<p>Une interprétation possible : $L(a, y)$, c'est la
 <a href="https://en.wikipedia.org/wiki/Information_content">surprise</a> de $y$ au sens de la théorie de
 l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$,
 $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.</p>
@@ -14944,10 +15149,41 @@ $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On peut l'écrire en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est</p>
+<p>On peut vérifier qu'il s'agit bien d'un coût :</p>
+<ul>
+<li><p>Si le classifieur prend une décision correcte avec une confiance parfaite :</p>
+<p>$$
+  \begin{cases}</p>
+
+<pre><code>  L(1.0, 1) = -\log(1.0) = 0\\
+  L(0.0, 0) = -\log(1.0-0.0) = -\log(1.0) = 0
+</code></pre>
+<p>\end{cases}
+$$</p>
+</li>
+<li><p>Si le classifieur prend une décision erronée avec une confiance parfaite :</p>
+<p>$$
+  \begin{cases}</p>
+
+<pre><code>  L(0.0, 1) = -\log(0.0) = \infty\\
+  L(1.0, 0) = -\log(1.0-1.0) = \log(0.0) = \infty
+</code></pre>
+<p>\end{cases}
+$$</p>
+</li>
+</ul>
+<p>On peut aussi vérifier facilement que $L(a, 1)$ est décroissant par rapport à $a$ et que $L(1-a, 0)$
+est croissant par rapport à $a$. Autrement dit, plus le classifieur juge que la classe correcte est
+vraisemblable plus le coût $L$ est bas.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Enfin, on peut l'écrire $L$ en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est</p>
 $$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$<p>C'est un <em>trick</em>, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et
 donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.</p>
-<p>La formule diffère un peu de celle de <em>Speech and Language Processing</em> mais les résultats sont les
+<p>La formule diffère un peu de celle de <em>Speech and Language Processing</em>, mais les résultats sont les
 mêmes et celle-ci est mieux pour notre problème !</p>
 <p><small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
 à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
@@ -14965,28 +15201,426 @@ nous complique la vie.</small></p>
 </ul>
 <p>Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
 $(x, y)$.</p>
-<p>Servez vous-en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.</p>
+<p>Servez-vous en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Descente-de-gradient">Descente de gradient<a class="anchor-link" href="#Descente-de-gradient">&#182;</a></h2><p>Pour un classifieur logistique</p>
-$$\frac{∂L(g(x, y))}{∂w_i} = (g(x)-y)×x_i$$<p>et</p>
-$$\frac{∂L(g(x, y))}{∂b} = (g(x)-y)$$
+<h2 id="Descente-de-gradient">Descente de gradient<a class="anchor-link" href="#Descente-de-gradient">&#182;</a></h2><h3 id="Principe-g%C3%A9n%C3%A9ral">Principe g&#233;n&#233;ral<a class="anchor-link" href="#Principe-g%C3%A9n%C3%A9ral">&#182;</a></h3><p>L'<strong>algorithme de descente de gradient</strong> est la clé de voute de l'essentiel des travaux
+en apprentissage artificiel moderne. Il s'agit d'un algorithme itératif qui étant donné un modèle
+paramétrisé et une fonction de coût (avec des hypothèses de régularité assez faibles) permet de
+trouver des valeurs des paramètres pour lesquelles la fonction de coût est minimal.</p>
+<p>On ne va pas rentrer dans les détails de l'algorithme de descente de gradient stochastique, mais
+juste essayer de se donner quelques idées.</p>
+<p>L'intuition à avoir est la suivante : si vous êtes dans une vallée et que vous voulez trouver
+rapidement le point le plus bas, une façon de faire est de chercher la direction vers laquelle la
+pente descend le plus vite, de faire quelques pas dans cette direction puis de recommencer. On parle
+aussi pour cette raison d'<strong>algorithme de la plus forte pente</strong>.</p>
+<p>Clairement une condition pour que ça marche peu importe le point de départ, c'est que la vallée
+n'ait qu'un seul point localement le plus bas. Par exemple ça marche avec une vallée comme celle-ci</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">tol_colors</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">R</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">tc</span><span class="o">.</span><span class="n">tol_cmap</span><span class="p">(</span><span class="s2">&quot;sunset&quot;</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Mais pas pour celle-là</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">tol_colors</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">R</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">tc</span><span class="o">.</span><span class="n">tol_cmap</span><span class="p">(</span><span class="s2">&quot;sunset&quot;</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#ax.plot_wireframe(X, Y, Z, color=&#39;black&#39;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>OK, mais comment on trouve la plus forte pente en pratique ? En une dimension il suffit de suivre
+l'opposé du nombre dérivé : <a href="https://uclaacm.github.io/gradient-descent-visualiser/#playground">https://uclaacm.github.io/gradient-descent-visualiser/#playground</a></p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
+<p>En plus de dimensions, c'est plus compliqué, mais on peut s'en sortir en suivant le <em>gradient</em> qui
+est une généralisation du nombre dérivé : <a href="https://jackmckew.dev/3d-gradient-descent-in-python.html">https://jackmckew.dev/3d-gradient-descent-in-python.html</a></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Concrètement si on veut trouver $\theta$ tel que $f(\theta)$ soit minimale pour une certaine
+fonction $f$ dont le gradient est donné par <code>grad_f</code> ça donne l'algo suivant</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">descent</span><span class="p">(</span><span class="n">grad_f</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="c1"># On trouve la direction de plus grande pente</span>
+        <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad_f</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="c1"># On fait quelques pas dans cette direction</span>
+        <span class="n">theta</span> <span class="o">+=</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">steepest_direction</span>
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+<p>Les <em>hyperparamètres</em> sont</p>
+<ul>
+<li><code>theta_0</code> est notre point de départ, notre première estimation d'où se trouvera le minimum, que
+l'algorithme va raffiner. Évidemment si on a déjà une idée de vers où on pourrait le trouver, ça
+ira plus vite. Si on a aucune idée, on peut le prendre aléatoire.</li>
+<li><code>learning_rate</code> ou « taux d'apprentissage » : de combien on se déplace à chaque étape. Si on le
+prend grand on arrive vite vers la région du minimum, on mettra longtemps pour en trouver une
+approximation précise. Si on le prend petit, ça sera l'inverse.</li>
+<li><code>n_steps</code> est le nombre d'étapes d'optimisations. Dans un problème d'apprentissage, c'est aussi
+le nombre de fois où on aura parcouru l'ensemble d'apprentissage et on parle souvent d'<strong>epoch</strong></li>
+</ul>
+<p>Ici on se donne un nombre fixe d'epochs, une autre possibilité serait de s'arrêter quand on ne bouge
+plus trop, par exemple avec une condition comme</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">grad_f</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.00001</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+<p>dans la boucle et éventuellement avec une boucle infinie <code>while True</code>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Point notation :</p>
+<ul>
+<li><strong>Le gradient de $f$</strong> est souvent noté $\nabla f$ ou $\operatorname{grad}f$, voire $\vec\nabla f$
+ou $\overrightarrow{\operatorname{grad}} f$ (pour dire que c'est un vecteur)</li>
+<li>Si $θ=(θ_1, …, θ_n)$, autrement dit si $f$ est une fonction de $n$ variables, on note
+$\operatorname{grad}f = \left(\frac{∂f(θ)}{∂θ_1}, …, \frac{∂f(θ)}{∂θ_n}\right)$. Autrement dit
+$\frac{∂f(θ)}{∂θ_i}$, la <strong>dérivée partielle</strong> de $f(θ)$ par rapport à $θ_i$ est la $i$-ème
+coordonnées du gradient de $f$.</li>
+<li><strong>Le taux d'apprentissage</strong> est souvent noté $α$ ou $η$</li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Descente-de-gradient-stochastique">Descente de gradient stochastique<a class="anchor-link" href="#Descente-de-gradient-stochastique">&#182;</a></h3><p>Rappelez-vous, on a dit que notre fonction de coût, c'était</p>
+$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$<p>et on cherche la valeur du paramètre $θ = (w_1, …, w_n, b)$ tel que $\mathcal{L}$ soit le plus petit
+possible.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On peut utilise la propriété d'<strong>additivité</strong> du gradient : pour deux fonctions $f$ et $g$, on a</p>
+$$\operatorname{grad}(f+g) = \operatorname{grad}f + \operatorname{grad}g$$<p>Donc ici</p>
+$$\operatorname{grad}\mathcal{L} = \sum_i \operatorname{grad}L(g(xᵢ), yᵢ)$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Si on dispose d'une fonction <code>grad_L</code> qui, étant donnés $g(x_i)$ et $y_i$, renvoie
+$\operatorname{grad}L(g(x_i), y_i)$, l'algorithme de descente du gradient devient alors</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">descent</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">partial_grads</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">train_set</span><span class="p">:</span>
+            <span class="c1"># On calcule g(x)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">))</span>
+            <span class="c1"># On calcule le gradient de L(g(x), y))</span>
+            <span class="n">partial_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="c1"># On trouve la direction de plus grande pente</span>
+        <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">partial_grads</span><span class="p">)</span>
+        <span class="c1"># On fait quelques pas dans cette direction</span>
+        <span class="n">theta</span> <span class="o">+=</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">steepest_direction</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Pour chaque étape, on doit calculer tous les $g(x_i)$ et $\operatorname{grad}L(g(x_i), y_i)$. C'est
+très couteux, il doit y avoir moyen de faire mieux.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Si les $L(g(xᵢ), yᵢ)$ étaient indépendants, ce serait plus simple : on pourrait les optimiser
+séparément.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ce n'est évidemment pas le cas : si on change $g$ pour que $g(x_0)$ soit plus proche de $y_0$, ça
+changera aussi la valeur de $g(x_1)$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Mais on va faire comme si</strong></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>C'est une approximation sauvage, mais après tout on commence à avoir l'habitude. On va donc suivre
+l'algo suivant</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">descent</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">train_set</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># On calcule g(x)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">))</span>
+            <span class="c1"># On trouve la direction de plus grande pente</span>
+            <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="c1"># On fait quelques pas dans cette direction</span>
+            <span class="n">theta</span> <span class="o">+=</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">steepest_direction</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+</pre></div>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Faites bien attention à la différence : au lieu d'attendre d'avoir calculé tous les
+$\operatorname{grad}L(g(x_i), y_i)$ avant de modifier $θ$, on va le modifier à chaque fois.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li><strong>Avantage</strong> : on modifie beaucoup plus souvent le paramètre, si tout se passe bien, on devrait
+arriver à une bonne approximation très vite.</li>
+<li><strong>Inconvénient</strong> : il se pourrait qu'en essayant de faire baisser $L(g(x_0), y_0)$, on fasse
+augmenter $L(g(x_1), y_1)$.</li>
+</ul>
+<p>Notre espoir ici c'est que cette situation n'arrivera pas, et qu'on bon paramètre pour un certain
+couple $(x, y)$ c'est un bon paramètres pour $tous$ les couples <code>(exemple, classe)</code>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ce nouvel algorithme s'appelle l'<strong>algorithme de descente de gradient stochastique</strong>, et il est
+crucial pour nous, parce qu'on ne pourra en pratique quasiment jamais faire de descente de gradient
+globale.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Il ne nous reste plus qu'à savoir comment on calcule <code>grad_L</code>. On ne fera pas la preuve, mais on a</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$\frac{∂L(g(x), y)}{∂w_i} = (g(x)-y)x_i$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>et</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$\frac{∂L(g(x), y)}{∂b} = g(x)-y$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Autrement dit on mettra à jour $w$ en calculant</p>
+$$w ← w -η×\operatorname{d}_wL(g(x), y) = w - η×(g(x)-y)x$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><small>$\operatorname{d}_wL(g(x), y) = \left(\frac{∂L(g(x), y)}{∂w_1}, …, \frac{∂L(g(x),
+y)}{∂w_n}\right)$ est la *différentielle partielle* de $L(g(x), y)$ par rapport à $w$.</small></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Et $b$ en calculant</p>
+$$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>1. Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
 le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#128553; Exo &#128553;<a class="anchor-link" href="#%F0%9F%98%A9-Exo-%F0%9F%98%A9">&#182;</a></h2><p>S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  <a href="../../data/imdb_smol.tar.gz">mini-corpus
+<p>2. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  <a href="../../data/imdb_smol.tar.gz">mini-corpus
 IMDB</a> en utilisant l'algorithme de descente de gradient stochastique.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="R%C3%A9gression-multinomiale">R&#233;gression multinomiale<a class="anchor-link" href="#R%C3%A9gression-multinomiale">&#182;</a></h2><p>Un dernier point : on a vu dans tout ceci comment utiliser la régression logistique pour un problème
+de classification à deux classes. Comment on l'étend à $n$ classes ?</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Réflechissons déjà à quoi ressemblerait la sortie d'un tel classifieur :</p>
+<p>Pour un problème à deux classes, le classifieur $g$ nous donne pour chaque exemple $x$ une
+estimation $g(x)$ de la vraisemblance de la classe $1$, et on a vu que la vraisemblance de la classe
+$0$ était nécessairement $1-g(x)$ pour que la somme des vraisemblances fasse 1.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On peut le présenter autrement : considérons le classifieur $f$ tel que pour tout exemple $x$</p>
+$$f(x) = (1-g(x), g(x))$$<p>$f$ nous donne un vecteur à deux coordonnées, $f_0(x)$ et $f_1(x)$, qui sont respectivement les
+vraisemblances des classes $0$ et $1$.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Pour un problème à $n$ classes, on va vouloir une vraisemblance par classe, on va donc procéder de
+la façon suivante :</p>
+<p>On considère des poids $(w_1, b_1), …, (w_n, b_n)$. Ils définissent un classifieur linéaire.</p>
+<p>En effet, si on considère les $z_i$ définis pour tout exemple $x$ par</p>
+$$
+    \begin{cases}
+        z_1 = w_1⋅x + b_1\\
+        \vdots\\
+        z_n = w_n⋅x + b_1
+    \end{cases}
+$$<p>On peut choisir la classe $y$ à affecter à $x$ en prenant $y=\operatorname{argmax}\limits_i z_i$</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Il reste à normaliser pour avoir des vraisemblances. Pour ça on utilise une fonction <strong>très</strong>
+importante : la fonction $\operatorname{softmax}$, définie ainsi :</p>
+$$\operatorname{softmax}(z_1, …, z_n) = \left(\frac{e^{z_1}}{\sum_i e^{z_i}}, …,
+\frac{e^{z_n}}{\sum_i e^{z_i}}\right)$$<p>Contrairement à la fonction logistique qui prenait un nombre en entrée et renvoyait un nombre,
+$\operatorname{softmax}$ prend en entrée un <strong>vecteur</strong> non-normalisé et renvoie un vecteur
+normalisé.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On définit enfin le classifieur logistique multinomial $f$ de la façon suivante : pour tout exemple
+$x$, on a</p>
+$$f(x) = \operatorname{softmax}(w_1⋅x+b_1, …, w_n⋅x+b_n) = \left(\frac{e^{w_1⋅x+b_1}}{\sum_i
+e^{w_i⋅x+b_i}}, …, \frac{e^{w_n⋅x+b_n}}{\sum_i e^{w_i⋅x+b_i}}\right)$$<p>et on choisit pour $x$ la classe</p>
+$$y = \operatorname{argmax}\limits_i f_i(x) = \operatorname{argmax}\limits_i
+\frac{e^{w_i⋅x+b_i}}{\sum_j e^{w_j⋅x+b_j}}$$<p>Comme la fonction exponentielle est croissante, ce sera la même classe que le classifieur linéaire
+précédent. Comme pour le cas à deux classe, la différence se fera lors de l'apprentissage. Je vous
+laisse aller en lire les détails dans <em>Speech and Language Processing</em>, mais l'idée est la même : on
+utilise la log-vraisemblance négative de la classe correcte comme fonction de coût, et on optimise
+les paramètres avec l'algo de descente de gradient stochastique.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Un dernier détail ?</p>
+<p>Qu'est-ce qui se passe si on prend ce qu'on vient de voir pour $n=2$ ? Est-ce qu'on retombe sur le
+cas à deux classe vu précédemment ?</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Oui, regarde : dans ce cas</p>
+$$
+    \begin{align}
+        f_1(x)
+            &amp;= \frac{e^{w_1⋅x+b_1}}{e^{w_0⋅x+b_0}+e^{w_1⋅x+b_1}}\\
+            &amp;= \frac{1}{
+                \frac{e^{w_0⋅x+b_0}}{e^{w_1⋅x+b_1}} + 1
+            }\\
+            &amp;= \frac{1}{e^{(w_0⋅x+b_0)-(w_1⋅x+b_1)} + 1}\\
+            &amp;= \frac{1}{1 + e^{(w_0-w_1)⋅x+(b_0-b_1)}}\\
+            &amp;= σ((w_0-w_1)⋅x+(b_0-b_1))
+    \end{align}
+$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Autrement dit, appliquer ce qu'on vient de voir pour le cas multinomial, si $n=2$, c'est comme
+appliquer ce qu'on a vu pour deux classes, avec $w=w_0-w_1$ et $b=b_0-b_1$.</p>
 
 </div>
 </div></section></section>
