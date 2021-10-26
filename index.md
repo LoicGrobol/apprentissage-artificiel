@@ -114,7 +114,7 @@ chapitre 6 « *Vector Semantics and Embeddings* ».
 
 - [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
-- [Slides 10](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
+- [Slides 11](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
 
 
