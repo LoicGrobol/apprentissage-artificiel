@@ -21,7 +21,7 @@ Cours 10 : Régression logistique
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-10-20
+2021-10-27
 <!-- #endregion -->
 
 ```python
@@ -763,3 +763,21 @@ $$
 
 Autrement dit, appliquer ce qu'on vient de voir pour le cas multinomial, si $n=2$, c'est comme
 appliquer ce qu'on a vu pour deux classes, avec $w=w_0-w_1$ et $b=b_0-b_1$.
+
+## La suite
+
+Vous êtes arrivé⋅e⋅s au bout de ce cours et vous devriez avoir quelques idées de plusieurs concepts
+importants :
+
+- Le concept de classifieur linéaire
+- Le concept de fonction de coût
+- L'algorithme de descente de gradient stochastique
+- La fonction softmax
+
+On reparlera de tout ça en temps utile. Pour la suite de vos aventures au pays des classifieurs
+logistiques, je vous recommande plutôt d'utiliser [leur implémentation dans
+scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
+Maintenant que vous savez comment ça marche, vous pouvez le faire la tête haute. Bravo !
+
+<small>Vous avez aussi découvert les premiers réseaux de neurones de ce cours et ce n'est pas
+rien !</small>
