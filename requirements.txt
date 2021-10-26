@@ -1,3 +1,4 @@
+gensim
 jupyterlab
 jupytext
 nbconvert
