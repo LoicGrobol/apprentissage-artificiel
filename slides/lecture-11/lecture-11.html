@@ -14560,7 +14560,8 @@ vectorielles de mots ». Comment on représente des mots par des vecteurs, quo
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On va commencer par utiliser <a href="https://radimrehurek.com/gensim"><code>gensim</code></a>, qui nous fournit plein de modèles tout faits.</p>
+<p>On va commencer par utiliser <a href="https://radimrehurek.com/gensim"><code>gensim</code></a>, qui nous fournit plein de
+modèles tout faits.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15094,7 +15095,7 @@ devraient être proches, par exemple au sens de la similarité cosinus</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exo">Exo<a class="anchor-link" href="#Exo">&#182;</a></h3><p>1. Essayez avec d'autres mots. Quels semblent être les critères qui font que des mots sont proches
+<h3 id="%F0%9F%A7%A8-Exo-%F0%9F%A7%A8">&#129512; Exo &#129512;<a class="anchor-link" href="#%F0%9F%A7%A8-Exo-%F0%9F%A7%A8">&#182;</a></h3><p>1. Essayez avec d'autres mots. Quels semblent être les critères qui font que des mots sont proches
 dans ce modèle.</p>
 <p>2. Comparer avec les vecteurs du modèle <code>"glove-twitter-100"</code>. Y a-t-il des différences ?
 <strong>Note</strong> : il peut être long à télécharger, commencez par ça.</p>
@@ -15105,30 +15106,121 @@ gensim sur les documents du dataset 20newsgroup. Comparer les vecteurs obtenus a
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="S%C3%A9mantique-lexicale">S&#233;mantique lexicale<a class="anchor-link" href="#S%C3%A9mantique-lexicale">&#182;</a></h2>
+<h2 id="S%C3%A9mantique-lexicale-distributionnelle">S&#233;mantique lexicale distributionnelle<a class="anchor-link" href="#S%C3%A9mantique-lexicale-distributionnelle">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Word2vec">Word2vec<a class="anchor-link" href="#Word2vec">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exploration">Exploration<a class="anchor-link" href="#Exploration">&#182;</a></h2><p>ICI on parle d'algèbre entre mots</p>
-<p>jurafsky 6.10 et 11</p>
+<h3 id="Principe-g%C3%A9n%C3%A9ral">Principe g&#233;n&#233;ral<a class="anchor-link" href="#Principe-g%C3%A9n%C3%A9ral">&#182;</a></h3><p>Pour le dire vite :</p>
+<p>La <em>sémantique lexicale</em>, c'est l'étude du sens des mots. Rien que dire ça, c'est déjà faire
+l'hypothèse hautement non-triviale que les mots ont un (ou plus vraisemblablement des) sens.</p>
+<p>C'est tout un pan de la linguistique et on ne rentrera pas ici dans les détails (mêmes s'il sont
+passionnants !) parce que notre objectif est <em>applicatif</em> :</p>
+<ul>
+<li>Comment représenter le sens d'un mot ?</li>
+<li>Peut-on, à partir de données linguistiques, déterminer le sens des mots ?</li>
+<li>Et plus tard : comment on peut s'en servir ?</li>
+</ul>
+<p>Une façon de traiter le problème, c'est de recourir à de l'annotation manuelle (par exemple avec
+<a href="http://www.jeuxdemots.org">Jeux de mots</a>, d'ailleurs, vous avez joué récemment ?).</p>
+<p>On ne se penchera pas plus dessus ici : ce qui nous intéresse, c'est comment traiter ce problème
+avec de l'apprentissage, et en particulier avec de l'apprentissage sur des données non-annotées.</p>
+<p>Pour ça, la façon la plus populaire (et pour l'instant celle qui semble la plus efficace) repose sur
+l'<strong>hypothèse distributionnelle</strong>, formulée ainsi par Firth</p>
+<blockquote><p>You shall know a word by the company it keeps.</p>
+</blockquote>
+<p>Autrement dit : des mots dont le sens est similaire devraient apparaître dans des contextes
+similaires et vice-versa.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="TP-Fasttext">TP Fasttext<a class="anchor-link" href="#TP-Fasttext">&#182;</a></h2><p>(dans un autre notebook)</p>
-<ul>
-<li>Faire un tuto rapide pour <a href="https://fasttext.cc/docs/en/python-module.html">https://fasttext.cc/docs/en/python-module.html</a></li>
-<li>TODO : Apprendre et tester des word embeddings sur un autre dataset (genre 20 newsgroup)</li>
-<li>Tester d'apprendre un modèle de classif dans sklearn en utilisant des embeddings fasttext, tester plusieurs classifieurs</li>
-<li>Comparer avec un modèle de classif apris dans fasttext</li>
-</ul>
+<p>Si on pousse cette hypothèse à sa conclusion naturelle : on peut représenter le sens d'un mot par
+les contextes dans lesquels il apparaît.</p>
+<p>Le principal défaut de cette vision des choses, c'est que ce n'est pas forcément très interprétable,
+contrairement par exemple à des représentations en logique formelle. Mais ça nous donne des moyens
+très concrets d'apprendre des représentations de mots à partir de corpus non-annotés.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Mod%C3%A8le-par-documents">Mod&#232;le par documents<a class="anchor-link" href="#Mod%C3%A8le-par-documents">&#182;</a></h3><p>Par exemple une façon très simple de l'appliquer, c'est de regarder dans quels documents d'un grand
+corpus apparaît un mot : des mots qui apparaissent dans les mêmes documents avec des fréquences
+similaires devraient avoir des sens proches.</p>
+<p>Qu'est-ce que ça donne en pratique ? Et bien souvenez-vous du modèle des sacs de mots : on peut
+représenter des documents par les fréquences des mots qui y apparaissent. Ça nous donne une
+représentation vectorielle d'un corpus sous la forme d'une matrice avec autant de ligne que de
+documents, autant de lignes que de mots dans le vocabulaire et où chaque cellule est une fréquence.</p>
+<p>Jusque-là on s'en est servi en lisant les lignes pour récupérer des représentations vectorielles des
+documents, mais si on regarde les colonnes, on récupère des <strong>représentations vectorielles des
+mots</strong> !</p>
+<p>(Ce qui répond à la première question : comment représenter le sens ? Comme le reste, avec des
+vecteurs !)</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%F0%9F%90%A2-Exo-%F0%9F%90%A2">&#128034; Exo &#128034;<a class="anchor-link" href="#%F0%9F%90%A2-Exo-%F0%9F%90%A2">&#182;</a></h3><p>À partir du corpus 20newsgroup, construire un dictionnaire associant chaque mot du vocabulaire à une
+représentation vectorielle donnant ses occurrences dans chacun des documents du corpus.</p>
+<p><strong>N'hésitez pas à recycler du code</strong></p>
+<p>Est-ce que les distances entre les vecteurs de mots ressemblent à celles qu'on observait avec Gensim ?</p>
+<p>Est-ce que vous voyez une autre façon de récupérer des vecteurs de mots en utilisant ce corpus ?</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cooccurrences">Cooccurrences<a class="anchor-link" href="#Cooccurrences">&#182;</a></h3><p>Une autre possibilité, plutôt que de regarder dans quels documents apparaît un mot, c'est de regarder directement les autres mots dans son voisinage. Autrement dit les cooccurrences.</p>
+<p>L'idée est la suivante : on choisit un paramètre $n$ (la « taille de fenêtre ») et on regarde pour
+chaque mot du corpus les $n$ mots précédents et les $n$ mots suivants. Chacun de ces mots voisins
+constitue une cooccurrence. Par exemple avec une fenêtre de taille $2$, dans</p>
+<blockquote><p>Le petit chat est content</p>
+</blockquote>
+<p>On a les cooccurrences <code>("le", "petit")</code>, <code>("le", "chat")</code>, <code>("petit", "chat")</code>, <code>("petit", "est")</code>…</p>
+<p>Comment on se sert de ça pour récupérer une représentation vectorielle des mots ? Comme
+d'habitude : on compte ! Ici on représentera chaque mot par un vecteur avec autant de coordonnées
+qu'il y a de mots dans le vocabulaire, et chacune de ces coordonnées sera le nombre de cooccurrences
+avec le mot correspondant.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%F0%9F%A6%98-Exo-%F0%9F%A6%98">&#129432; Exo &#129432;<a class="anchor-link" href="#%F0%9F%A6%98-Exo-%F0%9F%A6%98">&#182;</a></h3><p>À partir du corpus 20newsgroup, construire un dictionnaire associant chaque mot du vocabulaire à une
+représentation vectorielle par la méthode des cooccurrences pour une taille de fenêtre choisie.</p>
+<p>Est-ce que les distances entre les vecteurs de mots ressemblent à celles qu'on observait avec les
+représentations précédentes ?</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Extensions">Extensions<a class="anchor-link" href="#Extensions">&#182;</a></h2><p>Le défaut principal de ces représentations, c'est qu'elles sont très <strong>creuses</strong> : beaucoup de
+dimensions, mais qui contiennent surtout des zéros. Ce n'est pas très économique à manipuler et
+c'est moins utile quan on veut les utiliser comme entrée pour des systèmes de TAL, comme des réseaux
+de neurones</p>
+<p>L'essentiel du travail fait ces dix dernières années dans ce domaine consiste à trouver des
+représentations <strong>denses</strong> : moins de dimensions (au plus quelques centaines) mais peu de zéros. ON
+parle alors en français de <em>plongements</em> et en anglais de <em>word embeddings</em>.</p>
+<p>Il y a beaucoup de façons de faire ça, <em>Speech and Language Processing</em> détaille la plus connue,
+<em>word2vec</em> et je vous encourage à aller voir comment ça marche.</p>
+<p>Une autre possibilité d'extensions est de descendre en dessous de l'échelle du mot, et d'utiliser
+des sous-mots, qui peuvent éventuellement avoir un sens linguistique (comme des morphèmes), mais
+sont eux aussi en général appris de façon non-supervisée. C'est ce que fait
+<a href="https://fasttext.cc/docs/en/python-module.html">FastText</a>, qui est plus ou moins ce qui se fait de
+mieux en termes de représentations vectorielles de mots.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%F0%9F%91%BD-Exo-%F0%9F%91%BD">&#128125; Exo &#128125;<a class="anchor-link" href="#%F0%9F%91%BD-Exo-%F0%9F%91%BD">&#182;</a></h2><p>(Pour les plus motivé⋅e⋅s, mais la doc vous dit déjà presque tout)</p>
+<p>1. Entraîner un modèle non-supervisé <a href="https://fasttext.cc/docs/en/python-module.html"><code>FastText</code></a>
+sur 20 newsgroups et voir si les similarités sont les mêmes que pour les modèles précédents.</p>
+<p>2. Entraîner et tester un modèle de classification FastText sur 20 newsgroup.</p>
 
 </div>
 </div>

@@ -253,7 +253,7 @@ doc](https://scikit-learn.org/stable/modules/feature_extraction.html#text-featur
 les traits (*features*) des documents textuels.
 
 La classification avec des techniques non neuronales repose en grande partie sur les traits
-utilisées pour représenter les textes.
+utilisés pour représenter les textes.
 
 ```python
 from sklearn.datasets import fetch_20newsgroups
