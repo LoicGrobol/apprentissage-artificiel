@@ -110,13 +110,10 @@ Pour la fois prochaine :
 - [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 6 « *Vector Semantics and Embeddings* ».
 
-### 2021-10-27 — Régression logistique (suite et fin) et représentations lexicales vectorielles
+### 2021-10-27 — Régression logistique (suite et fin)
 
 - [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
-- [Slides 11](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
-
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 5 « *Logistic Regression* ».

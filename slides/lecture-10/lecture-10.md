@@ -278,7 +278,7 @@ Quelle est la vraisemblance de la classe $0$ (review négative) ? Et bien le r
 1.0 - classifier_confidence(doc_features)
 ```
 
-Soit un peu plus de $0.1%$.
+Soit un peu plus de $0.1\%$.
 
 
 Comme l'exemple en question appartient bien à cette classe, ça signifie que notre classifieur et
@@ -409,6 +409,93 @@ Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w
 $(x, y)$.
 
 Servez-vous en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.
+
+```python
+def logistic_negative_log_likelihood(x, w, b, y):
+    g_x = logistic(np.inner(w, x) + b)
+    if y == 1:
+        correct_likelihood = g_x
+    else:
+        correct_likelihood = 1-g_x
+    loss = -np.log(correct_likelihood)
+    return loss
+```
+
+```python
+def loss_on_imdb(w, b, featurized_corpus):
+    loss_on_pos = np.zeros(1)
+    for doc_features in featurized_corpus["pos"]:
+        loss_on_pos += logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            1,
+        )
+    loss_on_neg = np.zeros(1)
+    for doc_features in featurized_corpus["neg"]:
+        loss_on_neg += logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            0,
+        )
+    return loss_on_pos + loss_on_neg
+```
+
+Avec des compréhensions
+
+```python
+def loss_on_imdb(w, b, featurized_corpus):
+    loss_on_pos = sum(
+        logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            1,
+        )
+        for doc_features in featurized_corpus["pos"]
+    )
+    loss_on_neg = sum(
+        logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            0,
+        )
+        for doc_features in featurized_corpus["neg"]
+    )
+    return loss_on_pos + loss_on_neg
+```
+
+En version numériquement stable
+
+```python
+import math
+def loss_on_imdb(w, b, featurized_corpus):
+    loss_on_pos = math.fsum(
+        logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            1,
+        ).astype(float)
+        for doc_features in featurized_corpus["pos"]
+    )
+    loss_on_neg = math.fsum(
+        logistic_negative_log_likelihood(
+            doc_features,
+            w,
+            b,
+            0,
+        ).astype(float)
+        for doc_features in featurized_corpus["neg"]
+    )
+    return loss_on_pos + loss_on_neg
+```
+
+```python
+loss_on_imdb(np.array([0.6, -0.4]), 0, imdb_features)
+```
 
 <!-- #region -->
 ## Descente de gradient
@@ -571,9 +658,9 @@ def descent(train_set, theta_0, learning_rate, n_steps):
         partial_grads = []
         for (x, y) in train_set:
             # On calcule g(x)
-            g = sigmoid(np.inner(w*x+b))
+            g_x = logistic(np.inner(w,x)+b)
             # On calcule le gradient de L(g(x), y))
-            partial_grads.append(grad_L(g, y))
+            partial_grads.append(grad_L(g_x, y))
         # On trouve la direction de plus grande pente
         steepest_direction = -np.sum(partial_grads)
         # On fait quelques pas dans cette direction
@@ -609,9 +696,9 @@ def descent(train_set, theta_0, learning_rate, n_steps):
             w = theta[:-1]
             b = theta[-1]
             # On calcule g(x)
-            g = sigmoid(np.inner(w*x+b))
+            g_x = logistic(np.inner(w,x)+b)
             # On trouve la direction de plus grande pente
-            steepest_direction = -grad_L(g, y)
+            steepest_direction = -grad_L(g_x, y)
             # On fait quelques pas dans cette direction
             theta += learning_rate*steepest_direction
         
@@ -664,12 +751,68 @@ $$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
 
 ## 🧐 Exo 🧐
 
-1\. Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
+1\. Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie
 le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
 
+```python
+def grad_L(x, w, b, y):
+    grad = np.zeros(w.size+b.size)  # À vous !
+    return grad
+
+grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([0.0]), 1)
+```
+
+```python
+def grad_L(x, w, b, y):
+    g_x = logistic(np.inner(w, x) + b)
+    grad_w = (g_x - y)*x
+    grad_b = g_x - y
+    return np.append(grad_w, grad_b)
+```
 
 2\. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus
 IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
+
+```python
+def descent(featurized_corpus, theta_0, learning_rate, n_steps):
+    theta = theta_0
+    for _ in range(n_steps):
+        pass  # À vous !
+    return 
+descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
+```
+
+```python
+import random
+
+def descent(featurized_corpus, theta_0, learning_rate, n_steps):
+    train_set = [
+        *((doc, 1) for doc in featurized_corpus["pos"]),
+        *((doc, 0) for doc in featurized_corpus["neg"])
+    ]
+    theta = theta_0
+    w = theta[:-1]
+    b = theta[-1]
+    print(f"Initial loss: {loss_on_imdb(w, b, featurized_corpus)}")
+    
+    for i in range(n_steps):
+        # On mélange le corpus pour s'assurer de ne pas avoir d'abord tous
+        # les positifs puis tous les négatifs
+        random.shuffle(train_set)
+        for j, (x, y) in enumerate(train_set):
+            grad = grad_L(x, w, b, y)
+            steepest_direction = -grad
+            # Purement pour l'affichage
+            loss = logistic_negative_log_likelihood(x, w, b, y)
+            #print(f"step {i*len(train_set)+j} doc={x}\tw={w}\tb={b}\tloss={loss}\tgrad={grad}")
+            theta += learning_rate*steepest_direction
+            w = theta[:-1]
+            b = theta[-1]
+        print(f"Epoch {i} loss: {loss_on_imdb(w, b, featurized_corpus)}\tw={w}\tb={b}")
+    return (theta[:-1], theta[-1])
+
+descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
+```
 
 ## Régression multinomiale
 
