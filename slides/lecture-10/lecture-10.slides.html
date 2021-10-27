@@ -15068,7 +15068,7 @@ est vraisemblable à plus de $99.68\%$.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Soit un peu plus de $0.1%$.</p>
+<p>Soit un peu plus de $0.1\%$.</p>
 
 </div>
 </div>
@@ -15210,6 +15210,151 @@ $(x, y)$.</p>
 <p>Servez-vous en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic_negative_log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">g_x</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">correct_likelihood</span> <span class="o">=</span> <span class="n">g_x</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">correct_likelihood</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">g_x</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">correct_likelihood</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">loss_on_imdb</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">featurized_corpus</span><span class="p">):</span>
+    <span class="n">loss_on_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">]:</span>
+        <span class="n">loss_on_pos</span> <span class="o">+=</span> <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">loss_on_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">]:</span>
+        <span class="n">loss_on_neg</span> <span class="o">+=</span> <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss_on_pos</span> <span class="o">+</span> <span class="n">loss_on_neg</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Avec des compréhensions</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">loss_on_imdb</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">featurized_corpus</span><span class="p">):</span>
+    <span class="n">loss_on_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">loss_on_neg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss_on_pos</span> <span class="o">+</span> <span class="n">loss_on_neg</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>En version numériquement stable</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">loss_on_imdb</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">featurized_corpus</span><span class="p">):</span>
+    <span class="n">loss_on_pos</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">(</span>
+        <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">loss_on_neg</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">(</span>
+        <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span>
+            <span class="n">doc_features</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">b</span><span class="p">,</span>
+            <span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc_features</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss_on_pos</span> <span class="o">+</span> <span class="n">loss_on_neg</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss_on_imdb</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">imdb_features</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15396,9 +15541,9 @@ $\operatorname{grad}L(g(x_i), y_i)$, l'algorithme de descente du gradient devien
         <span class="n">partial_grads</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">train_set</span><span class="p">:</span>
             <span class="c1"># On calcule g(x)</span>
-            <span class="n">g</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">))</span>
+            <span class="n">g_x</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
             <span class="c1"># On calcule le gradient de L(g(x), y))</span>
-            <span class="n">partial_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="n">partial_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g_x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
         <span class="c1"># On trouve la direction de plus grande pente</span>
         <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">partial_grads</span><span class="p">)</span>
         <span class="c1"># On fait quelques pas dans cette direction</span>
@@ -15447,9 +15592,9 @@ l'algo suivant</p>
             <span class="n">w</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">b</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="c1"># On calcule g(x)</span>
-            <span class="n">g</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">))</span>
+            <span class="n">g_x</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
             <span class="c1"># On trouve la direction de plus grande pente</span>
-            <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad_L</span><span class="p">(</span><span class="n">g_x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="c1"># On fait quelques pas dans cette direction</span>
             <span class="n">theta</span> <span class="o">+=</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">steepest_direction</span>
 
@@ -15529,10 +15674,46 @@ $$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>1. Reprendre la fonction qui calcule la fonction de coût, mais faire en sorte qu'elle renvoie également
+<h2 id="%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#129488; Exo &#129488;<a class="anchor-link" href="#%F0%9F%A7%90-Exo-%F0%9F%A7%90">&#182;</a></h2><p>1. Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie
 le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">grad_L</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">size</span><span class="o">+</span><span class="n">b</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># À vous !</span>
+    <span class="k">return</span> <span class="n">grad</span>
+
+<span class="n">grad_L</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">grad_L</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">g_x</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">grad_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">g_x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">grad_b</span> <span class="o">=</span> <span class="n">g_x</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grad_w</span><span class="p">,</span> <span class="n">grad_b</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15540,6 +15721,67 @@ le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $
 IMDB</a> en utilisant l'algorithme de descente de gradient stochastique.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">descent</span><span class="p">(</span><span class="n">featurized_corpus</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># À vous !</span>
+    <span class="k">return</span> 
+<span class="n">descent</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">descent</span><span class="p">(</span><span class="n">featurized_corpus</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+    <span class="n">train_set</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="o">*</span><span class="p">((</span><span class="n">doc</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">]),</span>
+        <span class="o">*</span><span class="p">((</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">featurized_corpus</span><span class="p">[</span><span class="s2">&quot;neg&quot;</span><span class="p">])</span>
+    <span class="p">]</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial loss: </span><span class="si">{</span><span class="n">loss_on_imdb</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">featurized_corpus</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="c1"># On mélange le corpus pour s&#39;assurer de ne pas avoir d&#39;abord tous</span>
+        <span class="c1"># les positifs puis tous les négatifs</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_set</span><span class="p">):</span>
+            <span class="n">grad</span> <span class="o">=</span> <span class="n">grad_L</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">steepest_direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad</span>
+            <span class="c1"># Purement pour l&#39;affichage</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">logistic_negative_log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="c1">#print(f&quot;step {i*len(train_set)+j} doc={x}\tw={w}\tb={b}\tloss={loss}\tgrad={grad}&quot;)</span>
+            <span class="n">theta</span> <span class="o">+=</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">steepest_direction</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> loss: </span><span class="si">{</span><span class="n">loss_on_imdb</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">featurized_corpus</span><span class="p">)</span><span class="si">}</span><span class="se">\t</span><span class="s2">w=</span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="se">\t</span><span class="s2">b=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">theta</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">descent</span><span class="p">(</span><span class="n">imdb_features</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
