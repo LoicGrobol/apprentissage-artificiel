@@ -45,11 +45,10 @@ sentiment) de ses mots.
 
 ### 1. Vectoriser un document
 
-À l'aide d'un lexique de sentiment (par exemple
-[VADER](https://github.com/cjhutto/vaderSentiment)), écrivez une fonction qui prend en entrée un
-texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
-polarité positive moyenne (la somme des polarités positives des mots qu'il contient divisée par sa
-longueur en nombre de mots) et polarité négative moyenne.
+À l'aide d'un lexique de sentiment (par exemple [VADER](https://github.com/cjhutto/vaderSentiment)),
+écrivez une fonction qui prend en entrée un texte en anglais et renvoie sa représentation sous forme
+d'un vecteur de features à deux traits : polarité positive moyenne (la somme des polarités positives
+des mots qu'il contient divisée par sa longueur en nombre de mots) et polarité négative moyenne.
 
 ```python
 def read_vader(vader_path):
@@ -188,7 +187,8 @@ Ce qu'on note aussi
 
 $$z = \mathbf{w}⋅\mathbf{x}+b$$
 
-$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de *produit scalaire* en français et de *inner product* en anglais.
+$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de *produit scalaire* en français et de
+*inner product* en anglais.
 
 (ou pour les mathématicien⋅ne⋅s acharné⋅e⋅s $z = \langle w\ |\ x \rangle + b$)
 
@@ -287,7 +287,8 @@ print(f"Accuracy: {correct_pos+correct_neg}/{len(imdb_features['pos'])+len(imdb_
 
 ## Classifieur linéaire ?
 
-Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$ du plan en fonction de la valeur de $z$.
+Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$ du plan en fonction de
+la valeur de $z$.
 
 ```python
 import tol_colors as tc
@@ -321,7 +322,9 @@ plt.colorbar(heatmap)
 plt.show()
 ```
 
-On voit bien que la frontière de classification est une droite, *a line*. On a donc un *linear* classifier : un classifieur linéaire (même si en français on dirait qu'il s'agit d'une fonction *affine*).
+On voit bien que la frontière de classification est une droite, *a line*. On a donc un *linear*
+classifier : un classifieur linéaire (même si en français on dirait qu'il s'agit d'une fonction
+*affine*).
 
 
 Qu'est-ce que ça donne si on superpose avec notre corpus ?
@@ -393,8 +396,8 @@ ensemble.
 
 Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
 $g(x) < 0.5$ et $1$ sinon. Il a exactement les mêmes capacités de discrimination qu'un classifieur
-linéaire (sa frontière de décision est la même et il ne sait donc pas prendre de décisions plus complexes), mais on peut interpréter la confiance
-qu'il a dans sa décision.
+linéaire (sa frontière de décision est la même et il ne sait donc pas prendre de décisions plus
+complexes), mais on peut interpréter la confiance qu'il a dans sa décision.
 
 
 Par exemple voici la confiance que notre classifieur codé en dur a en ses décisions
@@ -442,8 +445,8 @@ haute que possible.
 
 On a dit que notre objectif était
 
-> Chercher les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
-notre ensemble d'apprentissage
+> Chercher les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur notre
+ensemble d'apprentissage
 
 On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
 fonction de coût (*loss*) $L$ qui mesure l'erreur faite par le classifieur sur un exemple.
@@ -614,8 +617,8 @@ loss_on_imdb(np.array([0.6, -0.4]), -0.01, imdb_features)
 
 ### Principe général
 
-L'**algorithme de descente de gradient** est la clé de voute de l'essentiel des travaux
-en apprentissage artificiel moderne. Il s'agit d'un algorithme itératif qui étant donné un modèle
+L'**algorithme de descente de gradient** est la clé de voute de l'essentiel des travaux en
+apprentissage artificiel moderne. Il s'agit d'un algorithme itératif qui étant donné un modèle
 paramétrisé et une fonction de coût (avec des hypothèses de régularité assez faibles) permet de
 trouver des valeurs des paramètres pour lesquelles la fonction de coût est minimal.
 
@@ -714,8 +717,8 @@ Les *hyperparamètres* sont
 - `learning_rate` ou « taux d'apprentissage » : de combien on se déplace à chaque étape. Si on le
   prend grand on arrive vite vers la région du minimum, on mettra longtemps pour en trouver une
   approximation précise. Si on le prend petit, ça sera l'inverse.
-- `n_steps` est le nombre d'étapes d'optimisations. Dans un problème d'apprentissage, c'est aussi
-  le nombre de fois où on aura parcouru l'ensemble d'apprentissage et on parle souvent d'**epoch**
+- `n_steps` est le nombre d'étapes d'optimisations. Dans un problème d'apprentissage, c'est aussi le
+  nombre de fois où on aura parcouru l'ensemble d'apprentissage et on parle souvent d'**epoch**
 
 Ici on se donne un nombre fixe d'epochs, une autre possibilité serait de s'arrêter quand on ne bouge
 plus trop, par exemple avec une condition comme
@@ -866,8 +869,8 @@ $$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
 
 ### 1. Calculer le gradient
 
-Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie
-le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
+Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie le
+gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
 <!-- #endregion -->
 
 ```python
