@@ -25,119 +25,99 @@ Cours 10 : Régression logistique
 <!-- #endregion -->
 
 ```python
-from IPython.display import display
+from IPython.display import display, Markdown
 ```
-
-## Classifieur linéaire
-
-On considère des vecteurs de *features* de dimension $n$
-
-$$\mathbf{x} = (x₁, …, x_n)$$
-
-Un vecteur de poids de dimension $n$
-
-$$\mathbf{w} = (w₁, …, w_n)$$
-
-et un biais $b$ scalaire (un nombre quoi).
-
-Pour réaliser une classification on considère le nombre $z$ (on parle parfois de *logit*)
-
-$$z=w₁×x₁ + … + w_n×x_n + b = \sum_iw_ix_i + b$$
-
-Ce qu'on note aussi
-
-$$z = \mathbf{w}⋅\mathbf{x}+b$$
-
-$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de *produit scalaire* en français et de *inner product* en anglais.
-
-(ou pour les mathématicien⋅ne⋅s acharné⋅e⋅s $z = \langle w\ |\ x \rangle + b$)
-
-Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la classe $0$ si $z < 0$ et la classe $1$ sinon.
-
-## 😴 Exo 😴
-
-Écrire une fonction qui prend en entrée un vecteur de features et un vecteur de poids sous forme de
-tableaux numpy $x$ et $w$ de dimensions `(n,)` et un biais $b$ sous forme d'un tableau numpy de
-dimensions `(1,)` et renvoie $z=\sum_iw_ix_i + b$.
 
 ```python
 import numpy as np
 ```
 
-```python
-def affine_combination(x, w, b):
-    pass # À vous de jouer !
+## Vectorisations arbitraires de documents
 
-affine_combination(
-    np.array([2, 0, 2, 1]),
-    np.array([-0.2, 999.1, 0.5, 2]),
-    np.array([1]),
-)
-```
+On a vu des façons de traiter des documents vus comme des sacs des mots en les représentant comme
+des vecteurs dont les coordonnées correspondaient à des nombres d'occurrences.
 
-```python
-def affine_combination(x, w, b):
-    res = np.zeros(1)
-    for wi, xi in zip(w, x):
-        res += wi*xi
-    res += b
-    return res
-
-affine_combination(
-    np.array([2, 0, 2, 1]),
-    np.array([-0.2, 999.1, 0.5, 2]),
-    np.array([1]),
-)
-```
-
-```python
-def affine_combination(x, w, b):
-    return np.inner(w, x) + b
-
-affine_combination(
-    np.array([2, 0, 2, 1]),
-    np.array([-0.2, 999.1, 0.5, 2]),
-    np.array([1]),
-)
-```
+Mais on aimerait — entre autres — pouvoir travailler avec des représentations arbitraires, on peut
+par exemple imaginer vouloir représenter un document par ŀa polarité (au sens de l'analyse du
+sentiment) de ses mots.
 
 ## 🧠 Exo 🧠
 
-1\. À l'aide d'un lexique de sentiment (par exemple
+### 1. Vectoriser un document
+
+À l'aide d'un lexique de sentiment (par exemple
 [VADER](https://github.com/cjhutto/vaderSentiment)), écrivez une fonction qui prend en entrée un
 texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
-nombre de mots positifs et nombre de mot négatifs.
+polarité positive moyenne (la somme des polarités positives des mots qu'il contient divisée par sa
+longueur en nombre de mots) et polarité négative moyenne.
 
 ```python
-import re
-
-def poor_mans_tokenizer_and_normalizer(s):
-    return [w.lower() for w in re.split(r"\s|\W", s.strip()) if w and all(c.isalpha() for c in w)]
-
 def read_vader(vader_path):
-    res = dict()
-    with open(vader_path) as in_stream:
-        for row in in_stream:
-            word, polarity, *_ = row.lstrip().split("\t", maxsplit=2)
-            is_positive = float(polarity) > 0
-            res[word] = is_positive
-    return res
+    pass  # À vous de jouer
+```
 
-def featurize(text, lexicon):
-    words = poor_mans_tokenizer_and_normalizer(text)
-    features = np.empty(2)
-    features[0] = sum(1 for w in words if lexicon.get(w, False))
-    features[1] = sum(1 for w in words if not lexicon.get(w, True))
-    return features
+```python
+def featurize(doc, lexicon):
+    pass # À vous de jouer !
+```
 
+```python
 lexicon = read_vader("../../data/vader_lexicon.txt")
 doc = "I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I'm on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler's List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I've ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito's Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can't be told often enough. This one is an excellent addition to that genre."
 doc_features = featurize(doc, lexicon)
 doc_features
 ```
 
-2\. Appliquer la fonction précédente sur [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
+### 🧠 Correction 1 🧠
 
+On commence par recycler notre tokenizer/normaliseur
+
+```python
+import re
+
+def poor_mans_tokenizer_and_normalizer(s):
+    return [w.lower() for w in re.split(r"\s|\W", s.strip()) if w and all(c.isalpha() for c in w)]
+```
+
+On lit le lexique
+
+```python
+def read_vader(vader_path):
+    res = dict()
+    with open(vader_path) as in_stream:
+        for row in in_stream:
+            word, polarity, *_ = row.lstrip().split("\t", maxsplit=2)
+            res[word] = float(polarity)
+    return res
+lexicon = read_vader("../../data/vader_lexicon.txt")
+lexicon
+```
+
+Et voilà comment on récupère la représentation d'un document
+
+```python
+def featurize(text, lexicon):
+    words = poor_mans_tokenizer_and_normalizer(text)
+    features = np.empty(2)
+    # Le max permet de remonter les polarités négatives à 0
+    features[0] = sum(max(lexicon.get(w, 0), 0) for w in words)/len(words)
+    features[1] = sum(max(-lexicon.get(w, 0), 0) for w in words)/len(words)
+    return features
+```
+
+On teste ?
+
+```python
+doc = "I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I'm on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler's List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I've ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito's Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can't be told often enough. This one is an excellent addition to that genre."
+doc_features = featurize(doc, lexicon)
+doc_features
+```
+
+### 2. Vectoriser un corpus
+
+Appliquer la fonction précédente sur [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
+
+### 🧠 Correction 2 🧠
 
 Commençons par l'extraire
 
@@ -168,10 +148,120 @@ imdb_features = featurize_dir("../../local/imdb_smol", lexicon)
 imdb_features
 ```
 
-3\. Écrire un classifieur logistique qui prend en entrée les vecteurs de features
-précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $0$. Appliquez ce
-classifieur sur le mini-corpus IMDB et calculez son exactitude.
+## Visualisation
 
+
+Comment se répartissent les documents du corpus avec la représentation qu'on a choisi
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+X = np.array([d[0] for d in (*imdb_features["pos"], *imdb_features["neg"])])
+Y = np.array([d[1] for d in (*imdb_features["pos"], *imdb_features["neg"])])
+H = np.array([*("pos" for _ in imdb_features["pos"]), *("neg" for _ in imdb_features["neg"])])
+
+fig = plt.figure(dpi=200)
+sns.scatterplot(x=X, y=Y, hue=H, s=5)
+plt.show()
+```
+
+On voit des tendances qui se dégagent, mais clairement ça va être un peu coton
+
+## Classifieur linéaire
+
+On considère des vecteurs de *features* de dimension $n$
+
+$$\mathbf{x} = (x₁, …, x_n)$$
+
+Un vecteur de poids de dimension $n$
+
+$$\mathbf{w} = (w₁, …, w_n)$$
+
+et un biais $b$ scalaire (un nombre quoi).
+
+Pour réaliser une classification on considère le nombre $z$ (on parle parfois de *logit*)
+
+$$z=w₁×x₁ + … + w_n×x_n + b = \sum_iw_ix_i + b$$
+
+Ce qu'on note aussi
+
+$$z = \mathbf{w}⋅\mathbf{x}+b$$
+
+$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de *produit scalaire* en français et de *inner product* en anglais.
+
+(ou pour les mathématicien⋅ne⋅s acharné⋅e⋅s $z = \langle w\ |\ x \rangle + b$)
+
+Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la classe $0$ si $z < 0$ et la
+classe $1$ sinon.
+
+## 😴 Exo 😴
+
+### 1. Une fonction affine
+
+Écrire une fonction qui prend en entrée un vecteur de features et un vecteur de poids sous forme de
+tableaux numpy $x$ et $w$ de dimensions `(n,)` et un biais $b$ sous forme d'un tableau numpy de
+dimensions `(1,)` et renvoie $z=\sum_iw_ix_i + b$.
+
+```python
+def affine_combination(x, w, b):
+    pass # À vous de jouer !
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
+### 😴 Correction 1 😴
+
+
+Une version élémentaire avec des boucles
+
+```python
+def affine_combination(x, w, b):
+    res = np.zeros(1)
+    for wi, xi in zip(w, x):
+        res += wi*xi
+    res += b
+    return res
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
+Une version plus courte avec les fonctions natives de numpy
+
+```python
+def affine_combination(x, w, b):
+    return np.inner(w, x) + b
+
+affine_combination(
+    np.array([2, 0, 2, 1]),
+    np.array([-0.2, 999.1, 0.5, 2]),
+    np.array([1]),
+)
+```
+
+### 2. Un classifieur linéaire
+
+Écrire un classifieur linéaire qui prend en entrée des vecteurs de features à deux dimensions
+précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $-0.01$. Appliquez ce
+classifieur sur le mini-corpus IMDB qu'on a vectorisé et calculez son exactitude.
+
+```python
+def hardcoded_classifier(x):
+    return False  # À vous de jouer
+
+hardcoded_classifier(doc_features)
+```
+
+
+### 😴 Correction 2 😴
 
 On commence par définir le classifieur : on va renvoyer `True` pour la classe positive et `False`
 pour la classe négative.
@@ -179,14 +269,7 @@ pour la classe négative.
 
 ```python
 def hardcoded_classifier(x):
-    return (
-        np.inner(
-            np.array([0.6, -0.4]),
-            x,
-        )
-        > 0.0
-    )
-
+    return affine_combination(x, np.array([0.6, -0.4]), -0.01) > 0.0
 
 hardcoded_classifier(doc_features)
 ```
@@ -202,6 +285,67 @@ print(f"Accuracy: {correct_pos+correct_neg}/{len(imdb_features['pos'])+len(imdb_
 ```
 
 
+## Classifieur linéaire ?
+
+Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$ du plan en fonction de la valeur de $z$.
+
+```python
+import tol_colors as tc
+
+x = np.linspace(0, 1, 1000)
+y = np.linspace(0, 1, 1000)
+X, Y = np.meshgrid(x, y)
+Z = (0.6*X - 0.4*Y) - 0.01
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+Ou encore plus clairement, si on représente la classe assignée
+
+```python
+import tol_colors as tc
+
+x = np.linspace(0, 1, 1000)
+y = np.linspace(0, 1, 1000)
+X, Y = np.meshgrid(x, y)
+Z = (0.6*X - 0.4*Y) -0.01 > 0.0
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+On voit bien que la frontière de classification est une droite, *a line*. On a donc un *linear* classifier : un classifieur linéaire (même si en français on dirait qu'il s'agit d'une fonction *affine*).
+
+
+Qu'est-ce que ça donne si on superpose avec notre corpus ?
+
+```python
+fig = plt.figure(dpi=200)
+
+x = np.linspace(0, 0.4, 1000)
+y = np.linspace(0, 0.4, 1000)
+X, Y = np.meshgrid(x, y)
+Z = (0.6*X - 0.4*Y) -0.01 > 0.0
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+
+X = np.array([d[0] for d in (*imdb_features["pos"], *imdb_features["neg"])])
+Y = np.array([d[1] for d in (*imdb_features["pos"], *imdb_features["neg"])])
+H = np.array([*(1 for _ in imdb_features["pos"]), *(0 for _ in imdb_features["neg"])])
+plt.scatter(x=X, y=Y, c=H, cmap="viridis", s=5)
+
+plt.show()
+```
+
+Pas si surprenant que nos résultats ne soient pas terribles…
+
 ## La fonction logistique
 
 
@@ -215,6 +359,8 @@ $1$ et proche de $0$ sinon.
 ## 📈 Exo 📈
 
 Tracer avec matplotlib la courbe représentative de la fonction logistique.
+
+### 📈 Correction 📈
 
 ```python
 def logistic(z):
@@ -247,7 +393,7 @@ ensemble.
 
 Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
 $g(x) < 0.5$ et $1$ sinon. Il a exactement les mêmes capacités de discrimination qu'un classifieur
-linéaire (il ne sait pas prendre de décisions plus complexes), mais on peut interpréter la confiance
+linéaire (sa frontière de décision est la même et il ne sait donc pas prendre de décisions plus complexes), mais on peut interpréter la confiance
 qu'il a dans sa décision.
 
 
@@ -255,21 +401,14 @@ Par exemple voici la confiance que notre classifieur codé en dur a en ses déci
 
 ```python
 def classifier_confidence(x):
-    return logistic(
-        np.inner(
-            np.array([0.6, -0.4]),
-            x,
-        )
-    )
+    return logistic(affine_combination(x, np.array([0.6, -0.4]), -0.01))
 
 
-classifier_confidence(doc_features)
+g_x = classifier_confidence(doc_features)
+display(g_x)
+display(Markdown(f"Le classifieur est sûr à {g_x:.06%} que ce document est dans la classe $1$."))
+display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {g_x:.06%} de vraisemblance pour ce document"))
 ```
-
-
-Autrement dit, d'après notre classifieur, il y a un peu plus de $99.86\%$ de chances que le document
-soit de la classe $1$ (review positive dans ce cas), ou encore, la vraisemblance de la classe $1$
-est vraisemblable à plus de $99.68\%$.
 
 
 Quelle est la vraisemblance de la classe $0$ (review négative) ? Et bien le reste
@@ -277,9 +416,6 @@ Quelle est la vraisemblance de la classe $0$ (review négative) ? Et bien le r
 ```python
 1.0 - classifier_confidence(doc_features)
 ```
-
-Soit un peu plus de $0.1\%$.
-
 
 Comme l'exemple en question appartient bien à cette classe, ça signifie que notre classifieur et
 plutôt bon **sur cet exemple**. L'est-il sur le reste du corpus ?
@@ -293,12 +429,12 @@ print(f"Average confidence for the correct class: {(pos_confidence+neg_confidenc
 ```
 
 Autrement dit, pour un exemple pris au hasard dans le corpus, la vraisemblance de sa classe telle
-que jugée par le classifieur sera de $59.47\%$. Un classifieur parfait obtiendrait $100\%$, un
+que jugée par le classifieur sera de $50.49\%$. Un classifieur parfait obtiendrait $100\%$, un
 classifieur qui prendrait systématiquement la mauvaise décision $0\%$ et un classifieur aléatoire
 uniforme $50\%$ (puisque notre corpus a autant d'exemples de chaque classe).
 
 
-Moralité nos poids ne sont pas très bien choisis, et notre préoccupation dans la suite va être de
+Moralité : nos poids ne sont pas très bien choisis, et notre préoccupation dans la suite va être de
 chercher comment choisir des poids pour que la confiance moyenne de la classe correcte soit aussi
 haute que possible.
 
@@ -410,9 +546,11 @@ $(x, y)$.
 
 Servez-vous en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.
 
+### 📉 Correction 📉
+
 ```python
 def logistic_negative_log_likelihood(x, w, b, y):
-    g_x = logistic(np.inner(w, x) + b)
+    g_x = logistic(affine_combination(x, w, b))
     if y == 1:
         correct_likelihood = g_x
     else:
@@ -426,18 +564,12 @@ def loss_on_imdb(w, b, featurized_corpus):
     loss_on_pos = np.zeros(1)
     for doc_features in featurized_corpus["pos"]:
         loss_on_pos += logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            1,
+            doc_features, w, b, 1
         )
     loss_on_neg = np.zeros(1)
     for doc_features in featurized_corpus["neg"]:
         loss_on_neg += logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            0,
+            doc_features, w, b, 0
         )
     return loss_on_pos + loss_on_neg
 ```
@@ -447,21 +579,11 @@ Avec des compréhensions
 ```python
 def loss_on_imdb(w, b, featurized_corpus):
     loss_on_pos = sum(
-        logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            1,
-        )
+        logistic_negative_log_likelihood(doc_features, w, b, 1)
         for doc_features in featurized_corpus["pos"]
     )
     loss_on_neg = sum(
-        logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            0,
-        )
+        logistic_negative_log_likelihood(doc_features, w, b, 0)
         for doc_features in featurized_corpus["neg"]
     )
     return loss_on_pos + loss_on_neg
@@ -473,28 +595,18 @@ En version numériquement stable
 import math
 def loss_on_imdb(w, b, featurized_corpus):
     loss_on_pos = math.fsum(
-        logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            1,
-        ).astype(float)
+        logistic_negative_log_likelihood(doc_features, w, b, 1).astype(float)
         for doc_features in featurized_corpus["pos"]
     )
     loss_on_neg = math.fsum(
-        logistic_negative_log_likelihood(
-            doc_features,
-            w,
-            b,
-            0,
-        ).astype(float)
+        logistic_negative_log_likelihood(doc_features, w, b, 0).astype(float)
         for doc_features in featurized_corpus["neg"]
     )
-    return loss_on_pos + loss_on_neg
+    return np.array([loss_on_pos + loss_on_neg])
 ```
 
 ```python
-loss_on_imdb(np.array([0.6, -0.4]), 0, imdb_features)
+loss_on_imdb(np.array([0.6, -0.4]), -0.01, imdb_features)
 ```
 
 <!-- #region -->
@@ -749,18 +861,24 @@ Et $b$ en calculant
 
 $$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
 
+<!-- #region -->
 ## 🧐 Exo 🧐
 
-1\. Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie
+### 1. Calculer le gradient
+
+Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie
 le gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
+<!-- #endregion -->
 
 ```python
 def grad_L(x, w, b, y):
     grad = np.zeros(w.size+b.size)  # À vous !
     return grad
 
-grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([0.0]), 1)
+grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
 ```
+
+### 🧐 Correction 1 🧐
 
 ```python
 def grad_L(x, w, b, y):
@@ -768,9 +886,12 @@ def grad_L(x, w, b, y):
     grad_w = (g_x - y)*x
     grad_b = g_x - y
     return np.append(grad_w, grad_b)
+grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
 ```
 
-2\. S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus
+### 2. Descendre le gradient
+
+S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus
 IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
 
 ```python
@@ -782,10 +903,15 @@ def descent(featurized_corpus, theta_0, learning_rate, n_steps):
 descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
 ```
 
+### 🧐 Correction 2 🧐
+
+
+Avec du feedback pour voir ce qui se passe
+
 ```python
 import random
 
-def descent(featurized_corpus, theta_0, learning_rate, n_steps):
+def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
     train_set = [
         *((doc, 1) for doc in featurized_corpus["pos"]),
         *((doc, 0) for doc in featurized_corpus["neg"])
@@ -811,7 +937,40 @@ def descent(featurized_corpus, theta_0, learning_rate, n_steps):
         print(f"Epoch {i} loss: {loss_on_imdb(w, b, featurized_corpus)}\tw={w}\tb={b}")
     return (theta[:-1], theta[-1])
 
-descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
+descent_with_logging(imdb_features, np.array([0.6, -0.4, -0.01]), 0.1, 100)
+```
+
+Un peu de visu supplémentaire
+
+```python
+def make_vector_corpus(featurized_corpus):
+    vector_corpus = np.stack([*featurized_corpus["pos"], *featurized_corpus["neg"]])
+    vector_target = np.concatenate([np.ones(len(featurized_corpus["pos"])), np.zeros(len(featurized_corpus["neg"]))])
+    return vector_corpus, vector_target
+
+vector_corpus, vector_target = make_vector_corpus(imdb_features)
+```
+
+```python
+w1 = np.linspace(-50, 50, 200)
+w2 = np.linspace(-50, 50, 200)
+W1, W2 = np.meshgrid(w1, w2)
+W = np.stack((W1, W2), axis=-1)
+confidence = logistic(
+    np.einsum("ijn,kn->ijk", W, vector_corpus)
+)
+broadcastable_target = vector_target[np.newaxis, np.newaxis, :]
+loss = -np.log(confidence * broadcastable_target + (1-confidence)*(1-broadcastable_target)).sum(axis=-1)
+fig = plt.figure(figsize=(20, 20), dpi=200)
+ax = plt.axes(projection='3d')
+
+surf = ax.plot_surface(W1, W2, loss, cmap=tc.tol_cmap("sunset"), edgecolor="none", rstride=1, cstride=1)
+fig.colorbar(surf, shrink=0.5, aspect=5)
+ax.plot_wireframe(W1, W2, loss, color='black')
+
+plt.title("Paysage de la fonction de coût en fonction des valeurs de $w$")
+
+plt.show()
 ```
 
 ## Régression multinomiale

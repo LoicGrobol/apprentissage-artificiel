@@ -6,6 +6,7 @@ numpy
 matplotlib
 pandas
 regex
+seaborn
 scikit-learn
 simpletransformers
 tol-colors
