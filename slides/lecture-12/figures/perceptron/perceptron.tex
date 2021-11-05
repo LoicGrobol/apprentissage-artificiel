@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{unicode-math}
+\usepackage{tikz}
+\usetikzlibrary{shapes, shapes.geometric}
+	\usetikzlibrary{positioning, calc, intersections}
+
+\begin{document}
+\begin{tikzpicture}[
+	basic/.style={minimum width=3em},
+	input/.style={basic},
+	weights/.style={minimum width=2em},
+	functions/.style={basic, draw, circle},
+]
+	\foreach \h [count=\hi] in {\(x_n\),\(x_2\),\(x_1\),\(1\)}{%
+		  \node[input] (f\hi) at (0,\hi*2cm-5 cm) {\h};
+	}
+	\node[functions] (sum) at (7,0) {$∑$};
+	\foreach \h [count=\hi] in {\(×w_n\),\(×w_2\),\(×w_1\),\(×w₀\)}{%
+		  \path (f\hi) -- node[weights] (w\hi) {\h} (sum);
+		  \draw[->] (f\hi) -- (w\hi);
+		  \draw[->] (w\hi) -- (sum);
+	}
+	\node at ($(f2)!0.5!(f1)$) {$⋮$};
+	\node at ($(w2)!0.5!(w1)$) {$⋮$};
+	\node[functions] (step) at (10,0) {};
+	   \begin{scope}[xshift=10cm,scale=.75]
+			\draw[thick] (0.5em,0.5em) -- (0,0.5em) --
+					  (0,-0.5em) --  (-0.5em,-0.5em)
+					  (0em,0.75em) -- (0em,-0.75em)
+					  (0.75em,0em) -- (-0.75em,0em);
+	   \end{scope}
+	\draw[->] (sum) -- (step) node[midway, above] {\(z\)};
+	\draw[->] (step) -- ++(2, 0) node[right] {\(z\)};
+\end{tikzpicture}
+\end{document}
