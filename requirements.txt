@@ -1,4 +1,5 @@
 gensim
+ipympl
 jupyterlab
 jupytext
 nbconvert
