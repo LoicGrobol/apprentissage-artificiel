@@ -6,7 +6,7 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
 
 ## News
 
-- **2021-11-05** Les [**consignes pour les projets**](../assignments/projets.md) sont disponibles.
+- **2021-11-05** Les [**consignes pour les projets**](assignments/projets.html) sont disponibles.
 
 ## Infos pratiques
 
@@ -17,7 +17,7 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
     planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
     les dates exactes
 - **Contact** Loïc Grobol [<loic.grobol@parisnanterre.fr>](mailto:loic.grobol@parisnanterre.fr)
-- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet (voir [les consignes](../assignments/projets.md))
+- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet (voir [les consignes](assignments/projets.html))
 
 ## Séances
 
