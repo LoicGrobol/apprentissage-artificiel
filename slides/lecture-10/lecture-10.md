@@ -285,6 +285,16 @@ print(f"Accuracy: {correct_pos+correct_neg}/{len(imdb_features['pos'])+len(imdb_
 ```
 
 
+On en fait une fonction, ça nous sera utile plus tard
+
+```python
+def classifier_accuracy(w, b, featurized_corpus):
+    correct_pos = sum(1 for doc in imdb_features["pos"] if affine_combination(doc, w, b) > 0.0)
+    correct_neg = sum(1 for doc in imdb_features["neg"] if affine_combination(doc, w, b) <= 0.0)
+    return (correct_pos+correct_neg)/(len(featurized_corpus['pos'])+len(featurized_corpus['neg']))
+classifier_accuracy(np.array([0.6, -0.4]), np.array(-0.01), imdb_features)
+```
+
 ## Classifieur linéaire ?
 
 Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$ du plan en fonction de
@@ -920,9 +930,11 @@ def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
         *((doc, 0) for doc in featurized_corpus["neg"])
     ]
     theta = theta_0
+    theta_history = [theta_0.tolist()]
     w = theta[:-1]
     b = theta[-1]
-    print(f"Initial loss: {loss_on_imdb(w, b, featurized_corpus)}")
+    print("Epoch\tLoss\tAccuracy\tw\tb")
+    print(f"Initial\t{loss_on_imdb(w, b, featurized_corpus).item()}\t{classifier_accuracy(w, b, featurized_corpus)}\t{w}\t{b}")
     
     for i in range(n_steps):
         # On mélange le corpus pour s'assurer de ne pas avoir d'abord tous
@@ -937,13 +949,35 @@ def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
             theta += learning_rate*steepest_direction
             w = theta[:-1]
             b = theta[-1]
-        print(f"Epoch {i} loss: {loss_on_imdb(w, b, featurized_corpus)}\tw={w}\tb={b}")
-    return (theta[:-1], theta[-1])
+        theta_history.append(theta.tolist())
+        epoch_train_loss = loss_on_imdb(w, b, featurized_corpus).item()
+        epoch_train_accuracy = classifier_accuracy(w, b, imdb_features)
+        print(f"{i}\t{epoch_train_loss}\t{epoch_train_accuracy}\t{w}\t{b}")
+    return (theta[:-1], theta[-1]), theta_history
 
-descent_with_logging(imdb_features, np.array([0.6, -0.4, -0.01]), 0.1, 100)
+theta, theta_history = descent_with_logging(imdb_features, np.array([0.6, -0.4, -0.01]), 0.1, 100)
 ```
 
-Un peu de visu supplémentaire
+Un peu de visu supplémentaire :
+
+
+Le trajet fait par $θ$ au cours de l'apprentissage
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+fig = plt.figure(figsize=(20, 20), dpi=200)
+ax = plt.axes(projection='3d')
+
+x, y, z = np.hsplit(np.array(theta_history), 3)
+
+ax.plot(x.squeeze(), y.squeeze(), z.squeeze(), label="Trajet de $θ$ au cours de l'apprentissage")
+ax.legend()
+
+plt.show()
+```
 
 ```python
 def make_vector_corpus(featurized_corpus):
@@ -955,10 +989,11 @@ vector_corpus, vector_target = make_vector_corpus(imdb_features)
 ```
 
 ```python
-w1 = np.linspace(-50, 50, 200)
-w2 = np.linspace(-50, 50, 200)
+w1 = np.linspace(-50, 100, 200)
+w2 = np.linspace(-100, 50, 200)
 W1, W2 = np.meshgrid(w1, w2)
 W = np.stack((W1, W2), axis=-1)
+# Un peu de magie pour accélérer le calcul
 confidence = logistic(
     np.einsum("ijn,kn->ijk", W, vector_corpus)
 )
@@ -966,12 +1001,17 @@ broadcastable_target = vector_target[np.newaxis, np.newaxis, :]
 loss = -np.log(confidence * broadcastable_target + (1-confidence)*(1-broadcastable_target)).sum(axis=-1)
 fig = plt.figure(figsize=(20, 20), dpi=200)
 ax = plt.axes(projection='3d')
+ax.set_xlim(-50, 100)
+ax.set_ylim(-100, 50)
+ax.set_zlim(0, 3000)
 
-surf = ax.plot_surface(W1, W2, loss, cmap=tc.tol_cmap("sunset"), edgecolor="none", rstride=1, cstride=1)
+surf = ax.plot_surface(W1, W2, loss, cmap=tc.tol_cmap("sunset"), edgecolor="none", rstride=1, cstride=1, alpha=0.8)
 fig.colorbar(surf, shrink=0.5, aspect=5)
 ax.plot_wireframe(W1, W2, loss, color='black')
 
-plt.title("Paysage de la fonction de coût en fonction des valeurs de $w$")
+heatmap = ax.contourf(W1, W2, loss, offset=-30, cmap=tc.tol_cmap("sunset"))
+
+plt.title("Paysage de la fonction de coût en fonction des valeurs de $w$ pour $b=0$")
 
 plt.show()
 ```
