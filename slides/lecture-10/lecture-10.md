@@ -924,7 +924,7 @@ Version minimale
 ```python
 import random
 
-def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
+def descent(featurized_corpus, theta_0, learning_rate, n_steps):
     train_set = [
         *((doc, 1) for doc in featurized_corpus["pos"]),
         *((doc, 0) for doc in featurized_corpus["neg"])
@@ -940,24 +940,15 @@ def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
         for j, (x, y) in enumerate(train_set):
             grad = grad_L(x, w, b, y)
             steepest_direction = -grad
-            # Purement pour l'affichage
-            loss = logistic_negative_log_likelihood(x, w, b, y)
-            #print(f"step {i*len(train_set)+j} doc={x}\tw={w}\tb={b}\tloss={loss}\tgrad={grad}")
             theta += learning_rate*steepest_direction
             w = theta[:-1]
             b = theta[-1]
-        theta_history.append(theta.tolist())
-        epoch_train_loss = loss_on_imdb(w, b, featurized_corpus).item()
-        epoch_train_accuracy = classifier_accuracy(w, b, imdb_features)
-        print(f"{i}\t{epoch_train_loss}\t{epoch_train_accuracy}\t{w}\t{b}")
-    return (theta[:-1], theta[-1]), theta_history
+    return (theta[:-1], theta[-1])
 ```
 
 Avec du feedback pour voir ce qui se passe
 
 ```python
-import random
-
 def descent_with_logging(featurized_corpus, theta_0, learning_rate, n_steps):
     train_set = [
         *((doc, 1) for doc in featurized_corpus["pos"]),
