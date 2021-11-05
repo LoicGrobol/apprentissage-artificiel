@@ -4,6 +4,12 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
 
 [comment]: <> "LTeX: language=fr"
 
+## News
+
+- **2021-11-05** Les [**consignes pour les projets**](../assignments/projets.md) sont disponibles.
+
+## Infos pratiques
+
 - **Quoi** « Apprentissage Artificiel »
 - **Où** Salle 219, bâtiment Paul Ricœur
 - **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 22/09 au 17/11
@@ -11,6 +17,7 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
     planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
     les dates exactes
 - **Contact** Loïc Grobol [<loic.grobol@parisnanterre.fr>](mailto:loic.grobol@parisnanterre.fr)
+- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet (voir [les consignes](../assignments/projets.md))
 
 ## Séances
 
