@@ -1047,7 +1047,7 @@ Un dernier point : on a vu dans tout ceci comment utiliser la régression logi
 de classification à deux classes. Comment on l'étend à $n$ classes ?
 
 
-Réflechissons déjà à quoi ressemblerait la sortie d'un tel classifieur :
+Réfléchissons déjà à quoi ressemblerait la sortie d'un tel classifieur :
 
 Pour un problème à deux classes, le classifieur $g$ nous donne pour chaque exemple $x$ une
 estimation $g(x)$ de la vraisemblance de la classe $1$, et on a vu que la vraisemblance de la classe
