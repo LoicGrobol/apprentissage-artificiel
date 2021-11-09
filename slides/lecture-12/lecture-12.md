@@ -717,3 +717,145 @@ for x_i in [0.0, 1.0]:
 ```
 
 On peut remarque que la définition du calcul fait par une couche ne se fait pas directement en implémentant `__call__` mais `forward` (le nom vient de l'idée que dans un réseau les données **avancent** à travers les différentes couches). Pytorch fait plein de magie pour que l'utilisation des algos d'apprentissage soit aussi laconique que possible, et une de ses astuces c'est qu'il définit lui-même `__call__` en prenant le `forward` défini par vous et en faisant d'autres trucs autour.
+
+## Entraînement 🔥
+
+Pour entraîner un réseau en Pytorch, on peut presque directement traduire l'algo de descente de gradient stochastique. Voici par exemple comment on peut entraîner un réseau à trois couches logistiques de deux neurones à apprendre la fonction $\operatorname{XOR}$
+
+
+On commence par définir un jeu de données d'apprentissage
+
+```python
+train_set = [
+    (torch.tensor([0.0, 0.0]), torch.tensor([0.])),
+    (torch.tensor([0.0, 1.0]), torch.tensor([1.0])),
+    (torch.tensor([1.0, 0.0]), torch.tensor([1.0])),
+    (torch.tensor([1.0, 1.0]), torch.tensor([0.0])),
+]
+```
+
+Le réseau
+
+```python
+# Dans une fonction comme ça c'est facile de le réinitialiser pour relancer un apprentissage
+def get_xor_net():
+    return torch.nn.Sequential(
+        torch.nn.Linear(2, 2),
+        torch.nn.Sigmoid(),
+        torch.nn.Linear(2, 2),
+        torch.nn.Sigmoid(),
+        torch.nn.Linear(2, 1),
+        torch.nn.Sigmoid(),
+    )
+get_xor_net()
+```
+
+Et on traduit l'algo
+
+```python
+import torch.optim
+
+xor_net = get_xor_net()
+# SGD est déjà implémenté, sous la forme d'un objet auquel on
+# passe les paramètres à optimiser : ici les poids du réseau
+optim = torch.optim.SGD(xor_net.parameters(), lr=0.01)
+
+print("Epoch\tLoss")
+
+# Apprendre XOR n'est pas si rapide, on va faire 50 000 epochs
+loss_history = []
+for epoch in range(50000):
+    # Pour l'affichage
+    epoch_loss = 0.0
+    # On parcourt le dataset
+    for inpt, target in train_set:
+        # Le réseau prédit une classe
+        output = xor_net(inpt)
+        # On mesure son erreur avec la log-vraisemblance négative
+        loss = torch.nn.functional.binary_cross_entropy(output, target)
+        # On calcule le gradient de la loss par rapport à chacun des
+        # paramètres en ce point.
+        # `backward` parce qu'on utilise l'algo de rétroprogation du gradient
+        loss.backward()
+        # On applique un pas de l'algo de descente de gradient
+        # C'est ici qu'on modifie les poids
+        optim.step()
+        # On doit remettre les gradients des paramètres à zéro, sinon ils
+        # s'accumulent quand on appelle `backward`
+        optim.zero_grad()
+        # Pour l'affichage toujours
+        epoch_loss += loss.item()
+    loss_history.append(epoch_loss)
+    if not epoch % 1000:
+        print(f"{epoch}\t{epoch_loss}")
+
+print("x\ty\tx XOR y")
+for x_i in [0.0, 1.0]:
+    for y_i in [0.0, 1.0]:
+        with torch.no_grad():
+            out = xor_net(torch.tensor([x_i, y_i]))
+        print(f"{x_i}\t{y_i}\t{out}")
+```
+
+Félicitations, vous venez d'apprendre un réseau de neurones et de vous adonner à la célèbre tradition dite « regarder avec anxiété la loss en espérant qu'elle descende ».
+
+
+Et elle est bien descendue, n'est-ce pas ?
+
+```python
+fig = plt.figure(dpi=200)
+plt.plot(loss_history)
+plt.show()
+```
+
+Qu'est-ce que ça donne comme poids ? Regardons :
+
+```python
+for p in xor_net.parameters():
+    print(p.data)
+```
+
+Est-ce qu'on peut en tirer des conclusions ? Pas sûr !
+
+
+On peut au moins regarder la heatmap
+
+```python
+x = np.linspace(0, 1, 1000, dtype=np.float64)
+y = np.linspace(0, 1, 1000, dtype=np.float64)
+X, Y = np.meshgrid(x, y)
+inpt = torch.stack((torch.from_numpy(X), torch.from_numpy(Y)), dim=-1).to(torch.float)
+with torch.no_grad():
+    Z = xor_net(inpt).squeeze().numpy()
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+Pas si mal ! Et voici la frontière de décision
+
+```python
+x = np.linspace(0, 1, 1000, dtype=np.float64)
+y = np.linspace(0, 1, 1000, dtype=np.float64)
+X, Y = np.meshgrid(x, y)
+inpt = torch.stack((torch.from_numpy(X), torch.from_numpy(Y)), dim=-1).to(torch.float)
+with torch.no_grad():
+    Z = xor_net(inpt).gt(0.5).squeeze().numpy()
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+## Aller plus loin
+
+La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez [le tutoriel de towards datasciene](https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627) (une source pas toujours excellente mais dans ce cas précis ça va.
+
+On fait du TAL ici ! Et langage ? Et bien en pratique c'est un peu plus compliqué à traiter que les images ou les nombres. On se penchera davantage dessus la prochaine fois, mais pour l'instant vous pouvez faire un peu de classification de documents avec [le tutoriel de torchtext](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html) (qui n'est pas une bibliothèque très souvent populaire, mais elle est bien utile ici. Microsoft propose [un tutorial similaire](https://docs.microsoft.com/en-us/learn/modules/intro-natural-language-processing-pytorch).
+
+Un peu de lecture : [*Natural Language Processing (almost) from scratch](https://dl.acm.org/doi/10.5555/1953048.2078186) (Collobert et al., 2011).
