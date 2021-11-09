@@ -468,7 +468,7 @@ axs = fig.subplots(3, 2)
 axs[0, 0].plot(x, 1/(1+np.exp(-x)))
 axs[0, 0].set_title("Fonction logistique")
 axs[0, 1].plot(x, x > 0)
-axs[0, 1].set_title("Fonction de Heavyside/échelon (unit step)")
+axs[0, 1].set_title("Fonction de Heaviside/échelon (unit step)")
 axs[1, 0].plot(x, np.maximum(x, 0))
 axs[1, 0].set_title("Rectifieur (ReLU)")
 axs[1, 1].plot(x, np.tanh(x))
@@ -482,7 +482,7 @@ axs[2, 1].set_title("GELU")
 
 for ax in fig.get_axes():
     ax.spines["right"].set_color("none")
-    ax.spines[bbb"top"].set_color("none")
+    ax.spines["top"].set_color("none")
 
 plt.show()
 ```
@@ -618,3 +618,102 @@ Un [certain](https://ruder.io/optimizing-gradient-descent/) nombre de raffinemen
 ## En pratique 🔥
 
 En pratique, comme on ne va certainement pas implémenter tout ça à la main ici (même si je vous recommande de le faire une fois de votre côté pour bien comprendre comment ça marche), on va se reposer sur la bibliothèque de réseaux de neurones la plus utilisée pour le TAL ces dernières (et probablement aussi ces prochaines) années : [Pytorch](pytorch.org).
+
+```python
+import torch
+```
+
+Pytorch fait plein de choses (allez voir la [doc](https://pytorch.org/docs)), mais pour commencer, on va l'utiliser comme une collection de couches neuronales et une bibliothèque de calcul vectoriel (comme numpy).
+
+### Les tenseurs
+
+
+L'objet de base dans Pytorch est le **tenseur** `torch.tensor`, qui est un autre nom pour ce que numpy appelle un `array`.
+
+```python
+t = torch.tensor([1,2,3,4])
+t
+```
+
+```python
+t = torch.tensor(
+    [
+        [1,2,3,4],
+        [5,6,7,8],
+    ]
+)
+t
+```
+
+Comme les tableaux numpy, on peut leur appliquer des opérations
+
+```python
+torch.tensor([1,2,3,4]) + torch.tensor([1,5,-2,-1])
+```
+
+Et la plupart des opérations définies dans numpy sont disponible ici aussi (Pytorch essaie autant que possible d'être compatible)
+
+```python
+torch.sum(torch.tensor([1,2,3,4]))
+```
+
+Même si en général, on y préfère un style d'opérations en chaînes
+
+```python
+torch.tensor([1,2,3,4]).mul(torch.tensor(2)).sum()
+```
+
+Vous trouverez dans la doc [la liste des fonctions natives](https://pytorch.org/docs/stable/torch.html) et celle des [méthodes des tenseurs](https://pytorch.org/docs/stable/tensors.html), n'hésitez pas à vous y pencher souvent, surtout avant de vouloir recoder des trucs vous mêmes.
+
+### Les couches neuronales
+
+
+Les couches neuronales sont définies dans le module [`torch.nn`](https://pytorch.org/docs/stable/nn.html).
+
+```python
+import torch.nn
+```
+
+Il y en a beaucoup
+
+```python
+len(dir(torch.nn))
+```
+
+En pratique, Pytorch ne fait pas la différence entre un réseau et une couche : tout ça sera un `torch.nn.Module`. L'avantage c'est que ça permet facilement d'interconnecter des réseaux entre eux.
+
+
+La couche la plus importante pour nous ici c'est la couche [`torch.nn.Linear`](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) qui est évidemment la couche linéaire complètement connectée qu'on a appellé `LinearLayer` plus haut.
+
+
+Voici une réimplémentation du réseau $\operatorname{XOR}$ en Pytorch (c'est un peu laborieux parce que Pytorch n'est pas vraiment prévu pour coder des poids en dur, mais c'est possible !)
+
+```python
+layer1 = torch.nn.Linear(2, 2)
+layer1.weight = torch.nn.Parameter(torch.tensor([[0.5, 0.5], [1, 1]]))
+layer1.bias = torch.nn.Parameter(torch.tensor([-0.6, -0.5]))
+layer2 = torch.nn.Linear(2, 2)
+layer2.weight = torch.nn.Parameter(torch.tensor([[-1.0, 0.0], [0.0, 1.0]]))
+layer2.bias = torch.nn.Parameter(torch.tensor([1.0, 0.0]))
+layer3 = torch.nn.Linear(2, 2)
+layer3.weight = torch.nn.Parameter(torch.tensor([[0.5, 0.5]]))
+layer3.bias = torch.nn.Parameter(torch.tensor([-0.6]))
+
+# Pas de couche correspondant à la fonction de Heaviside en Pytorch, il faut la coder nous même !
+class StepLayer(torch.nn.Module):
+    def forward(self, inpt):
+        return torch.heaviside(inpt, torch.tensor(0.0))
+
+xor_ffnn = torch.nn.Sequential(
+    layer1, StepLayer(), layer2, StepLayer(), layer3, StepLayer()
+)
+
+print("x\ty\tx XOR y")
+for x_i in [0.0, 1.0]:
+    for y_i in [0.0, 1.0]:
+        with torch.no_grad():
+            out = xor_ffnn(torch.tensor([x_i, y_i]))
+        print(f"{x_i}\t{y_i}\t{out}")
+```
+
+On peut remarque que la définition du calcul fait par une couche ne se fait pas directement en implémentant `__call__` mais `forward` (le nom vient de l'idée que dans un réseau les données **avancent** à travers les différentes couches). Pytorch fait plein de magie pour que l'utilisation des algos d'apprentissage soit aussi laconique que possible, et une de ses astuces c'est qu'il définit lui-même `__call__` en prenant le `forward` défini par vous et en faisant d'autres trucs autour.
