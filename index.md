@@ -6,6 +6,7 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
 
 ## News
 
+- **2021-11-09** le cours du 17/11 est reporté au 15/11, même heure, même salle
 - **2021-11-05** Les [**consignes pour les projets**](assignments/projets.html) sont disponibles.
 
 ## Infos pratiques
@@ -129,6 +130,22 @@ Pour la fois prochaine :
 
 - [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 6 « *Vector Semantics and Embeddings* ».
+
+### 2021-11—10 — Réseaux de neurones et (peut-être) représentations vectorielles
+
+- [Slides 11](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
+- [Slides 12](slides/lecture-2/lecture-2.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-2/lecture-2.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 7 « *Neural Networks and Neural Language Models* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 9 « *Deep Learning Architectures for Sequence Processing* ».
+
 
 
 ## Lire les slides en local
