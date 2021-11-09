@@ -135,8 +135,8 @@ chapitre 6 « *Vector Semantics and Embeddings* ».
 
 - [Slides 11](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
-- [Slides 12](slides/lecture-2/lecture-2.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-2/lecture-2.md)
+- [Slides 12](slides/lecture-12/lecture-12.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-12/lecture-12.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 7 « *Neural Networks and Neural Language Models* ».
