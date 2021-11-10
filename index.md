@@ -90,9 +90,9 @@ avec vos questions !
 
 ### 2021-10-13 — Modèles de langue à n-grammes (suite et fin) et *Naïve Bayes*
 
-- [Slides 8](slides/lecture-08/lecture-08.slides.html) [![Launch in Binder
+- [Slides 8](slides/lecture-08/lecture-08.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-08/lecture-08.md)
-- [Slides 9](slides/lecture-09/lecture-09.slides.html) [![Launch in Binder
+- [Slides 9](slides/lecture-09/lecture-09.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/lecture-09.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
@@ -107,7 +107,7 @@ Pour la fois prochaine :
 
 - [Correction slide 9](slides/lecture-09/correction.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/correction.md)
-- [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
+- [Slides 10](slides/lecture-10/lecture-10.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
@@ -120,7 +120,7 @@ chapitre 6 « *Vector Semantics and Embeddings* ».
 
 ### 2021-10-27 — Régression logistique (suite et fin)
 
-- [Slides 10](slides/lecture-10/lecture-10.slides.html) [![Launch in Binder
+- [Slides 10](slides/lecture-10/lecture-10.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
@@ -133,9 +133,9 @@ chapitre 6 « *Vector Semantics and Embeddings* ».
 
 ### 2021-11—10 — Réseaux de neurones et (peut-être) représentations vectorielles
 
-- [Slides 11](slides/lecture-11/lecture-11.slides.html) [![Launch in Binder
+- [Slides 11](slides/lecture-11/lecture-11.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
-- [Slides 12](slides/lecture-12/lecture-12.slides.html) [![Launch in Binder
+- [Slides 12](slides/lecture-12/lecture-12.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-12/lecture-12.md)
 
 Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
