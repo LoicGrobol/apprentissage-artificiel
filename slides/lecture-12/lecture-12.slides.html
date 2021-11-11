@@ -14643,7 +14643,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Cours-12%E2%80%AF:-R%C3%A9seaux-de-neurones">Cours 12&#8239;: R&#233;seaux de neurones<a class="anchor-link" href="#Cours-12%E2%80%AF:-R%C3%A9seaux-de-neurones">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
-<p>2021-11-09</p>
+<p>2021-11-10</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14736,7 +14736,7 @@ $$\begin{equation}
 <span class="sd">    - `inpt` un tableau numpy de dimension $n$</span>
 <span class="sd">    - `weights` un tableau numpy de dimention $n+1$</span>
 <span class="sd">    </span>
-<span class="sd">    Sortie: un tableau numpy de type booléen et de dimentions $0$</span>
+<span class="sd">    Sortie: un tableau numpy de type booléen et de dimensions $0$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">inpt</span><span class="p">)</span> <span class="o">+</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </pre></div>
@@ -14784,7 +14784,7 @@ New York Times, rappporté par Olazaran (1996)</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>C'est par exemple assez facile de construire des neurones qui réalisent les opérations logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et $\operatorname{NON}$ :</p>
+<p>C'est par exemple assez facile de construire un qui réalis l'opération logique élémentaire $\operatorname{ET}$ :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14806,6 +14806,80 @@ New York Times, rappporté par Olazaran (1996)</p>
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ça marche bien parce que c'est un problème <strong>linéairement séparable</strong> : si on représente $x$ et $y$ dans le plan, on peut tracer une droite qui sépare la parties où $x\operatorname{ET}y$ vaut $1$ et la partie où ça vaut $0$ :</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tol_colors</span> <span class="k">as</span> <span class="nn">tc</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">heatmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">tc</span><span class="o">.</span><span class="n">tol_cmap</span><span class="p">(</span><span class="s2">&quot;sunset&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ici voilà les valeurs que renvoie notre neurone :</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tol_colors</span> <span class="k">as</span> <span class="nn">tc</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">Y</span> <span class="o">-</span> <span class="mf">0.6</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">heatmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">tc</span><span class="o">.</span><span class="n">tol_cmap</span><span class="p">(</span><span class="s2">&quot;sunset&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On confirme : ça marche !</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ça marche aussi très bien pour $\operatorname{OU}$ et $\operatorname{NON}$</p>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14901,7 +14975,7 @@ les deux sont vrais en même temps.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Si on l'étend à tout le plan pour mieux voir</p>
+<p>Si on l'étend à tout le plan pour mieux voir en prenant $0.5$ comme frontière pour <em>vrai</em> :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14932,7 +15006,8 @@ les deux sont vrais en même temps.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On voit clairement le hic : ce n'est pas un problème linéairement séparable, donc un classifieur linéaire ne sera jamais capable de le résoudre.</p>
+<p>On voit clairement le hic : ce n'est pas un problème linéairement séparable, donc un classifieur
+linéaire ne sera jamais capable de le résoudre.</p>
 
 </div>
 </div>
@@ -14944,7 +15019,8 @@ les deux sont vrais en même temps.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On sait faire les portes logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et $\operatorname{NON}$, or on a</p>
+<p>On sait faire les portes logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et
+$\operatorname{NON}$, or on a</p>
 $$\begin{equation}
     x \operatorname{XOR} y = (x \operatorname{OU} y)\quad\operatorname{ET}\quad\operatorname{NON}(x \operatorname{ET} y)
 \end{equation}$$<p><small>
@@ -14957,12 +15033,17 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On peut donc avoir $\operatorname{XOR}$ non pas avec un seul neurone, mais avec plusieurs neurones mis en <strong>réseau</strong></p>
+<p>On peut donc avoir $\operatorname{XOR}$ non pas avec un seul neurone, mais avec plusieurs neurones
+mis en <strong>réseau</strong></p>
 <p><img src="figures/xor/xor.svg" alt=""></p>
 <p>Ou, en écrivant les termes de biais dans les neurones et en ajoutant un neurone pour servir de relai</p>
 <p><img src="figures/xor_ffnn/xor_ffnn.svg" alt=""></p>
-<p>On voit ici appraître une structure en plusieurs couches (une d'entrée, une de sortie et trois intermédiaires) où chaque neurone prend en entrée les sorties de tous les neurones de la couche précédente.</p>
-<p>On appelle cette structure un réseau de neurones <strong>complètement connecté</strong> ou <strong>dense</strong>. On parle aussi un peu abusivement de <em>perceptron multicouches</em>. En anglais <em><strong>multilayer perceptron</strong></em> ou <em><strong>feedforward neural network</strong></em>.</p>
+<p>On voit ici appraître une structure en plusieurs couches (une d'entrée, une de sortie et trois
+intermédiaires) où chaque neurone prend en entrée les sorties de tous les neurones de la couche
+précédente.</p>
+<p>On appelle cette structure un réseau de neurones <strong>complètement connecté</strong> ou <strong>dense</strong>. On parle
+aussi un peu abusivement de <em>perceptron multicouches</em>. En anglais <em><strong>multilayer perceptron</strong></em> ou
+<em><strong>feedforward neural network</strong></em>.</p>
 
 </div>
 </div>
@@ -15020,7 +15101,10 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Les-couches">Les couches<a class="anchor-link" href="#Les-couches">&#182;</a></h2><p>Une autre façon de voir ces couches neuronales qui va être bien pratique pour la suite, c'est de voir chaque couche comme une fonction qui renvoie autant de sorties qu'elle a de neurones et prend autant d'entrées qu'il y a de neurones dans la couche précédente. Par exemple la première couche notre réseau $\operatorname{XOR}$ peut s'écrire comme :</p>
+<h2 id="Les-couches">Les couches<a class="anchor-link" href="#Les-couches">&#182;</a></h2><p>Une autre façon de voir ces couches neuronales qui va être bien pratique pour la suite, c'est de
+voir chaque couche comme une fonction qui renvoie autant de sorties qu'elle a de neurones et prend
+autant d'entrées qu'il y a de neurones dans la couche précédente. Par exemple la première couche
+notre réseau $\operatorname{XOR}$ peut s'écrire comme :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15197,19 +15281,25 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Cette dernière formulation est celle qu'on utilise en général, elle a le gros avantage de très bien se paralléliser, et même, si on dispose de matériel spécialisé (comme des cartes graphiques) de bénéficier d'accélérations supplémentaires (voir par exemple Vuduc et Choi (<a href="https://jeewhanchoi.github.io/publication/pdf/brief_history.pdf">2013</a>) pour la culture).</p>
+<p>Cette dernière formulation est celle qu'on utilise en général, elle a le gros avantage de très bien
+se paralléliser, et même, si on dispose de matériel spécialisé, comme des cartes graphiques) de
+bénéficier d'accélérations supplémentaires (voir par exemple Vuduc et Choi
+(<a href="https://jeewhanchoi.github.io/publication/pdf/brief_history.pdf">2013</a>) pour la culture).</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Elle permet aussi de facilement manipuler les tailles des couches : une couche à $n$ entrées et $m$ sorties correspond à une matrice de poids de taille $m×n$ et un vecteur de biais de taille $m$.</p>
+<p>Elle permet aussi de facilement manipuler les tailles des couches : une couche à $n$ entrées et $m$
+sorties correspond à une matrice de poids de taille $m×n$ et un vecteur de biais de taille $m$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Une dernière subtilité ? Pour matérialiser le concept de couche et éviter d'avoir à passer en permanence des poids, on utilise en général des classes. Voici notre réseau $\operatorname{XOR}$ réécrit en objet :</p>
+<p>Une dernière subtilité ? Pour matérialiser le concept de couche et éviter d'avoir à passer en
+permanence des poids, on utilise en général des classes. Voici notre réseau $\operatorname{XOR}$
+réécrit en objet :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15227,7 +15317,11 @@ $$\begin{equation}
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inpt</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">inpt</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     
-<span class="n">layer1</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]))</span>
+<span class="n">layer1</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]),</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">layer1</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
 <span class="n">layer2</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="n">layer3</span> <span class="o">=</span> <span class="n">Layer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">))</span>
 
@@ -15297,7 +15391,9 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Non-linearit%C3%A9s">Non-linearit&#233;s<a class="anchor-link" href="#Non-linearit%C3%A9s">&#182;</a></h2><p>Comme pour les classifieurs logistiques, on aime bien en général avoir une décision qui ne soit pas tout ou rien mais puisse prédire des nombres, pour ça on peut remplacer le <code>&gt; 0</code> dans ce qui précède par la fonction logistique</p>
+<h2 id="Non-linearit%C3%A9s">Non-linearit&#233;s<a class="anchor-link" href="#Non-linearit%C3%A9s">&#182;</a></h2><p>Comme pour les classifieurs logistiques, on aime bien en général avoir une décision qui ne soit pas
+tout ou rien mais puisse prédire des nombres, pour ça on peut remplacer le <code>&gt; 0</code> dans ce qui précède
+par la fonction logistique</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15335,7 +15431,8 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On peut aussi l'imaginer comme la succession d'une couche purement linéaire et d'une couche qui applique la fonction logistique sur ses entrées coordonnée par coordonnée :</p>
+<p>On peut aussi l'imaginer comme la succession d'une couche purement linéaire et d'une couche qui
+applique la fonction logistique sur ses entrées coordonnée par coordonnée :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15381,8 +15478,12 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Dans le cas général, on dit que la fonction logistique dans ce réseau est une <strong>non-linéarité</strong> ou <strong>activation</strong>, c'est-à-dire une fonction non-linéaire appliquée coordonnée par coordonnée aux sorties d'une couche neuronale. On peut en choisir une autre, selon ce qu'on veut obtenir.</p>
-<p>Pour les couches de sorties, c'est souvent l'application ciblée qui va conditionner ce choix, pour les couches internes, dites <strong>couches cachées</strong>, elle conditionnent la capacité d'apprentissage du réseau. Voici quelques uns des exemples les plus courants :</p>
+<p>Dans le cas général, on dit que la fonction logistique dans ce réseau est une <strong>non-linéarité</strong> ou
+<strong>activation</strong>, c'est-à-dire une fonction non-linéaire appliquée coordonnée par coordonnée aux
+sorties d'une couche neuronale. On peut en choisir une autre, selon ce qu'on veut obtenir.</p>
+<p>Pour les couches de sorties, c'est souvent l'application ciblée qui va conditionner ce choix, pour
+les couches internes, dites <strong>couches cachées</strong>, elle conditionnent la capacité d'apprentissage du
+réseau. Voici quelques uns des exemples les plus courants :</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15438,7 +15539,9 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>En pratique, le choix de la bonne non-linéarité pour un réseau n'est pas encore bien compris : c'est un hyperparamètre à optimiser parmi d'autres. Ces dernières années on choisit plutôt par défaut la fonction rectifieur (dite un peu abusivement ReLU).</p>
+<p>En pratique, le choix de la bonne non-linéarité pour un réseau n'est pas encore bien compris : c'est
+un hyperparamètre à optimiser parmi d'autres. Ces dernières années on choisit plutôt par défaut la
+fonction rectifieur (dite un peu abusivement ReLU).</p>
 
 </div>
 </div>
@@ -15456,31 +15559,45 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Si on se limite à des couches linéaires, nos réseaux ne peuvent exprimer que des fonctions linéaires. Même si on peut faire beaucoup de choses avec, on a souvent besoin de plus. Voyez par exemple ce que ça donne dans <a href="https://playground.tensorflow.org">le bac à sable de Tensorflow</a>.</p>
+<p>Si on se limite à des couches linéaires, nos réseaux ne peuvent exprimer que des fonctions
+linéaires. Même si on peut faire beaucoup de choses avec, on a souvent besoin de plus. Voyez par
+exemple ce que ça donne dans <a href="https://playground.tensorflow.org">le bac à sable de Tensorflow</a>.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Si on utilise des non-linéarités, en revanche, nos réseaux deviennent beaucoup plus puissants. Beaucoup, <strong>beaucoup</strong> plus.</p>
+<p>Si on utilise des non-linéarités, en revanche, nos réseaux deviennent beaucoup plus puissants.
+Beaucoup, <strong>beaucoup</strong> plus.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Le <a href="https://en.wikipedia.org/wiki/Universal_approximation_theorem"><strong>Théorème d'approximation universelle</strong></a>, dont il existe de nombreuses versions (Pinkus (<a href="https://pinkus.net.technion.ac.il/files/2021/02/acta.pdf">1999</a>) en fait une très bonne revue) dit en substance qu'à condition d'avoir assez de couches, ou des couches suffisament larges et d'utiliser des non-linéarités continues qui ne soient pas des polynômes, étant donnée une fonction continue $f$, on peut toujours trouver un réseau de neurones qui soit aussi près qu'on veut de $f$.</p>
+<p>Le <a href="https://en.wikipedia.org/wiki/Universal_approximation_theorem"><strong>Théorème d'approximation
+universelle</strong></a>, dont il existe de
+nombreuses versions (Pinkus, <a href="https://pinkus.net.technion.ac.il/files/2021/02/acta.pdf">1999</a>) en
+fait une très bonne revue) dit en substance qu'à condition d'avoir assez de couches, ou des couches
+suffisament larges et d'utiliser des non-linéarités continues qui ne soient pas des polynômes, étant
+donnée une fonction continue $f$, on peut toujours trouver un réseau de neurones qui soit aussi près
+qu'on veut de $f$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Bien que ça ne dise rien de la capacité des réseaux de neurones à <em>apprendre</em> des fonctions arbitraires, c'est une des motivations théoriques principales à leur utilisation : au moins, contrairement à un classifieur logistique par exemple, ils sont capables de représenter les fonctions qui nous intéressent.</p>
+<p>Bien que ça ne dise rien de la capacité des réseaux de neurones à <em>apprendre</em> des fonctions
+arbitraires, c'est une des motivations théoriques principales à leur utilisation : au moins,
+contrairement à un classifieur logistique par exemple, ils sont capables de représenter les
+fonctions qui nous intéressent.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Dernière précision : les couches linéaires et les non-linéarités par coordonnées ne sont pas les seules types de couches qu'on utilise en pratique. Notablement, pour construire des classifieurs multiclasses on utilise souvent la fonction $\operatorname{softmax}$ comme dernière couche.</p>
+<p>Dernière précision : les couches linéaires et les non-linéarités par coordonnées ne sont pas les
+seules types de couches qu'on utilise en pratique. Notablement, pour construire des classifieurs
+multiclasses on utilise souvent la fonction $\operatorname{softmax}$ comme dernière couche.</p>
 $$\begin{equation}
     \operatorname{softmax}(z_1, …, z_n)
     = \left(
@@ -15538,13 +15655,16 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><small>[En pratique](https://ogunlao.github.io/2020/04/26/you_dont_really_know_softmax.html) comme $\operatorname{softmax}$ est toujours plutôt instable, on utilise plutôt $\log\operatorname{softmax}$, c'est toujours la même histoire.</small></p>
+<p><small>[En pratique](https://ogunlao.github.io/2020/04/26/you_dont_really_know_softmax.html) comme
+$\operatorname{softmax}$ est toujours plutôt instable, on utilise plutôt
+$\log\operatorname{softmax}$, c'est toujours la même histoire.</small></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Apprendre-un-r%C3%A9seau-de-neurones">Apprendre un r&#233;seau de neurones<a class="anchor-link" href="#Apprendre-un-r%C3%A9seau-de-neurones">&#182;</a></h2><p>Tout ça c'est bien gentil, mais encore une fois, on a choisi des poids à la main. Or notre objectif c'est d'<strong>apprendre</strong>.</p>
+<h2 id="Apprendre-un-r%C3%A9seau-de-neurones">Apprendre un r&#233;seau de neurones<a class="anchor-link" href="#Apprendre-un-r%C3%A9seau-de-neurones">&#182;</a></h2><p>Tout ça c'est bien gentil, mais encore une fois, on a choisi des poids à la main. Or notre objectif
+c'est d'<strong>apprendre</strong>.</p>
 
 </div>
 </div>
@@ -15566,17 +15686,23 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Les fonctions de coût ressemblent très fort à celles d'autres techniques d'apprentissage. En TAL, comme on s'en sort toujours plus ou moins pour se rammener à de la classification, on va en général utiliser la $\log$-vraisemblance négative, comme pour les classifieurs logistiques.</p>
+<p>Les fonctions de coût ressemblent très fort à celles d'autres techniques d'apprentissage. En TAL,
+comme on s'en sort toujours plus ou moins pour se rammener à de la classification, on va en général
+utiliser la $\log$-vraisemblance négative, comme pour les classifieurs logistiques.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Concrètement, qu'est-ce que ça donne ? Et bien si on a un réseau de neurones $f$ pour un problème à $n$ classes (donc qui renvoie en sortie des vecteurs normalisés de dimension $n$) et un exemple $(x, y)$ où $x$ est une entrée adaptée à $f$ et $1⩽y⩽n$ est la classe à prédire pour $x$, la loss de $f$ pour $(x, y)$ sera</p>
+<p>Concrètement, qu'est-ce que ça donne ? Et bien si on a un réseau de neurones $f$ pour un problème à
+$n$ classes (donc qui renvoie en sortie des vecteurs normalisés de dimension $n$) et un exemple $(x,
+y)$ où $x$ est une entrée adaptée à $f$ et $1⩽y⩽n$ est la classe à prédire pour $x$, la loss de $f$
+pour $(x, y)$ sera</p>
 $$\begin{equation}
     L(f, x, y) = -\log\left(f(x)_y\right)
 \end{equation}$$<p>où $f(x)_y$ est la $y$-ième coordonnée de $f(x)$.</p>
-<p><small>C'est aussi pour ça qu'on aime bien utiliser le $\log\operatorname{softmax}$ : de toute façon on va vouloir calculer un $\log$ après.</small></p>
+<p><small>C'est aussi pour ça qu'on aime bien utiliser le $\log\operatorname{softmax}$ : de toute façon
+on va vouloir calculer un $\log$ après.</small></p>
 
 </div>
 </div>
@@ -15594,13 +15720,17 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>On va utiliser les mêmes idées que celles qu'on a vu pour les classifieurs logistiques : on va considérer un paramètre $θ$ qui sera une concaténation de tous les poids de toutes les couches du réseau dans un gros vecteur et les les $L(f, x, y)$ comme des fonctions de $θ$.</p>
+<p>On va utiliser les mêmes idées que celles qu'on a vu pour les classifieurs logistiques : on va
+considérer un paramètre $θ$ qui sera une concaténation de tous les poids de toutes les couches du
+réseau dans un gros vecteur et les les $L(f, x, y)$ comme des fonctions de $θ$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Par bonheur, si les non-linéarités qu'on a choisi sont gentilles (et elles le sont, on les choisit pour), ces fonctions seront différentiables, c'est-à-dire qu'elles ont un gradient pour tout $(x, y)$ et on peut donc leur appliquer l'algorithme de descente de gradient stochastique.</p>
+<p>Par bonheur, si les non-linéarités qu'on a choisi sont gentilles (et elles le sont, on les choisit
+pour), ces fonctions seront différentiables, c'est-à-dire qu'elles ont un gradient pour tout $(x,
+y)$ et on peut donc leur appliquer l'algorithme de descente de gradient stochastique.</p>
 
 </div>
 </div>
@@ -15622,20 +15752,33 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Le point 1. n'est pas un problème, les fonctions en questions peuvent être compliquées, surtout si le réseau est profond, et caculer leur gradients à la main ça peut être pénible, mais heureusement on a des programmes de calcul symbolique qui ont la gentillesse de le faire pour nous. C'est ce qu'on appelle de la <strong>différentiation automatique</strong> dont on va voir un exemple juste après.</p>
+<p>Le point 1. n'est pas un problème, les fonctions en questions peuvent être compliquées, surtout si
+le réseau est profond, et caculer leur gradients à la main ça peut être pénible, mais heureusement
+on a des programmes de calcul symbolique qui ont la gentillesse de le faire pour nous. C'est ce
+qu'on appelle de la <strong>différentiation automatique</strong> dont on va voir un exemple juste après.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Le point 2. est plus délicat en théorie : on a pas de garantie théorique que l'algo fonctionne toujours, ni même réellement d'estimation de son comportement. Mais <strong>en pratique</strong> ça a tendance à marcher la plupart du temps : si on applique l'algo de descente de gradient avec des hyperparamètres raisonnables et suffisament de données, on arrive à trouver des bons poids.</p>
-<p>Un <a href="https://ruder.io/optimizing-gradient-descent/">certain</a> nombre de raffinement de cet algo (que vous trouverez souvent sous le nom <em>SGD</em> pour <em><strong>S</strong>tochastic <strong>G</strong>radient <strong>D</strong>escent</em>) ont été développé pour essayer que ça marche le mieux possible le plus souvent possible. Deux particulièrement notables sont l'accelération de Nesterov et l'estimation adaptative des moments (<a href="https://arxiv.org/abs/1412.6980">Adam</a>).</p>
+<p>Le point 2. est plus délicat en théorie : on a pas de garantie théorique que l'algo fonctionne
+toujours, ni même réellement d'estimation de son comportement. Mais <strong>en pratique</strong> ça a tendance à
+marcher la plupart du temps : si on applique l'algo de descente de gradient avec des hyperparamètres
+raisonnables et suffisament de données, on arrive à trouver des bons poids.</p>
+<p>Un <a href="https://ruder.io/optimizing-gradient-descent/">certain</a> nombre de raffinement de cet algo (que
+vous trouverez souvent sous le nom <em>SGD</em> pour <em><strong>S</strong>tochastic <strong>G</strong>radient <strong>D</strong>escent</em>) ont été
+développé pour essayer que ça marche le mieux possible le plus souvent possible. Deux
+particulièrement notables sont l'accelération de Nesterov et l'estimation adaptative des moments
+(<a href="https://arxiv.org/abs/1412.6980">Adam</a>).</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="En-pratique-%F0%9F%94%A5">En pratique &#128293;<a class="anchor-link" href="#En-pratique-%F0%9F%94%A5">&#182;</a></h2><p>En pratique, comme on ne va certainement pas implémenter tout ça à la main ici (même si je vous recommande de le faire une fois de votre côté pour bien comprendre comment ça marche), on va se reposer sur la bibliothèque de réseaux de neurones la plus utilisée pour le TAL ces dernières (et probablement aussi ces prochaines) années : <a href="pytorch.org">Pytorch</a>.</p>
+<h2 id="En-pratique-%F0%9F%94%A5">En pratique &#128293;<a class="anchor-link" href="#En-pratique-%F0%9F%94%A5">&#182;</a></h2><p>En pratique, comme on ne va certainement pas implémenter tout ça à la main ici (même si je vous
+recommande de le faire une fois de votre côté pour bien comprendre comment ça marche), on va se
+reposer sur la bibliothèque de réseaux de neurones la plus utilisée pour le TAL ces dernières (et
+probablement aussi ces prochaines) années : <a href="pytorch.org">Pytorch</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15655,7 +15798,9 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Pytorch fait plein de choses (allez voir la <a href="https://pytorch.org/docs">doc</a>), mais pour commencer, on va l'utiliser comme une collection de couches neuronales et une bibliothèque de calcul vectoriel (comme numpy).</p>
+<p>Pytorch fait plein de choses (allez voir la <a href="https://pytorch.org/docs">doc</a>), mais pour commencer,
+on va l'utiliser comme une collection de couches neuronales et une bibliothèque de calcul vectoriel
+(comme numpy).</p>
 
 </div>
 </div>
@@ -15666,7 +15811,8 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>L'objet de base dans Pytorch est le <strong>tenseur</strong> <code>torch.tensor</code>, qui est un autre nom pour ce que numpy appelle un <code>array</code>.</p>
+<p>L'objet de base dans Pytorch est le <strong>tenseur</strong> <code>torch.tensor</code>, qui est un autre nom pour ce que
+numpy appelle un <code>array</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15707,6 +15853,40 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>D'ailleurs on peut facilement faire des allers-retours entre Pytorch et Numpy</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Comme les tableaux numpy, on peut leur appliquer des opérations</p>
 
 </div>
@@ -15727,7 +15907,8 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Et la plupart des opérations définies dans numpy sont disponible ici aussi (Pytorch essaie autant que possible d'être compatible)</p>
+<p>Et la plupart des opérations définies dans numpy sont disponible ici aussi (Pytorch essaie autant
+que possible d'être compatible)</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15824,13 +16005,16 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>La couche la plus importante pour nous ici c'est la couche <a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html"><code>torch.nn.Linear</code></a> qui est évidemment la couche linéaire complètement connectée qu'on a appellé <code>LinearLayer</code> plus haut.</p>
+<p>La couche la plus importante pour nous ici c'est la couche
+<a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html"><code>torch.nn.Linear</code></a> qui est
+évidemment la couche linéaire complètement connectée qu'on a appellé <code>LinearLayer</code> plus haut.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Voici une réimplémentation du réseau $\operatorname{XOR}$ en Pytorch (c'est un peu laborieux parce que Pytorch n'est pas vraiment prévu pour coder des poids en dur, mais c'est possible !)</p>
+<p>Voici une réimplémentation du réseau $\operatorname{XOR}$ en Pytorch (c'est un peu laborieux parce
+que Pytorch n'est pas vraiment prévu pour coder des poids en dur, mais c'est possible !)</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15955,7 +16139,7 @@ $$\begin{equation}
 <span class="n">xor_net</span> <span class="o">=</span> <span class="n">get_xor_net</span><span class="p">()</span>
 <span class="c1"># SGD est déjà implémenté, sous la forme d&#39;un objet auquel on</span>
 <span class="c1"># passe les paramètres à optimiser : ici les poids du réseau</span>
-<span class="n">optim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">xor_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">optim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">xor_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch</span><span class="se">\t</span><span class="s2">Loss&quot;</span><span class="p">)</span>
 
@@ -16119,7 +16303,7 @@ $$\begin{equation}
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Aller-plus-loin">Aller plus loin<a class="anchor-link" href="#Aller-plus-loin">&#182;</a></h2><p>La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez <a href="https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627">le tutoriel de towards datasciene</a> (une source pas toujours excellente mais dans ce cas précis ça va.</p>
+<h2 id="Aller-plus-loin">Aller plus loin<a class="anchor-link" href="#Aller-plus-loin">&#182;</a></h2><p>La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez <a href="https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627">le tutoriel de towards datascience</a> (une source pas toujours excellente mais dans ce cas précis ça va.</p>
 <p>On fait du TAL ici ! Et langage ? Et bien en pratique c'est un peu plus compliqué à traiter que les images ou les nombres. On se penchera davantage dessus la prochaine fois, mais pour l'instant vous pouvez faire un peu de classification de documents avec <a href="https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html">le tutoriel de torchtext</a> (qui n'est pas une bibliothèque très souvent populaire, mais elle est bien utile ici. Microsoft propose <a href="https://docs.microsoft.com/en-us/learn/modules/intro-natural-language-processing-pytorch">un tutorial similaire</a>.</p>
 <p>Un peu de lecture : <a href="https://dl.acm.org/doi/10.5555/1953048.2078186">*Natural Language Processing (almost) from scratch</a> (Collobert et al., 2011).</p>
 
