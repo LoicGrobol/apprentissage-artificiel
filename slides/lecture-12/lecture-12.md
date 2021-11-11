@@ -21,7 +21,7 @@ Cours 12 : Réseaux de neurones
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-11-09
+2021-11-10
 <!-- #endregion -->
 
 ```python
@@ -83,7 +83,7 @@ def perceptron(inpt, weights):
     - `inpt` un tableau numpy de dimension $n$
     - `weights` un tableau numpy de dimention $n+1$
     
-    Sortie: un tableau numpy de type booléen et de dimentions $0$
+    Sortie: un tableau numpy de type booléen et de dimensions $0$
     """
     return (np.inner(weights[1:], inpt) + weights[0]) > 0
 ```
@@ -109,7 +109,7 @@ Les ambitions initiales étaient grandes
 > New York Times, rappporté par Olazaran (1996)
 
 
-C'est par exemple assez facile de construire des neurones qui réalisent les opérations logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et $\operatorname{NON}$ :
+C'est par exemple assez facile de construire un qui réalis l'opération logique élémentaire $\operatorname{ET}$ :
 
 ```python
 and_weights = np.array([-0.6, 0.5, 0.5])
@@ -119,6 +119,46 @@ for x_i in [0, 1]:
         out = perceptron([x_i, y_i], and_weights).astype(int)
         print(f"{x_i}\t{y_i}\t{out}")
 ```
+
+Ça marche bien parce que c'est un problème **linéairement séparable** : si on représente $x$ et $y$ dans le plan, on peut tracer une droite qui sépare la parties où $x\operatorname{ET}y$ vaut $1$ et la partie où ça vaut $0$ :
+
+```python
+import tol_colors as tc
+
+x = np.array([0, 1])
+y = np.array([0, 1])
+X, Y = np.meshgrid(x, y)
+Z = np.logical_and(X, Y)
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.scatter(X, Y, c=Z, cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+Ici voilà les valeurs que renvoie notre neurone :
+
+```python
+import tol_colors as tc
+
+x = np.linspace(0, 1, 1000)
+y = np.linspace(0, 1, 1000)
+X, Y = np.meshgrid(x, y)
+Z = 0.5*X + 0.5*Y - 0.6 > 0
+
+fig = plt.figure(dpi=200)
+
+heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
+plt.colorbar(heatmap)
+plt.show()
+```
+
+On confirme : ça marche !
+
+
+Ça marche aussi très bien pour $\operatorname{OU}$ et $\operatorname{NON}$
+
 
 <!-- TODO: ceci pourrait être un exo -->
 
@@ -172,7 +212,7 @@ plt.show()
 ```
 
 
-Si on l'étend à tout le plan pour mieux voir
+Si on l'étend à tout le plan pour mieux voir en prenant $0.5$ comme frontière pour *vrai* :
 
 
 ```python
@@ -190,7 +230,8 @@ plt.colorbar(heatmap)
 plt.show()
 ```
 
-On voit clairement le hic : ce n'est pas un problème linéairement séparable, donc un classifieur linéaire ne sera jamais capable de le résoudre.
+On voit clairement le hic : ce n'est pas un problème linéairement séparable, donc un classifieur
+linéaire ne sera jamais capable de le résoudre.
 
 
 ## Réseaux de neurones
@@ -198,7 +239,8 @@ On voit clairement le hic : ce n'est pas un problème linéairement séparable
 Comment on peut s'en sortir ? En combinant des neurones !
 
 
-On sait faire les portes logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et $\operatorname{NON}$, or on a
+On sait faire les portes logiques élémentaires $\operatorname{ET}$, $\operatorname{OU}$ et
+$\operatorname{NON}$, or on a
 
 $$\begin{equation}
     x \operatorname{XOR} y = (x \operatorname{OU} y)\quad\operatorname{ET}\quad\operatorname{NON}(x \operatorname{ET} y)
@@ -213,7 +255,8 @@ $$\begin{equation}
 </small>
 
 
-On peut donc avoir $\operatorname{XOR}$ non pas avec un seul neurone, mais avec plusieurs neurones mis en **réseau**
+On peut donc avoir $\operatorname{XOR}$ non pas avec un seul neurone, mais avec plusieurs neurones
+mis en **réseau**
 
 ![](figures/xor/xor.svg)
 
@@ -221,9 +264,13 @@ Ou, en écrivant les termes de biais dans les neurones et en ajoutant un neurone
 
 ![](figures/xor_ffnn/xor_ffnn.svg)
 
-On voit ici appraître une structure en plusieurs couches (une d'entrée, une de sortie et trois intermédiaires) où chaque neurone prend en entrée les sorties de tous les neurones de la couche précédente.
+On voit ici appraître une structure en plusieurs couches (une d'entrée, une de sortie et trois
+intermédiaires) où chaque neurone prend en entrée les sorties de tous les neurones de la couche
+précédente.
 
-On appelle cette structure un réseau de neurones **complètement connecté** ou **dense**. On parle aussi un peu abusivement de *perceptron multicouches*. En anglais _**multilayer perceptron**_ ou _**feedforward neural network**_.
+On appelle cette structure un réseau de neurones **complètement connecté** ou **dense**. On parle
+aussi un peu abusivement de *perceptron multicouches*. En anglais _**multilayer perceptron**_ ou
+_**feedforward neural network**_.
 
 
 Voyons sa frontière de décision
@@ -259,7 +306,10 @@ Enfin ça marche pour les coins, mais c'est tout ce qui nous intéressait !
 
 ## Les couches
 
-Une autre façon de voir ces couches neuronales qui va être bien pratique pour la suite, c'est de voir chaque couche comme une fonction qui renvoie autant de sorties qu'elle a de neurones et prend autant d'entrées qu'il y a de neurones dans la couche précédente. Par exemple la première couche notre réseau $\operatorname{XOR}$ peut s'écrire comme :
+Une autre façon de voir ces couches neuronales qui va être bien pratique pour la suite, c'est de
+voir chaque couche comme une fonction qui renvoie autant de sorties qu'elle a de neurones et prend
+autant d'entrées qu'il y a de neurones dans la couche précédente. Par exemple la première couche
+notre réseau $\operatorname{XOR}$ peut s'écrire comme :
 
 ```python
 def layer1(inpt):
@@ -338,13 +388,19 @@ def layer(inpt, weight, bias):
 layer([0, 1], [[0.5, 0.5], [1, 1]], [-0.5, -0.6])
 ```
 
-Cette dernière formulation est celle qu'on utilise en général, elle a le gros avantage de très bien se paralléliser, et même, si on dispose de matériel spécialisé (comme des cartes graphiques) de bénéficier d'accélérations supplémentaires (voir par exemple Vuduc et Choi ([2013](https://jeewhanchoi.github.io/publication/pdf/brief_history.pdf)) pour la culture).
+Cette dernière formulation est celle qu'on utilise en général, elle a le gros avantage de très bien
+se paralléliser, et même, si on dispose de matériel spécialisé, comme des cartes graphiques) de
+bénéficier d'accélérations supplémentaires (voir par exemple Vuduc et Choi
+([2013](https://jeewhanchoi.github.io/publication/pdf/brief_history.pdf)) pour la culture).
 
 
-Elle permet aussi de facilement manipuler les tailles des couches : une couche à $n$ entrées et $m$ sorties correspond à une matrice de poids de taille $m×n$ et un vecteur de biais de taille $m$.
+Elle permet aussi de facilement manipuler les tailles des couches : une couche à $n$ entrées et $m$
+sorties correspond à une matrice de poids de taille $m×n$ et un vecteur de biais de taille $m$.
 
 
-Une dernière subtilité ? Pour matérialiser le concept de couche et éviter d'avoir à passer en permanence des poids, on utilise en général des classes. Voici notre réseau $\operatorname{XOR}$ réécrit en objet :
+Une dernière subtilité ? Pour matérialiser le concept de couche et éviter d'avoir à passer en
+permanence des poids, on utilise en général des classes. Voici notre réseau $\operatorname{XOR}$
+réécrit en objet :
 
 ```python
 class Layer:
@@ -356,7 +412,11 @@ class Layer:
     def __call__(self, inpt):
         return ((np.matmul(self.weight, inpt) + self.bias) > 0).astype(int)
     
-layer1 = Layer(np.array([[0.5, 0.5], [1, 1]]), np.array([-0.6, -0.5]))
+layer1 = Layer(
+    np.array([[0.5, 0.5], [1, 1]]),
+    np.array([-0.6, -0.5]),
+)
+display(layer1([0,1]))
 layer2 = Layer(np.array([[-1, 0], [0, 1]]), np.array([1, 0]))
 layer3 = Layer(np.array([0.5, 0.5]), np.array(-0.6))
 
@@ -399,7 +459,9 @@ for x_i in [0, 1]:
 
 ## Non-linearités
 
-Comme pour les classifieurs logistiques, on aime bien en général avoir une décision qui ne soit pas tout ou rien mais puisse prédire des nombres, pour ça on peut remplacer le `> 0` dans ce qui précède par la fonction logistique
+Comme pour les classifieurs logistiques, on aime bien en général avoir une décision qui ne soit pas
+tout ou rien mais puisse prédire des nombres, pour ça on peut remplacer le `> 0` dans ce qui précède
+par la fonction logistique
 
 ```python
 def sigmoid(x):
@@ -423,7 +485,8 @@ for x_i in [0, 1]:
         print(f"{x_i}\t{y_i}\t{out}")
 ```
 
-On peut aussi l'imaginer comme la succession d'une couche purement linéaire et d'une couche qui applique la fonction logistique sur ses entrées coordonnée par coordonnée :
+On peut aussi l'imaginer comme la succession d'une couche purement linéaire et d'une couche qui
+applique la fonction logistique sur ses entrées coordonnée par coordonnée :
 
 ```python
 class LinearLayer:
@@ -455,9 +518,13 @@ for x_i in [0, 1]:
         print(f"{x_i}\t{y_i}\t{out}")
 ```
 
-Dans le cas général, on dit que la fonction logistique dans ce réseau est une **non-linéarité** ou **activation**, c'est-à-dire une fonction non-linéaire appliquée coordonnée par coordonnée aux sorties d'une couche neuronale. On peut en choisir une autre, selon ce qu'on veut obtenir.
+Dans le cas général, on dit que la fonction logistique dans ce réseau est une **non-linéarité** ou
+**activation**, c'est-à-dire une fonction non-linéaire appliquée coordonnée par coordonnée aux
+sorties d'une couche neuronale. On peut en choisir une autre, selon ce qu'on veut obtenir.
 
-Pour les couches de sorties, c'est souvent l'application ciblée qui va conditionner ce choix, pour les couches internes, dites **couches cachées**, elle conditionnent la capacité d'apprentissage du réseau. Voici quelques uns des exemples les plus courants :
+Pour les couches de sorties, c'est souvent l'application ciblée qui va conditionner ce choix, pour
+les couches internes, dites **couches cachées**, elle conditionnent la capacité d'apprentissage du
+réseau. Voici quelques uns des exemples les plus courants :
 
 ```python
 x = np.linspace(-5, 5, 1000)
@@ -493,7 +560,9 @@ Vous reconnaissez celle qu'on a utilisé dans notre réseau $\operatorname{XOR}$
 Et il y en a [plein](https://mlfromscratch.com/activation-functions-explained) d'autres.
 
 
-En pratique, le choix de la bonne non-linéarité pour un réseau n'est pas encore bien compris : c'est un hyperparamètre à optimiser parmi d'autres. Ces dernières années on choisit plutôt par défaut la fonction rectifieur (dite un peu abusivement ReLU).
+En pratique, le choix de la bonne non-linéarité pour un réseau n'est pas encore bien compris : c'est
+un hyperparamètre à optimiser parmi d'autres. Ces dernières années on choisit plutôt par défaut la
+fonction rectifieur (dite un peu abusivement ReLU).
 
 
 Mais au fait, pourquoi on s'embête avec ça ? Ça ne suffit pas des couches linéaires ?
@@ -502,19 +571,33 @@ Mais au fait, pourquoi on s'embête avec ça ? Ça ne suffit pas des couches l
 Non.
 
 
-Si on se limite à des couches linéaires, nos réseaux ne peuvent exprimer que des fonctions linéaires. Même si on peut faire beaucoup de choses avec, on a souvent besoin de plus. Voyez par exemple ce que ça donne dans [le bac à sable de Tensorflow](https://playground.tensorflow.org).
+Si on se limite à des couches linéaires, nos réseaux ne peuvent exprimer que des fonctions
+linéaires. Même si on peut faire beaucoup de choses avec, on a souvent besoin de plus. Voyez par
+exemple ce que ça donne dans [le bac à sable de Tensorflow](https://playground.tensorflow.org).
 
 
-Si on utilise des non-linéarités, en revanche, nos réseaux deviennent beaucoup plus puissants. Beaucoup, **beaucoup** plus.
+Si on utilise des non-linéarités, en revanche, nos réseaux deviennent beaucoup plus puissants.
+Beaucoup, **beaucoup** plus.
 
 
-Le [**Théorème d'approximation universelle**](https://en.wikipedia.org/wiki/Universal_approximation_theorem), dont il existe de nombreuses versions (Pinkus ([1999](https://pinkus.net.technion.ac.il/files/2021/02/acta.pdf)) en fait une très bonne revue) dit en substance qu'à condition d'avoir assez de couches, ou des couches suffisament larges et d'utiliser des non-linéarités continues qui ne soient pas des polynômes, étant donnée une fonction continue $f$, on peut toujours trouver un réseau de neurones qui soit aussi près qu'on veut de $f$.
+Le [**Théorème d'approximation
+universelle**](https://en.wikipedia.org/wiki/Universal_approximation_theorem), dont il existe de
+nombreuses versions (Pinkus, [1999](https://pinkus.net.technion.ac.il/files/2021/02/acta.pdf)) en
+fait une très bonne revue) dit en substance qu'à condition d'avoir assez de couches, ou des couches
+suffisament larges et d'utiliser des non-linéarités continues qui ne soient pas des polynômes, étant
+donnée une fonction continue $f$, on peut toujours trouver un réseau de neurones qui soit aussi près
+qu'on veut de $f$.
 
 
-Bien que ça ne dise rien de la capacité des réseaux de neurones à *apprendre* des fonctions arbitraires, c'est une des motivations théoriques principales à leur utilisation : au moins, contrairement à un classifieur logistique par exemple, ils sont capables de représenter les fonctions qui nous intéressent.
+Bien que ça ne dise rien de la capacité des réseaux de neurones à *apprendre* des fonctions
+arbitraires, c'est une des motivations théoriques principales à leur utilisation : au moins,
+contrairement à un classifieur logistique par exemple, ils sont capables de représenter les
+fonctions qui nous intéressent.
 
 
-Dernière précision : les couches linéaires et les non-linéarités par coordonnées ne sont pas les seules types de couches qu'on utilise en pratique. Notablement, pour construire des classifieurs multiclasses on utilise souvent la fonction $\operatorname{softmax}$ comme dernière couche.
+Dernière précision : les couches linéaires et les non-linéarités par coordonnées ne sont pas les
+seules types de couches qu'on utilise en pratique. Notablement, pour construire des classifieurs
+multiclasses on utilise souvent la fonction $\operatorname{softmax}$ comme dernière couche.
 
 $$\begin{equation}
     \operatorname{softmax}(z_1, …, z_n)
@@ -557,11 +640,14 @@ classifier([0, 2, 1, 3, 7, 0.1, 0.5, -12, 2, 1, -0.5, -1, 10
             , -2, 0.128, -8])
 ```
 
-<small>[En pratique](https://ogunlao.github.io/2020/04/26/you_dont_really_know_softmax.html) comme $\operatorname{softmax}$ est toujours plutôt instable, on utilise plutôt $\log\operatorname{softmax}$, c'est toujours la même histoire.</small>
+<small>[En pratique](https://ogunlao.github.io/2020/04/26/you_dont_really_know_softmax.html) comme
+$\operatorname{softmax}$ est toujours plutôt instable, on utilise plutôt
+$\log\operatorname{softmax}$, c'est toujours la même histoire.</small>
 
 ## Apprendre un réseau de neurones
 
-Tout ça c'est bien gentil, mais encore une fois, on a choisi des poids à la main. Or notre objectif c'est d'**apprendre**.
+Tout ça c'est bien gentil, mais encore une fois, on a choisi des poids à la main. Or notre objectif
+c'est d'**apprendre**.
 
 
 Comment on apprend un réseau de neurone ? Comment on détermine les poids à partir de données ?
@@ -573,10 +659,15 @@ Et bien c'est toujours la même recette pour l'apprentissage supervisé :
 - Apprendre par descente de gradient
 
 
-Les fonctions de coût ressemblent très fort à celles d'autres techniques d'apprentissage. En TAL, comme on s'en sort toujours plus ou moins pour se rammener à de la classification, on va en général utiliser la $\log$-vraisemblance négative, comme pour les classifieurs logistiques.
+Les fonctions de coût ressemblent très fort à celles d'autres techniques d'apprentissage. En TAL,
+comme on s'en sort toujours plus ou moins pour se rammener à de la classification, on va en général
+utiliser la $\log$-vraisemblance négative, comme pour les classifieurs logistiques.
 
 
-Concrètement, qu'est-ce que ça donne ? Et bien si on a un réseau de neurones $f$ pour un problème à $n$ classes (donc qui renvoie en sortie des vecteurs normalisés de dimension $n$) et un exemple $(x, y)$ où $x$ est une entrée adaptée à $f$ et $1⩽y⩽n$ est la classe à prédire pour $x$, la loss de $f$ pour $(x, y)$ sera
+Concrètement, qu'est-ce que ça donne ? Et bien si on a un réseau de neurones $f$ pour un problème à
+$n$ classes (donc qui renvoie en sortie des vecteurs normalisés de dimension $n$) et un exemple $(x,
+y)$ où $x$ est une entrée adaptée à $f$ et $1⩽y⩽n$ est la classe à prédire pour $x$, la loss de $f$
+pour $(x, y)$ sera
 
 $$\begin{equation}
     L(f, x, y) = -\log\left(f(x)_y\right)
@@ -584,7 +675,8 @@ $$\begin{equation}
 
 où $f(x)_y$ est la $y$-ième coordonnée de $f(x)$.
 
-<small>C'est aussi pour ça qu'on aime bien utiliser le $\log\operatorname{softmax}$ : de toute façon on va vouloir calculer un $\log$ après.</small>
+<small>C'est aussi pour ça qu'on aime bien utiliser le $\log\operatorname{softmax}$ : de toute façon
+on va vouloir calculer un $\log$ après.</small>
 
 
 Ok, et le gradient ?
@@ -593,10 +685,14 @@ Ok, et le gradient ?
 Ça se corse un peu mais pas trop.
 
 
-On va utiliser les mêmes idées que celles qu'on a vu pour les classifieurs logistiques : on va considérer un paramètre $θ$ qui sera une concaténation de tous les poids de toutes les couches du réseau dans un gros vecteur et les les $L(f, x, y)$ comme des fonctions de $θ$.
+On va utiliser les mêmes idées que celles qu'on a vu pour les classifieurs logistiques : on va
+considérer un paramètre $θ$ qui sera une concaténation de tous les poids de toutes les couches du
+réseau dans un gros vecteur et les les $L(f, x, y)$ comme des fonctions de $θ$.
 
 
-Par bonheur, si les non-linéarités qu'on a choisi sont gentilles (et elles le sont, on les choisit pour), ces fonctions seront différentiables, c'est-à-dire qu'elles ont un gradient pour tout $(x, y)$ et on peut donc leur appliquer l'algorithme de descente de gradient stochastique.
+Par bonheur, si les non-linéarités qu'on a choisi sont gentilles (et elles le sont, on les choisit
+pour), ces fonctions seront différentiables, c'est-à-dire qu'elles ont un gradient pour tout $(x,
+y)$ et on peut donc leur appliquer l'algorithme de descente de gradient stochastique.
 
 
 Alors quel est le problème ?
@@ -608,27 +704,43 @@ Il y en a deux :
 2. Est-ce que l'algorithme fonctionne toujours ?
 
 
-Le point 1. n'est pas un problème, les fonctions en questions peuvent être compliquées, surtout si le réseau est profond, et caculer leur gradients à la main ça peut être pénible, mais heureusement on a des programmes de calcul symbolique qui ont la gentillesse de le faire pour nous. C'est ce qu'on appelle de la **différentiation automatique** dont on va voir un exemple juste après.
+Le point 1. n'est pas un problème, les fonctions en questions peuvent être compliquées, surtout si
+le réseau est profond, et caculer leur gradients à la main ça peut être pénible, mais heureusement
+on a des programmes de calcul symbolique qui ont la gentillesse de le faire pour nous. C'est ce
+qu'on appelle de la **différentiation automatique** dont on va voir un exemple juste après.
 
 
-Le point 2. est plus délicat en théorie : on a pas de garantie théorique que l'algo fonctionne toujours, ni même réellement d'estimation de son comportement. Mais **en pratique** ça a tendance à marcher la plupart du temps : si on applique l'algo de descente de gradient avec des hyperparamètres raisonnables et suffisament de données, on arrive à trouver des bons poids.
+Le point 2. est plus délicat en théorie : on a pas de garantie théorique que l'algo fonctionne
+toujours, ni même réellement d'estimation de son comportement. Mais **en pratique** ça a tendance à
+marcher la plupart du temps : si on applique l'algo de descente de gradient avec des hyperparamètres
+raisonnables et suffisament de données, on arrive à trouver des bons poids.
 
-Un [certain](https://ruder.io/optimizing-gradient-descent/) nombre de raffinement de cet algo (que vous trouverez souvent sous le nom *SGD* pour _**S**tochastic **G**radient **D**escent_) ont été développé pour essayer que ça marche le mieux possible le plus souvent possible. Deux particulièrement notables sont l'accelération de Nesterov et l'estimation adaptative des moments ([Adam](https://arxiv.org/abs/1412.6980)).
+Un [certain](https://ruder.io/optimizing-gradient-descent/) nombre de raffinement de cet algo (que
+vous trouverez souvent sous le nom *SGD* pour _**S**tochastic **G**radient **D**escent_) ont été
+développé pour essayer que ça marche le mieux possible le plus souvent possible. Deux
+particulièrement notables sont l'accelération de Nesterov et l'estimation adaptative des moments
+([Adam](https://arxiv.org/abs/1412.6980)).
 
 ## En pratique 🔥
 
-En pratique, comme on ne va certainement pas implémenter tout ça à la main ici (même si je vous recommande de le faire une fois de votre côté pour bien comprendre comment ça marche), on va se reposer sur la bibliothèque de réseaux de neurones la plus utilisée pour le TAL ces dernières (et probablement aussi ces prochaines) années : [Pytorch](pytorch.org).
+En pratique, comme on ne va certainement pas implémenter tout ça à la main ici (même si je vous
+recommande de le faire une fois de votre côté pour bien comprendre comment ça marche), on va se
+reposer sur la bibliothèque de réseaux de neurones la plus utilisée pour le TAL ces dernières (et
+probablement aussi ces prochaines) années : [Pytorch](pytorch.org).
 
 ```python
 import torch
 ```
 
-Pytorch fait plein de choses (allez voir la [doc](https://pytorch.org/docs)), mais pour commencer, on va l'utiliser comme une collection de couches neuronales et une bibliothèque de calcul vectoriel (comme numpy).
+Pytorch fait plein de choses (allez voir la [doc](https://pytorch.org/docs)), mais pour commencer,
+on va l'utiliser comme une collection de couches neuronales et une bibliothèque de calcul vectoriel
+(comme numpy).
 
 ### Les tenseurs
 
 
-L'objet de base dans Pytorch est le **tenseur** `torch.tensor`, qui est un autre nom pour ce que numpy appelle un `array`.
+L'objet de base dans Pytorch est le **tenseur** `torch.tensor`, qui est un autre nom pour ce que
+numpy appelle un `array`.
 
 ```python
 t = torch.tensor([1,2,3,4])
@@ -645,13 +757,24 @@ t = torch.tensor(
 t
 ```
 
+D'ailleurs on peut facilement faire des allers-retours entre Pytorch et Numpy
+
+```python
+torch.tensor([1,2,3,4]).numpy()
+```
+
+```python
+torch.from_numpy(np.array([1,2,3,4]))
+```
+
 Comme les tableaux numpy, on peut leur appliquer des opérations
 
 ```python
 torch.tensor([1,2,3,4]) + torch.tensor([1,5,-2,-1])
 ```
 
-Et la plupart des opérations définies dans numpy sont disponible ici aussi (Pytorch essaie autant que possible d'être compatible)
+Et la plupart des opérations définies dans numpy sont disponible ici aussi (Pytorch essaie autant
+que possible d'être compatible)
 
 ```python
 torch.sum(torch.tensor([1,2,3,4]))
@@ -683,10 +806,13 @@ len(dir(torch.nn))
 En pratique, Pytorch ne fait pas la différence entre un réseau et une couche : tout ça sera un `torch.nn.Module`. L'avantage c'est que ça permet facilement d'interconnecter des réseaux entre eux.
 
 
-La couche la plus importante pour nous ici c'est la couche [`torch.nn.Linear`](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) qui est évidemment la couche linéaire complètement connectée qu'on a appellé `LinearLayer` plus haut.
+La couche la plus importante pour nous ici c'est la couche
+[`torch.nn.Linear`](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) qui est
+évidemment la couche linéaire complètement connectée qu'on a appellé `LinearLayer` plus haut.
 
 
-Voici une réimplémentation du réseau $\operatorname{XOR}$ en Pytorch (c'est un peu laborieux parce que Pytorch n'est pas vraiment prévu pour coder des poids en dur, mais c'est possible !)
+Voici une réimplémentation du réseau $\operatorname{XOR}$ en Pytorch (c'est un peu laborieux parce
+que Pytorch n'est pas vraiment prévu pour coder des poids en dur, mais c'est possible !)
 
 ```python
 layer1 = torch.nn.Linear(2, 2)
@@ -758,7 +884,7 @@ import torch.optim
 xor_net = get_xor_net()
 # SGD est déjà implémenté, sous la forme d'un objet auquel on
 # passe les paramètres à optimiser : ici les poids du réseau
-optim = torch.optim.SGD(xor_net.parameters(), lr=0.01)
+optim = torch.optim.SGD(xor_net.parameters(), lr=0.03)
 
 print("Epoch\tLoss")
 
@@ -854,7 +980,7 @@ plt.show()
 
 ## Aller plus loin
 
-La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez [le tutoriel de towards datasciene](https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627) (une source pas toujours excellente mais dans ce cas précis ça va.
+La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez [le tutoriel de towards datascience](https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627) (une source pas toujours excellente mais dans ce cas précis ça va.
 
 On fait du TAL ici ! Et langage ? Et bien en pratique c'est un peu plus compliqué à traiter que les images ou les nombres. On se penchera davantage dessus la prochaine fois, mais pour l'instant vous pouvez faire un peu de classification de documents avec [le tutoriel de torchtext](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html) (qui n'est pas une bibliothèque très souvent populaire, mais elle est bien utile ici. Microsoft propose [un tutorial similaire](https://docs.microsoft.com/en-us/learn/modules/intro-natural-language-processing-pytorch).
 
