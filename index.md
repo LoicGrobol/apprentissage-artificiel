@@ -146,6 +146,10 @@ Pour la fois prochaine :
 - [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
 chapitre 9 « *Deep Learning Architectures for Sequence Processing* ».
 
+### 2021-11—14 — Réseaux de neurones pour le traitement de séquences
+
+- [Slides 13](slides/lecture-13/lecture-13.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-13/lecture-13.md)
 
 
 ## Lire les slides en local
