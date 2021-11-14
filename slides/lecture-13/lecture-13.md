@@ -125,7 +125,7 @@ Finalement on construit un dictionnaire pour avoir la transformation inverse
 
 ```python
 token_to_idx = {t: i for i, t in enumerate(idx_to_token)}
-token_to_idx
+token_to_idx["demain"]
 ```
 
 Une fonction pour lire le dataset et récupérer les tokens et les POS comme tenseurs entiers. Le seul souci ici c'est qu'on a des mots inconnus et qu'il faudra leur attribuer un indice aussi : on va leur donner tous `len(idx_to_tokens)`.
@@ -270,6 +270,10 @@ trained_classifier.predict(["Le", "petit", "chat","est", "content", "."])
 ```
 
 ```python
+trained_classifier.predict(["Le", "ministre", "prend", "la", "fuite"])
+```
+
+```python
 trained_classifier.predict(["L'", "état", "proto-fasciste", "applique", "une", "politique", "délétère", "."])
 ```
 
@@ -277,14 +281,12 @@ Problèmes :
 
 - Pas d'accès au contexte : en fait on apprend un dictionnaire !
 - Sans accès au contexte, le réseau a peu d'infos pour décider et donc a tendance à tomber dans l'heuristique de la classe majoritaire.
+- Surtout pour les mots inconnus
 
 
 Un peu mieux : on va donner accès non seulement au mots mais aussi aux contexte gauches et droits
 
 ```python
-from typing import Sequence
-import torch.nn
-
 class ContextClassifier(torch.nn.Module):
     def __init__(
         self,
@@ -382,6 +384,201 @@ On va voir une famille de réseaux de neurones qui permettent de modéliser ça 
 
 ## Réseaux de neurones récurrents
 
+
+Un tagger avec une couche cachée récurrente
+
+```python
+class RNNTagger(torch.nn.Module):
+    def __init__(
+        self,
+        vocab_size: int,
+        embeddings_dim: int,
+        hidden_size: int,
+        n_classes: int
+    ):
+        super().__init__()
+        self.embeddings = torch.nn.Embedding(vocab_size+1, embeddings_dim)
+        self.hidden = torch.nn.RNN(embeddings_dim, hidden_size, batch_first=True)
+        self.output = torch.nn.Linear(hidden_size, n_classes)
+        self.softmax = torch.nn.LogSoftmax(dim=-1)
+    
+    def forward(self, inpt):
+        emb = self.embeddings(inpt)
+        # La couche `RNN` attends des entrées de dimension
+        # taille de batch×longueur de séquence×features
+        emb = emb.view(1, emb.shape[0], emb.shape[1])
+        # La sortie est un couple avec les sorties pour chacun des éléments
+        # de la séquence, plus l'état récurrent final
+        hid, _ = self.hidden(emb)
+        # `hid` est aussi de dimension taille de batch×longueur de séquence×features
+        # Ici la taille de batch est 1, on l'enlève
+        hid = hid.view(hid.shape[1], hid.shape[2])
+        out = self.output(hid)
+        return self.softmax(out)
+    
+    def predict(self, tokens: Sequence[str]) -> Sequence[str]:
+        """Predict the POS for a tokenized sequence"""
+        words_idx = encode(tokens)
+        with torch.no_grad():
+            out = self(words_idx)
+        out_predictions = out.argmax(dim=-1)
+        return get_pos_names(out_predictions)
+
+display(train_dataset[5]["tokens"])
+source, target = vectorize(train_dataset[5])
+display(source)
+display(target)
+display(get_pos_names(target))
+recurrent_tagger = RNNTagger(len(idx_to_token), 128, 512, len(upos_names))
+recurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
+```
+
+```python
+recurrent_tagger = RNNTagger(len(idx_to_token), 128, 256, len(upos_names))
+train_network(
+    recurrent_tagger,
+    [vectorize(row) for row in train_dataset],
+    [vectorize(row) for row in dataset["validation"]],
+    8,
+)
+```
+
+```python
+recurrent_tagger.predict(["Le", "chat", "est", "content"])
+```
+
+```python
+recurrent_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
+```
+
+```python
+class BiRNNTagger(torch.nn.Module):
+    def __init__(
+        self,
+        vocab_size: int,
+        embeddings_dim: int,
+        hidden_size: int,
+        n_classes: int
+    ):
+        super().__init__()
+        self.embeddings = torch.nn.Embedding(vocab_size+1, embeddings_dim)
+        self.hidden = torch.nn.RNN(
+            embeddings_dim,
+            hidden_size,
+            batch_first=True,
+            bidirectional=True
+        )
+        # C'est un RNN bidirectionnel, donc il sort deux fois plus de features
+        self.output = torch.nn.Linear(2*hidden_size, n_classes)
+        self.softmax = torch.nn.LogSoftmax(dim=-1)
+    
+    def forward(self, inpt):
+        emb = self.embeddings(inpt)
+        emb = emb.view(1, emb.shape[0], emb.shape[1])
+        hid, _ = self.hidden(emb)
+        hid = hid.view(hid.shape[1], hid.shape[2])
+        out = self.output(hid)
+        return self.softmax(out)
+    
+    def predict(self, tokens: Sequence[str]) -> Sequence[str]:
+        """Predict the POS for a tokenized sequence"""
+        words_idx = encode(tokens)
+        with torch.no_grad():
+            out = self(words_idx)
+        out_predictions = out.argmax(dim=-1)
+        return get_pos_names(out_predictions)
+
+display(train_dataset[5]["tokens"])
+source, target = vectorize(train_dataset[5])
+display(source)
+display(target)
+display(get_pos_names(target))
+birecurrent_tagger = BiRNNTagger(len(idx_to_token), 128, 512, len(upos_names))
+birecurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
+```
+
+```python
+birecurrent_tagger = BiRNNTagger(len(idx_to_token), 128, 256, len(upos_names))
+train_network(
+    birecurrent_tagger,
+    [vectorize(row) for row in train_dataset],
+    [vectorize(row) for row in dataset["validation"]],
+    8,
+)
+```
+
+```python
+birecurrent_tagger.predict(["Le", "chat", "est", "content"])
+```
+
+```python
+birecurrent_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
+```
+
 ## LSTM
+
+```python
+class BiLSTMTagger(torch.nn.Module):
+    def __init__(
+        self,
+        vocab_size: int,
+        embeddings_dim: int,
+        hidden_size: int,
+        n_classes: int
+    ):
+        super().__init__()
+        self.embeddings = torch.nn.Embedding(vocab_size+1, embeddings_dim)
+        self.hidden = torch.nn.LSTM(
+            embeddings_dim,
+            hidden_size,
+            batch_first=True,
+            bidirectional=True
+        )
+        # C'est un RNN bidirectionnel, donc il sort deux fois plus de features
+        self.output = torch.nn.Linear(2*hidden_size, n_classes)
+        self.softmax = torch.nn.LogSoftmax(dim=-1)
+    
+    def forward(self, inpt: torch.Tensor) -> torch.Tensor:
+        emb = self.embeddings(inpt)
+        emb = emb.view(1, emb.shape[0], emb.shape[1])
+        hid, _ = self.hidden(emb)
+        hid = hid.view(hid.shape[1], hid.shape[2])
+        out = self.output(hid)
+        return self.softmax(out)
+    
+    def predict(self, tokens: Sequence[str]) -> Sequence[str]:
+        """Predict the POS for a tokenized sequence"""
+        words_idx = encode(tokens)
+        with torch.no_grad():
+            out = self(words_idx)
+        out_predictions = out.argmax(dim=-1)
+        return get_pos_names(out_predictions)
+
+display(train_dataset[5]["tokens"])
+source, target = vectorize(train_dataset[5])
+display(source)
+display(target)
+display(get_pos_names(target))
+bilstm_tagger = BiLSTMTagger(len(idx_to_token), 128, 256, len(upos_names))
+bilstm_tagger.predict(["Le", "petit", "chat", "est", "content"])
+```
+
+```python
+bilstm_tagger = BiLSTMTagger(len(idx_to_token), 128, 256, len(upos_names))
+train_network(
+    bilstm_tagger,
+    [vectorize(row) for row in train_dataset],
+    [vectorize(row) for row in dataset["validation"]],
+    8,
+)
+```
+
+```python
+bilstm_tagger.predict(["Le", "chat", "est", "content"])
+```
+
+```python
+bilstm_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
+```
 
 ## Transformers

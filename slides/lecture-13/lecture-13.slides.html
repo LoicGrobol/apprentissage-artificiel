@@ -14954,7 +14954,7 @@ div.jp-OutputPrompt {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">)}</span>
-<span class="n">token_to_idx</span>
+<span class="n">token_to_idx</span><span class="p">[</span><span class="s2">&quot;demain&quot;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -15167,6 +15167,20 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trained_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;ministre&quot;</span><span class="p">,</span> <span class="s2">&quot;prend&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;fuite&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trained_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;L&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">,</span> <span class="s2">&quot;proto-fasciste&quot;</span><span class="p">,</span> <span class="s2">&quot;applique&quot;</span><span class="p">,</span> <span class="s2">&quot;une&quot;</span><span class="p">,</span> <span class="s2">&quot;politique&quot;</span><span class="p">,</span> <span class="s2">&quot;délétère&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">])</span>
 </pre></div>
 
@@ -15182,6 +15196,7 @@ div.jp-OutputPrompt {
 <ul>
 <li>Pas d'accès au contexte : en fait on apprend un dictionnaire !</li>
 <li>Sans accès au contexte, le réseau a peu d'infos pour décider et donc a tendance à tomber dans l'heuristique de la classe majoritaire.</li>
+<li>Surtout pour les mots inconnus</li>
 </ul>
 
 </div>
@@ -15197,10 +15212,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span>
-
-<span class="k">class</span> <span class="nc">ContextClassifier</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ContextClassifier</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vocab_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -15356,8 +15368,326 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Un tagger avec une couche cachée récurrente</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">RNNTagger</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">vocab_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">embeddings_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">embeddings_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">embeddings_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inpt</span><span class="p">):</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inpt</span><span class="p">)</span>
+        <span class="c1"># La couche `RNN` attends des entrées de dimension</span>
+        <span class="c1"># taille de batch×longueur de séquence×features</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># La sortie est un couple avec les sorties pour chacun des éléments</span>
+        <span class="c1"># de la séquence, plus l&#39;état récurrent final</span>
+        <span class="n">hid</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span>
+        <span class="c1"># `hid` est aussi de dimension taille de batch×longueur de séquence×features</span>
+        <span class="c1"># Ici la taille de batch est 1, on l&#39;enlève</span>
+        <span class="n">hid</span> <span class="o">=</span> <span class="n">hid</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">hid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Predict the POS for a tokenized sequence&quot;&quot;&quot;</span>
+        <span class="n">words_idx</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">words_idx</span><span class="p">)</span>
+        <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
+<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+<span class="n">recurrent_tagger</span> <span class="o">=</span> <span class="n">RNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">recurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">recurrent_tagger</span> <span class="o">=</span> <span class="n">RNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">train_network</span><span class="p">(</span>
+    <span class="n">recurrent_tagger</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;validation&quot;</span><span class="p">]],</span>
+    <span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">recurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">recurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;ministre&quot;</span><span class="p">,</span> <span class="s2">&quot;prend&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;fuite&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">BiRNNTagger</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">vocab_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">embeddings_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">embeddings_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span>
+            <span class="n">embeddings_dim</span><span class="p">,</span>
+            <span class="n">hidden_size</span><span class="p">,</span>
+            <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="c1"># C&#39;est un RNN bidirectionnel, donc il sort deux fois plus de features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inpt</span><span class="p">):</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inpt</span><span class="p">)</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">hid</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span>
+        <span class="n">hid</span> <span class="o">=</span> <span class="n">hid</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">hid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Predict the POS for a tokenized sequence&quot;&quot;&quot;</span>
+        <span class="n">words_idx</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">words_idx</span><span class="p">)</span>
+        <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
+<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+<span class="n">birecurrent_tagger</span> <span class="o">=</span> <span class="n">BiRNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">birecurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birecurrent_tagger</span> <span class="o">=</span> <span class="n">BiRNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">train_network</span><span class="p">(</span>
+    <span class="n">birecurrent_tagger</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;validation&quot;</span><span class="p">]],</span>
+    <span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birecurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birecurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;ministre&quot;</span><span class="p">,</span> <span class="s2">&quot;prend&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;fuite&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="LSTM">LSTM<a class="anchor-link" href="#LSTM">&#182;</a></h2>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">BiLSTMTagger</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">vocab_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">embeddings_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">embeddings_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span>
+            <span class="n">embeddings_dim</span><span class="p">,</span>
+            <span class="n">hidden_size</span><span class="p">,</span>
+            <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="c1"># C&#39;est un RNN bidirectionnel, donc il sort deux fois plus de features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inpt</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inpt</span><span class="p">)</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">hid</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span>
+        <span class="n">hid</span> <span class="o">=</span> <span class="n">hid</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">hid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Predict the POS for a tokenized sequence&quot;&quot;&quot;</span>
+        <span class="n">words_idx</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">words_idx</span><span class="p">)</span>
+        <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
+<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+<span class="n">bilstm_tagger</span> <span class="o">=</span> <span class="n">BiLSTMTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">bilstm_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bilstm_tagger</span> <span class="o">=</span> <span class="n">BiLSTMTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<span class="n">train_network</span><span class="p">(</span>
+    <span class="n">bilstm_tagger</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;validation&quot;</span><span class="p">]],</span>
+    <span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bilstm_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bilstm_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;ministre&quot;</span><span class="p">,</span> <span class="s2">&quot;prend&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;fuite&quot;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
