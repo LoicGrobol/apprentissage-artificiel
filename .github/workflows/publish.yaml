@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('${{ github.workspace }}/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ steps.transfo-install.outputs.dir }}
-          key: ${{ runner.os }}-transformers-${{ hashFiles('${{ github.workspace }}/requirements.txt') }}
+          key: ${{ runner.os }}-transformers-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-transformers-
       
