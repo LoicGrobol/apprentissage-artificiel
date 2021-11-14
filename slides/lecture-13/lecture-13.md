@@ -534,7 +534,6 @@ class BiLSTMTagger(torch.nn.Module):
             batch_first=True,
             bidirectional=True
         )
-        # C'est un RNN bidirectionnel, donc il sort deux fois plus de features
         self.output = torch.nn.Linear(2*hidden_size, n_classes)
         self.softmax = torch.nn.LogSoftmax(dim=-1)
     
@@ -582,3 +581,68 @@ bilstm_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
 ```
 
 ## Transformers
+
+```python
+class TransformerTagger(torch.nn.Module):
+    def __init__(
+        self,
+        vocab_size: int,
+        embeddings_dim: int,
+        hidden_size: int,
+        n_classes: int,
+        num_layers: int=1,
+        num_heads: int=1,
+    ):
+        super().__init__()
+        self.embeddings = torch.nn.Embedding(vocab_size+1, embeddings_dim)
+        transformer_layer = torch.nn.TransformerEncoderLayer(
+            d_model=embeddings_dim,
+            dim_feedforward=hidden_size,
+            nhead=num_heads,
+            batch_first=True,
+        )
+        self.hidden = torch.nn.TransformerEncoder(transformer_layer, num_layers=num_layers)
+        self.output = torch.nn.Linear(embeddings_dim, n_classes)
+        self.softmax = torch.nn.LogSoftmax(dim=-1)
+    
+    def forward(self, inpt: torch.Tensor) -> torch.Tensor:
+        emb = self.embeddings(inpt)
+        emb = emb.view(1, emb.shape[0], emb.shape[1])
+        hid = self.hidden(emb)
+        hid = hid.view(hid.shape[1], hid.shape[2])
+        out = self.output(hid)
+        return self.softmax(out)
+    
+    def predict(self, tokens: Sequence[str]) -> Sequence[str]:
+        """Predict the POS for a tokenized sequence"""
+        words_idx = encode(tokens)
+        with torch.no_grad():
+            out = self(words_idx)
+        out_predictions = out.argmax(dim=-1)
+        return get_pos_names(out_predictions)
+
+display(train_dataset[5]["tokens"])
+source, target = vectorize(train_dataset[5])
+display(source)
+display(target)
+display(get_pos_names(target))
+transformer_tagger = TransformerTagger(len(idx_to_token), 128, 256, len(upos_names))
+transformer_tagger.predict(["Le", "petit", "chat", "est", "content"])
+```
+
+```python
+transformer_tagger = TransformerTagger(
+    len(idx_to_token),
+    128,
+    256,
+    len(upos_names),
+    num_layers=1,
+    num_heads=1,
+)
+train_network(
+    transformer_tagger,
+    [vectorize(row) for row in train_dataset],
+    [vectorize(row) for row in dataset["validation"]],
+    8,
+)
+```
