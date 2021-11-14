@@ -393,6 +393,19 @@ On va voir une famille de réseaux de neurones qui permettent de modéliser ça 
 ## Réseaux de neurones récurrents
 
 
+[![](http://dprogrammer.org/wp-content/uploads/2019/04/RNN_Core2-768x491.png)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+
+[![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+
+Illustrations :
+
+- [RNN, LSTM & GRU](http://dprogrammer.org/rnn-lstm-gru)
+- [Les RNN, les LSTM, les GRU et ELMo](https://lbourdois.github.io/blog/nlp/RNN-LSTM-GRU-ELMO/)
+- [Illustrated Guide to RNN, LSTM, and Transformers](http://sungsoo.github.io/2021/06/29/illustrated-guide.html) (vidéo)
+
+
 Un tagger avec une couche cachée récurrente
 
 ```python
@@ -529,6 +542,28 @@ birecurrent_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
 
 ## LSTM
 
+
+Une bonne source : [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+
+[![Schéma traditionnel d'un LSTM](https://upload.wikimedia.org/wikipedia/commons/6/63/Long_Short-Term_Memory.svg)](https://en.wikipedia.org/wiki/File:Long_Short-Term_Memory.svg)
+
+
+[![](https://raw.githubusercontent.com/lbourdois/blog/master/assets/images/RNN-LSTM-GRU-ELMO/LSTM%20architechture.png)](https://lbourdois.github.io/blog/nlp/RNN-LSTM-GRU-ELMO/)
+
+
+[![](http://dprogrammer.org/wp-content/uploads/2019/04/LSTM-Core-768x466.png)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+
+$$\begin{align}
+f_t &= \sigma_g(W_{f} x_t + U_{f} h_{t-1} + b_f) \\
+i_t &= \sigma_g(W_{i} x_t + U_{i} h_{t-1} + b_i) \\
+o_t &= \sigma_g(W_{o} x_t + U_{o} h_{t-1} + b_o) \\
+\tilde{c}_t &= \sigma_c(W_{c} x_t + U_{c} h_{t-1} + b_c) \\
+c_t &= f_t \circ c_{t-1} + i_t \circ \tilde{c}_t \\
+h_t &= o_t \circ \sigma_h(c_t)
+\end{align}$$
+
 ```python
 class BiLSTMTagger(torch.nn.Module):
     def __init__(
@@ -594,7 +629,19 @@ bilstm_tagger.predict(["Le", "chat", "est", "content"])
 bilstm_tagger.predict(["Le", "ministre", "prend", "la", "fuite"])
 ```
 
+## Mécanisme d'attention
+
 ## Transformers
+
+
+[![image.png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_14_0.png)](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
+
+
+Quelques visus et explications :
+
+- [Seq2seq avec attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+- [The annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
+ 
 
 ```python
 class TransformerTagger(torch.nn.Module):
@@ -661,4 +708,62 @@ train_network(
     [vectorize(row) for row in dataset["validation"]],
     8,
 )
+```
+
+## Représentations vectorielles contextuelles
+
+```python
+import transformers
+```
+
+### Tokenization en sous-mots
+
+```python
+tok = transformers.AutoTokenizer.from_pretrained("flaubert/flaubert_small_cased")
+tok.tokenize("Morgan reconnait l'existence du kiwi.")
+```
+
+### Obtenir des représentations vectorielles
+
+```python
+model = transformers.AutoModel.from_pretrained("flaubert/flaubert_small_cased")
+with torch.no_grad():
+    embeddings = model(**tok("Morgan reconnait l'existence du kiwi.", return_tensors="pt")).last_hidden_state
+display(embeddings)
+display(embeddings.shape)
+```
+
+### Représentations contextuelles
+
+```python
+display(tok.tokenize("Alex a de riches idées."))
+display(tok.tokenize("Mangez les riches!"))
+```
+
+```python
+with torch.no_grad():
+    embeddings = model(**tok("Alex a eu une riche idée", return_tensors="pt")).last_hidden_state
+    other_embeddings = model(**tok("Mangez les riches!", return_tensors="pt")).last_hidden_state
+display(embeddings[0, 3, :8])
+display(other_embeddings[0, 3, :8])
+```
+
+```python
+display(tok.tokenize("Morgan reconnait Keltie."))
+display(tok.tokenize("Morgan reconnait sa mère."))
+with torch.no_grad():
+    embeddings = model(**tok("Morgan reconnait Keltie.", return_tensors="pt")).last_hidden_state
+    other_embeddings = model(**tok("Morgan reconnait sa mère.", return_tensors="pt")).last_hidden_state
+display(embeddings[0, 1, :8])
+display(other_embeddings[0, 1, :8])
+```
+
+### Modèles de langues masqués
+
+```python
+lm = transformers.pipeline("fill-mask", model="flaubert/flaubert_small_cased")
+```
+
+```python
+lm(f"En France, c'est {lm.tokenizer.mask_token} qui est la meilleure université.")
 ```
