@@ -980,8 +980,21 @@ plt.show()
 
 ## Aller plus loin
 
-La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez [le tutoriel de towards datascience](https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627) (une source pas toujours excellente mais dans ce cas précis ça va.
+La tradition veut qu'on commence par entraîner un modèle sur le jeu de données MNIST : suivez [le
+tutoriel de towards
+datascience](https://towardsdatascience.com/handwritten-digit-mnist-pytorch-977b5338e627) (une
+source pas toujours excellente mais dans ce cas précis ça va.
 
-On fait du TAL ici ! Et langage ? Et bien en pratique c'est un peu plus compliqué à traiter que les images ou les nombres. On se penchera davantage dessus la prochaine fois, mais pour l'instant vous pouvez faire un peu de classification de documents avec [le tutoriel de torchtext](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html) (qui n'est pas une bibliothèque très souvent populaire, mais elle est bien utile ici. Microsoft propose [un tutorial similaire](https://docs.microsoft.com/en-us/learn/modules/intro-natural-language-processing-pytorch).
+On fait du TAL ici ! Et langage ? Et bien en pratique c'est un peu plus compliqué à traiter que les
+images ou les nombres. On se penchera davantage dessus la prochaine fois, mais pour l'instant vous
+pouvez faire un peu de classification de documents avec [le tutoriel de
+torchtext](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html) (qui n'est
+pas une bibliothèque très souvent populaire, mais elle est bien utile ici. Microsoft propose [un
+tutorial
+similaire](https://docs.microsoft.com/en-us/learn/modules/intro-natural-language-processing-pytorch).
 
-Un peu de lecture : [*Natural Language Processing (almost) from scratch](https://dl.acm.org/doi/10.5555/1953048.2078186) (Collobert et al., 2011).
+Un peu de lecture : [*Natural Language Processing (almost) from
+scratch](https://dl.acm.org/doi/10.5555/1953048.2078186) (Collobert et al., 2011).
+
+[Une super série de vidéo](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+avec de belles visus sur [la chaîne YouTube 3blue1brown](https://www.youtube.com/c/3blue1brown).
