@@ -44,7 +44,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ steps.transfo-install.outputs.dir }}
-          key: ${{ runner.os }}-transformers-${{ hashFiles('**/setup.cfg') }}
+          key: ${{ runner.os }}-transformers-${{ hashFiles('${{ github.workspace }}/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-transformers-
       
