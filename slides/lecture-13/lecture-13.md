@@ -222,8 +222,12 @@ Pour entraîner c'est comme précédemment, descente de gradient yada yada.
 Cette fois-ci au lieu de SGD on va utiliser Adam qui a tendance à mieux marcher en général.
 
 ```python
+import random
 from typing import Sequence, Tuple
 import torch.optim
+
+# Pour s'assurer que les résultats seront les mêmes à chaque run du notebook
+torch.use_deterministic_algorithms(True)
 
 def train_network(
     model: torch.nn.Module,
@@ -256,6 +260,8 @@ def train_network(
                 dev_total += source.shape[0]
         print(f"{epoch_n}\t{epoch_loss/epoch_length}\t{dev_correct/dev_total:.2%}")
 
+torch.manual_seed(0)
+random.seed(0)
 trained_classifier = SimpleClassifier(len(idx_to_token), 128, 512, len(upos_names))
 train_network(
     trained_classifier,
@@ -342,6 +348,8 @@ context_classifier.predict(["Le", "petit", "chat", "est", "content"])
 On l'entraîne
 
 ```python
+torch.manual_seed(0)
+random.seed(0)
 context_classifier = ContextClassifier(len(idx_to_token), 128, 512, len(upos_names))
 train_network(
     context_classifier,
@@ -434,6 +442,8 @@ recurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
 
 ```python
+torch.manual_seed(0)
+random.seed(0)
 recurrent_tagger = RNNTagger(len(idx_to_token), 128, 256, len(upos_names))
 train_network(
     recurrent_tagger,
@@ -498,6 +508,8 @@ birecurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
 
 ```python
+torch.manual_seed(0)
+random.seed(0)
 birecurrent_tagger = BiRNNTagger(len(idx_to_token), 128, 256, len(upos_names))
 train_network(
     birecurrent_tagger,
@@ -563,6 +575,8 @@ bilstm_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
 
 ```python
+torch.manual_seed(0)
+random.seed(0)
 bilstm_tagger = BiLSTMTagger(len(idx_to_token), 128, 256, len(upos_names))
 train_network(
     bilstm_tagger,
@@ -631,6 +645,8 @@ transformer_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
 
 ```python
+torch.manual_seed(0)
+random.seed(0)
 transformer_tagger = TransformerTagger(
     len(idx_to_token),
     128,

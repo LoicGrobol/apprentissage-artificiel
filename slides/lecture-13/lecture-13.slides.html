@@ -15099,8 +15099,12 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">torch.optim</span>
+
+<span class="c1"># Pour s&#39;assurer que les résultats seront les mêmes à chaque run du notebook</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">use_deterministic_algorithms</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">train_network</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
@@ -15133,6 +15137,8 @@ div.jp-OutputPrompt {
                 <span class="n">dev_total</span> <span class="o">+=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">epoch_n</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="n">epoch_length</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">dev_correct</span><span class="o">/</span><span class="n">dev_total</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">trained_classifier</span> <span class="o">=</span> <span class="n">SimpleClassifier</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">train_network</span><span class="p">(</span>
     <span class="n">trained_classifier</span><span class="p">,</span>
@@ -15281,7 +15287,9 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">context_classifier</span> <span class="o">=</span> <span class="n">ContextClassifier</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">context_classifier</span> <span class="o">=</span> <span class="n">ContextClassifier</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">train_network</span><span class="p">(</span>
     <span class="n">context_classifier</span><span class="p">,</span>
     <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
@@ -15433,7 +15441,9 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">recurrent_tagger</span> <span class="o">=</span> <span class="n">RNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">recurrent_tagger</span> <span class="o">=</span> <span class="n">RNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">train_network</span><span class="p">(</span>
     <span class="n">recurrent_tagger</span><span class="p">,</span>
     <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
@@ -15537,7 +15547,9 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birecurrent_tagger</span> <span class="o">=</span> <span class="n">BiRNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">birecurrent_tagger</span> <span class="o">=</span> <span class="n">BiRNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">train_network</span><span class="p">(</span>
     <span class="n">birecurrent_tagger</span><span class="p">,</span>
     <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
@@ -15645,7 +15657,9 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bilstm_tagger</span> <span class="o">=</span> <span class="n">BiLSTMTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bilstm_tagger</span> <span class="o">=</span> <span class="n">BiLSTMTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">train_network</span><span class="p">(</span>
     <span class="n">bilstm_tagger</span><span class="p">,</span>
     <span class="p">[</span><span class="n">vectorize</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="p">],</span>
@@ -15756,7 +15770,9 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transformer_tagger</span> <span class="o">=</span> <span class="n">TransformerTagger</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">transformer_tagger</span> <span class="o">=</span> <span class="n">TransformerTagger</span><span class="p">(</span>
     <span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span>
     <span class="mi">128</span><span class="p">,</span>
     <span class="mi">256</span><span class="p">,</span>
