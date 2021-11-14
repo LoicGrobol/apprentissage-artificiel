@@ -82,3 +82,29 @@ données (qui ne sont pas nécessairement uniquement linguistiques)
 Quelques sources : [Paris Open Data](https://opendata.paris.fr),
 [data.gouv.fr](https://data.gouv.fr), [Google dataset
 search](https://toolbox.google.com/datasetsearch)
+
+## Exemples de sujets
+
+À gros grain :
+
+- Appliquer des modèles existants à des nouvelles données.
+- Comparer différents modèles existants sur des données existantes ou proposer de nouveaux modèles
+  qui font mieux.
+- Analyser, expliquer, sonder des modèles existants pour mettre à jour des explications sur leur
+  manière de fonctionner ou révéler leurs failles. Vous pouvez aller voir ce qui se fait dans le
+  workshop [BlackboxNLP](https://blackboxnlp.github.io/) pour vous donner des idées. (par exemple
+  j'ai beaucoup aimé [*Universal Adversarial Triggers for Attacking and Analyzing
+  NLP*](https://www.aclweb.org/anthology/D19-1221/)).
+
+- Classification de documents : le classique, se décline en analyse du sentiment ; détection de
+  discours haineux, de *fake news*.
+- Syntaxe : POS tagging, parsing, chunking… Attention, [la
+  concurrence](https://github.com/bencrabbe/npdependency) est rude.
+- Génération de texte : modèles de langues, résumé automatique, question-réponses.
+- …
+
+Commencez plutôt petit : voyez si vous pouvez reproduire l'état de l'art en piquant du code qui
+existe, puis modifiez-le pour arriver à vos fins.
+
+On le répète encore une fois : si vous avez des idées mais que vous galérez, si vous n'avez pas
+d'idée, s'il y a un problème **contactez moi**.
