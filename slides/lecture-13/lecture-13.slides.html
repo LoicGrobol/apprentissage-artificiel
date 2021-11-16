@@ -15261,11 +15261,6 @@ div.jp-OutputPrompt {
         <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
-<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 <span class="n">context_classifier</span> <span class="o">=</span> <span class="n">ContextClassifier</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">context_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
 </pre></div>
@@ -15444,11 +15439,6 @@ div.jp-OutputPrompt {
         <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
-<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 <span class="n">recurrent_tagger</span> <span class="o">=</span> <span class="n">RNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">recurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
 </pre></div>
@@ -15550,11 +15540,6 @@ div.jp-OutputPrompt {
         <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
-<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 <span class="n">birecurrent_tagger</span> <span class="o">=</span> <span class="n">BiRNNTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">birecurrent_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
 </pre></div>
@@ -15696,11 +15681,6 @@ h_t &amp;= o_t \circ \sigma_h(c_t)
         <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
-<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 <span class="n">bilstm_tagger</span> <span class="o">=</span> <span class="n">BiLSTMTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">bilstm_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
 </pre></div>
@@ -15830,11 +15810,6 @@ h_t &amp;= o_t \circ \sigma_h(c_t)
         <span class="n">out_predictions</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_pos_names</span><span class="p">(</span><span class="n">out_predictions</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">])</span>
-<span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">get_pos_names</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 <span class="n">transformer_tagger</span> <span class="o">=</span> <span class="n">TransformerTagger</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_to_token</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">upos_names</span><span class="p">))</span>
 <span class="n">transformer_tagger</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;petit&quot;</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">,</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">])</span>
 </pre></div>
