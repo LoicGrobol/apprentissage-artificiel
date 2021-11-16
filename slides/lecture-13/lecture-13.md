@@ -336,11 +336,6 @@ class ContextClassifier(torch.nn.Module):
         out_predictions = out.argmax(dim=-1)
         return get_pos_names(out_predictions)
 
-display(train_dataset[5]["tokens"])
-source, target = vectorize(train_dataset[5])
-display(source)
-display(target)
-display(get_pos_names(target))
 context_classifier = ContextClassifier(len(idx_to_token), 128, 512, len(upos_names))
 context_classifier.predict(["Le", "petit", "chat", "est", "content"])
 ```
@@ -445,11 +440,6 @@ class RNNTagger(torch.nn.Module):
         out_predictions = out.argmax(dim=-1)
         return get_pos_names(out_predictions)
 
-display(train_dataset[5]["tokens"])
-source, target = vectorize(train_dataset[5])
-display(source)
-display(target)
-display(get_pos_names(target))
 recurrent_tagger = RNNTagger(len(idx_to_token), 128, 512, len(upos_names))
 recurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
@@ -511,11 +501,6 @@ class BiRNNTagger(torch.nn.Module):
         out_predictions = out.argmax(dim=-1)
         return get_pos_names(out_predictions)
 
-display(train_dataset[5]["tokens"])
-source, target = vectorize(train_dataset[5])
-display(source)
-display(target)
-display(get_pos_names(target))
 birecurrent_tagger = BiRNNTagger(len(idx_to_token), 128, 512, len(upos_names))
 birecurrent_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
@@ -600,11 +585,6 @@ class BiLSTMTagger(torch.nn.Module):
         out_predictions = out.argmax(dim=-1)
         return get_pos_names(out_predictions)
 
-display(train_dataset[5]["tokens"])
-source, target = vectorize(train_dataset[5])
-display(source)
-display(target)
-display(get_pos_names(target))
 bilstm_tagger = BiLSTMTagger(len(idx_to_token), 128, 256, len(upos_names))
 bilstm_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
@@ -682,11 +662,6 @@ class TransformerTagger(torch.nn.Module):
         out_predictions = out.argmax(dim=-1)
         return get_pos_names(out_predictions)
 
-display(train_dataset[5]["tokens"])
-source, target = vectorize(train_dataset[5])
-display(source)
-display(target)
-display(get_pos_names(target))
 transformer_tagger = TransformerTagger(len(idx_to_token), 128, 256, len(upos_names))
 transformer_tagger.predict(["Le", "petit", "chat", "est", "content"])
 ```
