@@ -224,6 +224,7 @@ Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qu
 
 Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels ci-dessous.
 
+- [Un bon tuto NumPy](https://cs231n.github.io/python-numpy-tutorial/) qui va de A à Z.
 - [Real Python](https://realpython.com), des cours et des tutoriels souvent de très bonne qualité et
   pour tous niveaux.
 - [Coding Game](https://www.codingame.com/home). Vous le retrouverez dans les exercices
