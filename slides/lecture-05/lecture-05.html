@@ -14454,25 +14454,79 @@ all of MD as it is not optimized for dense, information rich UIs.
 </style>
 
 <style type="text/css">
+/* Misc */
 a.anchor-link {
-   display: none;
+  display: none;
 }
+
 .highlight  {
-    margin: 0.4em;
+  margin: 0.4em;
 }
 
 /* Input area styling */
 .jp-InputArea {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .jp-InputArea-editor {
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.CodeMirror pre {
+  margin: 0;
+  padding: 0;
+}
+
+/* Using table instead of flexbox so that we can use break-inside property */
+/* CSS rules under this comment should not be required anymore after we move to the JupyterLab 4.0 CSS */
+
+
+.jp-CodeCell.jp-mod-outputsScrolled .jp-OutputArea-prompt {
+  min-width: calc(
+    var(--jp-cell-prompt-width) - var(--jp-private-cell-scrolling-output-offset)
+  );
+}
+
+.jp-OutputArea-child {
+  display: table;
+  width: 100%;
+}
+
+.jp-OutputPrompt {
+  display: table-cell;
+  vertical-align: top;
+  min-width: var(--jp-cell-prompt-width);
+}
+
+body[data-format='mobile'] .jp-OutputPrompt {
+  display: table-row;
+}
+
+.jp-OutputArea-output {
+  display: table-cell;
+  width: 100%;
+}
+
+body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
+  display: table-row;
+}
+
+.jp-OutputArea-output.jp-OutputArea-executeResult {
+  width: 100%;
 }
 
 @media print {
-  body {
-    margin: 0;
+  .jp-Collapser {
+    display: none;
+  }
+
+  .jp-Cell-inputWrapper,
+  .jp-Cell-outputWrapper {
+    display: block;
+  }
+
+  .jp-OutputArea-child {
+    break-inside: avoid-page;
   }
 }
 </style>
@@ -14513,25 +14567,47 @@ a.anchor-link {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <!-- LTeX: language=fr -->
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Cours-5%E2%80%AF:-Pip-et-Virtualenv">Cours 5&#8239;: Pip et Virtualenv<a class="anchor-link" href="#Cours-5%E2%80%AF:-Pip-et-Virtualenv">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
 <p>2021-09-22</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Les-modules-sont-vos-amis">Les modules sont vos amis<a class="anchor-link" href="#Les-modules-sont-vos-amis">&#182;</a></h1><p>Rappel des épisodes précédents</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Ils-cachent-vos-impl%C3%A9mentations">Ils cachent vos impl&#233;mentations<a class="anchor-link" href="#Ils-cachent-vos-impl%C3%A9mentations">&#182;</a></h2><ul>
 <li>Quand on code une interface, on a pas envie de voir le code fonctionnel</li>
@@ -14540,13 +14616,25 @@ a.anchor-link {
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ce qu'on fait quand on code proprement (ou presque)</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span><span class="c1"># malib.py</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -14557,7 +14645,13 @@ a.anchor-link {
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span><span class="c1"># moninterface.py</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -14572,18 +14666,34 @@ a.anchor-link {
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Comme ça quand je code mon interface, je n'ai pas besoin de me souvenir ou même de voir comment est codé <code>tokenize</code></p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Il-y-en-a-d%C3%A9j%C3%A0-plein">Il y en a d&#233;j&#224; plein<a class="anchor-link" href="#Il-y-en-a-d%C3%A9j%C3%A0-plein">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14597,6 +14707,8 @@ a.anchor-link {
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14622,12 +14734,12 @@ Please wait a moment while I gather a list of all available modules...
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages/IPython/kernel/__init__.py:12: ShimWarning: The `IPython.kernel` package has been deprecated since IPython 4.0.You should import from ipykernel or jupyter_client instead.
-  warn(&#34;The `IPython.kernel` package has been deprecated since IPython 4.0.&#34;
-Created a temporary directory at /tmp/tmpgjha0o2b
-2021-11-29 19:40:44.235 INFO    torch.distributed.nn.jit.instantiator: Created a temporary directory at /tmp/tmpgjha0o2b
-Writing /tmp/tmpgjha0o2b/_remote_module_non_sriptable.py
-2021-11-29 19:40:44.237 INFO    torch.distributed.nn.jit.instantiator: Writing /tmp/tmpgjha0o2b/_remote_module_non_sriptable.py
+<pre>/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/pkgutil.py:93: UserWarning: The numpy.array_api submodule is still experimental. See NEP 47.
+  __import__(info.name)
+/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_distutils_hack/__init__.py:30: UserWarning: Setuptools is replacing distutils.
+  warnings.warn(&#34;Setuptools is replacing distutils.&#34;)
+2022-02-06 21:17:56.392 INFO    torch.distributed.nn.jit.instantiator: Created a temporary directory at /tmp/tmplu9ikcfz
+2022-02-06 21:17:56.393 INFO    torch.distributed.nn.jit.instantiator: Writing /tmp/tmplu9ikcfz/_remote_module_non_sriptable.py
 </pre>
 </div>
 </div>
@@ -14639,129 +14751,130 @@ Writing /tmp/tmpgjha0o2b/_remote_module_non_sriptable.py
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>IPython             base64              jupyterlab_server   shelve
-PIL                 bdb                 jupyterlab_widgets  shlex
-__future__          binascii            jupytext            shortuuid
-_abc                binhex              keyword             shutil
-_aix_support        bisect              kiwisolver          signal
-_ast                bleach              lib2to3             simpletransformers
-_asyncio            blinker             linecache           site
-_bisect             builtins            locale              six
-_blake2             bz2                 logging             sklearn
-_bootlocale         cProfile            lzma                smart_open
-_bootsubprocess     cachetools          mailbox             smmap
-_bz2                caffe2              mailcap             smtpd
-_cffi_backend       calendar            markdown            smtplib
-_codecs             certifi             markdown_it         sndhdr
-_codecs_cn          cffi                markupsafe          sniffio
-_codecs_hk          cgi                 marshal             socket
-_codecs_iso2022     cgitb               math                socketserver
-_codecs_jp          charset_normalizer  matplotlib          spwd
-_codecs_kr          chunk               matplotlib_inline   sqlite3
-_codecs_tw          click               mdit_py_plugins     sre_compile
-_collections        cmath               mimetypes           sre_constants
-_collections_abc    cmd                 mistune             sre_parse
-_compat_pickle      code                mmap                ssl
-_compression        codecs              modulefinder        stat
-_contextvars        codeop              multidict           statistics
-_crypt              collections         multiprocess        storemagic
-_csv                colorsys            multiprocessing     streamlit
-_ctypes             compileall          nbclassic           string
-_ctypes_test        concurrent          nbclient            stringprep
-_curses             configparser        nbconvert           struct
-_curses_panel       conllu              nbformat            subprocess
-_datetime           contextlib          nest_asyncio        subprocess32
-_dbm                contextvars         netrc               sunau
-_decimal            copy                nis                 symbol
-_distutils_hack     copyreg             nntplib             sympyprinting
-_elementtree        crypt               notebook            symtable
-_functools          csv                 ntpath              sys
-_gdbm               ctypes              nturl2path          sysconfig
-_hashlib            curses              numbers             syslog
-_heapq              cycler              numpy               tabnanny
-_imp                cythonmagic         oauthlib            tarfile
-_io                 dataclasses         opcode              telnetlib
-_json               datasets            operator            tempfile
-_locale             datetime            optparse            tensorboard
-_lsprof             dateutil            os                  tensorboard_data_server
-_lzma               dbm                 ossaudiodev         tensorboard_plugin_wit
-_markupbase         debugpy             packaging           termcolor
-_md5                decimal             pandas              terminado
-_multibytecodec     decorator           pandocfilters       termios
-_multiprocess       defusedxml          parser              test
-_multiprocessing    difflib             parso               testpath
-_opcode             dill                pathlib             tests
-_operator           dis                 pathtools           textwrap
-_osx_support        distutils           pdb                 this
-_peg_parser         dockerpycreds       pexpect             threading
-_pickle             doctest             pickle              threadpoolctl
-_posixshmem         email               pickleshare         time
-_posixsubprocess    encodings           pickletools         timeit
-_py_abc             ensurepip           pip                 tkinter
-_pydecimal          entrypoints         pipes               tlz
-_pyio               enum                pkg_resources       token
-_pyrsistent_version errno               pkgutil             tokenize
-_queue              faulthandler        platform            tokenizers
-_random             fcntl               plistlib            tol_colors
-_sha1               filecmp             poplib              toml
-_sha256             fileinput           posix               tomli
-_sha3               filelock            posixpath           toolz
-_sha512             fnmatch             pprint              torch
-_signal             fontTools           profile             tornado
-_sitebuiltins       formatter           prometheus_client   tqdm
-_socket             fractions           promise             trace
-_sqlite3            frozenlist          prompt_toolkit      traceback
-_sre                fsspec              pstats              tracemalloc
-_ssl                ftplib              psutil              traitlets
-_stat               functools           pty                 transformers
-_statistics         gc                  ptyprocess          tty
-_string             genericpath         pvectorc            turtle
-_strptime           gensim              pwd                 turtledemo
-_struct             getopt              py_compile          types
-_symtable           getpass             pyarrow             typing
-_sysconfigdata__linux_x86_64-linux-gnu gettext             pyasn1              typing_extensions
-_testbuffer         git                 pyasn1_modules      tzdata
-_testcapi           gitdb               pyclbr              tzlocal
-_testimportmultiple glob                pycparser           unicodedata
-_testinternalcapi   google_auth_oauthlib pydeck              unittest
-_testmultiphase     graphlib            pydoc               urllib
-_thread             grp                 pydoc_data          urllib3
-_threading_local    grpc                pyexpat             uu
-_tkinter            gzip                pygments            uuid
-_tracemalloc        hashlib             pylab               validators
-_uuid               heapq               pympler             venv
-_warnings           hmac                pyparsing           wandb
-_weakref            html                pyrsistent          warnings
-_weakrefset         http                pytz                watchdog
-_xxsubinterpreters  huggingface_hub     pytz_deprecation_shim wave
-_xxtestfuzz         idlelib             queue               wcwidth
-_yaml               idna                quopri              weakref
-_zoneinfo           imaplib             random              webbrowser
-abc                 imghdr              re                  webencodings
-absl                imp                 readline            websocket
-aifc                importlib           regex               werkzeug
-aiohttp             importlib_metadata  reprlib             wheel
-aiosignal           inspect             requests            widgetsnbextension
-altair              io                  requests_oauthlib   wsgiref
-antigravity         ipaddress           resource            xdrlib
-anyio               ipykernel           rise                xml
-argon2              ipykernel_launcher  rlcompleter         xmlrpc
-argparse            ipympl              rmagic              xxhash
-array               ipython_genutils    rsa                 xxlimited
-ast                 ipywidgets          runpy               xxsubtype
-astor               itertools           sacremoses          yaml
-async_timeout       jedi                sched               yarl
-asynchat            jinja2              scipy               yaspin
-asyncio             joblib              seaborn             zipapp
-asyncore            json                secrets             zipfile
-atexit              json5               select              zipimport
-attr                jsonschema          selectors           zipp
-audioop             jupyter             send2trash          zlib
-autoreload          jupyter_client      sentencepiece       zmq
-babel               jupyter_core        sentry_sdk          zoneinfo
-backcall            jupyter_server      seqeval             
-backports           jupyterlab          setuptools          
-base58              jupyterlab_pygments setuptools_scm      
+<pre>IPython             base58              jupyter_client      selectors
+PIL                 base64              jupyter_core        send2trash
+__future__          bdb                 jupyter_server      sentencepiece
+_abc                binascii            jupyterlab          sentry_sdk
+_aix_support        binhex              jupyterlab_pygments seqeval
+_argon2_cffi_bindings bisect              jupyterlab_server   setuptools
+_ast                black               jupyterlab_widgets  shelve
+_asyncio            black_primer        jupytext            shlex
+_bisect             blackd              keyword             shortuuid
+_black_version      bleach              kiwisolver          shutil
+_blake2             blib2to3            lib2to3             signal
+_bootlocale         blinker             linecache           simpletransformers
+_bootsubprocess     builtins            locale              site
+_bz2                bz2                 logging             six
+_cffi_backend       cProfile            lzma                sklearn
+_codecs             cachetools          mailbox             smart_open
+_codecs_cn          caffe2              mailcap             smmap
+_codecs_hk          calendar            markdown            smtpd
+_codecs_iso2022     certifi             markdown_it         smtplib
+_codecs_jp          cffi                markupsafe          sndhdr
+_codecs_kr          cgi                 marshal             sniffio
+_codecs_tw          cgitb               math                socket
+_collections        charset_normalizer  matplotlib          socketserver
+_collections_abc    chunk               matplotlib_inline   spwd
+_compat_pickle      click               mdit_py_plugins     sqlite3
+_compression        cmath               mimetypes           sre_compile
+_contextvars        cmd                 mistune             sre_constants
+_crypt              code                mmap                sre_parse
+_csv                codecs              modulefinder        ssl
+_ctypes             codeop              multidict           stack_data
+_ctypes_test        collections         multiprocess        stat
+_curses             colorsys            multiprocessing     statistics
+_curses_panel       compileall          mypy_extensions     streamlit
+_datetime           concurrent          nbclassic           string
+_dbm                configparser        nbclient            stringprep
+_decimal            conllu              nbconvert           struct
+_distutils_hack     contextlib          nbformat            subprocess
+_elementtree        contextvars         nest_asyncio        sunau
+_functools          copy                netrc               symbol
+_gdbm               copyreg             nis                 symtable
+_hashlib            crypt               nntplib             sys
+_heapq              csv                 notebook            sysconfig
+_imp                ctypes              ntpath              syslog
+_io                 curses              nturl2path          tabnanny
+_json               cycler              numbers             tarfile
+_locale             dataclasses         numpy               telnetlib
+_lsprof             datasets            oauthlib            tempfile
+_lzma               datetime            opcode              tensorboard
+_markupbase         dateutil            operator            tensorboard_data_server
+_md5                dbm                 optparse            tensorboard_plugin_wit
+_multibytecodec     debugpy             os                  termcolor
+_multiprocess       decimal             ossaudiodev         terminado
+_multiprocessing    decorator           packaging           termios
+_opcode             defusedxml          pandas              test
+_operator           difflib             pandocfilters       testpath
+_osx_support        dill                parser              textwrap
+_peg_parser         dis                 parso               this
+_pickle             distutils           pathlib             threading
+_posixshmem         dockerpycreds       pathspec            threadpoolctl
+_posixsubprocess    doctest             pathtools           time
+_py_abc             email               pdb                 timeit
+_pydecimal          encodings           pexpect             tkinter
+_pyio               ensurepip           pickle              tlz
+_pyrsistent_version entrypoints         pickleshare         token
+_queue              enum                pickletools         tokenize
+_random             errno               pip                 tokenizers
+_sha1               executing           pipes               tol_colors
+_sha256             f2d4935fd652bc9ef29d__mypyc pkg_resources       toml
+_sha3               faulthandler        pkgutil             tomli
+_sha512             fcntl               platform            toolz
+_signal             filecmp             platformdirs        torch
+_sitebuiltins       fileinput           plistlib            tornado
+_socket             filelock            poplib              tqdm
+_sqlite3            fnmatch             posix               trace
+_sre                fontTools           posixpath           traceback
+_ssl                formatter           pprint              tracemalloc
+_stat               fractions           profile             traitlets
+_statistics         frozenlist          prometheus_client   transformers
+_string             fsspec              promise             tty
+_strptime           ftplib              prompt_toolkit      turtle
+_struct             functools           pstats              turtledemo
+_symtable           gc                  psutil              types
+_sysconfigdata__linux_x86_64-linux-gnu genericpath         pty                 typing
+_testbuffer         gensim              ptyprocess          typing_extensions
+_testcapi           getopt              pure_eval           tzdata
+_testimportmultiple getpass             pvectorc            tzlocal
+_testinternalcapi   gettext             pwd                 unicodedata
+_testmultiphase     git                 py_compile          unittest
+_thread             gitdb               pyarrow             urllib
+_threading_local    glob                pyasn1              urllib3
+_tkinter            google_auth_oauthlib pyasn1_modules      uu
+_tracemalloc        graphlib            pyclbr              uuid
+_uuid               grp                 pycparser           validators
+_warnings           grpc                pydeck              venv
+_weakref            gzip                pydoc               wandb
+_weakrefset         hashlib             pydoc_data          warnings
+_xxsubinterpreters  heapq               pyexpat             watchdog
+_xxtestfuzz         hmac                pygments            wave
+_yaml               html                pylab               wcwidth
+_zoneinfo           http                pympler             weakref
+abc                 huggingface_hub     pyparsing           webbrowser
+absl                idlelib             pyrsistent          webencodings
+aifc                idna                pytz                websocket
+aiohttp             imaplib             pytz_deprecation_shim werkzeug
+aiosignal           imghdr              queue               wheel
+altair              imp                 quopri              widgetsnbextension
+antigravity         importlib           random              wsgiref
+anyio               importlib_metadata  re                  xdrlib
+argon2              inspect             readline            xml
+argparse            io                  regex               xmlrpc
+array               ipaddress           reprlib             xxhash
+ast                 ipykernel           requests            xxlimited
+astor               ipykernel_launcher  requests_oauthlib   xxsubtype
+asttokens           ipympl              resource            yaml
+async_timeout       ipython_genutils    rise                yarl
+asynchat            ipywidgets          rlcompleter         yaspin
+asyncio             itertools           rsa                 zipapp
+asyncore            jedi                runpy               zipfile
+atexit              jinja2              sacremoses          zipimport
+attr                joblib              sched               zipp
+attrs               json                scipy               zlib
+audioop             json5               seaborn             zmq
+babel               jsonschema          secrets             zoneinfo
+backcall            jupyter             select              
 
 Enter any module name to get more help.  Or, type &#34;modules spam&#34; to search
 for modules whose name or summary contain the string &#34;spam&#34;.
@@ -14777,7 +14890,7 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/pkgutil.py:108: VisibleDeprecationWarning: zmq.eventloop.minitornado is deprecated in pyzmq 14.0 and will be removed.
+<pre>/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/pkgutil.py:108: VisibleDeprecationWarning: zmq.eventloop.minitornado is deprecated in pyzmq 14.0 and will be removed.
     Install tornado itself to use zmq with the tornado IOLoop.
     
   yield from walk_packages(path, info.name+&#39;.&#39;, onerror)
@@ -14790,12 +14903,20 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Ils-vous-simplifient-la-vie">Ils vous simplifient la vie<a class="anchor-link" href="#Ils-vous-simplifient-la-vie">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14815,6 +14936,8 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14857,10 +14980,10 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_1925/1821779469.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> display<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">.</span>glob<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;*.ipynb&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> projet <span class="ansi-blue-fg">=</span> p<span class="ansi-blue-fg">.</span>parent <span class="ansi-blue-fg">/</span> <span class="ansi-blue-fg">&#34;assignments&#34;</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span>display<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>exos<span class="ansi-blue-fg">.</span>glob<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;*&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+Input <span class="ansi-green-fg">In [2]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> display(<span style="color: rgb(0,135,0)">list</span>(p<span style="color: rgb(98,98,98)">.</span>glob(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">*.ipynb</span><span style="color: rgb(175,0,0)">&#34;</span>)))
+<span class="ansi-green-intense-fg ansi-bold">      6</span> projet <span style="color: rgb(98,98,98)">=</span> p<span style="color: rgb(98,98,98)">.</span>parent <span style="color: rgb(98,98,98)">/</span> <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">assignments</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-fg">----&gt; 7</span> display(<span style="color: rgb(0,135,0)">list</span>(<span class="ansi-yellow-bg">exos</span><span style="color: rgb(98,98,98)">.</span>glob(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">*</span><span style="color: rgb(175,0,0)">&#34;</span>)))
 
 <span class="ansi-red-fg">NameError</span>: name &#39;exos&#39; is not defined</pre>
 </div>
@@ -14871,20 +14994,34 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="stdlib-ne-suffit-plus"><code>stdlib</code> ne suffit plus<a class="anchor-link" href="#stdlib-ne-suffit-plus">&#182;</a></h1><p>Parfois la bibliothèque standard est trop limitée</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Je veux repérer dans un texte toutes les occurrences de « omelette » qui ne sont pas précédées par
 « une »</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14903,6 +15040,8 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14918,6 +15057,8 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14941,13 +15082,21 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Mais je veux pouvoir le faire même s'il y a plusieurs espaces</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14962,6 +15111,8 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14976,44 +15127,48 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">error</span>                                     Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_1925/3766294327.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> pattern <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">r&#34;(?&lt;!une\s+)omelette&#34;</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>re<span class="ansi-blue-fg">.</span>findall<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> text<span class="ansi-blue-fg">)</span>
+Input <span class="ansi-green-fg">In [5]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> pattern <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">r</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">(?&lt;!une</span><span style="color: rgb(175,0,0)">\</span><span style="color: rgb(175,0,0)">s+)omelette</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-yellow-bg">re</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">findall</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">pattern</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">text</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/re.py</span> in <span class="ansi-cyan-fg">findall</span><span class="ansi-blue-fg">(pattern, string, flags)</span>
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/re.py:241</span>, in <span class="ansi-cyan-fg">findall</span><span class="ansi-blue-fg">(pattern, string, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    233</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">findall</span>(pattern, string, flags<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0</span>):
+<span class="ansi-green-intense-fg ansi-bold">    234</span>     <span style="color: rgb(175,0,0)">&#34;&#34;&#34;Return a list of all non-overlapping matches in the string.</span>
+<span class="ansi-green-intense-fg ansi-bold">    235</span> 
+<span class="ansi-green-intense-fg ansi-bold">    236</span> <span style="color: rgb(175,0,0)">    If one or more capturing groups are present in the pattern, return</span>
+<span class="ansi-green-fg">   (...)</span>
 <span class="ansi-green-intense-fg ansi-bold">    239</span> 
-<span class="ansi-green-intense-fg ansi-bold">    240</span>     Empty matches are included in the result.&#34;&#34;&#34;
-<span class="ansi-green-fg">--&gt; 241</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _compile<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>findall<span class="ansi-blue-fg">(</span>string<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    242</span> 
-<span class="ansi-green-intense-fg ansi-bold">    243</span> <span class="ansi-green-fg">def</span> finditer<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> string<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    240</span> <span style="color: rgb(175,0,0)">    Empty matches are included in the result.&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">--&gt; 241</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_compile</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">pattern</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">flags</span><span class="ansi-yellow-bg">)</span><span style="color: rgb(98,98,98)">.</span>findall(string)
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/re.py</span> in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(pattern, flags)</span>
-<span class="ansi-green-intense-fg ansi-bold">    302</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> sre_compile<span class="ansi-blue-fg">.</span>isstring<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    303</span>         <span class="ansi-green-fg">raise</span> TypeError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;first argument must be string or compiled pattern&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 304</span><span class="ansi-red-fg">     </span>p <span class="ansi-blue-fg">=</span> sre_compile<span class="ansi-blue-fg">.</span>compile<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    305</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> <span class="ansi-blue-fg">(</span>flags <span class="ansi-blue-fg">&amp;</span> DEBUG<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    306</span>         <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>_cache<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;=</span> _MAXCACHE<span class="ansi-blue-fg">:</span>
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/re.py:304</span>, in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(pattern, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    302</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> sre_compile<span style="color: rgb(98,98,98)">.</span>isstring(pattern):
+<span class="ansi-green-intense-fg ansi-bold">    303</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">first argument must be string or compiled pattern</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-fg">--&gt; 304</span> p <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">sre_compile</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">compile</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">pattern</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">flags</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    305</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> (flags <span style="color: rgb(98,98,98)">&amp;</span> DEBUG):
+<span class="ansi-green-intense-fg ansi-bold">    306</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">len</span>(_cache) <span style="color: rgb(98,98,98)">&gt;</span><span style="color: rgb(98,98,98)">=</span> _MAXCACHE:
+<span class="ansi-green-intense-fg ansi-bold">    307</span>         <span style="color: rgb(95,135,135)"># Drop the oldest item</span>
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">compile</span><span class="ansi-blue-fg">(p, flags)</span>
-<span class="ansi-green-intense-fg ansi-bold">    766</span>         pattern <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
-<span class="ansi-green-intense-fg ansi-bold">    767</span> 
-<span class="ansi-green-fg">--&gt; 768</span><span class="ansi-red-fg">     </span>code <span class="ansi-blue-fg">=</span> _code<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    769</span> 
-<span class="ansi-green-intense-fg ansi-bold">    770</span>     <span class="ansi-green-fg">if</span> flags <span class="ansi-blue-fg">&amp;</span> SRE_FLAG_DEBUG<span class="ansi-blue-fg">:</span>
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/sre_compile.py:768</span>, in <span class="ansi-cyan-fg">compile</span><span class="ansi-blue-fg">(p, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    765</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">    766</span>     pattern <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">--&gt; 768</span> code <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">_code</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">p</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">flags</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    770</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> flags <span style="color: rgb(98,98,98)">&amp;</span> SRE_FLAG_DEBUG:
+<span class="ansi-green-intense-fg ansi-bold">    771</span>     <span style="color: rgb(0,135,0)">print</span>()
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">_code</span><span class="ansi-blue-fg">(p, flags)</span>
-<span class="ansi-green-intense-fg ansi-bold">    605</span> 
-<span class="ansi-green-intense-fg ansi-bold">    606</span>     <span class="ansi-red-fg"># compile the pattern</span>
-<span class="ansi-green-fg">--&gt; 607</span><span class="ansi-red-fg">     </span>_compile<span class="ansi-blue-fg">(</span>code<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    608</span> 
-<span class="ansi-green-intense-fg ansi-bold">    609</span>     code<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>SUCCESS<span class="ansi-blue-fg">)</span>
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/sre_compile.py:607</span>, in <span class="ansi-cyan-fg">_code</span><span class="ansi-blue-fg">(p, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    604</span> _compile_info(code, p, flags)
+<span class="ansi-green-intense-fg ansi-bold">    606</span> <span style="color: rgb(95,135,135)"># compile the pattern</span>
+<span class="ansi-green-fg">--&gt; 607</span> <span class="ansi-yellow-bg">_compile</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">code</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">p</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">flags</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    609</span> code<span style="color: rgb(98,98,98)">.</span>append(SUCCESS)
+<span class="ansi-green-intense-fg ansi-bold">    611</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> code
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/sre_compile.py</span> in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(code, pattern, flags)</span>
-<span class="ansi-green-intense-fg ansi-bold">    180</span>                 lo<span class="ansi-blue-fg">,</span> hi <span class="ansi-blue-fg">=</span> av<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>getwidth<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    181</span>                 <span class="ansi-green-fg">if</span> lo <span class="ansi-blue-fg">!=</span> hi<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 182</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> error<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;look-behind requires fixed-width pattern&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    183</span>                 emit<span class="ansi-blue-fg">(</span>lo<span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># look behind</span>
-<span class="ansi-green-intense-fg ansi-bold">    184</span>             _compile<span class="ansi-blue-fg">(</span>code<span class="ansi-blue-fg">,</span> av<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">)</span>
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/sre_compile.py:182</span>, in <span class="ansi-cyan-fg">_compile</span><span class="ansi-blue-fg">(code, pattern, flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">    180</span>     lo, hi <span style="color: rgb(98,98,98)">=</span> av[<span style="color: rgb(98,98,98)">1</span>]<span style="color: rgb(98,98,98)">.</span>getwidth()
+<span class="ansi-green-intense-fg ansi-bold">    181</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> lo <span style="color: rgb(98,98,98)">!=</span> hi:
+<span class="ansi-green-fg">--&gt; 182</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> error(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">look-behind requires fixed-width pattern</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-intense-fg ansi-bold">    183</span>     emit(lo) <span style="color: rgb(95,135,135)"># look behind</span>
+<span class="ansi-green-intense-fg ansi-bold">    184</span> _compile(code, av[<span style="color: rgb(98,98,98)">1</span>], flags)
 
 <span class="ansi-red-fg">error</span>: look-behind requires fixed-width pattern</pre>
 </div>
@@ -15024,14 +15179,22 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><code>re</code> ne permet pas de faire ce genre de choses (un <em>lookbehind</em> de taille variable) mais
 <a href="https://pypi.org/project/regex"><code>regex</code></a> oui</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15047,6 +15210,8 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15070,7 +15235,11 @@ for modules whose name or summary contain the string &#34;spam&#34;.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="pip,-le-gestionnaire"><code>pip</code>, le gestionnaire<a class="anchor-link" href="#pip,-le-gestionnaire">&#182;</a></h2><p><a href="https://pip.pypa.io"><code>pip</code></a> est le gestionnaire de paquets intégré à python (sauf sous Debian 😠).
 Comme tout bon gestionnaire de paquet il sait</p>
@@ -15083,14 +15252,24 @@ Comme tout bon gestionnaire de paquet il sait</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pypi,-le-cheeseshop">Pypi, le <em>cheeseshop</em><a class="anchor-link" href="#Pypi,-le-cheeseshop">&#182;</a></h2><p>Situé à <a href="https://pypi.org">https://pypi.org</a>, Pypi liste les paquets tiers — conçus et maintenus par la communauté — pour Python.</p>
 <p>Quand vous demandez à <code>pip</code> d'installer un paquet, c'est là qu'il va le chercher par défaut.</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15104,6 +15283,8 @@ Comme tout bon gestionnaire de paquet il sait</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15116,8 +15297,8 @@ Comme tout bon gestionnaire de paquet il sait</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre><span class="ansi-red-fg">ERROR: XMLRPC request failed [code: -32500]
-RuntimeError: PyPI&#39;s XMLRPC API is currently disabled due to unmanageable load and will be deprecated in the near future. See https://status.python.org/ for more information.</span>
-</pre>
+RuntimeError: PyPI&#39;s XMLRPC API is currently disabled due to unmanageable load and will be deprecated in the near future. See https://status.python.org/ for more information.</span><span class="ansi-red-fg">
+</span></pre>
 </div>
 </div>
 
@@ -15126,7 +15307,11 @@ RuntimeError: PyPI&#39;s XMLRPC API is currently disabled due to unmanageable lo
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Vous pouvez aussi le parcourir dans l'inteface web, c'est un bon point de départ pour éviter de
 réinventer la roue.</p>
@@ -15135,14 +15320,24 @@ alors d'utiliser pip avec l'option <code>--index-url &lt;url&gt;</code></p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><code>pip</code> sait faire plein d'autres choses et installer depuis beaucoup de sources. Par exemple un dépôt
 git</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15156,6 +15351,8 @@ git</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15168,45 +15365,45 @@ git</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Collecting git+https://github.com/psf/requests.git
-  Cloning https://github.com/psf/requests.git to /tmp/pip-req-build-1vs1g8ll
-  Running command git clone --filter=blob:none -q https://github.com/psf/requests.git /tmp/pip-req-build-1vs1g8ll
-  Resolved https://github.com/psf/requests.git to commit 7556ea421387e7738464b88e0a8c67e0d953ea11
+  Cloning https://github.com/psf/requests.git to /tmp/pip-req-build-9q5mnmbt
+  Running command git clone --filter=blob:none --quiet https://github.com/psf/requests.git /tmp/pip-req-build-9q5mnmbt
+  Resolved https://github.com/psf/requests.git to commit 95f456733656ed93645ff0250bfa54f6d256f6fe
   Preparing metadata (setup.py) ... - done
 Collecting urllib3&lt;1.27,&gt;=1.21.1
-  Using cached urllib3-1.26.7-py2.py3-none-any.whl (138 kB)
+  Using cached urllib3-1.26.8-py2.py3-none-any.whl (138 kB)
 Collecting certifi&gt;=2017.4.17
   Using cached certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
 Collecting charset_normalizer~=2.0.0
-  Using cached charset_normalizer-2.0.8-py3-none-any.whl (39 kB)
+  Using cached charset_normalizer-2.0.11-py3-none-any.whl (39 kB)
 Collecting idna&lt;4,&gt;=2.5
   Using cached idna-3.3-py3-none-any.whl (61 kB)
 Building wheels for collected packages: requests
   Building wheel for requests (setup.py) ... - done
-  Created wheel for requests: filename=requests-2.26.0-py2.py3-none-any.whl size=62948 sha256=c7b386a61911539c2c3f18cf06da5ed561cb3387184d52f66acaa0dea091d66f
-  Stored in directory: /tmp/pip-ephem-wheel-cache-c2hk_d6v/wheels/6a/08/02/9be83a8cfb48047f043fe9f98fe2777866f9542ead6a17bcff
+  Created wheel for requests: filename=requests-2.27.1-py2.py3-none-any.whl size=63294 sha256=b5e354fe73467f8a97d962c8849d23448906644c6f47a2ebe5f9944f24ac9f47
+  Stored in directory: /tmp/pip-ephem-wheel-cache-elr5a4b3/wheels/6a/08/02/9be83a8cfb48047f043fe9f98fe2777866f9542ead6a17bcff
 Successfully built requests
-Installing collected packages: urllib3, idna, charset-normalizer, certifi, requests
-  Attempting uninstall: urllib3
-    Found existing installation: urllib3 1.26.7
-    Uninstalling urllib3-1.26.7:
-      Successfully uninstalled urllib3-1.26.7
-  Attempting uninstall: idna
-    Found existing installation: idna 3.3
-    Uninstalling idna-3.3:
-      Successfully uninstalled idna-3.3
-  Attempting uninstall: charset-normalizer
-    Found existing installation: charset-normalizer 2.0.8
-    Uninstalling charset-normalizer-2.0.8:
-      Successfully uninstalled charset-normalizer-2.0.8
+Installing collected packages: certifi, urllib3, idna, charset_normalizer, requests
   Attempting uninstall: certifi
     Found existing installation: certifi 2021.10.8
     Uninstalling certifi-2021.10.8:
       Successfully uninstalled certifi-2021.10.8
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 1.26.8
+    Uninstalling urllib3-1.26.8:
+      Successfully uninstalled urllib3-1.26.8
+  Attempting uninstall: idna
+    Found existing installation: idna 3.3
+    Uninstalling idna-3.3:
+      Successfully uninstalled idna-3.3
+  Attempting uninstall: charset_normalizer
+    Found existing installation: charset-normalizer 2.0.11
+    Uninstalling charset-normalizer-2.0.11:
+      Successfully uninstalled charset-normalizer-2.0.11
   Attempting uninstall: requests
-    Found existing installation: requests 2.26.0
-    Uninstalling requests-2.26.0:
-      Successfully uninstalled requests-2.26.0
-Successfully installed certifi-2021.10.8 charset-normalizer-2.0.8 idna-3.3 requests-2.26.0 urllib3-1.26.7
+    Found existing installation: requests 2.27.1
+    Uninstalling requests-2.27.1:
+      Successfully uninstalled requests-2.27.1
+Successfully installed certifi-2021.10.8 charset_normalizer-2.0.11 idna-3.3 requests-2.27.1 urllib3-1.26.8
 </pre>
 </div>
 </div>
@@ -15216,25 +15413,45 @@ Successfully installed certifi-2021.10.8 charset-normalizer-2.0.8 idna-3.3 reque
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Les-choses-d%C3%A9sagr%C3%A9ables">Les choses d&#233;sagr&#233;ables<a class="anchor-link" href="#Les-choses-d%C3%A9sagr%C3%A9ables">&#182;</a></h1><p>Il y a des choses pour lesquelles <code>pip</code> n'est pas bon</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>Note</strong> ce qui suit est un tissu de calomnies : ces problèmes ont été en large partie résolus en
 2020-2021, mais il est bon de savoir qu'ils ont existé car Pip n'est pas à jour partout…</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="R%C3%A9soudre-des-conflits-de-d%C3%A9pendances">R&#233;soudre des conflits de d&#233;pendances<a class="anchor-link" href="#R%C3%A9soudre-des-conflits-de-d%C3%A9pendances">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15247,14 +15464,48 @@ Successfully installed certifi-2021.10.8 charset-normalizer-2.0.8 idna-3.3 reque
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre><span class="ansi-red-fg">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+pandas 1.4.0 requires python-dateutil&gt;=2.8.1, but you have python-dateutil 2.8.0 which is incompatible.</span><span class="ansi-red-fg">
+</span></pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a href="https://github.com/pypa/pip/issues/988">Mais plus pour longtemps !</a></p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Checker-ses-privil%C3%A8ges">Checker ses privil&#232;ges<a class="anchor-link" href="#Checker-ses-privil%C3%A8ges">&#182;</a></h2><div class="highlight"><pre><span></span>$ pip install regex
 ERROR: Could not install packages due to an EnvironmentError: <span class="o">[</span>Errno <span class="m">13</span><span class="o">]</span> Permission denied: <span class="err">&#39;</span>/usr/local/lib/python2.7/dist-packages/
@@ -15262,7 +15513,13 @@ ERROR: Could not install packages due to an EnvironmentError: <span class="o">[<
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Un remède simple : n'installer que pour soi</p>
 <div class="highlight"><pre><span></span>$ pip install --user regex
@@ -15271,7 +15528,13 @@ Successfully installed regex-2019.11.1
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="R%C3%A9pondre-quand-on-l'appelle">R&#233;pondre quand on l'appelle<a class="anchor-link" href="#R%C3%A9pondre-quand-on-l'appelle">&#182;</a></h2><p>Ou plutôt c'est python qui a un souci</p>
 <div class="highlight"><pre><span></span>$ pip install --user regex
@@ -15282,7 +15545,13 @@ ModuleNotFoundError: No module named <span class="err">&#39;</span>regex
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span>$ pip --version
 pip <span class="m">19</span>.3.1 from /home/lgrobol/.local/lib/python3.8/site-packages/pip <span class="o">(</span>python <span class="m">3</span>.8<span class="o">)</span>
@@ -15292,7 +15561,13 @@ Python <span class="m">3</span>.7.5rc1
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>La solution : exiger le bon python</p>
 <div class="highlight"><pre><span></span>$ python3 -m pip install --user regex
@@ -15303,14 +15578,24 @@ $ python3 -c <span class="s2">&quot;import regex;print(regex.__version__)&quot;<
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Freeze%E2%80%AF!">Freeze&#8239;!<a class="anchor-link" href="#Freeze%E2%80%AF!">&#182;</a></h1><p>Une fonction importante de <code>pip</code> est la capacité de geler les versions des paquets installés et de
 les restaurer</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15324,6 +15609,8 @@ les restaurer</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15338,50 +15625,53 @@ les restaurer</p>
 <pre>absl-py==1.0.0
 aiohttp==3.8.1
 aiosignal==1.2.0
-altair==4.1.0
-anyio==3.4.0
-argon2-cffi==21.1.0
+altair==4.2.0
+anyio==3.5.0
+argon2-cffi==21.3.0
+argon2-cffi-bindings==21.2.0
 astor==0.8.1
-async-timeout==4.0.1
-attrs==21.2.0
+asttokens==2.0.5
+async-timeout==4.0.2
+attrs==21.4.0
 Babel==2.9.1
 backcall==0.2.0
 base58==2.1.1
+black==22.1.0
 bleach==4.1.0
 blinker==1.4
 botocore==1.13.9
-cachetools==4.2.4
+cachetools==5.0.0
 certifi==2021.10.8
 cffi==1.15.0
-charset-normalizer==2.0.8
-click==7.1.2
-configparser==5.1.0
+charset-normalizer==2.0.11
+click==8.0.3
 conllu==4.4.1
 cycler==0.11.0
-datasets==1.16.1
+datasets==1.18.3
 debugpy==1.5.1
-decorator==5.1.0
+decorator==5.1.1
 defusedxml==0.7.1
 dill==0.3.4
 docker-pycreds==0.4.0
 docutils==0.15.2
-entrypoints==0.3
-filelock==3.4.0
-fonttools==4.28.2
-frozenlist==1.2.0
-fsspec==2021.11.1
+entrypoints==0.4
+executing==0.8.2
+filelock==3.4.2
+fonttools==4.29.1
+frozenlist==1.3.0
+fsspec==2022.1.0
 gensim==4.1.2
 gitdb==4.0.9
-GitPython==3.1.24
-google-auth==2.3.3
+GitPython==3.1.26
+google-auth==2.6.0
 google-auth-oauthlib==0.4.6
-grpcio==1.42.0
-huggingface-hub==0.1.2
+grpcio==1.43.0
+huggingface-hub==0.4.0
 idna==3.3
-importlib-metadata==4.8.2
-ipykernel==6.5.1
-ipympl==0.8.2
-ipython==7.30.0
+importlib-metadata==4.10.1
+ipykernel==6.8.0
+ipympl==0.8.7
+ipython==8.0.1
 ipython-genutils==0.2.0
 ipywidgets==7.6.5
 jedi==0.18.1
@@ -15389,116 +15679,119 @@ Jinja2==3.0.3
 jmespath==0.10.0
 joblib==1.1.0
 json5==0.9.6
-jsonschema==4.2.1
-jupyter-client==7.1.0
+jsonschema==4.4.0
+jupyter-client==7.1.2
 jupyter-core==4.9.1
-jupyter-server==1.12.1
-jupyterlab==3.2.4
+jupyter-server==1.13.5
+jupyterlab==3.2.9
 jupyterlab-pygments==0.1.2
-jupyterlab-server==2.8.2
+jupyterlab-server==2.10.3
 jupyterlab-widgets==1.0.2
-jupytext==1.13.1
+jupytext==1.13.6
 kiwisolver==1.3.2
 Markdown==3.3.6
 markdown-it-py==1.1.0
 MarkupSafe==2.0.1
-matplotlib==3.5.0
+matplotlib==3.5.1
 matplotlib-inline==0.1.3
-mdit-py-plugins==0.2.8
+mdit-py-plugins==0.3.0
 mistune==0.8.4
-multidict==5.2.0
+multidict==6.0.2
 multiprocess==0.70.12.2
-nbclassic==0.3.4
-nbclient==0.5.9
-nbconvert==6.3.0
+mypy-extensions==0.4.3
+nbclassic==0.3.5
+nbclient==0.5.10
+nbconvert==6.4.1
 nbformat==5.1.3
-nest-asyncio==1.5.1
-notebook==6.4.6
-numpy==1.21.4
-oauthlib==3.1.1
+nest-asyncio==1.5.4
+notebook==6.4.8
+numpy==1.22.2
+oauthlib==3.2.0
 packaging==21.3
-pandas==1.3.4
+pandas==1.4.0
 pandocfilters==1.5.0
-parso==0.8.2
+parso==0.8.3
+pathspec==0.9.0
 pathtools==0.1.2
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==8.4.0
-prometheus-client==0.12.0
+Pillow==9.0.1
+platformdirs==2.4.1
+prometheus-client==0.13.1
 promise==2.3
-prompt-toolkit==3.0.23
-protobuf==3.19.1
-psutil==5.8.0
+prompt-toolkit==3.0.26
+protobuf==3.19.4
+psutil==5.9.0
 ptyprocess==0.7.0
-pyarrow==6.0.1
+pure-eval==0.2.2
+pyarrow==7.0.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
 pydeck==0.7.1
-Pygments==2.10.0
-Pympler==0.9
-pyparsing==3.0.6
-pyrsistent==0.18.0
+Pygments==2.11.2
+Pympler==1.0.1
+pyparsing==3.0.7
+pyrsistent==0.18.1
 python-dateutil==2.8.0
 pytz==2021.3
 pytz-deprecation-shim==0.1.0.post0
 PyYAML==6.0
 pyzmq==22.3.0
-regex==2021.11.10
-requests @ git+https://github.com/psf/requests.git@7556ea421387e7738464b88e0a8c67e0d953ea11
-requests-oauthlib==1.3.0
+regex==2022.1.18
+requests @ git+https://github.com/psf/requests.git@95f456733656ed93645ff0250bfa54f6d256f6fe
+requests-oauthlib==1.3.1
 rise==5.7.1
 rsa==4.8
-sacremoses==0.0.46
-scikit-learn==1.0.1
-scipy==1.7.3
+sacremoses==0.0.47
+scikit-learn==1.0.2
+scipy==1.8.0
 seaborn==0.11.2
 Send2Trash==1.8.0
 sentencepiece==0.1.96
-sentry-sdk==1.5.0
+sentry-sdk==1.5.4
 seqeval==1.2.2
-setuptools-scm==6.3.2
 shortuuid==1.0.8
-simpletransformers==0.63.3
+simpletransformers==0.63.4
 six==1.16.0
 smart-open==5.2.1
 smmap==5.0.0
 sniffio==1.2.0
-streamlit==1.2.0
-subprocess32==3.5.4
-tensorboard==2.7.0
+stack-data==0.1.4
+streamlit==1.5.0
+tensorboard==2.8.0
 tensorboard-data-server==0.6.1
-tensorboard-plugin-wit==1.8.0
+tensorboard-plugin-wit==1.8.1
 termcolor==1.1.0
-terminado==0.12.1
+terminado==0.13.1
 testpath==0.5.0
-threadpoolctl==3.0.0
-tokenizers==0.10.3
+threadpoolctl==3.1.0
+tokenizers==0.11.4
 tol-colors==1.2.1
 toml==0.10.2
-tomli==1.2.2
+tomli==2.0.0
 toolz==0.11.2
-torch==1.10.0
+torch==1.10.2
 tornado==6.1
 tqdm==4.62.3
 traitlets==5.1.1
-transformers==4.12.5
-typing_extensions==4.0.0
+transformers==4.16.2
+typing_extensions==4.0.1
 tzdata==2021.5
 tzlocal==4.1
 urllib3==1.25.11
 validators==0.18.2
-wandb==0.12.7
+wandb==0.12.10
 watchdog==2.1.6
 wcwidth==0.2.5
 webencodings==0.5.1
-websocket-client==1.2.1
+websocket-client==1.2.3
 Werkzeug==2.0.2
 widgetsnbextension==3.5.2
 xxhash==2.0.2
 yarl==1.7.2
 yaspin==2.1.0
-zipp==3.6.0
+zipp==3.7.0
 </pre>
 </div>
 </div>
@@ -15508,7 +15801,11 @@ zipp==3.6.0
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>(Traditionnellement, pour les sauvegarder : <code>pip freeze &gt; requirements.txt</code>)</p>
 <p>Il est <strong>fortement</strong> recommandé de le faire quand on lance une expérience pour pouvoir la reproduire
@@ -15516,7 +15813,13 @@ dans les mêmes conditions si besoin.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Pour restaurer les mêmes versions</p>
 <div class="highlight"><pre><span></span>pip install -r requirements.txt
@@ -15525,8 +15828,12 @@ dans les mêmes conditions si besoin.</p>
 <p>On peut aussi écrire des <code>requirements.txt</code> à la main pour préciser les dépendances d'un projet</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15540,6 +15847,8 @@ dans les mêmes conditions si besoin.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15561,7 +15870,11 @@ dans les mêmes conditions si besoin.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="virtualenv"><code>virtualenv</code><a class="anchor-link" href="#virtualenv">&#182;</a></h1><p>À force d'installer tout et n'importe quoi, il finit fatalement par arriver que</p>
 <ul>
@@ -15573,19 +15886,35 @@ dans les mêmes conditions si besoin.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>En fait il me faudrait une installation différente de python pour chaque projet !</strong></p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et c'est précisément ce qu'on va faire</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15599,6 +15928,8 @@ dans les mêmes conditions si besoin.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15611,19 +15942,16 @@ dans les mêmes conditions si besoin.</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Collecting virtualenv
-  Downloading virtualenv-20.10.0-py2.py3-none-any.whl (5.6 MB)
-     |████████████████████████████████| 5.6 MB 8.2 MB/s            
+  Downloading virtualenv-20.13.1-py2.py3-none-any.whl (8.6 MB)
+     <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">8.6/8.6 MB</span> <span class="ansi-red-fg">81.0 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
 Collecting distlib&lt;1,&gt;=0.3.1
-  Downloading distlib-0.3.3-py2.py3-none-any.whl (496 kB)
-     |████████████████████████████████| 496 kB 83.6 MB/s            
-Requirement already satisfied: six&lt;2,&gt;=1.9.0 in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (from virtualenv) (1.16.0)
-Requirement already satisfied: filelock&lt;4,&gt;=3.2 in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (from virtualenv) (3.4.0)
-Collecting backports.entry-points-selectable&gt;=1.0.4
-  Downloading backports.entry_points_selectable-1.1.1-py2.py3-none-any.whl (6.2 kB)
-Collecting platformdirs&lt;3,&gt;=2
-  Downloading platformdirs-2.4.0-py3-none-any.whl (14 kB)
-Installing collected packages: platformdirs, distlib, backports.entry-points-selectable, virtualenv
-Successfully installed backports.entry-points-selectable-1.1.1 distlib-0.3.3 platformdirs-2.4.0 virtualenv-20.10.0
+  Downloading distlib-0.3.4-py2.py3-none-any.whl (461 kB)
+     <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">461.2/461.2 KB</span> <span class="ansi-red-fg">81.5 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
+Requirement already satisfied: filelock&lt;4,&gt;=3.2 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from virtualenv) (3.4.2)
+Requirement already satisfied: six&lt;2,&gt;=1.9.0 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from virtualenv) (1.16.0)
+Requirement already satisfied: platformdirs&lt;3,&gt;=2 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from virtualenv) (2.4.1)
+Installing collected packages: distlib, virtualenv
+Successfully installed distlib-0.3.4 virtualenv-20.13.1
 </pre>
 </div>
 </div>
@@ -15633,7 +15961,11 @@ Successfully installed backports.entry-points-selectable-1.1.1 distlib-0.3.3 pla
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Comment%E2%80%AF?">Comment&#8239;?<a class="anchor-link" href="#Comment%E2%80%AF?">&#182;</a></h2><ul>
 <li>Placez-vous dans un répertoire vide</li>
@@ -15653,12 +15985,24 @@ Successfully installed backports.entry-points-selectable-1.1.1 distlib-0.3.3 pla
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Et-alors%E2%80%AF?">Et alors&#8239;?<a class="anchor-link" href="#Et-alors%E2%80%AF?">&#182;</a></h2>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span>$ pip list
 Package    Version
@@ -15670,13 +16014,25 @@ wheel      <span class="m">0</span>.33.6
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Alors vous avez ici une installation isolée du reste !</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/LoicGrobol/web-interfaces/master/requirements.txt
 pip install -r requirements.txt
@@ -15684,7 +16040,13 @@ pip install -r requirements.txt
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et maintenant vous avez tous les paquets utilisés dans ce cours. En bonus</p>
 <ul>
@@ -15696,7 +16058,13 @@ pip install -r requirements.txt
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="virtualenv-vs-venv"><code>virtualenv</code> vs <code>venv</code><a class="anchor-link" href="#virtualenv-vs-venv">&#182;</a></h2><p>Il existe dans la distribution standard (sauf pour Debian 🙃) le module <code>venv</code> et un module tiers
 <code>virtualenv</code>.</p>
@@ -15706,7 +16074,13 @@ plusieurs versions de Python en parallèle.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Comment-travailler-proprement">Comment travailler proprement<a class="anchor-link" href="#Comment-travailler-proprement">&#182;</a></h1><p>À partir de maintenant vous pouvez (et je vous recommande de)</p>
 <ul>
@@ -15716,6 +16090,8 @@ plusieurs versions de Python en parallèle.</p>
 par exemple.</li>
 </ul>
 
+</div>
+</div>
 </div>
 </div>
 </body>

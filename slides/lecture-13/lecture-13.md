@@ -621,7 +621,7 @@ Quelques visus et explications :
 
 - [Seq2seq avec attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 - [The annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
- 
+
 
 ```python
 class TransformerTagger(torch.nn.Module):

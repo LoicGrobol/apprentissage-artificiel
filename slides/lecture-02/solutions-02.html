@@ -14454,25 +14454,79 @@ all of MD as it is not optimized for dense, information rich UIs.
 </style>
 
 <style type="text/css">
+/* Misc */
 a.anchor-link {
-   display: none;
+  display: none;
 }
+
 .highlight  {
-    margin: 0.4em;
+  margin: 0.4em;
 }
 
 /* Input area styling */
 .jp-InputArea {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .jp-InputArea-editor {
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.CodeMirror pre {
+  margin: 0;
+  padding: 0;
+}
+
+/* Using table instead of flexbox so that we can use break-inside property */
+/* CSS rules under this comment should not be required anymore after we move to the JupyterLab 4.0 CSS */
+
+
+.jp-CodeCell.jp-mod-outputsScrolled .jp-OutputArea-prompt {
+  min-width: calc(
+    var(--jp-cell-prompt-width) - var(--jp-private-cell-scrolling-output-offset)
+  );
+}
+
+.jp-OutputArea-child {
+  display: table;
+  width: 100%;
+}
+
+.jp-OutputPrompt {
+  display: table-cell;
+  vertical-align: top;
+  min-width: var(--jp-cell-prompt-width);
+}
+
+body[data-format='mobile'] .jp-OutputPrompt {
+  display: table-row;
+}
+
+.jp-OutputArea-output {
+  display: table-cell;
+  width: 100%;
+}
+
+body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
+  display: table-row;
+}
+
+.jp-OutputArea-output.jp-OutputArea-executeResult {
+  width: 100%;
 }
 
 @media print {
-  body {
-    margin: 0;
+  .jp-Collapser {
+    display: none;
+  }
+
+  .jp-Cell-inputWrapper,
+  .jp-Cell-outputWrapper {
+    display: block;
+  }
+
+  .jp-OutputArea-child {
+    break-inside: avoid-page;
   }
 }
 </style>
@@ -14513,7 +14567,11 @@ a.anchor-link {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <!-- LTeX: language=fr -->
 
@@ -14521,8 +14579,12 @@ a.anchor-link {
 <p>2021-09-22</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14536,12 +14598,20 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%E2%9C%8D%EF%B8%8F-Exo-1-%E2%9C%8D%EF%B8%8F">&#9997;&#65039; Exo 1 &#9997;&#65039;<a class="anchor-link" href="#%E2%9C%8D%EF%B8%8F-Exo-1-%E2%9C%8D%EF%B8%8F">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14571,13 +14641,21 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On peut faire plus sophistiqué, mais ce n'est pas conseillé</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14594,15 +14672,23 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="%E2%9C%8D%EF%B8%8F-Exo-2-%E2%9C%8D%EF%B8%8F">&#9997;&#65039; Exo 2 &#9997;&#65039;<a class="anchor-link" href="#%E2%9C%8D%EF%B8%8F-Exo-2-%E2%9C%8D%EF%B8%8F">&#182;</a></h3><blockquote><p>Utilisez une liste en compréhension sur la sortie de votre fonction tokenize de manière à ne
 retenir que les noms composés</p>
 </blockquote>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14618,6 +14704,8 @@ retenir que les noms composés</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14632,15 +14720,15 @@ retenir que les noms composés</p>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_1860/246771083.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> words <span class="ansi-blue-fg">=</span> tokenize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>compounds <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>w <span class="ansi-green-fg">for</span> w <span class="ansi-green-fg">in</span> words <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>word<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">assert</span> compounds <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;De&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ci&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;de&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;là,&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;cahin&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;caha,&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span>
+Input <span class="ansi-green-fg">In [4]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> words <span style="color: rgb(98,98,98)">=</span> tokenize(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-fg">----&gt; 2</span> compounds <span style="color: rgb(98,98,98)">=</span> [w <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> w <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> words <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(word, <span style="color: rgb(0,135,0)">str</span>)]
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">assert</span> compounds <span style="color: rgb(98,98,98)">==</span> [[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">De</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ci</span><span style="color: rgb(175,0,0)">&#39;</span>], [<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">de</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">là,</span><span style="color: rgb(175,0,0)">&#39;</span>], [<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">cahin</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">caha,</span><span style="color: rgb(175,0,0)">&#39;</span>]]
 
-<span class="ansi-green-fg">/tmp/ipykernel_1860/246771083.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> words <span class="ansi-blue-fg">=</span> tokenize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>compounds <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>w <span class="ansi-green-fg">for</span> w <span class="ansi-green-fg">in</span> words <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>word<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">assert</span> compounds <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;De&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ci&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;de&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;là,&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;cahin&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;caha,&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span>
+Input <span class="ansi-green-fg">In [4]</span>, in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> words <span style="color: rgb(98,98,98)">=</span> tokenize(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-fg">----&gt; 2</span> compounds <span style="color: rgb(98,98,98)">=</span> [w <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> w <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> words <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(<span class="ansi-yellow-bg">word</span>, <span style="color: rgb(0,135,0)">str</span>)]
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">assert</span> compounds <span style="color: rgb(98,98,98)">==</span> [[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">De</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">ci</span><span style="color: rgb(175,0,0)">&#39;</span>], [<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">de</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">là,</span><span style="color: rgb(175,0,0)">&#39;</span>], [<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">cahin</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">caha,</span><span style="color: rgb(175,0,0)">&#39;</span>]]
 
 <span class="ansi-red-fg">NameError</span>: name &#39;word&#39; is not defined</pre>
 </div>
@@ -14651,13 +14739,23 @@ retenir que les noms composés</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Là encore on pourrait mieux faire, mais ça ne vaut pas vraiment le coup pour cet exo.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%E2%9C%8D%EF%B8%8F-Exo-3">&#9997;&#65039; Exo 3<a class="anchor-link" href="#%E2%9C%8D%EF%B8%8F-Exo-3">&#182;</a></h2><blockquote><p>Dans cet extrait de données tirées des <a href="https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists">listes de Swadesh de langues
 austronésiennes</a>, ici pour le
@@ -14665,8 +14763,12 @@ tagalog et le cebuano, trouvez les mots en commun.</p>
 </blockquote>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14686,6 +14788,8 @@ tagalog et le cebuano, trouvez les mots en commun.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14709,7 +14813,11 @@ tagalog et le cebuano, trouvez les mots en commun.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="%E2%9C%8D%EF%B8%8F-Exo-4">&#9997;&#65039; Exo 4<a class="anchor-link" href="#%E2%9C%8D%EF%B8%8F-Exo-4">&#182;</a></h3><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 <span class="n">cnt</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
@@ -14889,6 +14997,8 @@ distance de Levenshtein</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">longer_word</span><span class="p">,</span> <span class="n">shorter_word</span><span class="p">))</span>
 </pre></div>
 
+</div>
+</div>
 </div>
 </div>
 </body>

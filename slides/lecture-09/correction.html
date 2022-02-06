@@ -14454,25 +14454,79 @@ all of MD as it is not optimized for dense, information rich UIs.
 </style>
 
 <style type="text/css">
+/* Misc */
 a.anchor-link {
-   display: none;
+  display: none;
 }
+
 .highlight  {
-    margin: 0.4em;
+  margin: 0.4em;
 }
 
 /* Input area styling */
 .jp-InputArea {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .jp-InputArea-editor {
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.CodeMirror pre {
+  margin: 0;
+  padding: 0;
+}
+
+/* Using table instead of flexbox so that we can use break-inside property */
+/* CSS rules under this comment should not be required anymore after we move to the JupyterLab 4.0 CSS */
+
+
+.jp-CodeCell.jp-mod-outputsScrolled .jp-OutputArea-prompt {
+  min-width: calc(
+    var(--jp-cell-prompt-width) - var(--jp-private-cell-scrolling-output-offset)
+  );
+}
+
+.jp-OutputArea-child {
+  display: table;
+  width: 100%;
+}
+
+.jp-OutputPrompt {
+  display: table-cell;
+  vertical-align: top;
+  min-width: var(--jp-cell-prompt-width);
+}
+
+body[data-format='mobile'] .jp-OutputPrompt {
+  display: table-row;
+}
+
+.jp-OutputArea-output {
+  display: table-cell;
+  width: 100%;
+}
+
+body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
+  display: table-row;
+}
+
+.jp-OutputArea-output.jp-OutputArea-executeResult {
+  width: 100%;
 }
 
 @media print {
-  body {
-    margin: 0;
+  .jp-Collapser {
+    display: none;
+  }
+
+  .jp-Cell-inputWrapper,
+  .jp-Cell-outputWrapper {
+    display: block;
+  }
+
+  .jp-OutputArea-child {
+    break-inside: avoid-page;
   }
 }
 </style>
@@ -14513,19 +14567,33 @@ a.anchor-link {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <!-- LTeX: language=fr -->
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Correction-9%E2%80%AF:-Na%C3%AFve-Bayes">Correction 9&#8239;: <em>Na&#239;ve Bayes</em><a class="anchor-link" href="#Correction-9%E2%80%AF:-Na%C3%AFve-Bayes">&#182;</a></h1><p><strong>Loïc Grobol</strong> <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></p>
 <p>2021-10-11</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14540,6 +14608,8 @@ a.anchor-link {
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14553,6 +14623,8 @@ a.anchor-link {
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14564,11 +14636,11 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (1.21.4)
-Requirement already satisfied: scikit-learn in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (1.0.1)
-Requirement already satisfied: scipy&gt;=1.1.0 in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (from scikit-learn) (1.7.3)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (from scikit-learn) (3.0.0)
-Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages (from scikit-learn) (1.1.0)
+<pre>Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (1.22.2)
+Requirement already satisfied: scikit-learn in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (1.0.2)
+Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from scikit-learn) (1.1.0)
+Requirement already satisfied: scipy&gt;=1.1.0 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from scikit-learn) (1.8.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from scikit-learn) (3.1.0)
 Note: you may need to restart the kernel to use updated packages.
 </pre>
 </div>
@@ -14580,6 +14652,8 @@ Note: you may need to restart the kernel to use updated packages.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14595,12 +14669,20 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Le-dataset">Le dataset<a class="anchor-link" href="#Le-dataset">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14634,6 +14716,8 @@ Note: you may need to restart the kernel to use updated packages.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14647,6 +14731,8 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14921,13 +15007,21 @@ the ``--filter`` option to compare the results.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Bon, voyons ce que ce truc a concrètement dans le ventre</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14942,6 +15036,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14965,6 +15061,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14978,6 +15076,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15002,6 +15102,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15015,6 +15117,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15039,6 +15143,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15052,6 +15158,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15076,6 +15184,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15089,6 +15199,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15113,6 +15225,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15126,6 +15240,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15150,6 +15266,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15163,6 +15281,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15186,24 +15306,44 @@ the ``--filter`` option to compare the results.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Bon, c'est plutôt clair</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Sac-de-mots">Sac de mots<a class="anchor-link" href="#Sac-de-mots">&#182;</a></h2>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On va commencer par transformer ces documents en sacs de mots. Pour ça on <a href="../lecture-08/lecture-08.md">recycle</a></p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15221,6 +15361,8 @@ the ``--filter`` option to compare the results.
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15239,6 +15381,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15369,13 +15513,21 @@ the ``--filter`` option to compare the results.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Maintenant, il faut le faire pour tous les docs 🏹</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15389,13 +15541,21 @@ the ``--filter`` option to compare the results.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et il nous faut récupérer tout le vocabulaire</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15410,6 +15570,8 @@ the ``--filter`` option to compare the results.
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15433,7 +15595,11 @@ the ``--filter`` option to compare the results.
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme
 <code>len(train_data)×len(vocab)</code> qui tel que le contenu de la cellule <code>(i, j)</code> soit le nombre
@@ -15443,13 +15609,23 @@ d'occurrences du mot <code>i</code> dans le document <code>j</code>. On a
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On commence par faire un dict avec le vocabulaire</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15464,6 +15640,8 @@ d'occurrences du mot <code>i</code> dans le document <code>j</code>. On a
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15481,6 +15659,8 @@ d'occurrences du mot <code>i</code> dans le document <code>j</code>. On a
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15510,7 +15690,11 @@ d'occurrences du mot <code>i</code> dans le document <code>j</code>. On a
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%F0%9F%A7%99%F0%9F%8F%BB-Exo-%F0%9F%A7%99%F0%9F%8F%BB">&#129497;&#127995; Exo &#129497;&#127995;<a class="anchor-link" href="#%F0%9F%A7%99%F0%9F%8F%BB-Exo-%F0%9F%A7%99%F0%9F%8F%BB">&#182;</a></h2><blockquote><p>À vous de bosser maintenant. Écrivez</p>
 <p>1. Une fonction qui prend en argument un tableau comme <code>data_train.target</code> et qui renvoie un
@@ -15520,8 +15704,12 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </blockquote>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15549,13 +15737,21 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On teste</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15570,6 +15766,8 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15593,13 +15791,21 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On visualise ?</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15617,6 +15823,8 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15630,7 +15838,10 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 
 
 <div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEWCAYAAACT7WsrAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAam0lEQVR4nO3de/wddX3n8dfbcFNBLkKtQkJAUQnUG+HSapEiCt7AxwpCFQtdlKJlV7eLFatFjTfUx9rWShXUKNpVEHA1uvFBUUC3WjDhqkBZA6JJFgQBARXRhM/+MRN7OJ7J74RkfudHeD0fj3n85vKdM58zyTnvM985ZyZVhSRJozxi0gVIkmYuQ0KS1MmQkCR1MiQkSZ0MCUlSJ0NCktTJkNBEJNktydVJdpnm7V6T5IC1LP9akmOmoY5jk/xr39sZ2N5NSQ6aru1p47HJpAvQw0+SrYGPA4dX1Q973M6ngRVV9bY186pqj4Hl7wCeVFVHDyx/YV/1SA9FhoSmRZJNqmoVQFXdBRzQ8/Zm9fn40sOF3U3qTdvF8eYkVwO/SLJJkv2SfCfJz5JcNdj1k+TiJO9L8t0kdyf5cpLtBpafk+SWJHcl+VaSwaOCTyf5aJLFSX4BHAe8CvjrJD9P8pWBmg5KcgjwN8CR7fKrBmp4TTv+iCRvS/KjJLcm+Ux7FESSuUkqyTFJfpzkp0neupZ98dgki9rn9V3giUPLn5rkgiR3JLk+ySsGlr0oybVJ7kmyMslJa9nOa5Nc17a9NsmzRrTZJ8m/tf8GNyf5SJLN2mVJ8nft8707yfeS7DlVHUlekuTK9jG/k+RpA8ve3La/p31uz+uqXzNQVTk49DIANwFXArOBRwI7ArcDL6L5gPL8dnqHtv3FwEpgT+DRwHnAPw883n8GtgI2B/4euHJg2aeBu4Bnt4+9RTvv3SNqOqgdf8fg4w/U8JqB7S0DdgW2BL4IfLZdNhcomm6zRwJPB+4Ddu/YF2cBX2if157t8/zXdtmjgeXAn9Mc3T8T+Ckwr11+M/DH7fi2wLM6tnFE+7h7AwGeBOw84nnvBezXbmsucB3wxnbZwcBlwDbtY+wOPH5tdbT13grsC8wCjmm3tznwlPa5PWFgvz1x0v83HcYfPJJQ3z5cVcur6l7gaGBxVS2uqvur6gJgKU1orPHZqvp+Vf0C+FvgFWu6jqpqYVXdU1X30bzBP33NJ/vWl6vq2+1j/2oD1P4q4ENVdWNV/Rx4C3BUksFu2ndW1b1VdRVwFU1YPEBb/8uBU6rqF1X1feDMgSYvAW6qqk9V1aqquoImII9ol/8GmJfkMVV1Z1Vd3lHva4APVNWSaiyrqh8NN6qqy6rqknZbNwGnA88d2NZWwFOBVNV1VXXzFHUcD5xeVZdW1eqqOpMmMPcDVtOExbwkm1bVTVV1Q0f9moEMCfVt+cD4zsARbZfEz5L8DHgO8PiO9j8CNgW2TzIryalJbkhyN80nVYDtO9bdEJ7Q1jBYzybA4wbm3TIw/kuaI45hO7TrDT+3NXYG9h3aL68Cfr9d/nKaIP1Rkm8m+cOOemcDU74BJ3lykq+2XXd3A++l3Y9VdSHwEeA04NYkZyR5zBR17Az896H6Z9McPSwD3kgT6rcmOSvJE6aqUTOHIaG+DV5meDnNkcI2A8Ojq+rUgTazB8bn0Hx6/SnwSuAw4CBga5puC2i6REZta9T02mob5f/RvAEO1rMK+MkU6w27rV1v+LmtsRz45tB+2bKqXgfQHhkcBvwe8CWabqtRljN0rqPDR4F/B3arqsfQnJv57X6sqg9X1V7APODJwJumqGM58J6h+h9VVZ9v1/tcVT2HZl8W8P4xatQMYUhoOv0z8NIkB7dHBlskOSDJTgNtjk4yL8mjgAXAuVW1mqYL5D6acxiPovn0O5Wf0JxPWNvyuUm6XgefB/5bkl2SbNlu8+xqv6U1rrb+LwLvSPKoJPNo+u3X+Crw5CSvTrJpO+ydZPckmyV5VZKtq+o3wN3A/R2b+gRwUpK92hPQT0qy84h2W7WP8/MkTwVet2ZBu919k2wK/AL4FXD/FHV8HDihXS9JHp3kxUm2SvKUJAcm2bx9rHvXUr9mIENC06aqltMcDfwNzafr5TSfUgf/H36W5oTzLTQnn/9rO/8zNF00K4FrgUvG2OQnafrCf5bkSyOWn9P+vT3JqH7+hW093wJ+SPMm91/G2O4oJ9J0Rd1C8/w+tWZBVd0DvAA4iubo5RaaT9ubt01eDdzUdg2dQNMV9Tuq6hzgPcDngHtoPu1vN6LpSTRHZvfQvMGfPbDsMe28O2n29+3AB9dWR1UtBV5L0011J83J/mPbdTYHTqU5GryF5ijkLaPq18yUKm86pJkhycU03zb6xKRrkdTwSEKS1MmQkCR1srtJktTJIwlJUqeN5gJ/22+/fc2dO3fSZUjSQ8pll13206raoWv5RhMSc+fOZenSpZMuQ5IeUpL8zqVbBtndJEnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI69RoSSQ5p72m7LMnJI5b/VXvP3KuTfGPwssZJVrf3zL0yyaI+65Qkjdbb7yTaWzaeRnMf4xXAkiSLquragWZXAPOr6pdJXgd8ADiyXXZvVT2jr/okSVPr80hiH2BZe3/gX9PcCP6wwQZVdVFV/bKdvATYCUnSjNHnL6535IH39F0B7LuW9scBXxuY3iLJUprbPp5aVV8aXiHJ8TQ3YWfOnDnDi9fJ3JP/93qt/1B306kvnnQJD2v+/1u//3/uv/5evzPishxJjgbmA88dmL1zVa1MsitwYZLvVdUDbvJeVWcAZwDMnz/fy9lOkC9SQ1Ybpz67m1bywBu/79TOe4AkBwFvBQ6tqvvWzK+qle3fG4GLgWf2WKskaYQ+Q2IJsFt7E/nNaO7f+4BvKSV5JnA6TUDcOjB/2/bG6STZHng2zX2NJUnTqLfupqpaleRE4HxgFrCwqq5JsgBYWlWLaG6wviVwThKAH1fVocDuwOlJ7qcJslOHvhUlSZoGvZ6TqKrFwOKheacMjB/Usd53gD/oszZJ0tT8xbUkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6GRKSpE6GhCSpkyEhSepkSEiSOhkSkqROhoQkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6GRKSpE6GhCSpkyEhSepkSEiSOhkSkqROhoQkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6GRKSpE69hkSSQ5Jcn2RZkpNHLP+rJNcmuTrJN5LsPLDsmCQ/aIdj+qxTkjRabyGRZBZwGvBCYB7wp0nmDTW7AphfVU8DzgU+0K67HfB2YF9gH+DtSbbtq1ZJ0mh9HknsAyyrqhur6tfAWcBhgw2q6qKq+mU7eQmwUzt+MHBBVd1RVXcCFwCH9FirJGmEPkNiR2D5wPSKdl6X44CvPch1JUk92GTSBQAkORqYDzx3Hdc7HjgeYM6cOT1UJkkPb30eSawEZg9M79TOe4AkBwFvBQ6tqvvWZd2qOqOq5lfV/B122GGDFS5JavQZEkuA3ZLskmQz4Chg0WCDJM8ETqcJiFsHFp0PvCDJtu0J6xe08yRJ06i37qaqWpXkRJo391nAwqq6JskCYGlVLQI+CGwJnJME4MdVdWhV3ZHkXTRBA7Cgqu7oq1ZJ0mi9npOoqsXA4qF5pwyMH7SWdRcCC/urTpI0FX9xLUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6GRKSpE6GhCSpkyEhSepkSEiSOhkSkqROhoQkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6GRKSpE6GhCSpkyEhSepkSEiSOhkSkqROhoQkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6rTJOI2SPBl4E7Dz4DpVdWBPdUmSZoCxQgI4B/gY8HFgdX/lSJJmknFDYlVVfbTXSiRJM8645yS+kuT1SR6fZLs1Q6+VSZImbtyQOIbmnMR3gMvaYelUKyU5JMn1SZYlOXnE8v2TXJ5kVZLDh5atTnJlOywas05J0gY0VndTVe2yrg+cZBZwGvB8YAWwJMmiqrp2oNmPgWOBk0Y8xL1V9Yx13a4kacMZ99tNmwKvA/ZvZ10MnF5Vv1nLavsAy6rqxvYxzgIOA34bElV1U7vs/nUtXJLUv3G7mz4K7AX8Uzvs1c5bmx2B5QPTK9p549oiydIklyR52agGSY5v2yy97bbb1uGhJUnjGPfbTXtX1dMHpi9MclUfBQ3YuapWJtm13d73quqGwQZVdQZwBsD8+fOr53ok6WFn3COJ1UmeuGaifeOe6vcSK4HZA9M7tfPGUlUr27830nRvPXPcdSVJG8a4RxJvAi5KciMQml9e//kU6ywBdkuyC004HAW8cpyNJdkW+GVV3Zdke+DZwAfGrFWStIGM++2mbyTZDXhKO+v6qrpvinVWJTkROB+YBSysqmuSLACWVtWiJHsD/wvYFnhpkndW1R7A7sDp7QntRwCnDn0rSpI0DdYaEkkOrKoLk/ynoUVPSkJVfXFt61fVYmDx0LxTBsaX0HRDDa/3HeAPpipektSvqY4kngtcCLx0xLIC1hoSkqSHtrWGRFW9vR1dUFU/HFzWnmuQJG3Exv1203kj5p27IQuRJM08U52TeCqwB7D10HmJxwBb9FmYJGnypjon8RTgJcA2PPC8xD3Aa3uqSZI0Q0x1TuLLSb4KvLmq3jtNNUmSZogpz0lU1WrgZf2XIkmaacb9xfW3k3wEOBv4xZqZVXV5L1VJkmaEcUPiGe3fBQPzCjhwg1YjSZpRxr0sx5/0XYgkaeYZ63cSSbZO8qE1925I8j+SbN13cZKkyRr3x3QLab72+op2uBv4VF9FSZJmhnHPSTyxql4+MP3OJFf2UI8kaQYZ90ji3iTPWTOR5NnAvf2UJEmaKcY9kngdcGZ7HiLAHcAxvVUlSZoRxv1205XA05M8pp2+u8+iJEkzw7jfbnpskg/T3Gv6oiT/kOSxvVYmSZq4cc9JnAXcBrwcOLwdP7uvoiRJM8O45yQeX1XvGph+d5Ij+yhIkjRzjHsk8S9JjkryiHZ4BXB+n4VJkiZv3JB4LfA54NftcBbwF0nuSeJJbEnaSI377aat+i5EkjTzjHtOgiSHAvu3kxdX1Vf7KUmSNFOM+xXYU4E3ANe2wxuSvK/PwiRJkzfukcSLgGdU1f0ASc4ErgDe0ldhkqTJG/fENcA2A+NeJlySHgbGPZJ4L3BFkotort20P3Byb1VJkmaEKUMiySOA+4H9gL3b2W+uqlv6LEySNHlThkRV3Z/kr6vqC8CiaahJkjRDjHtO4utJTkoyO8l2a4ZeK5MkTdy45ySOBAp4/dD8XTdsOZKkmWTckJhHExDPoQmL/wN8rK+iJEkzw7jdTWcCuwMfBv6RJjTOnGqlJIckuT7JsiS/822oJPsnuTzJqiSHDy07JskP2sG74EnSBIx7JLFnVc0bmL4oybVrWyHJLOA04PnACmBJkkVVNbjej4FjgZOG1t0OeDswn+bI5bJ23TvHrFeStAGMeyRxeZL91kwk2RdYOsU6+wDLqurGqlpz5djDBhtU1U1VdTXNV2wHHQxcUFV3tMFwAXDImLVKkjaQcY8k9gK+k+TH7fQc4Pok3wOqqp42Yp0dgeUD0yuAfcfc3qh1dxxulOR44HiAOXPmjPnQkqRxjRsSM/JTfFWdAZwBMH/+/JpwOZK00Rn3fhI/ehCPvRKYPTC9Uztv3HUPGFr34gdRgyRpPazLBf7W1RJgtyS7JNkMOIrxf7F9PvCCJNsm2RZ4Ad4uVZKmXW8hUVWrgBNp3tyvA75QVdckWdDewIgkeydZARwBnJ7kmnbdO4B30QTNEmBBO0+SNI3GvjPdg1FVi4HFQ/NOGRhfQtOVNGrdhcDCPuuTJK1dn91NkqSHOENCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnQwJSVInQ0KS1MmQkCR1MiQkSZ0MCUlSJ0NCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnQwJSVInQ0KS1MmQkCR1MiQkSZ0MCUlSJ0NCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnXoNiSSHJLk+ybIkJ49YvnmSs9vllyaZ286fm+TeJFe2w8f6rFOSNNomfT1wklnAacDzgRXAkiSLquragWbHAXdW1ZOSHAW8HziyXXZDVT2jr/okSVPr80hiH2BZVd1YVb8GzgIOG2pzGHBmO34u8Lwk6bEmSdI66DMkdgSWD0yvaOeNbFNVq4C7gMe2y3ZJckWSbyb54x7rlCR16K27aT3dDMypqtuT7AV8KckeVXX3YKMkxwPHA8yZM2cCZUrSxq3PI4mVwOyB6Z3aeSPbJNkE2Bq4varuq6rbAarqMuAG4MnDG6iqM6pqflXN32GHHXp4CpL08NZnSCwBdkuyS5LNgKOARUNtFgHHtOOHAxdWVSXZoT3xTZJdgd2AG3usVZI0Qm/dTVW1KsmJwPnALGBhVV2TZAGwtKoWAZ8EPptkGXAHTZAA7A8sSPIb4H7ghKq6o69aJUmj9XpOoqoWA4uH5p0yMP4r4IgR650HnNdnbZKkqfmLa0lSJ0NCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnQwJSVInQ0KS1MmQkCR1MiQkSZ0MCUlSJ0NCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnQwJSVInQ0KS1MmQkCR1MiQkSZ0MCUlSJ0NCktTJkJAkdTIkJEmdDAlJUidDQpLUyZCQJHUyJCRJnQwJSVKnXkMiySFJrk+yLMnJI5ZvnuTsdvmlSeYOLHtLO//6JAf3WackabTeQiLJLOA04IXAPOBPk8wbanYccGdVPQn4O+D97brzgKOAPYBDgH9qH0+SNI36PJLYB1hWVTdW1a+Bs4DDhtocBpzZjp8LPC9J2vlnVdV9VfVDYFn7eJKkabRJj4+9I7B8YHoFsG9Xm6paleQu4LHt/EuG1t1xeANJjgeObyd/nuT6tdSzPfDTdXkC02yi9eX9UzZx/62F+2/9uP/Wz3ruv53XtmKfIdG7qjoDOGOctkmWVtX8nkt60Kxv/Vjf+rG+9bMx19dnd9NKYPbA9E7tvJFtkmwCbA3cPua6kqSe9RkSS4DdkuySZDOaE9GLhtosAo5pxw8HLqyqaucf1X77aRdgN+C7PdYqSRqht+6m9hzDicD5wCxgYVVdk2QBsLSqFgGfBD6bZBlwB02Q0Lb7AnAtsAr4y6pavZ4ljdUtNUHWt36sb/1Y3/rZaOtL88FdkqTf5S+uJUmdDAlJUqeNNiSSbJfkgiQ/aP9u29FudZIr22H4xPqGrulBX6ZkOoxR37FJbhvYX6+Z5voWJrk1yfc7lifJh9v6r07yrBlW3wFJ7hrYf6dMc32zk1yU5Nok1yR5w4g2E9uHY9Y3sX2YZIsk301yVVvfO0e0mdhreMz61v01XFUb5QB8ADi5HT8ZeH9Hu59PUz2zgBuAXYHNgKuAeUNtXg98rB0/Cjh7GvfXOPUdC3xkgv+m+wPPAr7fsfxFwNeAAPsBl86w+g4AvjrB/fd44Fnt+FbA/x3xbzyxfThmfRPbh+0+2bId3xS4FNhvqM0kX8Pj1LfOr+GN9kiCB17y40zgZZMrBVi/y5TMlPomqqq+RfMtuC6HAZ+pxiXANkkePz3VjVXfRFXVzVV1eTt+D3Adv3slg4ntwzHrm5h2n/y8ndy0HYa/+TOx1/CY9a2zjTkkHldVN7fjtwCP62i3RZKlSS5J8rIe6xl1mZLhF8ADLlMCrLlMyXQYpz6Al7fdEOcmmT1i+SSN+xwm6Q/b7oCvJdljUkW03SDPpPm0OWhG7MO11AcT3IdJZiW5ErgVuKCqOvffBF7D49QH6/gafkiHRJKvJ/n+iOEBn4CrOc7qStSdq/m5+iuBv0/yxL7rfgj7CjC3qp4GXMB/fGLSeC6n+f/2dOAfgS9NoogkWwLnAW+sqrsnUcPaTFHfRPdhVa2uqmfQXAVinyR7Tuf2pzJGfev8Gn5Ih0RVHVRVe44Yvgz8ZM1hcvv31o7HWNn+vRG4mObTSx/W5zIl02HK+qrq9qq6r538BLDXNNU2rhl9OZequntNd0BVLQY2TbL9dNaQZFOaN+D/WVVfHNFkovtwqvpmwj5st/0z4CKaWxkMmuRr+Le66nswr+GHdEhMYfCSH8cAXx5ukGTbJJu349sDz6b5lXcf1ucyJdNhyvqG+qYPpekznkkWAX/WfkNnP+CugS7HiUvy+2v6p5PsQ/P6m7Y3kHbbnwSuq6oPdTSb2D4cp75J7sMkOyTZph1/JPB84N+Hmk3sNTxOfQ/qNTxdZ96ne6DpB/wG8APg68B27fz5wCfa8T8CvkfzTZ7vAcf1XNOLaL6xcQPw1nbeAuDQdnwL4Bya+2d8F9h1mvfZVPW9D7im3V8XAU+d5vo+D9wM/Iamr/w44ATghHZ5aG50dUP77zl/htV34sD+uwT4o2mu7zk03a5XA1e2w4tmyj4cs76J7UPgacAVbX3fB05p58+I1/CY9a3za9jLckiSOm3M3U2SpPVkSEiSOhkSkqROhoQkqZMhIUnqZEhI6yHJO5KcNOk6pL4YEpKkToaEtA6S/Fl7cbSrknx2aNlrkyxpl52X5FHt/CPaa4pdleRb7bw92mv/X9k+3m7t/KMH5p+eZNb0P0vpPxgS0pjaK46+DTiwmgvMDd8U54tVtXe77DqaX1wDnAIc3M4/tJ13AvAP1VyMbT6wIsnuwJHAs9v5q4FX9fiUpCltMukCpIeQA4FzquqnAFV1x9CtAvZM8m5gG2BL4Px2/reBTyf5ArDmonX/Brw1yU404fKDJM+jueDakvZxH0nHhSml6WJISBvOp4GXVdVVSY6luYsaVXVCkn2BFwOXJdmrqj6X5NJ23uIkf0Fz3aQzq+otE6leGsHuJml8FwJHJHksNPdRH1q+FXBze7nr33YTJXliVV1aVacAtwGzk+wK3FhVH6a5QvHTaC5IeXiS31vz+El27v1ZSWvhkYQ0pqq6Jsl7gG8mWU1zxc2bBpr8Lc2d1G5r/27Vzv9ge2I6NEFwFfBm4NVJfkNz58T3tt1XbwP+JckjaK4m+5fAj3p/clIHrwIrSepkd5MkqZMhIUnqZEhIkjoZEpKkToaEJKmTISFJ6mRISJI6/X8k4EG8r5/V+wAAAABJRU5ErkJggg==
+"
+class="
+jp-needs-light-background
 "
 >
 </div>
@@ -15642,19 +15853,33 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Voilà un dataset bien équilibré</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On aurait aussi pu faire directement</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15670,6 +15895,8 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15693,7 +15920,11 @@ maximal, soit ici simplement celui qui utilise pour probabilités les fréquence
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <blockquote><p>2. Une fonction qui prend en argument un tableau comme <code>bow_array</code> et un tableau de classes
 <code>target</code> comme précédemment et renvoie un tableau <code>word_probs</code> tel que <code>word_probs[c,w]</code> soit
@@ -15705,25 +15936,47 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On va commencer par le faire par étapes pour visualiser puis on mettra tout dans une fonction</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On construit d'abord les comptes d'occurrences et on normalisera après</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><code>bow_array</code> est de dimensions (nombre de documents, nombre de mots)</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15737,6 +15990,8 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15760,13 +16015,21 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>donc</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15780,13 +16043,21 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Comme précédemment, <code>data_train.target</code> contient les comptes des classes dont il y a</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15800,6 +16071,8 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15824,6 +16097,8 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15837,14 +16112,22 @@ dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On va stocker les comptes dans un tableau de dimension <code>(nombre de classes, nombre de mots)</code>, on va
 d'abord le créer puis on le remplira dans une boucle.</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15859,6 +16142,8 @@ d'abord le créer puis on le remplira dans une boucle.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15885,13 +16170,21 @@ d'abord le créer puis on le remplira dans une boucle.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ah, mais on a dit qu'on allait ajouter $1$ à tous les comptes pour lisser, donc il nous faut en fait</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15906,6 +16199,8 @@ d'abord le créer puis on le remplira dans une boucle.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15932,15 +16227,23 @@ d'abord le créer puis on le remplira dans une boucle.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Maintenant on remplit avec une boucle : on itère sur les sacs de mots et on ajoute leurs comptes
 d'occurrences à la ligne qui correspond à leur classe. C'est assez facile : le nombre d'occurrence
 de chaque mot dans un doc, c'est juste sa ligne dans <code>bow_array</code></p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15954,6 +16257,8 @@ de chaque mot dans un doc, c'est juste sa ligne dans <code>bow_array</code></p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15977,15 +16282,23 @@ de chaque mot dans un doc, c'est juste sa ligne dans <code>bow_array</code></p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On va vouloir ajouter tous ces comptes à la ligne correspondant à sa classe (donc
 <code>data_train.targets[0]</code>) dans <code>counts</code>. On va pouvoir le faire directement avec la fonction
 d'addition des arrays</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -15999,6 +16312,8 @@ d'addition des arrays</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16022,13 +16337,21 @@ d'addition des arrays</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On fait ça pour tous les documents :</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16044,6 +16367,8 @@ d'addition des arrays</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16074,14 +16399,22 @@ d'addition des arrays</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Il reste à normaliser. Pour ça, il nous faut d'abord le nombre total de mots dans chaque classe. Par
 exemple pour la classe <code>0</code></p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16095,6 +16428,8 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16118,13 +16453,21 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On normalise avec ça les occurrences pour cette classe</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16138,6 +16481,8 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16162,13 +16507,21 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On le fait pour tout le monde</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16187,6 +16540,8 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16217,13 +16572,23 @@ exemple pour la classe <code>0</code></p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et voilà, on a fini !</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On peut faire plus efficace avec des opérations sur les tableaux. On peut aussi passer cette section
 et y revenir plus tard !</p>
@@ -16231,8 +16596,12 @@ et y revenir plus tard !</p>
 sur quelle dimension on somme.</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16247,6 +16616,8 @@ sur quelle dimension on somme.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16270,13 +16641,21 @@ sur quelle dimension on somme.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On a ensuite envie de diviser chaque ligne par sa somme en utilisant le broadcast</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell    celltag_raises-exception">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16290,6 +16669,8 @@ sur quelle dimension on somme.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16304,8 +16685,8 @@ sur quelle dimension on somme.</p>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_2151/1890787321.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counts<span class="ansi-blue-fg">/</span>total_per_class
+Input <span class="ansi-green-fg">In [36]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">counts</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">/</span><span class="ansi-yellow-bg">total_per_class</span>
 
 <span class="ansi-red-fg">ValueError</span>: operands could not be broadcast together with shapes (4,31116) (4,) </pre>
 </div>
@@ -16316,20 +16697,34 @@ sur quelle dimension on somme.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Mais ça ne marche pas, parce que numpy ne veut pas ajouter de dimension pour nous. On peut s'en
 sortir de deux façons :</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>En ajoutant un axe à la somme</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16344,6 +16739,8 @@ sortir de deux façons :</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16388,13 +16785,21 @@ sortir de deux façons :</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ou en conservant l'axe $1$ lors de la somme</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16410,6 +16815,8 @@ sortir de deux façons :</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16454,7 +16861,11 @@ sortir de deux façons :</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On pourrait aussi remplacer la première boucle par
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.put_along_axis"><code>np.put_along_axis</code></a>, mais
@@ -16462,8 +16873,12 @@ les boucles, c'est pas si pire.</p>
 <p>On met tout dans une fonction</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16483,6 +16898,8 @@ les boucles, c'est pas si pire.</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16513,7 +16930,11 @@ les boucles, c'est pas si pire.</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Voilà, on a un modèle de classification <em>Naïve Bayes</em> 👏🏻</p>
 <blockquote><p>3. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre
@@ -16523,13 +16944,23 @@ modèle. Pensez à travailler en log-probabilités</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>D'abord on calcule les log-paramètres du modèle</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16546,6 +16977,8 @@ modèle. Pensez à travailler en log-probabilités</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16590,19 +17023,33 @@ modèle. Pensez à travailler en log-probabilités</p>
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Et on se rappelle qu'on a déjà le vocabulaire dans <code>w_to_i</code></p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ensuite on les exploite</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16632,6 +17079,8 @@ modèle. Pensez à travailler en log-probabilités</p>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16648,6 +17097,8 @@ modèle. Pensez à travailler en log-probabilités</p>
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16680,13 +17131,21 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ou en plus rapide et compact avec un <a href="https://numpy.org/doc/stable/reference/generated/numpy.inner">produit scalaire</a> vecteur-vecteur</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16710,13 +17169,21 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Ou encore plus rapide et compact avec une <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul">multiplication matrice-vecteur</a></p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16738,26 +17205,46 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Si vous voulez vous motiver à mieux apprendre numpy, je vous recommande de chronométrer les temps d'exécution de la suite avec les différentes versions de cette fonction.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <blockquote><p>Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.</p>
 </blockquote>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>On va déjà le faire sur l'ensemble de train</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16775,6 +17262,8 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16824,13 +17313,21 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Plutôt encourageant ! on va écrire une fonction pour le faire sur n'importe quel ensemble de textes</p>
 
 </div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16848,6 +17345,8 @@ La classe correcte était 0, soit sci.crypt
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -16861,6 +17360,8 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -16884,7 +17385,11 @@ La classe correcte était 0, soit sci.crypt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <blockquote><p>4. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
 appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.</p>
@@ -16892,17 +17397,31 @@ appropriée) et un qui charge le modèle et prédit la classe de chacun des docu
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <blockquote><p>Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir <a href="https://click.palletsprojects.com/en/8.0.x/">click</a>.</p>
 </blockquote>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Voir <a href="nb_script.py"><code>nb_script.py</code></a></p>
 
+</div>
+</div>
 </div>
 </div>
 </body>
