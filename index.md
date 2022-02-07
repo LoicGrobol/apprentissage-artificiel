@@ -11,7 +11,7 @@ title: Apprentissage artificiel — M2 PluriTAL 2021
 
 ## Infos pratiques
 
-- **Quoi** « Apprentissage Artificiel »
+- **Quoi** « Apprentissage Automatique » 4L9TL07P
 - **Où** Salle 219, bâtiment Paul Ricœur
 - **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 22/09 au 17/11
   - Voir [le
