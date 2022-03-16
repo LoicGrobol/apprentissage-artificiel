@@ -14454,6 +14454,11 @@ all of MD as it is not optimized for dense, information rich UIs.
 </style>
 
 <style type="text/css">
+/* Force rendering true colors when outputing to pdf */
+* {
+  -webkit-print-color-adjust: exact;
+}
+
 /* Misc */
 a.anchor-link {
   display: none;
@@ -14515,11 +14520,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   width: 100%;
 }
 
-@media print {
-  .jp-Collapser {
-    display: none;
-  }
+/* Hiding the collapser by default */
+.jp-Collapser {
+  display: none;
+}
 
+@media print {
   .jp-Cell-inputWrapper,
   .jp-Cell-outputWrapper {
     display: block;
@@ -14687,9 +14693,9 @@ modèles tout faits.</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Requirement already satisfied: gensim in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (4.1.2)
-Requirement already satisfied: scipy&gt;=0.18.1 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from gensim) (1.8.0)
-Requirement already satisfied: numpy&gt;=1.17.0 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from gensim) (1.22.2)
 Requirement already satisfied: smart-open&gt;=1.8.1 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from gensim) (5.2.1)
+Requirement already satisfied: numpy&gt;=1.17.0 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from gensim) (1.22.3)
+Requirement already satisfied: scipy&gt;=0.18.1 in /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages (from gensim) (1.8.0)
 Note: you may need to restart the kernel to use updated packages.
 </pre>
 </div>
