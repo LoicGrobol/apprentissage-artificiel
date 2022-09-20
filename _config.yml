@@ -6,7 +6,7 @@ emojicon: 🤖
 
 url: https://loicgrobol.github.io/
 baseurl: /apprentissage-artificiel
-repository: "loicgrobol/apprendre-programmer"
+repository: "loicgrobol/apprentissage-artificiel"
 repo_branch: "main"
 
 exclude:
