@@ -41,55 +41,6 @@ assert square(0) == 0
 assert square(-2) == 4
 ```
 
-### Parité
-
-Version élémentaire
-
-```python
-def is_even(num):
-    """Return True if `num` is even, False otherwise."""
-    if num % 2 == 0:
-        return True
-    else:
-        return False
-```
-
-On peut utiliser `return` comme un court-circuit
-
-```python
-def is_even(num):
-    """Return True if `num` is even, False otherwise."""
-    if num % 2 == 0:
-        return True
-    return False
-```
-
-Ou simplement utiliser le fait que la comparaison est déjà un booléen
-
-```python
-def is_even(num):
-    """Return True if `num` is even, False otherwise."""
-    return num % 2 == 0
-```
-
-En poussant le golf plus loin : en exploitant le fait que `0` est faux.
-
-Ou simplement utiliser le fait que la comparaison est déjà un booléen
-
-```python
-def is_even(num):
-    """Return True if `num` is even, False otherwise."""
-    return not (num % 2)
-```
-
-```python
-assert is_even(1) == False
-assert is_even(2) == True
-assert is_even(-3) == False
-assert is_even(-42) == True
-assert is_even(0) == True
-```
-
 ## ✍️ Exo 2 ✍️
 
 On peut faire comme ça, mais c'est trop verbeux
@@ -119,9 +70,6 @@ def on_fait_la_taille(moi, toi):
       return "pareil"
 ```
 
-On peut aussi utiliser des courts-circuits (voir [exo 1](#✍️-Exos-1-✍️)) mais je trouve ça moins
-clair.
-
 ```python
 assert on_fait_la_taille(100, 80) == "plus grand"
 assert on_fait_la_taille(100, 120) == "plus petit"
@@ -130,7 +78,7 @@ assert on_fait_la_taille(100, 100) == "pareil"
 
 ## ✍️ Exo 3 ✍️
 
-Vous reprenez votre fonction `is_even` de façon à afficher "Erreur de type" quand l'argument n'est
+Vous reprenez votre fonction `square` de façon à afficher "Erreur de type" quand l'argument n'est
 pas de type `int`
 
 ```python
@@ -138,16 +86,14 @@ def is_even(num):
     """Return True if `num` is even, False otherwise."""
     if not isinstance(num, int):
       return "Erreur de type"
-    return num % 2 == 0
+    return num**2
 ```
 
 ```python
-assert is_even(1) == False
-assert is_even(2) == True
-assert is_even(-3) == False
-assert is_even(-42) == True
-assert is_even(0) == True
-assert is_even("test") == "Erreur de type"
+assert square(3) == 9
+assert square(0) == 0
+assert square(-2) == 4
+square("test")
 ```
 
 ## ✍️ Exo 4 ✍️
@@ -180,53 +126,6 @@ assert change_char("maison", 0) == "zaison"
 ```
 
 ## ☕ Exos 6 ☕
-
-Il y a plus élémentaire, mais ça se fait bien avec des compréhensions
-
-```python
-def fr_ar(s):
-    """
-    recherche les pronoms personnels dans la chaîne donnée en argument
-    renvoie leurs équivalents en arabe sous forme de liste
-    """
-    # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
-    fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
-    res = []
-    for w in s.split():
-        trad = fr_ar_dict.get(w)
-        if trad is not None:
-            res.append(trad)
-    return res
-```
-
-Voire un peu plus
-[ésotérique](https://docs.python.org/3/reference/expressions.html?highlight=walrus#assignment-expressions) :
-
-```python
-def fr_ar(s):
-    """
-    recherche les pronoms personnels dans la chaîne donnée en argument
-    renvoie leurs équivalents en arabe sous forme de liste
-    """
-    # from https://fr.wikipedia.org/wiki/Liste_Swadesh_de_l%27arabe and https://fr.wiktionary.org/wiki/هُمَا
-    fr_ar_dict = {'je':'أنا', 'tu':'أنت', 'il': 'هو', 'elle': 'هي', 'iel': 'هما', 'nous': 'نحن', 'vous': 'انتما', 'ils': 'هما', 'elles': 'هنَّ', 'iels': 'هما'}
-    res = []
-    for w in s.split():
-        if (trad := fr_ar_dict.get(w)) is not None:
-            res.append(trad)
-    return res
-```
-
-Un bon tutoriel sur l'opérateur morse `:=` sur
-[RealPython](https://realpython.com/python-walrus-operator/) (en anglais).
-
-```python
-assert fr_ar("trop bizarre cet exercice") == []
-assert fr_ar("iel nous a rien dit") == ['هما', 'نحن']
-```
-
-Dans tous les cas, il fallait se méfier de l'exemple : dans beaucoup d'éditeurs, à cause du
-changement de direction, la liste apparait dans le désordre !
 
 ### 1. Des triangles
 
@@ -295,7 +194,56 @@ assert caracteristiques(6, 3, 2) == "pas un triangle"
 assert caracteristiques(2, 6, 3) == "pas un triangle"
 ```
 
-### 2. Des heures
+### 2. Parité
+
+Version élémentaire
+
+```python
+def is_even(num):
+    """Return True if `num` is even, False otherwise."""
+    if num % 2 == 0:
+        return True
+    else:
+        return False
+```
+
+On peut utiliser `return` comme un court-circuit
+
+```python
+def is_even(num):
+    """Return True if `num` is even, False otherwise."""
+    if num % 2 == 0:
+        return True
+    return False
+```
+
+Ou simplement utiliser le fait que la comparaison est déjà un booléen
+
+```python
+def is_even(num):
+    """Return True if `num` is even, False otherwise."""
+    return num % 2 == 0
+```
+
+En poussant le golf plus loin : en exploitant le fait que `0` est faux.
+
+Ou simplement utiliser le fait que la comparaison est déjà un booléen
+
+```python
+def is_even(num):
+    """Return True if `num` is even, False otherwise."""
+    return not (num % 2)
+```
+
+```python
+assert is_even(1) == False
+assert is_even(2) == True
+assert is_even(-3) == False
+assert is_even(-42) == True
+assert is_even(0) == True
+```
+
+### 3. Des heures
 
 1. Écrire une fonction `heures(secondes)` qui prend un nombre de secondes (entier) et le convertit
    en heures, minutes et secondes sous le format `H:M:S` où `H` est le nombre d'heures, `M` le
@@ -342,44 +290,268 @@ assert(secondes(heures(86466))) == "86466"
 assert(heures(secondes('24:1:1'))) == "24:1:1"
 ```
 
-### 3. Des cartes
-
-Nous jouons aux cartes à quatre personnes. On appelle un pli l'ensemble des cartes jouées dans un
-tour (ici, quatre cartes). Chaque carte a une valeur (un entier de 1 à 13). Chaque carte a également
-une couleur : carreau, trèfle, cœur ou pic. Ces couleurs sont notés avec une lettre: carreau=`D`,
-trèfle=`C`, cœur=`H` et pic=`S`. Une carte est alors une chaîne avec sa couleur et sa valeur, par
-exemple l'as de pic est noté `S1`, la dame de cœur `H12`. La carte du premier joueur `carte1` donne
-la couleur attendue. Une carte qui n'est pas à la bonne couleur perd automatiquement. Écrire une
-fonction `gagne_couleur(carte1, carte2, carte3, carte4)` qui renvoie la carte qui remporte le pli en
-faisant attention aux couleurs.  
-
-On ne gèrera pas certains cas incohérents comme une carte ou un pli invalide.
+## ✍️ Exo 7 ✍️
 
 ```python
-def gagne_couleur(carte1, carte2, carte3, carte4):
-    """Affiche la carte qui remporte le pli en faisant attention aux couleurs :
-        - la carte du premier joueur `carte1` donne la couleur attendue.
-        - une carte qui n'est pas à la bonne couleur perd automatiquement.
-
-    On ne gèrera pas certains cas incohérents comme une carte ou un pli invalide.
+def tokenize(sentence):
     """
-    def gagne(carte1, carte2, couleur):  # on peut aussi définir une fonction dans une fonction
-        if carte2[0] != couleur:
-            return carte1
-        elif int(carte1[1:]) < int(carte2[1:]):  # carte1 est forcément valide, pas besoin de vérifier
-            return carte2
+    Tokenize la phrase donnée en argument (sep = espace).
+    Renvoie une liste de mots. Les mots composés avec un tiret
+    sont décomposés dans des sous-listes.
+    Args:
+        sentence (string): la phrase à tokenizer
+    Returns:
+        list
+    """
+    res = []
+    for token in sentence.split():
+        if "-" in token:
+            res.append(token.split("-"))
         else:
-            return carte1
-    couleur = carte1[0]
-    gagnante = carte1
-    for carte in [carte2, carte3, carte4]:
-        gagnante = gagne(gagnante, carte, couleur)
-    return gagnante
+            res.append(token)
+    return res
+```
+
+On peut faire plus sophistiqué, mais ce n'est pas conseillé
+
+```python
+assert tokenize("je suis né dans le gris par accident") == \
+    ['je', 'suis', 'né', 'dans', 'le', 'gris', 'par', 'accident']
+assert tokenize("tout mon cœur est resté là-bas") == \
+    ['tout', 'mon', 'cœur', 'est', 'resté', ['là', 'bas']]
+```
+
+### ✍️ Exo 8 ✍️
+
+> Utilisez une liste en compréhension sur la sortie de votre fonction tokenize de manière à ne
+> retenir que les noms composés
+
+```python
+words = tokenize("De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne")
+compounds = [w for w in words if not isinstance(word, str)]
+assert compounds == [['De', 'ci'], ['de', 'là,'], ['cahin', 'caha,']]
+```
+
+Là encore on pourrait mieux faire, mais ça ne vaut pas vraiment le coup pour cet exo.
+
+## ✍️ Exo 9
+
+> Dans cet extrait de données tirées des [listes de Swadesh de langues
+> austronésiennes](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists), ici pour le
+> tagalog et le cebuano, trouvez les mots en commun.
+
+```python
+tagalog = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'tayo', 'you_pl':'kayo', 'they':'sila',\
+           'this':'ito', 'that':'iyan', 'here':'dito', 'there':'doon', 'who':'sino',\
+           'what':'ano', 'where':'saan', 'when':'kailan', 'how':'paano'}
+cebuano = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'kita', 'you_pl':'kamo', 'they':'sila',\
+           'this':'kiri', 'that':'kana', 'here':'diri', 'there':'diha', 'who':'kinsa',\
+           'what':'unsa', 'where':'asa', 'when':'kanus-a', 'how':'unsaon'}
+set(tagalog.values()).intersection(set(cebuano.values()))
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### ✍️ Exo 10
+
+
+```python
+from collections import Counter
+cnt = Counter()
+lst = ['le', 'guépard', 'le', 'poursuit']
+for item in lst:
+    cnt[item] += 1
+display(cnt)
+```
+
+> Faites la même chose avec un dictionnaire
+
+```python
+lst = ['le', 'guépard', 'le', 'poursuit']
+cnt = dict()
+for item in lst:
+    cnt[item] = cnt.get(item, 0) + 1
+display(cnt)
+```
+
+### ✍️ Exo 11
+
+> Lisez le fichier [`data/austronesian_swadesh.csv`](../../data/austronesian_swadesh.csv) et écrivez
+> les mots des langues Ilocano et Malagasy dans deux fichiers distincts.
+>
+> Les données viennent de
+> [Wiktionary](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists).
+>
+> (Essayez de faire comme si vous ne connaissiez pas le module csv sinon la partie qui suit n'aura >
+> aucun intérêt.)
+
+Pour commencer, ouvrez [`data/austronesian_swadesh.csv`](../../data/austronesian_swadesh.csv) avec
+un éditeur de texte pour voir les problèmes :
+
+- Il y a des sauts de lignes en plein milieu des cellules
+- Il y a des cellules qui contiennent des virgules (qui est aussi le séparateur de colonnes).
+
+```python
+def read_that_ugly_csv(p):
+    """Lit le fichier csv pourri en recollant les sauts de lignes intempestifs."""
+    lines = []
+    with open(p) as in_stream:
+        next(in_stream)  # On saute la ligne d'en-tête
+        for l in in_stream:
+            # On saute les lignes vides ou blanches (en pratique la dernière)
+            if not l or l.isspace():
+                continue
+            if l[0].isdigit(): # Débuts de lignes
+                lines.append(l.strip())
+            else: # fins de lignes tronquées : on les ajoute à la ligne d'avant
+                lines.append(lines.pop()+l.strip())
+    return lines
+
+def get_malagasy_ilocano(lst):
+    mal = []
+    ilo = []
+    for line in lst:
+        # Dégage la colonne 0
+        row = line.split(',"', maxsplit=1)[1]
+        # les autres sont séparées par `","`
+        cols = row.split('","')
+        # Indices codés en dur, pas très général mais c'est pas grave
+        mal.append(cols[9])
+        ilo.append(cols[2])
+    return mal, ilo
+
+def write_list(lst, p):
+    with open(p, "w") as out_stream:
+        for elem in lst:
+            out_stream.write(f"{elem}\n")
+
+lines = read_that_ugly_csv("../../data/austronesian_swadesh.csv")
+mal, ilo = get_malagasy_ilocano(lines)
+write_list(mal, "mal.txt")
+write_list(ilo, "ilo.txt")
 ```
 
 ```python
-assert(gagne_couleur('S1', 'S2', 'S3', 'S4')) == 'S4'
-assert(gagne_couleur('S4', 'S3', 'S2', 'S1')) == 'S4'
-assert(gagne_couleur('S1', 'D2', 'C3', 'H4')) == 'S1'
-assert(gagne_couleur('S1', 'D2', 'S13', 'S10')) == 'S13'
+with open('swadesh_light.csv', 'w') as csvfile:
+    fieldnames = ['english', 'ilocano']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter='|',quotechar='$')
+    writer.writeheader()
+    for num, en, ilo in swadesh_light:
+        writer.writerow({'english': en, 'ilocano': ilo})
+
+```
+
+## ☕ Exos 12 ☕
+
+> 1\. Écrire une fonction qui reçoit deux noms de langues austronésiennes, une liste de mots en
+> anglais et renvoie chacun des mots anglais avec leur traduction dans les deux langues.
+
+```python
+import csv
+import collections
+
+def get_austro_words(lang1, lang2, words, path):
+    """
+    Reçoit un couple de langues (langue1, langue2) et une liste de mots (words)
+    Cherche dans la liste Swadesh des langues austronésiennes les traductions des mots
+    dans ces deux langues.
+    Renvoie un dictionnaire {'langue1': [w1, w2], 'langue2': [w1, w2]}
+    Liste vide si la langue n'est pas répertoriée dans la liste
+    """
+    res = collections.defaultdict(list)
+    with open(path) as swadesh:
+        reader = csv.DictReader(swadesh)
+        if not (lang1 in reader.fieldnames):
+            res[lang1] = []
+        if not (lang2 in reader.fieldnames):
+            res[lang2] = []
+        for row in reader:
+            if row["English"] in words:
+                res[lang1].append(row[lang1])
+                res[lang2].append(row[lang2])
+        return res
+```
+
+> 2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
+> langues qui ont les deux ou trois premiers caractères en commun. (optionnel si vous voulez jouer
+> avec les expressions régulières) Si le mot commence par une voyelle, elle pourra différer dans les
+> autres langues. Ex: isa / usa seront considérées comme similaires (i/u) parce qu'à part la
+> première lettre voyelle elles sont similaires.
+
+```python
+def same_prefix(cebuano_word, word):
+    """Vérifie si deux mots ont le même préfixe (longueur 2 ou 3)
+    Si les premières lettres sont des voyelles on les considère similaires
+    """
+    if cebuano_word and word:
+        if cebuano_word[0] in "aeiou" and word[0] in "eaiou":
+            return cebuano_word[1:2] == word[1:2]
+        else:
+            return cebuano_word[0:2] == word[0:2]
+    else:
+        return False
+
+def find_words_same_prefix(path):
+    res = collections.defaultdict(list)
+    with open(file) as swadesh:
+        reader = csv.DictReader(swadesh)
+        for row in reader:
+            cebuano_w = row['Cebuano']
+            for lang, cell in row.items():
+                if lang == 'Cebuano':
+                    continue
+                for word in cell.split(','):# parce qu'on a des cellules avec plusieurs mots
+                    if same_prefix(cebuano_w, word):
+                        res[cebuano_w].append({lang:word})
+    return res
+```
+
+> 3\. **Pour les champion⋅nes** Sans rechercher de solution sur internet, essayez d'implémenter une
+   fonction qui calcule la distance de Levenshtein. (Vous pouvez chercher ce que c'est que la
+   distance de Levenshtein et l'algorithme en pseudo-code, mais n'allez pas chercher directement
+   d'implémentation en Python !).
+
+Voir <http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/c_dist/edit_distance.html> et
+<https://fr.wikipedia.org/wiki/Distance_de_Levenshtein> Pour les implémentations
+: <https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python>
+
+
+```python
+def distance(longer_word, shorter_word):
+    if len(longer_word) < len(shorter_word):
+        shorter_word, longer_word = longer_word, shorter_word
+
+    if longer_word == shorter_word:
+        return 0
+    elif len(longer_word) == 0:
+        return len(shorter_word)
+    elif len(shorter_word) == 0:
+        return len(longer_word)
+    else:
+        matrix = {}
+        longer_word = ' ' + longer_word
+        shorter_word = ' ' + shorter_word
+        W1 = len(longer_word)
+        W2 = len(shorter_word)
+        for i in range(W1):
+            matrix[i, 0] = i
+        for j in range (W2):
+            matrix[0, j] = j
+        for i in range(1, W1):
+            for j in range(1, W2):
+                if longer_word[i] == shorter_word[j]:
+                    cost = 0
+                else:
+                    cost = 1
+                matrix[i, j] = min(
+                    matrix[i-1, j] + 1, # effacement
+                    matrix[i, j-1] + 1, # insertion
+                    matrix[i-1, j-1] + cost # substitution 
+                    )
+        return matrix[W1-1, W2-1]
+
+
+def main():
+    longer_word, shorter_word = ("roule", "raoul")
+    print(f"{longer_word}, {shorter_word}")
+    print(distance(longer_word, shorter_word))
 ```

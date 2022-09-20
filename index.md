@@ -36,28 +36,12 @@ est indisponible.
 
 ### 2021-09-22 — Introduction et *crash course* Python
 
-#### Slides
+- {% notebook_badges slides/01-intro_rappels/intro_rappels-slides.py.md %}
+  [Slides Introduction et crash course]( slides/01-intro_rappels/intro_rappels-slides.py.html)
+- {% notebook_badges slides/01-intro_rappels/intro_rappels-solutions.py.md %}
+  [Solutions](slides/01-intro_rappels/intro_rappels-solutions.py.html)
 
-- [Slides 1](slides/lecture-01/lecture-01.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/lecture-01.md)
-- [Slides 2](slides/lecture-02/lecture-02.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/lecture-02.md)
-- [Slides 3](slides/lecture-03/lecture-03.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-03/lecture-03.md)
-- [Slides 4](slides/lecture-04/lecture-04.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-04/lecture-04.md)
-- [Slides 5](slides/lecture-05/lecture-05.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-05/lecture-05.md)
-- [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
 
-#### Corrections
-
-- [Exercices slides 1](slides/lecture-01/solutions-01.md) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/solutions-01.md)
-- [Exercices slides 2](slides/lecture-02/solutions-02.md) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/solutions-02.md)
-- [Exo sacs de mots](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections/tfidf.py) dans sa version la plus sale possible.
 
 ## Lire les slides en local
 
@@ -110,7 +94,8 @@ extensions adéquates. Le plus simple est le suivant
 
 ### Python général
 
-Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qui suit n'est qu'une sélection.
+Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qui suit n'est qu'une
+sélection.
 
 #### Livres
 
