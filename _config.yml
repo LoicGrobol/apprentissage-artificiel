@@ -5,6 +5,8 @@ description: Contenus pour le cours « Apprentissage automatique » du maste
 
 url: https://loicgrobol.github.io/
 baseurl: /apprentissage-artificiel
+repository: "loicgrobol/apprendre-programmer"
+repo_branch: "main"
 
 exclude:
   - renv
