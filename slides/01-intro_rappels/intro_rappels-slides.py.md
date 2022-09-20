@@ -1522,7 +1522,7 @@ assert get_austro_words('Malay', 'Balinese', ['new', 'old', 'good']) == \
    voyelle, elle pourra différer dans les autres langues. Ex: isa / usa seront considérées comme
    similaires (i/u) parce qu'à part la première lettre voyelle elles sont similaires.
 
-3\. **Pour les champion⋅nes** Sans rechercher de solution sur internet, essayez d'implémenter une
+3\. Pour les champion⋅nes Sans rechercher de solution sur internet, essayez d'implémenter une
    fonction qui calcule la distance de Levenshtein. (Vous pouvez chercher ce que c'est que la
    distance de Levenshtein et l'algorithme en pseudo-code, mais n'allez pas chercher directement
    d'implémentation en Python !)

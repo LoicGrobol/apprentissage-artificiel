@@ -5,11 +5,6 @@ layout: default
 
 <!-- LTeX: language=fr -->
 
-[🤖 Apprentissage artificiel 🤖][1]
-====================================
-
-[1]: {{site.url}}{{site.baseurl}}/
-
 ## News
 
 - **2021-09-20** Premier cours du semestre le 21/09/2022
