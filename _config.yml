@@ -9,7 +9,10 @@ repository: "loicgrobol/apprendre-programmer"
 repo_branch: "main"
 
 exclude:
-  - renv
+  - "*.py.md"
+  - "**/local"
 
 include:
   - _pages
+  - "*.py.html"
+  - "pdf_slides/*"
