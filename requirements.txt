@@ -1,5 +1,6 @@
 conllu
 ipympl
+ipywidgets
 jupyterlab
 jupytext
 nbconvert
