@@ -92,7 +92,8 @@ Par exemple, peu importe que je n'applique `most_common` que sur des chaînes de
 <!-- #region slideshow={"slide_type": "subslide"} -->
 - Je ne m'occupe que d'une chose à la fois
 - Je ne m'encombre pas l'esprit avec des informations qui ne concernent pas cette chose
-- Quand j'utilise ma fonction, je ne me soucie plus de comment elle a été écrite (et l'implémentation est donc facile à changer)
+- Quand j'utilise ma fonction, je ne me soucie plus de comment elle a été écrite (et
+  l'implémentation est donc facile à changer)
 - Accessoirement, je ne pollue pas l'espace de nom avec des variables qui ne serviront plus
 
 On rejoint le concept d'API, dont on reparlera

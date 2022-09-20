@@ -494,10 +494,13 @@ with open('mon_fichier', 'w') as output_f:
 <!-- #region slideshow={"slide_type": "slide"} -->
 ### ✍️ Exo 5
 
-Lisez le fichier `data/austronesian_swadesh.csv` et écrivez les mots des langues Ilocano et Malagasy dans deux fichiers distincts.  
-Les données viennent de [Wiktionary](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists).
+Lisez le fichier `data/austronesian_swadesh.csv` et écrivez les mots des langues Ilocano et Malagasy
+dans deux fichiers distincts.  
+Les données viennent de
+[Wiktionary](https://en.wiktionary.org/wiki/Appendix:Austronesian_Swadesh_lists).
 
-(Essayez de faire comme si vous ne connaissiez pas le module csv sinon la partie qui suit n'aura aucun intérêt.)
+(Essayez de faire comme si vous ne connaissiez pas le module csv sinon la partie qui suit n'aura
+aucun intérêt.)
 <!-- #endregion -->
 
 ```python

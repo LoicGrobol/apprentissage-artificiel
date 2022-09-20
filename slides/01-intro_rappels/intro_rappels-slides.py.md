@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.12.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -62,7 +62,7 @@ tout de suite et on trouvera une solution.
 ## Setup
 
 - Tous les notebooks s'ouvrent dans [Binder](https://mybinder.org), y compris les slides
-- Pour cette séance on peut s'en contenter, pour la suite ça ne suffira pas
+- Pour l'instant on peut s'en contenter, pour la suite ça ne suffira pas
 - Pour la séance prochaine, il faudra avoir Python 3 installé (mais c'est déjà votre cas à toustes,
   non ?)
 
@@ -72,16 +72,16 @@ tout de suite et on trouvera une solution.
 ## Aujourd'hui
 
 Crash course Python
-
-**C'est parti**
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "fragment"}
-from IPython.display import display
+print("C'est parti")
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Les opérateurs mathématiques
+## Opérateurs mathématiques et fonctions
+
+### Opérateurs
 
 `+` addition
 `-` soustraction  
@@ -96,6 +96,107 @@ from IPython.display import display
 - On peut utiliser des parenthèses pour définir des priorités.
 
 <!-- #endregion -->
+
+```python slideshow={"slide_type": "subslide"}
+2707+3*2
+```
+
+```python slideshow={"slide_type": "fragment"}
+(2707+3)*2
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Les fonctions
+
+Vous connaissez les fonctions
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "fragment"}
+print(2713)
+```
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
+Ici on a fait **un appel** de la fonction `print` avec comme **argument** le nombre `2713`.
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Il y a plein de fonctions déjà définies
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "fragment"}
+len("abcde")
+```
+
+```python slideshow={"slide_type": "fragment"}
+bool(5)
+```
+
+```python slideshow={"slide_type": "fragment"}
+abs(-12)
+```
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
+…
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Et on peut en définir des nouvelles
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "fragment"}
+def ma_super_fonction(un_argument):
+    print(un_argument)
+    print(un_argument)
+```
+
+```python slideshow={"slide_type": "fragment"}
+ma_super_fonction(15)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Si on veut que la fonction donne un résultat, comme `abs` par exemple, on le fait avec `return`
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "fragment"}
+def ma_nouvelle_fonction(nombre):
+    return nombre + 2
+```
+
+```python slideshow={"slide_type": "fragment"}
+ma_nouvelle_fonction(2715)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+**Attention**: *afficher* un résultat et *renvoyer* un résultat ce n'est pas la même chose
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "fragment"}
+def mon_incroyable_affichage(nombre):
+    print(nombre + 3)
+
+def mon_incroyable_retour(nombre):
+    return nombre + 2
+```
+
+```python slideshow={"slide_type": "fragment"}
+mon_incroyable_retour(27) 
+```
+
+```python slideshow={"slide_type": "fragment"}
+mon_incroyable_affichage(27)
+```
+
+```python
+mon_incroyable_retour(27) + 3
+```
+
+```python slideshow={"slide_type": "fragment"} tags=["raises-exception"]
+mon_incroyable_affichage(27) + 3
+```
+
+```python slideshow={"slide_type": "fragment"}
+
+```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### ✍️ Exos 1 ✍️
@@ -122,20 +223,6 @@ def square(num):
 assert square(3) == 9
 assert square(0) == 0
 assert square(-2) == 4
-```
-
-```python slideshow={"slide_type": "subslide"}
-def is_even(num):
-    """Return True if `num` is even, False otherwise."""
-    pass # Votre code ici
-```
-
-```python slideshow={"slide_type": "-"}
-assert is_even(1) == False
-assert is_even(2) == True
-assert is_even(-3) == False
-assert is_even(-42) == True
-assert is_even(0) == True
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->

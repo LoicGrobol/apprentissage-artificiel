@@ -119,7 +119,8 @@ def on_fait_la_taille(moi, toi):
       return "pareil"
 ```
 
-On peut aussi utiliser des courts-circuits (voir [exo 1](#✍️-Exos-1-✍️)) mais je trouve ça moins clair.
+On peut aussi utiliser des courts-circuits (voir [exo 1](#✍️-Exos-1-✍️)) mais je trouve ça moins
+clair.
 
 ```python
 assert on_fait_la_taille(100, 80) == "plus grand"
