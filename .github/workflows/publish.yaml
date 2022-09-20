@@ -81,8 +81,10 @@ jobs:
 
   # Deployment job
   deploy:
-    if: github.ref == 'refs/heads/main'
-    # Allow one concurrent deployment
+    if: >
+      (github.event_name == 'push' && github.event.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_trigger ==
+      'true')
     concurrency:
       group: "pages"
       cancel-in-progress: true
@@ -90,10 +92,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    if: >
-      (github.event_name == 'push' && github.event.ref == 'refs/heads/main') ||
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_trigger ==
-      'true')
     needs: build
     steps:
       - name: Deploy to GitHub Pages
