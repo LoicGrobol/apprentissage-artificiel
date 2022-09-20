@@ -1,27 +1,26 @@
 ---
-title: Apprentissage artificiel — M2 PluriTAL 2022
+title: Apprentissage artificiel — M2 PluriTAL 2021
 layout: default
+permalink: /2021/
 ---
 
 <!-- LTeX: language=fr -->
 
-[🤖 Apprentissage artificiel 🤖][1]
-====================================
-
-[1]: {{site.url}}{{site.baseurl}}/
-
 ## News
 
-- **2021-09-20** Premier cours du semestre le 21/09/2022
+- **2021-11-09** le cours du 17/11 est reporté au 15/11, même heure, même salle
+- **2021-11-05** Les [**consignes pour les projets**](assignments/projets.html) sont disponibles.
 
 ## Infos pratiques
 
-- **Quoi** « Apprentissage artificiel »
+- **Quoi** « Apprentissage Automatique » 4L9TL07P
 - **Où** Salle 219, bâtiment Paul Ricœur
-- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 20/09 au 17/11
-  - Voir le planning pour les dates exactes (quand il aura été mis en ligne)
+- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 22/09 au 17/11
+  - Voir [le
+    planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
+    les dates exactes
 - **Contact** Loïc Grobol [<loic.grobol@parisnanterre.fr>](mailto:loic.grobol@parisnanterre.fr)
-- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet
+- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet (voir [les consignes](assignments/projets.html))
 
 ## Séances
 
@@ -48,8 +47,13 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-04/lecture-04.md)
 - [Slides 5](slides/lecture-05/lecture-05.slides.html) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-05/lecture-05.md)
-- [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
+
+#### Exos
+
+- [Power of Thor E01](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
+- [ASCII art](https://www.codingame.com/ide/puzzle/ascii-art)
+- [The descent](https://www.codingame.com/ide/puzzle/the-descent)
+- [Shadow of the knight E01](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
 #### Corrections
 
@@ -57,7 +61,98 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-01/solutions-01.md)
 - [Exercices slides 2](slides/lecture-02/solutions-02.md) [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-02/solutions-02.md)
+- Exercices Codingame : voir
+  [Github](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections)
+
+### 2021-09-29 — Un peu de théorie et NumPy
+
+- [Slides 6](slides/lecture-06/lecture-06.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-06/lecture-06.md)
+
+#### Corrections
+
 - [Exo sacs de mots](https://github.com/LoicGrobol//apprentissage-artificiel/tree/main/corrections/tfidf.py) dans sa version la plus sale possible.
+
+### 2021-10-06 — Encore un peu de théorie, scikit-learn et les modèles de langues à n-grams
+
+- [Slides 7](slides/lecture-07/lecture-07.slides.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-07/lecture-07.md)
+- Exercice : écrire deux scripts Python. Le premier doit apprendre à partir d'un corpus de textes un
+  modèle de langue à n-grammes (avec n paramétrable) et le sauvegarder dans un fichier csv. L'autre
+  doit lire le modèle précédent et l'utiliser pour générer une phrase. Tester avec [Le Ventre de
+  Paris](data/zola_ventre-de-paris.txt), puis avec le corpus
+  [CIDRE](https://www.ortolang.fr/market/corpora/cidre).
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 3 « *N-Gram language models* ».
+
+Pour la fois prochaine : lire le chapitre 4 « *Naïve Bayes and Sentiment Classification* » (sauf
+4.9) de [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/). Venir au cours
+avec vos questions !
+
+### 2021-10-13 — Modèles de langue à n-grammes (suite et fin) et *Naïve Bayes*
+
+- [Slides 8](slides/lecture-08/lecture-08.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-08/lecture-08.md)
+- [Slides 9](slides/lecture-09/lecture-09.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/lecture-09.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 4 « *Naïve Bayes and Sentiment Classification* ».
+
+Pour la fois prochaine :
+
+- Faites de votre mieux pour les exercices à la fin du slide 9
+- Relire le chapitre 4 « *Naïve Bayes and Sentiment Classification* » et lire le chapitre 5 « *Logistic Regression* », venir au cours avec vos questions !
+
+### 2021-10-20 — Naïve Bayes (suite et fin) et régression logistique.
+
+- [Correction slide 9](slides/lecture-09/correction.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-09/correction.md)
+- [Slides 10](slides/lecture-10/lecture-10.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 5 « *Logistic Regression* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 6 « *Vector Semantics and Embeddings* ».
+
+### 2021-10-27 — Régression logistique (suite et fin)
+
+- [Slides 10](slides/lecture-10/lecture-10.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-10/lecture-10.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 5 « *Logistic Regression* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 6 « *Vector Semantics and Embeddings* ».
+
+### 2021-11-10 — Réseaux de neurones et (peut-être) représentations vectorielles
+
+- [Slides 11](slides/lecture-11/lecture-11.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-11/lecture-11.md)
+- [Slides 12](slides/lecture-12/lecture-12.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-12/lecture-12.md)
+
+Lecture compagnon : [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 7 « *Neural Networks and Neural Language Models* ».
+
+Pour la fois prochaine :
+
+- [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/)
+chapitre 9 « *Deep Learning Architectures for Sequence Processing* ».
+
+### 2021-11-14 — Réseaux de neurones pour le traitement de séquences
+
+- [Slides 13](slides/lecture-13/lecture-13.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-13/lecture-13.md)
+
 
 ## Lire les slides en local
 

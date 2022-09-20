@@ -1,5 +1,4 @@
 conllu
-gensim
 ipympl
 jupyterlab
 jupytext
@@ -11,6 +10,4 @@ regex
 seaborn
 scikit-learn
 tol-colors
-torch
-transformers
 RISE
