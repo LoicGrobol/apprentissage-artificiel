@@ -1,0 +1,32 @@
+---
+---
+
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:wght@100;300;400;500;700;900&display=swap');
+
+
+$serif      : Libertinus, Georgia, Times, serif;
+$sans-serif : "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace  : Fira Mono, Julia Mono, Consolas, "Lucida Console", monospace;
+$linkColor: #6F00FF;
+
+$body-font: $sans-serif;
+$mono-font: $monospace;
+
+@import "{{ site.theme }}";
+
+a {
+    color: $linkColor;
+}
+
+.markdown-body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: normal;
+    }
+}

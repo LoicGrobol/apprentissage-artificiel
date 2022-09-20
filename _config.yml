@@ -1,4 +1,13 @@
-theme: jekyll-theme-slate
+theme: jekyll-theme-primer
 
 title: Apprentissage artificiel
 description: Contenus pour le cours « Apprentissage automatique » du master Plurital.
+
+url: https://loicgrobol.github.io/
+baseurl: /apprentissage-artificiel
+
+exclude:
+  - renv
+
+include:
+  - _pages
