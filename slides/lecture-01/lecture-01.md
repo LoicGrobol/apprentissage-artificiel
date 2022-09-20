@@ -399,7 +399,7 @@ Sauf que :
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
-name = "Clément"
+name = "Morgan"
 coffee_price = 0.6
 
 print("Tiens salut " + name + ". T'aurais pas " + str(coffee_price*2) + " euros pour 2 cafés ?")
@@ -757,7 +757,8 @@ assert caracteristiques(2, 6, 3) == "pas un triangle"
 2. Écrire une fonction `secondes(heure)` qui prend une heure au format `H:M:S` et renvoie le nombre
    de secondes correspondantes (entier).
 
-On ne gèrera ici pas les cas incohérents comme un nombre de secondes négatif ou une heure mal formatée.
+On ne gèrera ici pas les cas incohérents comme un nombre de secondes négatif ou une heure mal
+formatée.
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
@@ -798,7 +799,7 @@ assert(heures(secondes('24:1:1'))) == "24:1:1"
 
 Nous jouons aux cartes à quatre personnes. On appelle un pli l'ensemble des cartes jouées dans un
 tour (ici, quatre cartes). Chaque carte a une valeur (un entier de 1 à 13). Chaque carte a également
-une couleur : carreau, trèfle, cœur ou pic. Ces couleurs sont notés avec une lettre: carreau=`D`,
+une couleur : carreau, trèfle, cœur ou pic. Ces couleurs sont notées avec une lettre : carreau=`D`,
 trèfle=`C`, cœur=`H` et pic=`S`. Une carte est alors une chaîne avec sa couleur et sa valeur, par
 exemple l'as de pic est noté `S1`, la dame de cœur `H12`. La carte du premier joueur `carte1` donne
 la couleur attendue. Une carte qui n'est pas à la bonne couleur perd automatiquement. Écrire une

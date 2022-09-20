@@ -1,72 +1,90 @@
-on: [push, pull_request]
+name: Build and Deploy Github Pages
 
-name: CI-CD
+on:
+  # Runs on pushes targeting the default branch
+  push:
+  pull_request:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  CI-CD:
-    runs-on: ${{ matrix.os }}
-
-    name: ${{ matrix.os }} (${{ matrix.python-version }})
+  build:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
         python-version: [3.9]
-        os: [ubuntu-20.04]
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-      
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
             python-version: ${{ matrix.python-version }}
-
-      - name: Get pip cache path
-        id: pip-cache
-        run: |
-          from pip._internal.locations import USER_CACHE_DIR
-          print(f"::set-output name=dir::{USER_CACHE_DIR}")
-        shell: python
-      - name: Restore pip cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pip and friends
-        run: |
-          pip install -U pip wheel setuptools
-
-      - name: Get transformers and cache
-        id: transfo-install
-        run: |
-          python -m pip install --upgrade transformers
-          python -c "from transformers.file_utils import TRANSFORMERS_CACHE; print('::set-output name=dir::' + TRANSFORMERS_CACHE)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.transfo-install.outputs.dir }}
-          key: ${{ runner.os }}-transformers-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-transformers-
-      
+            cache: 'pip'
+            cache-dependency-path: '**/requirements.txt'
       - name: Install dependencies
         run: |
-          pip install -U -r "${{ github.workspace }}/requirements.txt"
+            python -m pip install --upgrade pip wheel setuptools
+            python -m pip install --upgrade -r requirements.txt
+      - name: Restore transformers cache
+        id: transfo-cache
+        run: |
+            python -c "from transformers.file_utils import TRANSFORMERS_CACHE; print('::set-output name=dir::' + TRANSFORMERS_CACHE)"
+      - uses: actions/cache@v3
+        with:
+            path: ${{ steps.transfo-cache.outputs.dir }}
+            key: ${{ runner.os }}-transformers-${{ hashFiles('**/requirements.txt') }}
+            restore-keys: |
+                ${{ runner.os }}-transformers-
       
       - name: Build slides
         run: |
           jupytext --to ipynb ${{ github.workspace }}/slides/lecture-*/*.md
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/slides/lecture-*/*.ipynb
           jupyter nbconvert --to slides ${{ github.workspace }}/slides/lecture-*/lecture-*.ipynb
-
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+      
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          branch: gh-pages
-          folder: .
+          ruby-version: '3.0' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 0 # Increment this number if you need to re-download cached gems
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v1
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl ${{ steps.pages.outputs.base_path }} # defaults output to '/_site'
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1 # This will automatically upload an artifact from the '/_site' directory
+
+  # Deployment job
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    # Allow one concurrent deployment
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 
   prebuild-binder:
     runs-on: ubuntu-latest

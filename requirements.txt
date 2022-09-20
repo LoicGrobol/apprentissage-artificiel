@@ -10,7 +10,6 @@ pandas
 regex
 seaborn
 scikit-learn
-simpletransformers
 tol-colors
 torch
 RISE
