@@ -91,7 +91,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     if: >
-      (github.event_name == 'push' && github.event.ref == 'refs/heads/main) ||
+      (github.event_name == 'push' && github.event.ref == 'refs/heads/main') ||
       (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_trigger ==
       'true')
     needs: build
@@ -100,15 +100,15 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
 
-  prebuild-binder:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+  # prebuild-binder:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Code
+  #     uses: actions/checkout@v2
 
-    - name: update jupyter dependencies with repo2docker
-      uses: jupyterhub/repo2docker-action@master
-      with:
-        NO_PUSH: true
-        MYBINDERORG_TAG: ${{ github.event.ref }}
+  #   - name: update jupyter dependencies with repo2docker
+  #     uses: jupyterhub/repo2docker-action@master
+  #     with:
+  #       NO_PUSH: true
+  #       MYBINDERORG_TAG: ${{ github.event.ref }}
 
