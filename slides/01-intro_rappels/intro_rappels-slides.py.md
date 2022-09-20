@@ -42,10 +42,8 @@ Cours 1 : Introduction et rappels Python
 
 - **Quoi** « Apprentissage artificiel »
 - **Où** Salle 219, bâtiment Paul Ricœur
-- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 22/09 au 17/11
-  - Voir [le
-    planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
-    les dates exactes
+- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 20/09 au 17/11
+  - Voir le planning pour les dates exactes (quand il aura été mis en ligne)
 
 → PC portable obligatoire pour les cours, de préférence chargé. Si c'est un problème parlez m'en
 tout de suite et on trouvera une solution.
