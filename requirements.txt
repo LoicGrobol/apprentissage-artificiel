@@ -12,4 +12,5 @@ seaborn
 scikit-learn
 tol-colors
 torch
+transformers
 RISE
