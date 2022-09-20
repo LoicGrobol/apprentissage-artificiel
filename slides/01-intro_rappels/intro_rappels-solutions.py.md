@@ -328,7 +328,7 @@ assert tokenize("tout mon cœur est resté là-bas") == \
 
 ```python
 words = tokenize("De-ci de-là, cahin-caha, va trottine, va chemine, va petit âne")
-compounds = [w for w in words if not isinstance(word, str)]
+compounds = [w for w in words if not isinstance(w, str)]
 assert compounds == [['De', 'ci'], ['de', 'là,'], ['cahin', 'caha,']]
 ```
 
