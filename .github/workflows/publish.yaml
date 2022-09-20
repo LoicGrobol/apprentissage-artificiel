@@ -6,6 +6,12 @@ on:
   pull_request:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      deploy_trigger:
+        description: Force a deployment to pages
+        default: "false"
+        required: true
+
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -25,20 +31,23 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Set up Python 🐍
         uses: actions/setup-python@v4
         with:
             python-version: ${{ matrix.python-version }}
             cache: 'pip'
             cache-dependency-path: '**/requirements.txt'
-      - name: Install dependencies
+
+      - name: Install dependencies 💁🏻
         run: |
             python -m pip install --upgrade pip wheel setuptools
             python -m pip install --upgrade -r requirements.txt
+
       - name: Restore transformers cache
         id: transfo-cache
         run: |
             python -c "from transformers.file_utils import TRANSFORMERS_CACHE; print('::set-output name=dir::' + TRANSFORMERS_CACHE)"
+
       - uses: actions/cache@v3
         with:
             path: ${{ steps.transfo-cache.outputs.dir }}
@@ -46,13 +55,14 @@ jobs:
             restore-keys: |
                 ${{ runner.os }}-transformers-
       
-      - name: Build slides
+      - name: Build slides 📚
         run: |
-          jupytext --to ipynb ${{ github.workspace }}/slides/lecture-*/*.md
-          jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/slides/lecture-*/*.ipynb
-          jupyter nbconvert --to slides ${{ github.workspace }}/slides/lecture-*/lecture-*.ipynb
+          shopt -s globstar
+          jupytext --to ipynb ${{ github.workspace }}/**/*.py.md
+          jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/**/*.py.ipynb
+          jupyter nbconvert --to slides ${{ github.workspace }}/slides/**/*-slides.py.ipynb
       
-      - name: Setup Ruby
+      - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0' # Not needed with a .ruby-version file
@@ -63,10 +73,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v1
 
-      - name: Build with Jekyll
+      - name: Build with Jekyll 🔨
         run: bundle exec jekyll build --baseurl ${{ steps.pages.outputs.base_path }} # defaults output to '/_site'
 
-      - name: Upload artifact
+      - name: Upload artifact ⬆️
         uses: actions/upload-pages-artifact@v1 # This will automatically upload an artifact from the '/_site' directory
 
   # Deployment job
@@ -80,6 +90,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    if: >
+      (github.event_name == 'push' && github.event.ref == 'refs/heads/main) ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_trigger ==
+      'true')
     needs: build
     steps:
       - name: Deploy to GitHub Pages

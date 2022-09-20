@@ -1,8 +1,9 @@
 ---
 title: Apprentissage artificiel — M2 PluriTAL 2021
+layout: default
 ---
 
-[comment]: <> "LTeX: language=fr"
+<!-- LTeX: language=fr -->
 
 ## News
 
