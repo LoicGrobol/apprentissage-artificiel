@@ -190,7 +190,7 @@ Il y a des choses pour lesquelles `pip` n'est pas bon
 <!-- #endregion -->
 
 ```python
-!pip install -U --force-reinstall botocore==1.13.9 python-dateutil>=2.1
+!pip install -U --force-reinstall "botocore==1.13.9" "python-dateutil>=2.1"
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
