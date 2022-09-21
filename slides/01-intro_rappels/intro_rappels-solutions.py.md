@@ -146,11 +146,11 @@ def la_plus_grande(longueur1, longueur2, longueur3):
     return max(longueur1, longueur2, longueur3)
 
 def est_equilateral(longueur1, longueur2, longueur3):
-    """Renvoie si un triangle est équilatéral."""
+    """Renvoie True si un triangle est équilatéral, False sinon."""
     return longueur1 == longueur2 and longueur2 == longueur3
 
 def est_isocele(longueur1, longueur2, longueur3):
-    """Renvoie si un triangle est isocele."""
+    """Renvoie True si un triangle est isocele, False sinon."""
     deux_egales = longueur1 == longueur2 or longueur1 == longueur3 or longueur2 == longueur3
     return deux_egales and not est_equilateral(longueur1, longueur2, longueur3)
 
@@ -284,9 +284,9 @@ assert(heures(60)) == "0:1:0"
 assert(heures(66)) == "0:1:6"
 assert(heures(3600)) == "1:0:0"
 assert(heures(86466)) == "24:1:6"
-assert(secondes('0:0:0')) == "0"
-assert(secondes('6:6:6')) == "21966"
-assert(secondes(heures(86466))) == "86466"
+assert(secondes('0:0:0')) == 0
+assert(secondes('6:6:6')) == 21966
+assert(secondes(heures(86466))) == 86466
 assert(heures(secondes('24:1:1'))) == "24:1:1"
 ```
 

@@ -83,17 +83,18 @@ print("C'est parti")
 
 ### Opérateurs
 
-`+` addition
-`-` soustraction  
-`*` multiplication  
-`/` division  
-`//` la division entière  
-`%` modulo (reste de la division)  
-`**` puissance  
+- `+` addition
+- `-` soustraction
+- `*` multiplication
+- `/` division
+- `//` la division entière
+- `%` modulo (reste de la division)
+- `**` puissance
 
 - L'ordre des opérations est l'ordre classique en mathématiques (puissance passe avant les
   opérations).
 - On peut utiliser des parenthèses pour définir des priorités.
+- Lire [la doc](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
 
 <!-- #endregion -->
 
@@ -228,6 +229,8 @@ assert square(-2) == 4
 - `>` supérieur  / `>=` supérieur ou égal
 - `==` égal / `!=` différent
 - `is` identité (pour les objets surtout)/ `is not` non identité
+
+Lire [la doc](https://docs.python.org/3/library/stdtypes.html#comparisons).
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -391,7 +394,8 @@ Je peux y mettre des simples ' et double " quotes sans problème !
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Les chaînes sont des *séquences*, on peut leur appliquer les opérations suivantes propres à la catégorie d'objets *séquences* :
+Les chaînes sont des **séquences de caractères**, on peut leur appliquer les opérations suivantes
+propres à la catégorie d'objets *séquences* :
 
 (Vous connaissez d'autres *séquences* au fait ?)
 
@@ -405,7 +409,7 @@ print(max(spam))
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- _indexing_
+- *index*
   - Les indices commencent à `0` !
 <!-- #endregion -->
 
@@ -416,7 +420,7 @@ print(spam[-1])
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- _slicing_
+- *slice*
   - `spam[i:j]`, c'est `spam[i]`, `spam[i+1]`, …, `spam[j-1]`
 <!-- #endregion -->
 
@@ -426,7 +430,7 @@ print(spam[-3:]) # 3 derniers éléments
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- _membership_
+- *appartenance*
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -437,7 +441,8 @@ if 'u' in spam:
 <!-- #region slideshow={"slide_type": "subslide"} -->
 Les chaînes ont aussi des fonctions qui leur sont propres
 
-Voir la liste complète dans la doc python
+Voir [la liste complète dans la
+doc](https://docs.python.org/3/library/stdtypes.html#string-methods)
 
 - `lower()` transforme la chaine en minuscules
 - `upper()` transforme la chaine en majuscules
@@ -452,9 +457,8 @@ Voir la liste complète dans la doc python
   donné, coupe sur tous les caractères d'espace
 - `join(iterable)` est l'inverse de `split`, il permet de joindre les éléments d'un *iterable* pour
   former une seule chaîne de caractères
-  [`format()`](https://docs.python.org/3/library/string.html#formatstrings) depuis python3 (et
-  python2.7) pour effectuer l'[interpolation de
-  chaîne](https://en.wikipedia.org/wiki/String_interpolation)
+  [`format()`](https://docs.python.org/3/library/string.html#formatstrings) pour effectuer
+  l'[interpolation de chaîne](https://en.wikipedia.org/wiki/String_interpolation)
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -470,9 +474,11 @@ words = "bonjour ça va ?".split(' ')
 
 Sauf que :
 
-- Concaténation avec `+` **à éviter**
-- [f-string](https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings)
-- Interpolation avec `format()`
+- Concaténation avec `+` [comme n'importe quelle
+  séquence](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations) **à éviter**
+- [f-string](https://docs.python.org/3/library/string.html#formatstrings)
+- Interpolation avec [`format()`](https://docs.python.org/3/library/functions.html#format)
+- Et encore d'autres dont on ne parlera pas.
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
@@ -486,8 +492,10 @@ print(f"Tiens salut {name}. T'aurais pas {coffee_price*2} euros pour 2 cafés ?"
 print("Tiens salut {}. T'aurais pas {} euros pour 2 cafés ?".format(name, coffee_price*2))
 ```
 
+**Si possible utiliser des *f-strings*** (c'est presque toujours possible).
+
 <!-- #region slideshow={"slide_type": "subslide"} -->
-On évite de faire ça avec `+` parce que c'est moins lisible et que c'est **lent**. De fait on créé
+On évite de faire ça avec `+` parce que c'est moins lisible et que c'est **lent**. De fait on créée
 une chaîne intermédiaire à chaque étape.
 <!-- #endregion -->
 
@@ -557,8 +565,9 @@ chaine[1] = 'y'
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "-"} -->
-- Les listes sont des *sequences* (`str`, `tuple`, `list`)
-- Les *sequences* sont des structures de données indicées qui peuvent contenir des éléments de différents types
+- Les listes sont des *sequences* (comme `str`, `tuple`, `list`)
+- Les *sequences* sont des structures de données indicées qui peuvent contenir des éléments de
+  différents types
 - Les *sequences* sont des *iterables*, les listes aussi donc
 - Les éléments d'une liste peuvent être modifiés (*mutable*)
 - On accède à un élément par son indice (de 0 à n-1, n étant le nombre d'éléments)
@@ -637,10 +646,10 @@ couleurs.items()
 ### Les tuples
 
 - Les tuples (`tuple`) sont des *séquences* similaires aux listes sauf qu'elles ne peuvent pas être
-  modifiées (*immutable*)
-- Les tuples sont souvent utilisées comme valeur de retour d'une fonction
-- Contrairement aux listes, les tuples peuvent être utilisées comme clé de dictionnaire, à votre
-  avis pourquoi ?
+  modifiées (*immutable*).
+- Les tuples sont souvent utilisées comme valeur de retour d'une fonction.
+- Contrairement aux listes, les tuples peuvent être utilisés comme clé de dictionnaire, à votre
+  avis pourquoi ?.
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -761,11 +770,12 @@ for nom, fac, parcours in zip(noms, facs, parcours):
 2. Écrire une fonction `est_equilateral(longueur1, longueur2, longueur3)` qui détermine si un
    triangle est équilatéral ou non (les trois côtés ont la même longueur).
 3. Écrire une fonction `est_isocele(longueur1, longueur2, longueur3)` qui détermine si un triangle
-   est isocèle (deux côtés de même longueur mais pas trois) ou non.
+   est isocèle (deux côtés de même longueur, mais pas trois) ou non.
 4. Écrire une fonction `caracteristiques(longueur1, longueur2, longueur3)` qui renvoie la nature et
    la taille du plus grand côté d'un triangle. On dira qu'un triangle est `quelconque` s'il n'est ni
    équilatéral ni isocèle. Affiche `pas un triangle` si les longueurs données ne font pas un
-   triangle (la longueur du plus grand côté est supérieure à celle des deux autres).
+   triangle (la longueur du plus grand côté est supérieure à celle des deux autres). On peut
+   commencer par écrire la fonction `est_triangle` pour vérifier cette dernière condition.
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "subslide"}
@@ -774,15 +784,15 @@ def la_plus_grande(longueur1, longueur2, longueur3):
     pass # TODO: codez !
 
 def est_equilateral(longueur1, longueur2, longueur3):
-    """Renvoie si un triangle est équilatéral."""
+    """Renvoie True si un triangle est équilatéral, False sinon."""
     pass # TODO: codez !
 
 def est_isocele(longueur1, longueur2, longueur3):
-    """Renvoie si un triangle est isocele."""
+    """Renvoie True si un triangle est isocele, False sinon."""
     pass # TODO: codez !
 
 def est_triangle(longueur1, longueur2, longueur3):
-    """Renvoie si les longueurs données font bien un triangle."""
+    """Renvoie True si les longueurs données font bien un triangle, False sinon."""
     pass # TODO: codez !
 
 def caracteristiques(longueur1, longueur2, longueur3):
@@ -872,10 +882,10 @@ assert(heures(60)) == "0:1:0"
 assert(heures(66)) == "0:1:6"
 assert(heures(3600)) == "1:0:0"
 assert(heures(86466)) == "24:1:6"
-assert(secondes('0:0:0')) == "0"
-assert(secondes('6:6:6')) == "21966"
-assert(secondes(heures(86466))) == "86466"
-assert(heures(secondes('24:1:1'))) == "24:1:1"
+assert(secondes('0:0:0')) == 0
+assert(secondes('6:6:6')) == 21966
+assert(secondes(heures(86466))) == 86466
+assert(heures(secondes("24:1:1"))) == "24:1:1"
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -1018,8 +1028,8 @@ assert tokenize("tout mon cœur est resté là-bas") == \
 <!-- #region slideshow={"slide_type": "slide"} -->
 ### ✍️ Exo 8 ✍️
 
-Utilisez une liste en compréhension sur la sortie de votre fonction tokenize de manière à ne retenir
-que les noms composés
+Utilisez une liste en compréhension sur la sortie de votre fonction `tokenize` de manière à ne
+retenir que les noms composés
 <!-- #endregion -->
 
 ```python
@@ -1091,7 +1101,7 @@ x
 <!-- #region slideshow={"slide_type": "subslide"} -->
 Il y a d'autres façons de faire. Pour les objets complexes on peut regarder du côté du module
 [`copy`](https://docs.python.org/3/library/copy.html), mais il n'y a pas de réponse universelle et
-copier c'est souvent coûteux. Le mieux à faire quand on a envie de faire une copiev, c'est de
+copier c'est souvent coûteux. Le mieux à faire quand on a envie de faire une copie, c'est de
 commencer par se demander si on en a vraiment besoin.
 <!-- #endregion -->
 
@@ -1126,9 +1136,9 @@ for i in range(*bornes):
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Les ensembles
 
-Les ensembles (`set`) sont des collections non ordonnées d'élements sans doublons Les ensembles
-supportent les fonctions mathématiques d'union, d'intersection, de différence
-([doc](https://docs.python.org/3.6/library/stdtypes.html#set))
+Les ensembles ([`set`](https://docs.python.org/3/library/stdtypes.html#set)) sont des collections
+non ordonnées d'éléments sans doublons Les ensembles supportent les fonctions mathématiques d'union,
+d'intersection, de différence :
 
 - `value in s` renvoie si `value` est un élément de `s`
 - `union(*sets)` renvoie l'union de tous les `sets` (l'ensemble des valeurs contenues dans tous les
@@ -1186,14 +1196,14 @@ cebuano = {'i':'ako', 'you_sg':'ikaw', 'he':'siya', 'we':'kita', 'you_pl':'kamo'
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Les dictionnaires
+## Les dictionnaires : suite
 
-- Les dictionnaires (`dict`) sont des structures de données associatives de type clé: valeur
+- Les dictionnaires ([`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict))
+  sont des structures de données associatives de type clé: valeur.
 - Les clés d'un dictionnaire sont uniques, seuls les types *hashable* (*immutable* et objets que
-  vous avez définis) peuvent être des clés
-  ([doc](https://docs.python.org/3.6/library/stdtypes.html#mapping-types-dict))
+  vous avez définis) peuvent être des clés.
 
-  - `key in d` renvoie True si `key` est une clé de `d`
+  - `key in d` renvoie `True` si `key` est une clé de `d`
   - `keys()` renvoie la liste des clés
   - `values()` renvoie la liste des valeurs
   - `items()` renvoie la liste des couples clé:valeur (tuple)
@@ -1221,15 +1231,14 @@ d
 ## Module collections
 
 - Le module *collections* propose des implémentations de structures de données supplémentaires
-- Dans la liste (voir [doc](https://docs.python.org/3.6/library/collections.html)), deux pourront
+- Dans la liste (voir [doc](https://docs.python.org/3/library/collections.html)), deux pourront
   nous intéresser :
 
   - `defaultdict`
 
-     `defauldict` est similaire à un `dict` mais il permet l'autovivification
+`defauldict` est similaire à un `dict` mais il permet l'autovivification
 
-      Son implémentation le rend plus rapide qu'un dictionnaire utilisé avec la fonction
-      `setdefault`
+Son implémentation le rend plus rapide qu'un dictionnaire utilisé avec la fonction `setdefault`
 
 <!-- #endregion -->
 
@@ -1268,13 +1277,15 @@ Faites la même chose avec un dictionnaire
 ## Les fichiers
 
 - Pour travailler avec les fichiers on doit procéder à trois opérations :
-   1. Ouverture avec la fonction `open` (lève l'exception `FileNotFoundError` en cas d'échec)
+   1. Ouverture avec la fonction [`open`](https://docs.python.org/3/library/functions.html#open)
+      (lève l'exception `FileNotFoundError` en cas d'échec)
    2. Lecture (`read` ou `readline` ou `readlines`) et/ou écriture (`write`)
    3. Fermeture du fichier avec la fonction `close`
 - Ouverture
-  - `open` est une fonction qui accepte de nombreux arguments : RTFM
+  - `open` est une fonction qui accepte de nombreux arguments : lire [la
+    doc](https://docs.python.org/3/library/functions.html#open)
   - `open` renvoie un objet de type `file`
-  - Le plus souvent elle s'emploie de la manière suivante:
+  - Le plus souvent elle s'emploie de la manière suivante :
 
     ```python
       >>> #f = open(filename, mode)	   
@@ -1283,7 +1294,7 @@ Faites la même chose avec un dictionnaire
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Les modes sont : 
+Les modes sont :
 
 - `r` : lecture (défaut)
 - `w` : écriture
@@ -1291,7 +1302,9 @@ Les modes sont :
 - `a` : concaténation (append)
 - `b` : mode binaire
 - `t` : mode texte (défaut)
-- `+` : read/write (ex: r+b)
+- `+` : mise à jour
+
+Voir [la doc](https://docs.python.org/3/library/functions.html#open) pour les détails
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -1415,7 +1428,8 @@ with open('data/austronesian_swadesh.csv') as csvfile:
 <!-- #region slideshow={"slide_type": "subslide"} -->
 - csv.DictWriter  
 
-Cette fois il s'agit de générer un fichier csv à partir d'une séquence de dictionnaires. Le paramètre `fieldnames` est obligatoire.
+Cette fois il s'agit de générer un fichier csv à partir d'une séquence de dictionnaires. Le
+paramètre `fieldnames` est obligatoire.
 <!-- #endregion -->
 
 ```python
@@ -1515,17 +1529,6 @@ assert get_austro_words('Malay', 'Balinese', ['new', 'old', 'good']) == \
         'Balinese':[]
     }
 ```
-
-2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
-   langues qui ont les deux ou trois premiers caractères en commun.  
-   (optionnel si vous voulez jouer avec les expressions régulières) Si le mot commence par une
-   voyelle, elle pourra différer dans les autres langues. Ex: isa / usa seront considérées comme
-   similaires (i/u) parce qu'à part la première lettre voyelle elles sont similaires.
-
-3\. Pour les champion⋅nes Sans rechercher de solution sur internet, essayez d'implémenter une
-   fonction qui calcule la distance de Levenshtein. (Vous pouvez chercher ce que c'est que la
-   distance de Levenshtein et l'algorithme en pseudo-code, mais n'allez pas chercher directement
-   d'implémentation en Python !)
 
 2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
    langues qui ont les deux ou trois premiers caractères en commun.  
