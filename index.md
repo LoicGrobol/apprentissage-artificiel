@@ -32,9 +32,11 @@ est indisponible.
 ### 2021-09-22 — Introduction et *crash course* Python
 
 - {% notebook_badges slides/01-intro_rappels/intro_rappels-slides.py.md %}
-  [Slides Introduction et crash course]( slides/01-intro_rappels/intro_rappels-slides.py.html)
+  [Slides Introduction et crash course](slides/01-intro_rappels/intro_rappels-slides.py.html)
 - {% notebook_badges slides/01-intro_rappels/intro_rappels-solutions.py.md %}
   [Solutions](slides/01-intro_rappels/intro_rappels-solutions.py.html)
+
+Expérimental avec Binder plus rapide : [slides](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel-environ/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252FLoicGrobol%252Fapprentissage-artificiel%26urlpath%3Dtree%252Fapprentissage-artificiel%252Fslides%252F01-intro_rappels%252Fintro_rappels-slides.py.md%26branch%3Dmain) et [solutions](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel-environ/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252FLoicGrobol%252Fapprentissage-artificiel%26urlpath%3Dtree%252Fapprentissage-artificiel%252Fslides%252F01-intro_rappels%252Fintro_rappels-solutions.py.md%26branch%3Dmain)
 
 
 
