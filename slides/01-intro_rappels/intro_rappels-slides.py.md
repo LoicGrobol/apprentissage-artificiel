@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.12.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1515,6 +1515,17 @@ assert get_austro_words('Malay', 'Balinese', ['new', 'old', 'good']) == \
         'Balinese':[]
     }
 ```
+
+2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
+   langues qui ont les deux ou trois premiers caractères en commun.  
+   (optionnel si vous voulez jouer avec les expressions régulières) Si le mot commence par une
+   voyelle, elle pourra différer dans les autres langues. Ex: isa / usa seront considérées comme
+   similaires (i/u) parce qu'à part la première lettre voyelle elles sont similaires.
+
+3\. Pour les champion⋅nes Sans rechercher de solution sur internet, essayez d'implémenter une
+   fonction qui calcule la distance de Levenshtein. (Vous pouvez chercher ce que c'est que la
+   distance de Levenshtein et l'algorithme en pseudo-code, mais n'allez pas chercher directement
+   d'implémentation en Python !)
 
 2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
    langues qui ont les deux ou trois premiers caractères en commun.  

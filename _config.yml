@@ -2,10 +2,12 @@ theme: jekyll-theme-primer
 
 title: Apprentissage artificiel
 description: Contenus pour le cours « Apprentissage automatique » du master Plurital.
+emojicon: 🤖
 
 url: https://loicgrobol.github.io/
 baseurl: /apprentissage-artificiel
-repository: "loicgrobol/apprendre-programmer"
+repository: "loicgrobol/apprentissage-artificiel"
+environ_repository: "loicgrobol/apprentissage-artificiel-environ"
 repo_branch: "main"
 
 exclude:

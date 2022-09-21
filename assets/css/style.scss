@@ -16,9 +16,13 @@ $mono-font: $monospace;
 
 @import "{{ site.theme }}";
 
+// A nicer colour for links
+
 a {
     color: $linkColor;
 }
+
+// No bold headings
 
 .markdown-body {
     h1,
@@ -28,5 +32,16 @@ a {
     h5,
     h6 {
         font-weight: normal;
+    }
+}
+
+.markdown-body {
+    // Title (copied from h1 style in the style gem)
+    header .title {
+      margin-top: $spacer-4;
+      margin-bottom: $spacer-3;
+      line-height: $lh-condensed;
+      padding-bottom: 0.3em;
+      font-size: 2em;
     }
 }
