@@ -13,15 +13,12 @@ module Jekyll
                "&urlpath=#{ERB::Util.url_encode("tree/#{repo_dir}/#{@notebook_path}")}" +
                "&branch=#{context['site']['repo_branch']}"
             )
-            puts urlpath
             urlpath_escaped = ERB::Util.url_encode(urlpath)
-            puts urlpath_escaped
             res = (
                "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)]" +
                "(https://mybinder.org/v2/gh/#{context['site']['environ_repository']}/#{context['site']['repo_branch']}" +
                "?urlpath=git-pull#{urlpath_escaped})"
             )
-            puts res
          else
             res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{@notebook_path})"
          end
