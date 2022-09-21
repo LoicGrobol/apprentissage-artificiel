@@ -39,6 +39,12 @@ est indisponible.
 Expérimental avec Binder plus rapide : [slides](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel-environ/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252FLoicGrobol%252Fapprentissage-artificiel%26urlpath%3Dtree%252Fapprentissage-artificiel%252Fslides%252F01-intro_rappels%252Fintro_rappels-slides.py.md%26branch%3Dmain) et [solutions](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel-environ/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252FLoicGrobol%252Fapprentissage-artificiel%26urlpath%3Dtree%252Fapprentissage-artificiel%252Fslides%252F01-intro_rappels%252Fintro_rappels-solutions.py.md%26branch%3Dmain)
 
 
+Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
+
+- [*Power of Thor* E01](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
+- [*ASCII art*](https://www.codingame.com/ide/puzzle/ascii-art)
+- [*The descent*](https://www.codingame.com/ide/puzzle/the-descent)
+- [*Shadow of the knight* E01](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
 ## Lire les slides en local
 
@@ -96,14 +102,17 @@ sélection.
 
 #### Livres
 
-- How to think like a computer scientist, by Jeffrey Elkner, Allen B. Downey, and Chris Meyers. Vous
-  pouvez l'acheter. Vous pouvez aussi le lire
+Ils commencent à dater un peu, les derniers gadget de Python n'y seront donc pas, mais leur lecture
+reste très enrichissante (les algos, ça ne vieillit jamais vraiment).
+
+- *How to think like a computer scientist*, de Jeffrey Elkner, Allen B. Downey, and Chris Meyers.
+  Vous pouvez l'acheter. Vous pouvez aussi le lire
   [ici](http://openbookproject.net/thinkcs/python/english3e/)
-- Dive into Python, by Mark Pilgrim. [Ici](http://www.diveintopython3.net/) vous pouvez le lire ou
+- *Dive into Python*, by Mark Pilgrim. [Ici](http://www.diveintopython3.net/) vous pouvez le lire ou
   télécharger le pdf.
-- Learning Python, by Mark Lutz.
-- Beginning Python, by Magnus Lie Hetland.
-- Python Algorithms: Mastering Basic Algorithms in the Python Language, by Magnus Lie Hetland.
+- *Learning Python*, by Mark Lutz.
+- *Beginning Python*, by Magnus Lie Hetland.
+- *Python Algorithms: Mastering Basic Algorithms in the Python Language*, par Magnus Lie Hetland.
   Peut-être un peu costaud pour des débutants.
 - Programmation Efficace. Les 128 Algorithmes Qu'Il Faut Avoir Compris et Codés en Python au Cours
   de sa Vie, by Christoph Dürr and Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code
@@ -113,9 +122,9 @@ sélection.
 
 Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels ci-dessous.
 
+- **[Real Python](https://realpython.com), des cours et des tutoriels souvent de très bonne qualité
+  et pour tous niveaux.**
 - [Un bon tuto NumPy](https://cs231n.github.io/python-numpy-tutorial/) qui va de A à Z.
-- [Real Python](https://realpython.com), des cours et des tutoriels souvent de très bonne qualité et
-  pour tous niveaux.
 - [Coding Game](https://www.codingame.com/home). Vous le retrouverez dans les exercices
   hebdomadaires.
 - [Code Academy](https://www.codecademy.com/fr/learn/python)
@@ -128,7 +137,6 @@ Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels c
   l'INRIA, carré.
 - [Code combat](https://codecombat.com/)
 
-
 ### Divers
 
 - La chaîne YouTube [3blue1brown](https://www.youtube.com/c/3blue1brown) pour des vidéos de maths
@@ -138,7 +146,8 @@ Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels c
 
 ## Licences
 
-[![CC BY Licence badge](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+[![CC BY Licence
+badge](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
 Copyright © 2021 Loïc Grobol [\<loic.grobol@gmail.com\>](mailto:loic.grobol@gmail.com)
 
@@ -147,6 +156,8 @@ la licence [Creative Commons Attribution 4.0
 International](https://creativecommons.org/licenses/by/4.0/). Voir [le README](README.md#Licences)
 pour plus de détails.
 
- Un résumé simplifié de cette licence est disponible à <https://creativecommons.org/licenses/by/4.0/>.
+ Un résumé simplifié de cette licence est disponible à
+ <https://creativecommons.org/licenses/by/4.0/>.
 
- Le texte intégral de cette licence est disponible à <https://creativecommons.org/licenses/by/4.0/legalcode>
+ Le texte intégral de cette licence est disponible à
+ <https://creativecommons.org/licenses/by/4.0/legalcode>
