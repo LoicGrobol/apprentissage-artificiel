@@ -36,7 +36,7 @@ Qu'est-ce que vous pensez des phrases suivantes ?
 > Bonjour, ça va ?
 
 
-> Je reconnais l'existence du kiwi.
+> Je reconnais l'existence du kiwi-fruit.
 
 
 > Les idées vertes incolores dorment furieusement.
@@ -75,7 +75,8 @@ Un modèle de langue, c'est un **modèle** qui permet d'**estimer** la **vraisem
 **phrase**.
 
 
-Notre objectif aujourd'hui c'est de voir comment on fait ça, d'abord en théorie, puis en pratique sur une application marrante et très très très à la mode : la génération de textes.
+Notre objectif aujourd'hui c'est de voir comment on fait ça, d'abord en théorie, puis en pratique
+sur une application marrante et très très très à la mode : la génération de textes.
 
 
 À quoi ça sert ?
@@ -97,10 +98,181 @@ On se basera pour la théorie et les notations sur le chapitre 3 de [*Speech and
 Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin. À ta
 place, je le garderais donc à portée de main, le poly *et* les slides.
 
+## Formalisons (un peu)
 
-## Pitch
 
-Notre objectif ici sera de faire du *sampling*.
+On veut assigner des probabilités (≈) à des séquences de mots.
+
+
+Si on note une séquence de mots $S = w_1, w_2, …, w_n$, on notera sa probabilité $P( w_1, w_2, …,
+w_n)$.
+
+
+### Estimateur du maximum de vraisemblance
+
+Rappel : on peut estimer la probabilité d'un truc en calculant sa fréquence d'apparition.
+
+
+Par exemple, si on veut estimer la probabilité qu'un dé truqué fasse 6 :
+
+- On lance le dé un grand nombre de fois (mettons qu'on choisisse 1000), on parle d'**échantillon**.
+- On compte le nombre de fois qu'on a obtenu 6, imaginons que c'est 271.
+- On calcule la **fréquence d'apparition** de 6 : \frac{271}{1000} = 0.271.
+- On **choisit** cette valeur comme estimation de la probabilité d'avoir 6
+
+
+Notez que c'est bien une estimation, et qu'elle n'est pas infaillible. On peut obtenir 1000 fois 6
+de suite, même avec un dé équilibré. C'est improbable, mais ça peut arriver, et dans ce cas notre
+estimation de la probabilité sera affreusement fausse.
+
+
+Cette façon d'estimer une probabilité c'est (un cas particulier de) l'**estimateur du maximum de
+vraisemblance**. La façon la plus simple d'estimer des probabilités.
+
+
+Ok, super, il donne quoi cet estimateur pour notre problème ? En quoi ça consiste ? À votre avis ?
+
+
+Et bien imaginons qu'on veuille déterminer la probabilité d'une phrase, par exemple « le petit chat
+est content ».
+
+- On prend un gros corpus (c'est notre échantillon).
+- On regarde combien de fois cette phrase apparaît.
+- Et on divise par la taille du corpus.
+
+
+Voyons ce que ça donne :
+
+- [Combien de pages sur Google pour cette
+  requête](https://www.google.com/search?q=%22le+petit+chat+est+content%22).
+- Combien de pages au total dans l'index de Google ? Dur à savoir, mais probablement de l'ordre de
+  grandeur de $100 000 000 000$.
+
+On estimerait alors la probabilité de cette phrase à $0.00000000008$.
+
+
+Ok, parfait, on a fini ?
+
+
+C'est quoi la probabilité de « je reconnais l'existence du kiwi-fruit » alors ?
+
+
+<https://www.google.com/search?q=%22je+reconnais+l'existence+du+kiwi-fruit%22>
+
+
+Alors ?
+
+
+$0$ ?
+
+
+Mais « Vous désastre réjouirez de que ce aucun ». Ça serait zéro aussi alors ? Est-ce que vraiment
+on veut mettre la même probabilité à ces deux phrases ?
+
+
+Oups.
+
+
+Le problème c'est que l'échantillon qu'il nous faudrait ce n'est pas un échantillon de tout ce qui a
+déjà été produit comme phrase, mais un échantillon de tout ce qui **pourrait** être produit. Et
+évidemment ce n'est pas accessible.
+
+### Décomposer pour régner
+
+
+Ok, [essayons encore](https://www.youtube.com/watch?v=Xg4Pa3DORCE).
+
+
+Il nous faut une façon plus subtile de procéder. On va se reposer pour ça sur une propriété
+intéressante du langage humain :
+
+
+Si je dis : « je suis en train d'écrire sur le… ». Quel est le mot suivant d'après-vous ?
+
+
+Il y a évidemment plusieurs solutions. Mais *certaines semblent plus vraisemblables*. 🧐.
+
+
+Autrement dit : il y a une corrélation (attention, pas un conditionnement total) imposée par le
+début d'une phrase sur sa suite.
+
+
+On va s'appuyer sur ça pour proposer un modèle de langue qui soit **implémentable** (et après ~~on~~
+vous allez l'implémenter).
+
+
+On va imaginer un modèle de langue qui fonctionne comme un **processus aléatoire**, c'est-à-dire
+comme une série de décisions aléatoires. En l'occurrence, on va imaginer un processus où la phrase
+est générée mot par mot.
+
+
+Autrement dit :
+
+- On choisit le premier mot $w_0$ en regardant pour un corpus échantillon les fréquences des mots
+  apparaissant en début de phrase.
+- On choisit le deuxième mot $w_1$ en regardant les fréquences des mots apparaissant en deuxième
+  position dans les phrases qui commencent par $w_0$.
+- On choisit $w_2$ en regardant les mots qui apparaissent en troisième position dans les phrases qui
+  commencent par $w_0, w_1$
+- …
+
+
+Les probabilités ici sont plus faciles à estimer :
+
+La probabilité $P([w_0, *])$ (qu'on notera aussi $P(w_0)$) qu'un mot apparaisse en début de phrase,
+c'est
+
+\begin{equation}
+    P(w_0) = \frac{\text{Nombre de phrases qui commencent par $w_0$}}{\text{Nombre de phrases dans le corpus}}
+\end{equation}
+
+
+La probabilité $P([w_0, w_1, *]~|~[w_0, *])$, ou $P(w_1|w_0)$ qu'une phrase commence par $w_0, w_1$
+sachant qu'elle commence par $w_1$ (on parle de probabilité conditionnelle), c'est
+
+\begin{equation}
+    P(w_0) = \frac{\text{Nombre de phrases qui commencent par $w_0, w_1$}}{\text{Nombre de phrases qui commencent par $w_0$}}
+\end{equation}
+
+et ainsi de suite.
+
+
+Et c'est quoi alors la probabilité de la phrase entière ? Et bien, c'est simplement le produit des
+probabilités, comme quand on suit une série d'expériences avec un arbre (todo dessiner un arbre) :
+
+\begin{equation}
+    P(w_0, w_1, …, w_n) = P(w_0) × P(w_1|w_0) × P(w_2|w_0, w1) × … × P(w_n | w_0, w_1, …, w_{n-1})
+\end{equation}
+
+### N-grammes
+
+Évidemment ça ne pouvait pas être si simple.
+
+
+**Évidemment.**
+
+
+Le problème ici, c'est que la procédure itérative qu'on a décrite marche bien en début de phrase,
+mais en fin de phrase on retombe sur le problème précédent.
+
+\begin{equation}
+    P(\text{vert}~|~\text{Je}, \text{reconnais}, \text{l'}, \text{existence}, \text{du}, \text{kiwi-fruit})
+\end{equation}
+
+
+On va donc faire une hypothèse un peu grossière : on va supposer par exemple que 
+
+\begin{equation}
+    P([w_0, w_1, w_2, w_3, *]~|~[w_0, w_1, w_2, *]) = P([w_0, w_1, w_2, w_3, *]~|~[w_1, w_2, *])
+\end{equation}
+
+Autrement dit la probabilité d'apparition d'un mot ne dépend que des $n$ (ici $3$) mots précédents.
+Nous donnant ainsi un **modèle de langue à n-grams** (ici trigrammes). Ou plus exactement **une
+grammaire à n-grams** (mais tout le monde dit modèle de langue, ou *language model*).
+
+## À vous de jouer !
+
+Notre objectif ici sera de faire de la **génération de textes**.
 
 Pour les données on va d'abord travailler avec [Le Ventre de
 Paris](../../data/zola_ventre-de-paris.txt) qui est déjà dans ce repo pour les tests puis avec [le
@@ -112,141 +284,193 @@ On va devoir faire les choses suivantes (pour un modèle à bigrammes)
 
 - Extraire les unigrammes et les bigrammes d'un corpus
 - Calculer les probas normalisées des bigrammes
-- Les sauvegarder (par exemple dans un TSV)
 - Sampler des phrases à partir du modèle
-- (En option) évaluer le modèle sur un corpus de test
-- Wrapper tout ça dans des jolis scripts
 
 On va essayer de faire les choses à la main, sans trop utiliser de bibliothèques, pour bien
 comprendre ce qui se passe.
 
-## Premier prototype.
+Puis on étendra à des trigrammes et des n-grammes.
 
+## ✂️ Tokenization ✂️
 
-On va commencer par faire en entier le cas des bigrammes sur *Le Ventre de Paris* et on généralisera
-ensuite.
-
-### Lire et compter
-
-
-On commence par lire un fichier et en extraire les unigrammes (ce qui nous donne le vocabulaire) et
-les bigrammes. On va pour l'instant faire ça très basiquement avec une bête tokenisation sur les
-espaces et les signes de ponctuation.
+1\. Écrire une fonction `crude_tokenizer` qui prend comme argument une chaine de caractères et
+    renvoie la liste des mots de cette chaîne en séparant sur les espaces.
 
 ```python
-import re
-def poor_mans_tokenizer(s):
-    return [w for w in re.split(r"\s|(\W)", s.strip()) if w]
+def crude_tokenizer(s):
+    pass # À toi de coder
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', "l'existence", 'du', 'kiwi-fruit.'
+]
 ```
 
-Vous voyez pourquoi on ne fait pas simplement un `split()` ?
+2\. Modifier la fonction `crude_tokenizer` pour qu'elle sépare aussi suivant les caractères
+   non alphanumériques. **Indice** ça peut être utile de revoir [la doc sur les expressions
+   régulières](https://docs.python.org/3/library/re.html) ou de relire [un tuto à ce
+   sujet](https://realpython.com/regex-python/).
+
+```python
+def crude_tokenizer(s):
+    pass # À toi de coder
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', 'l', 'existence', 'du', 'kiwi', 'fruit'
+]
+```
+
+3\. On aimerait maintenant garder les apostrophes à la fin du mot qui les précède, ainsi que les
+mots composés ensemble.
+
+```python
+def crude_tokenizer(s):
+    pass # À toi de coder
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit'
+]
+```
+
+4\. Écrire une fonction `crude_tokenizer_and_normalizer` qui en plus de tokenizer comme précédemment
+met tous les mots en minuscules
+
+On peut évidemment copier-coller le code au-dessus, mais on peut aussi réutiliser ce qu'on a déjà
+défini :
+
+```python
+def crude_tokenizer_and_normalizer(s):
+    pass # À toi de coder
+
+asser = crude_tokenizer_and_normalizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit'
+]
+```
+
+## 💜 Extraire les bigrammes 💜
+
+Écrire une fonction `extract_bigrams` qui prend en entrée une liste de mots et renvoie la liste des bigrammes correspondants sous forme de couples de mots.
+
+
+Version directe
+
+```python
+def extract_bigrams(words):
+    pass # À toi de coder
+
+assert extract_bigrams(['je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit']) == [
+    ('je', 'reconnais'),
+     ('reconnais', "l'"),
+     ("l'", 'existence'),
+     ('existence', 'du'),
+     ('du', 'kiwi-fruit')
+]
+```
+
+
+## 🔢 Compter 🔢
+
+
+Écrire une fonction `read_corpus` qui prend en argument un chemin vers un fichier texte, l'ouvre, le
+tokenize et y compte les unigrammes et les bigrammes en renvoyant deux `Counter` associant
+respectivement à chaque mot et à chaque bigramme leurs nombres d'occurrences.
 
 ```python
 from collections import Counter
-unigrams = Counter()
-bigrams = Counter()
-with open("../../data/zola_ventre-de-paris.txt") as in_stream:
-    for line in in_stream:
-        words = poor_mans_tokenizer(line.strip())
-        unigrams.update(words)
-        bigrams.update(zip(words[:-1], words[1:]))
-display(unigrams.most_common(10))
-display(bigrams.most_common(10))
+    
+def read_corpus(file_path):
+    unigrams = Counter()
+    bigrams = Counter()
+    pass # À toi de coder
+    
+    return unigrams, bigrams
+
+
+unigram_counts, bigram_counts = read_corpus("data/zola_ventre-de-paris.txt")
+
+assert unigram_counts.most_common(4) == [('de', 5292), ('la', 3565), ('les', 2746), ('il', 2443)]
+assert bigram_counts.most_common(4) == [
+    (('de', 'la'), 754),
+     (("qu'", 'il'), 424),
+     (('à', 'la'), 336),
+     (("d'", 'une'), 321)
+]
 ```
 
-(Si vous trouvez `zip(words[:-1], words[1:])` obscur, faites quelques tests pour voir pourquoi ça
-marche.)
-
-### Calculer les probas
+## 🤓 Estimer les probas 🤓
 
 
-On va ensuite estimer les probas de générer un certain mot $w_1$ sachant que le mot précédent est
-$w_0$. On le fait en utilisant la formule du maximum de vraisemblance:
+On va ensuite estimer les probabilités de transition, c'est-à-dire la probabilité de générer un
+certain mot $w_1$ sachant que le mot précédent est $w_0$. On le fait en utilisant la formule du
+maximum de vraisemblance :
 
 \begin{equation}
-   P(w_1|w_0) = \frac{\text{nombre d'occurrences du bigramme $w_0 w_1$}}{\text{nombre d'occurrences de l'unigramme $w_0$}}
+   P(w_1|w_0) := P\!\left([w_0, w_1]~|~[w_0, *]\right) = \frac{\text{nombre d'occurrences du bigramme $w_0 w_1$}}{\text{nombre d'occurrences de l'unigramme $w_0$}}
 \end{equation}
 
 Pour que ce soit plus agréable à sampler on va utiliser un dictionnaire de dictionnaires :
 `probs[v][w]` stockera $P(w|v)$.
 
-```python
-from collections import defaultdict
-
-probs = defaultdict(dict)
-for (v, w), c in bigrams.items():
-    probs[v][w] = c/unigrams[v]
-
-# Pour ne pas masquer des erreurs pendant le sampling, on en refait un dict normal
-probs = dict(probs)
-probs
-```
-
-Un autre truc un peu pénible, c'est qu'en tenant compte de la casse comme on le fait, on sépare en
-deux les comptes de chaque mot (suivant qu'il se trouve ou non en début de phrase). C'est pas
-complètement une erreur, mais c'est un peu désagréable, on va normaliser tout ça.
+À vous de jouer : écrire une fonction `get_probs`, qui prend en entrée les compteurs de bigrammes
+et d'unigrammes et renvoie le dictionnaire `probs`.
 
 ```python
-def poor_mans_tokenizer_and_normalizer(s):
-    return [w.lower() for w in re.split(r"\s|(\W)", s.strip()) if w]
+def get_probs(unigram_counts, bigram_counts):
+    pass # À toi de coder
+
+probs = get_probs(unigram_counts, bigram_counts)
+assert probs["je"]["déjeune"] == 0.002232142857142857
 ```
 
-### Générer
+**Astuce** on peut utilise un `defaultdict`.
+
+
+## 🤔 Générer 🤔
 
 Pour l'instant on ne va pas se préoccuper de sauvegarder le modèle on va l'utiliser directement pour
-sampler. Le principe est simple : on sample le premier mot, puis on sample le deuxième mot en
-prenant le premier qu'on vient de générer et ainsi de suite.
+sampler. Le principe est simple : on choisit le premier mot, puis on choisit le deuxième mot en
+prenant en compte celui qu'on vient de générer (le premier donc si vous suivez) et ainsi de suite.
 
 
-Est-ce que vous voyez le problème ?
+**Questions**
+
+- Comment on choisit le premier mot ?
+- Et quand est-ce qu'on décide de s'arrêter ?
 
 
-Comment on sample le premier mot ?
-
-Et quand est-ce qu'on décide de s'arrêter ?
-
-
-On rouvre le bouquin et on trouve
+Jurafsky et Martin nous disent
 
 >  We’ll first need to augment each sentence with a special symbol `<s>` at the beginning of the
 > sentence, to give us the bigram context of the first word. We’ll also need a special end-symbol.
 > `</s>`
 
+Heureusement on a un fichier bien fait : il y a une seule phrase par ligne.
 
-Oups
 
-
-Allez, on corrige
-
-```python
-l = [1,2,3,4,5]
-l2 = [-1, 0, *l]
-l2
-```
+1\. Modifier `read_corpus` pour ajouter à la volée `<s>` au début de chaque ligne et `</s>` à la fin
+de chaque ligne.
 
 ```python
-unigrams = Counter()
-bigrams = Counter()
-with open("../../data/zola_ventre-de-paris.txt") as in_stream:
-    for line in in_stream:
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
-        if "<s>" in words or "</s>" in words:
-            raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
-        unigrams.update(("<s>", *words, "</s>"))
-        bigrams.update(zip(("<s>", *words), (*words, "</s>")))
+def read_corpus(file_path):
+    pass # À toi de coder
+    
+    return unigrams, bigrams
 
-probs = defaultdict(dict)
-for (v, w), c in bigrams.items():
-    probs[v][w] = c/unigrams[v]
 
-probs = dict(probs)
-probs
+unigram_counts, bigram_counts = read_corpus("data/zola_ventre-de-paris.txt")
+
+assert unigram_counts.most_common(4) == [('<s>', 8945), ('</s>', 8945), ('de', 5292), ('la', 3565)]
+assert bigram_counts.most_common(4) == [
+    (('<s>', '</s>'), 1811),
+    (('<s>', 'il'), 775),
+    (('de', 'la'), 754),
+    (('<s>', 'elle'), 576)
+]
 ```
 
 Il y a encore un petit problème
 
 ```python
-probs["<s>"]["</s>"]
+bigram_counts.most_common(1)
 ```
 
 🤔
@@ -256,32 +480,28 @@ On a compté les lignes vides 😤. Ça ne posait pas de problème jusque-là pu
 aux compteurs de n-grammes, mais maintenant ça nous fait des `["<s>", "</s>"]`.
 
 
-C'est reparti
+2\. Modifier `read_corpus` pour ignorer les lignes vides
 
 ```python
-unigrams = Counter()
-bigrams = Counter()
-with open("../../data/zola_ventre-de-paris.txt") as in_stream:
-    for line in in_stream:
-        # Voi-là
-        if line.isspace():
-            continue
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
-        # Pourquoi on fait ça ?
-        if "<s>" in words or "</s>" in words:
-            raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
-        unigrams.update(("<s>", *words, "</s>"))
-        bigrams.update(zip(("<s>", *words), (*words, "</s>")))
+def read_corpus(file_path):
+    pass # À toi de coder
 
-probs = defaultdict(dict)
-for (v, w), c in bigrams.items():
-    probs[v][w] = c/unigrams[v]
 
-probs = dict(probs)
-probs
+unigram_counts, bigram_counts = read_corpus("data/zola_ventre-de-paris.txt")
+
+assert unigram_counts.most_common(4) == [('<s>', 7145), ('</s>', 7145), ('de', 5292), ('la', 3565)]
+assert bigram_counts.most_common(4) == [
+    (('<s>', 'il'), 775),
+    (('de', 'la'), 754),
+    (('<s>', 'elle'), 576),
+    (("qu'", 'il'), 424)
+]
+
+probs = get_probs(unigram_counts, bigram_counts)
+assert probs["<s>"]["le"] == 0.0298110566829951
 ```
 
-### Générer pour de vrai
+## 😌 Générer pour de vrai 😌
 
 **Bon c'est bon maintenant ?**
 
@@ -299,25 +519,30 @@ n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, évide
 import random
 ```
 
-Voyons déjà comment choisir le premier mot
+Voici par exemple comment choisir un mot qui suivrait « je » :
 
 ```python
-candidates = list(probs["<s>"].keys())
-#  On pourrait faire plus fancy avec `zip`, cherchez comment
-weights = [probs["<s>"][c] for c in candidates] 
-random.choices(candidates, weights)[0]  # `choices` renvoit une liste, voir sa doc
+# Les candidats mots qui peuvent suivre « je »
+candidates = list(probs["je"].keys())
+# Leurs poids, ce sont les probabilités qu'on a déjà calculé
+weights = [probs["je"][c] for c in candidates] 
+random.choices(candidates, weights, k=1)[0]  # Attention `choices` renvoit une liste
 ```
 
-Ça marche, maintenant une phrase ! On sample mot par mot et on s'arrête quand on arrive à `</s>`
+Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un
+dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en
+ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
 
 ```python
-sent = ["<s>"]
-while sent[-1] != "</s>":
-    candidates = list(probs[sent[-1]].keys())
-    weights = [probs[sent[-1]][c] for c in candidates]
-    sent.append(random.choices(candidates, weights)[0])
+def sample(bigram_probs):
+    pass # À toi de coder
+```
 
-print(" ".join(sent[1:-1]))
+Pas de assert ici comme on a de l'aléatoire, mais la cellule suivante permet de tester si ça marche
+
+```python
+print(sample(probs))
+print(" ".join(sample(probs)[1:-1]))
 ```
 
 C'est rigolo, hein ?
@@ -325,96 +550,8 @@ C'est rigolo, hein ?
 
 Qu'est-ce que vous pensez des textes qu'on génère ?
 
-### Les trigrammes
+## 🧐 Aller plus loin 🧐
 
-Avant de généraliser, on va voir comment passer aux trigrammes
 
-```python
-bigrams = Counter()
-trigrams = Counter()
-with open("../../data/zola_ventre-de-paris.txt") as in_stream:
-    for line in in_stream:
-        if line.isspace():
-            continue
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
-        if "<s>" in words or "</s>" in words:
-            raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
-        words = ["<s>", "<s>", *words, "</s>"]
-        bigrams.update(zip(words[:-1], words[1:]))
-        # On pourrait faire comme avec les bigrammes mais ça généralisera mieux comme ça
-        # À votre avis pourquoi des tuples ?
-        trigrams.update((tuple(words[i-2:i]), w) for i, w in enumerate(words[2:], start=2))
-
-probs = defaultdict(dict)
-for ((u, v), w), c in trigrams.items():
-    probs[(u, v)][w] = c/bigrams[(u, v)]
-
-probs = dict(probs)
-probs
-```
-
-```python
-sent = ["<s>", "<s>"]
-while sent[-1] != "</s>":
-    candidates = list(probs[tuple(sent[-2:])].keys())
-    weights = [probs[tuple(sent[-2:])][c] for c in candidates]
-    sent.append(random.choices(candidates, weights)[0])
-
-print(" ".join(sent[2:-1]))
-```
-
-## Les n-grammes
-
-On passe aux n-grammes ? On va essayer de les faire de façon un peu plus compacte.
-
-```python
-def get_ngrams_probs(path, n=2):
-    ngrams = defaultdict(Counter)
-    with open(path) as in_stream:
-        for line in in_stream:
-            if line.isspace():
-                continue
-            words = poor_mans_tokenizer_and_normalizer(line.strip())
-            if "<s>" in words or "</s>" in words:
-                raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
-            words = [*("<s>" for _ in range(n-1)), *words, "</s>"]
-            for i, w in enumerate(words[n-1:], start=n-1):
-                ngrams[tuple(words[i-n+1:i])][w] += 1
-    probs = defaultdict(dict)
-    for trigger, targets in ngrams.items():
-        trigger_occurences = sum(targets.values())
-        for t, c in targets.items():
-            probs[trigger][t] = c/trigger_occurences
-    return dict(probs)
-```
-
-```python
-get_ngrams_probs("../../data/zola_ventre-de-paris.txt", 4)
-```
-
-```python
-def sample_from_probs(probs, n):
-    # On pourrait inférer n automatiquement mais fleeeeemme
-    sent = ["<s>" for _ in range(n-1)]
-    while sent[-1] != "</s>":
-        candidates = list(probs[tuple(sent[-n+1:])].keys())
-        weights = [probs[tuple(sent[-n+1:])][c] for c in candidates]
-        sent.append(random.choices(candidates, weights)[0])
-    return " ".join(sent[n-1:-1])
-```
-
-```python
-probs = get_ngrams_probs("../../data/zola_ventre-de-paris.txt", 4)
-```
-
-```python
-sample_from_probs(probs, 4)
-```
-
-Vous voyez un problème ?
-
-## Un peu d'originalité
-
-Le modèle ici marche, mais comme le corpus est un peu petit, il manque souvent d'originalité pour
-des grandes valeurs de $n$. Il y a plusieurs façons d'y remédier et les sections 3.4 et 3.5 de
-*Speech and Language Processing* donnent plus de détails à ce sujet.
+En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes,
+tétragrammes (4), puis de n-grammes arbitraires.
