@@ -48,6 +48,11 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - [*The descent*](https://www.codingame.com/ide/puzzle/the-descent)
 - [*Shadow of the knight* E01](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
+### 2022-09-27 — Modèles de langues à n-grammes
+
+- {% notebook_badges slides/02-ngram_lms/ngram-lms.md %}
+  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms.html)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
