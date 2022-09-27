@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -16,146 +16,112 @@ jupyter:
 
 <!-- LTeX: language=fr -->
 
-<!-- #region slideshow={"slide_type": "slide"} -->
-Cours 2 : Modèles de langues à n-grammes
-========================================
+Cours 1 : corrections
+=====================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
 2022-09-28
-<!-- #endregion -->
+
+## ✂️ Exo 1 ✂️
+
+1\. Écrire une fonction `crude_tokenizer` qui prend comme argument une chaine de caractères et
+    renvoie la liste des mots de cette chaîne en séparant sur les espaces.
 
 ```python
-from IPython.display import display
+def crude_tokenizer(s):
+    return s.split()
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', "l'existence", 'du', 'kiwi-fruit.'
+]
 ```
 
-## Modèles de langues
-
-Qu'est-ce que vous pensez des phrases suivantes ?
-
-> Bonjour, ça va ?
-
-
-> Je reconnais l'existence du kiwi.
-
-
-> Les idées vertes incolores dorment furieusement.
-
-
-> Vous désastre réjouirez de que ce aucun.
-
-
-> oijj eofiz ipjij paihefoîozenui.
-
-
-Est-ce qu'il y en a qui vous parlent plus que d'autres ? Pourquoi ?
-
-
-Pour plein de raisons, étant donné un langage (et une variété de ce langage, etc.), il y a des
-phrases qu'on risque de voir ou d'entendre plus souvent que d'autres.
-
-
-On peut dire ainsi que certaines phrases sont plus **vraisemblables** que d'autres.
-
-
-On peut y penser de la manière suivante (pour l'instant) :
-
-- On prend toutes les phrases qui ont été un jour prononcées dans cette langue.
-- On les écrit toutes (avec répétition) sur des bouts de papiers.
-- On met les bouts de papier dans une urne géante, on touille et on en choisit un.
-
-
-On peut alors parler de *probabilité* d'avoir choisi une phrase donnée. Et se demander :
-
-> Si j'ai une phrase, par exemple « Toi dont le trône étincelle, ô immortelle Aphrodite. », comment
-> estimer cette probabilité ?
-
-
-Un modèle de langue, c'est un **modèle** qui permet d'**estimer** la **vraisemblance** d'une
-**phrase**.
-
-
-Notre objectif aujourd'hui c'est de voir comment on fait ça, d'abord en théorie, puis en pratique sur une application marrante et très très très à la mode : la génération de textes.
-
-
-À quoi ça sert ?
-
-
-À plein de trucs
-
-- Traduction automatique :
-  - $P(\text{moche temps pour la saison}) > P(\text{sale temps pour la saison})$
-- Correction orthographique :
-  - Je ne peux pas **croitre** cette histoire
-  - $P(\text{peux pas croire cette}) > P(\text{peux pas croitre cette})$
-- Reconnaissance de la parole (ASR)
-  - $P(\text{Par les temps qui courent}) >> P(\text{Parle et t'en qui cours})$
-- Résumé automatique, questions/réponses…
-
-
-On se basera pour la théorie et les notations sur le chapitre 3 de [*Speech and Language
-Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin. À ta
-place, je le garderais donc à portée de main, le poly *et* les slides.
-
-
-## Pitch
-
-Notre objectif ici sera de faire du *sampling*.
-
-Pour les données on va d'abord travailler avec [Le Ventre de
-Paris](../../data/zola_ventre-de-paris.txt) qui est déjà dans ce repo pour les tests puis avec [le
-corpus CIDRE](https://www.ortolang.fr/market/corpora/cidre) pour passer à l'échelle, mais on
-pourrait aussi utiliser Wikipedia (par exemple en utilisant
-[WikiExtractor](https://github.com/attardi/wikiextractor)) ou [OSCAR](https://oscar-corpus.com/).
-
-On va devoir faire les choses suivantes (pour un modèle à bigrammes)
-l
-- Extraire les unigrammes et les bigrammes d'un corpus
-- Calculer les probas normalisées des bigrammes
-- Les sauvegarder (par exemple dans un TSV)
-- Sampler des phrases à partir du modèle
-- (En option) évaluer le modèle sur un corpus de test
-- Wrapper tout ça dans des jolis scripts
-
-On va essayer de faire les choses à la main, sans trop utiliser de bibliothèques, pour bien
-comprendre ce qui se passe.
-
-## Premier prototype.
-
-
-On va commencer par faire en entier le cas des bigrammes sur *Le Ventre de Paris* et on généralisera
-ensuite.
-
-### Lire et compter
-
-
-On commence par lire un fichier et en extraire les unigrammes (ce qui nous donne le vocabulaire) et
-les bigrammes. On va pour l'instant faire ça très basiquement avec une bête tokenisation sur les
-espaces et les signes de ponctuation.
+2\. Modifier la fonction `crude_tokenizer` pour qu'elle sépare aussi suivant les caractères
+   non alphanumériques. **Indice** ça peut être utile de revoir [la doc sur les expressions
+   régulières](https://docs.python.org/3/library/re.html) ou de relire [un tuto à ce
+   sujet](https://realpython.com/regex-python/).
 
 ```python
 import re
-def poor_mans_tokenizer(s):
-    return [w for w in re.split(r"\s|(\W)", s.strip()) if w]
+def crude_tokenizer(s):
+    return [w for w in re.split(r"\s|\W", s.strip()) if w]
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', 'l', 'existence', 'du', 'kiwi', 'fruit'
+]
 ```
 
-Vous voyez pourquoi on ne fait pas simplement un `split()` ?
+3\. On aimerait maintenant garder les apostrophes à la fin du mot qui les précède, ainsi que les
+   mots composés ensemble.
 
 ```python
-from collections import Counter
-unigrams = Counter()
-bigrams = Counter()
-with open("../../data/zola_ventre-de-paris.txt") as in_stream:
-    for line in in_stream:
-        words = poor_mans_tokenizer(line.strip())
-        unigrams.update(words)
-        bigrams.update(zip(words[:-1], words[1:]))
-display(unigrams.most_common(10))
-display(bigrams.most_common(10))
+import re  # Si jamais on a pas exécuté la cellule précédente
+def crude_tokenizer(s):
+    return re.findall(r"\b\w+?\b(?:'|(?:-\w+?\b)*)?", s)
+
+assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
+    'Je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit'
+]
 ```
 
-(Si vous trouvez `zip(words[:-1], words[1:])` obscur, faites quelques tests pour voir pourquoi ça
-marche.)
+## 🔢 Exo 2 🔢
+
+Écrire une fonction `extraire_bigrammes` qui prend en entrée une chaine de caractères, la tokenize
+avec `crude_tokenizer` et renvoie la liste des bigrammes correspondants sous forme de couples de
+mots.
+
+
+Version directe
+
+```python
+def extraire_bigrammes(s):
+    tokenized = crude_tokenizer(s)
+    res = []
+    for i in range(len(tokenized)-1):
+        res.append((tokenized[i], tokenized[i+1]))
+    return res
+
+assert extraire_bigrammes("Je reconnais l'existence du kiwi-fruit.") == [
+    ('Je', 'reconnais'),
+     ('reconnais', "l'"),
+     ("l'", 'existence'),
+     ('existence', 'du'),
+     ('du', 'kiwi-fruit')
+]
+```
+
+Version artistique
+
+```python
+def extraire_bigrammes(s):
+    tokenized = crude_tokenizer(s)
+    return list(zip(tokenized[:-1], tokenized[1:]))
+
+assert extraire_bigrammes("Je reconnais l'existence du kiwi-fruit.") == [
+    ('Je', 'reconnais'),
+     ('reconnais', "l'"),
+     ("l'", 'existence'),
+     ('existence', 'du'),
+     ('du', 'kiwi-fruit')
+]
+```
+
+Si vous trouvez ça obscur essayez le code ci-dessous, et allez voir ce qu'il donne [sur Python
+Tutor](https://pythontutor.com/render.html#code=tokenized%20%3D%20%5B'Je',%20'reconnais',%20%22l'%22,%20'existence',%20'du',%20'kiwi-fruit'%5D%0A%0Afirst_words%20%3D%20tokenized%5B%3A-1%5D%0Asecond_words%20%3D%20tokenized%5B1%3A%5D%0A%0Afor%20t%20in%20zip%28first_words,%20second_words%29%3A%0A%20%20%20%20print%28t%29&cumulative=false&curInstr=10&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
+
+```python
+tokenized = ['Je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit']
+
+first_words = tokenized[:-1]
+second_words = tokenized[1:]
+
+print(first_words)
+print(second_words)
+
+for t in zip(first_words, second_words):
+    print(t)
+```
 
 ### Calculer les probas
 
@@ -187,7 +153,7 @@ deux les comptes de chaque mot (suivant qu'il se trouve ou non en début de phra
 complètement une erreur, mais c'est un peu désagréable, on va normaliser tout ça.
 
 ```python
-def poor_mans_tokenizer_and_normalizer(s):
+def crude_tokenizer_and_normalizer(s):
     return [w.lower() for w in re.split(r"\s|(\W)", s.strip()) if w]
 ```
 
@@ -229,7 +195,7 @@ unigrams = Counter()
 bigrams = Counter()
 with open("../../data/zola_ventre-de-paris.txt") as in_stream:
     for line in in_stream:
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
+        words = crude_tokenizer_and_normalizer(line.strip())
         if "<s>" in words or "</s>" in words:
             raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
         unigrams.update(("<s>", *words, "</s>"))
@@ -266,7 +232,7 @@ with open("../../data/zola_ventre-de-paris.txt") as in_stream:
         # Voi-là
         if line.isspace():
             continue
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
+        words = crude_tokenizer_and_normalizer(line.strip())
         # Pourquoi on fait ça ?
         if "<s>" in words or "</s>" in words:
             raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
@@ -336,7 +302,7 @@ with open("../../data/zola_ventre-de-paris.txt") as in_stream:
     for line in in_stream:
         if line.isspace():
             continue
-        words = poor_mans_tokenizer_and_normalizer(line.strip())
+        words = crude_tokenizer_and_normalizer(line.strip())
         if "<s>" in words or "</s>" in words:
             raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
         words = ["<s>", "<s>", *words, "</s>"]
@@ -374,7 +340,7 @@ def get_ngrams_probs(path, n=2):
         for line in in_stream:
             if line.isspace():
                 continue
-            words = poor_mans_tokenizer_and_normalizer(line.strip())
+            words = crude_tokenizer_and_normalizer(line.strip())
             if "<s>" in words or "</s>" in words:
                 raise ValueError(f"Symboles de début/fin de phrases déjà présents dans le corpus {line!r}")
             words = [*("<s>" for _ in range(n-1)), *words, "</s>"]
