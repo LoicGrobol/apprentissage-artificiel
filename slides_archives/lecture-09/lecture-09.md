@@ -31,8 +31,8 @@ from IPython.display import display
 
 ## Pitch
 
-La **classification de documents** est une tâche de TAL qui consiste à ranger un document dans une et
-une seule classe parmi un ensemble prédéfini.
+La **classification de documents** est une tâche de TAL qui consiste à ranger un document dans une
+et une seule classe parmi un ensemble prédéfini.
 
 Elle est très importante historiquement, car elle a été une des passerelles entre l'informatique (où
 on peut la voir comme un cas particulier de la tâche générale de classification) et le TAL. En
@@ -165,8 +165,11 @@ vocab = sorted(set().union(*bows)) # Pourquoi `sorted` à votre avis ?
 len(vocab)
 ```
 
-Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme `len(train_data)×len(vocab)` qui
-tel que le contenu de la cellule `(i, j)` soit le nombre d'occurrence du mot `i` dans le document `j`. On a [déjà](../lecture-06/lecture-06.md#%F0%9F%91%9C-Exo%E2%80%AF:-les-sacs-de-mots-%F0%9F%91%9C) fait ça.
+Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme
+`len(train_data)×len(vocab)` qui tel que le contenu de la cellule `(i, j)` soit le nombre
+d'occurrences du mot `i` dans le document `j`. On a
+[déjà](../lecture-06/lecture-06.md#%F0%9F%91%9C-Exo%E2%80%AF:-les-sacs-de-mots-%F0%9F%91%9C) fait
+ça.
 
 
 On commence par faire un dict avec le vocabulaire

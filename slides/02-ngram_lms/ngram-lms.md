@@ -17,24 +17,90 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 8 : Modèles de langues à n-grammes
+Cours 2 : Modèles de langues à n-grammes
 ========================================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-10-11
+2022-09-28
 <!-- #endregion -->
 
 ```python
 from IPython.display import display
 ```
 
+## Modèles de langues
+
+Qu'est-ce que vous pensez des phrases suivantes ?
+
+> Bonjour, ça va ?
+
+
+> Je reconnais l'existence du kiwi.
+
+
+> Les idées vertes incolores dorment furieusement.
+
+
+> Vous désastre réjouirez de que ce aucun.
+
+
+> oijj eofiz ipjij paihefoîozenui.
+
+
+Est-ce qu'il y en a qui vous parlent plus que d'autres ? Pourquoi ?
+
+
+Pour plein de raisons, étant donné un langage (et une variété de ce langage, etc.), il y a des
+phrases qu'on risque de voir ou d'entendre plus souvent que d'autres.
+
+
+On peut dire ainsi que certaines phrases sont plus **vraisemblables** que d'autres.
+
+
+On peut y penser de la manière suivante (pour l'instant) :
+
+- On prend toutes les phrases qui ont été un jour prononcées dans cette langue.
+- On les écrit toutes (avec répétition) sur des bouts de papiers.
+- On met les bouts de papier dans une urne géante, on touille et on en choisit un.
+
+
+On peut alors parler de *probabilité* d'avoir choisi une phrase donnée. Et se demander :
+
+> Si j'ai une phrase, par exemple « Toi dont le trône étincelle, ô immortelle Aphrodite. », comment
+> estimer cette probabilité ?
+
+
+Un modèle de langue, c'est un **modèle** qui permet d'**estimer** la **vraisemblance** d'une
+**phrase**.
+
+
+Notre objectif aujourd'hui c'est de voir comment on fait ça, d'abord en théorie, puis en pratique sur une application marrante et très très très à la mode : la génération de textes.
+
+
+À quoi ça sert ?
+
+
+À plein de trucs
+
+- Traduction automatique :
+  - $P(\text{moche temps pour la saison}) > P(\text{sale temps pour la saison})$
+- Correction orthographique :
+  - Je ne peux pas **croitre** cette histoire
+  - $P(\text{peux pas croire cette}) > P(\text{peux pas croitre cette})$
+- Reconnaissance de la parole (ASR)
+  - $P(\text{Par les temps qui courent}) >> P(\text{Parle et t'en qui cours})$
+- Résumé automatique, questions/réponses…
+
+
+On se basera pour la théorie et les notations sur le chapitre 3 de [*Speech and Language
+Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin. À ta
+place, je le garderais donc à portée de main, le poly *et* les slides.
+
+
 ## Pitch
 
-On va apprendre un modèle de langues à n-grammes. On se basera pour la théorie et les notations sur
-le chapitre 3 de [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/) de
-Daniel Jurafsky et James H. Martin (garde le donc pas loin). Notre objectif ici sera de faire du
-*sampling*.
+Notre objectif ici sera de faire du *sampling*.
 
 Pour les données on va d'abord travailler avec [Le Ventre de
 Paris](../../data/zola_ventre-de-paris.txt) qui est déjà dans ce repo pour les tests puis avec [le
@@ -43,7 +109,7 @@ pourrait aussi utiliser Wikipedia (par exemple en utilisant
 [WikiExtractor](https://github.com/attardi/wikiextractor)) ou [OSCAR](https://oscar-corpus.com/).
 
 On va devoir faire les choses suivantes (pour un modèle à bigrammes)
-
+l
 - Extraire les unigrammes et les bigrammes d'un corpus
 - Calculer les probas normalisées des bigrammes
 - Les sauvegarder (par exemple dans un TSV)
@@ -73,7 +139,7 @@ def poor_mans_tokenizer(s):
     return [w for w in re.split(r"\s|(\W)", s.strip()) if w]
 ```
 
-Vous voyez pour quoi on ne fait pas simplement un `split()` ?
+Vous voyez pourquoi on ne fait pas simplement un `split()` ?
 
 ```python
 from collections import Counter
@@ -88,7 +154,8 @@ display(unigrams.most_common(10))
 display(bigrams.most_common(10))
 ```
 
-(Si vous trouvez `zip(words[:-1], words[1:])` obscur, faites quelques tests pour voir pourquoi ça marche.)
+(Si vous trouvez `zip(words[:-1], words[1:])` obscur, faites quelques tests pour voir pourquoi ça
+marche.)
 
 ### Calculer les probas
 
@@ -350,4 +417,4 @@ Vous voyez un problème ?
 
 Le modèle ici marche, mais comme le corpus est un peu petit, il manque souvent d'originalité pour
 des grandes valeurs de $n$. Il y a plusieurs façons d'y remédier et les sections 3.4 et 3.5 de
-*Speech and Language Processing donnent plus de détails à ce sujet.
+*Speech and Language Processing* donnent plus de détails à ce sujet.

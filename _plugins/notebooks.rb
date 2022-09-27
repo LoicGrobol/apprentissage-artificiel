@@ -27,4 +27,18 @@ module Jekyll
    end
 end
 
+module Jekyll
+   class NotebookLink < Liquid::Tag
+      def initialize(tag_name, notebook_path, tokens)
+         super
+         @notebook_path = notebook_path
+      end
+  
+      def render(context)
+         res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{@notebook_path})"
+         return res
+      end
+   end
+end
+
 Liquid::Template.register_tag('notebook_badges', Jekyll::NotebookBadges)

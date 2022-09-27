@@ -159,7 +159,7 @@ Quand vous demandez à `pip` d'installer un paquet, c'est là qu'il va le cherch
 !pip search regex
 ```
 
-Vous pouvez aussi le parcourir dans l'inteface web, c'est un bon point de départ pour éviter de
+Vous pouvez aussi le parcourir dans l'interface web, c'est un bon point de départ pour éviter de
 réinventer la roue.
 
 Le moteur de pypi est libre et rien ne vous empêche d'héberger votre propre instance, il suffira

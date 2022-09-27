@@ -22,7 +22,7 @@ Cours 1 : Introduction et rappels Python
 
 **Loïc Grobol** [\<lgrobol@parisnanterre.fr\>](mailto:lgrobol@parisnanterre.fr)
 
-2021-09-22
+2022-09-21
 
 <!-- #endregion -->
 
@@ -42,10 +42,10 @@ Cours 1 : Introduction et rappels Python
 
 - **Quoi** « Apprentissage artificiel »
 - **Où** Salle 219, bâtiment Paul Ricœur
-- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 20/09 au 17/11
+- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 21/09 au 16/11
   - Voir le planning pour les dates exactes (quand il aura été mis en ligne)
 
-→ PC portable obligatoire pour les cours, de préférence chargé. Si c'est un problème parlez m'en
+→ PC portable obligatoire pour les cours, de préférence chargé. Si c'est un problème parlez-m'en
 tout de suite et on trouvera une solution.
 <!-- #endregion -->
 
@@ -168,7 +168,7 @@ ma_nouvelle_fonction(2715)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-**Attention**: *afficher* un résultat et *renvoyer* un résultat ce n'est pas la même chose
+**Attention** : *afficher* un résultat et *renvoyer* un résultat ce n'est pas la même chose
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "fragment"}
@@ -348,7 +348,8 @@ isinstance('hello', int)
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### ✍️ Exo 3 ✍️
 
-Vous reprenez votre fonction `square` de façon à afficher "Erreur de type" quand l'argument n'est pas de type `int`
+Vous reprenez votre fonction `square` de façon à afficher "Erreur de type" quand l'argument n'est
+pas de type `int`
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -455,7 +456,7 @@ doc](https://docs.python.org/3/library/stdtypes.html#string-methods)
 <!-- #region slideshow={"slide_type": "subslide"} -->
 - `split(sep=None)` découpe une chaîne en fonction de `sep` et renvoie une liste. Si `sep` n'est pas
   donné, coupe sur tous les caractères d'espace
-- `join(iterable)` est l'inverse de `split`, il permet de joindre les éléments d'un *iterable* pour
+- `join(iterable)` est l'inverse de `split`, il permet de joindre les éléments d'un *itérable* pour
   former une seule chaîne de caractères
   [`format()`](https://docs.python.org/3/library/string.html#formatstrings) pour effectuer
   l'[interpolation de chaîne](https://en.wikipedia.org/wiki/String_interpolation)
@@ -565,10 +566,10 @@ chaine[1] = 'y'
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "-"} -->
-- Les listes sont des *sequences* (comme `str`, `tuple`, `list`)
-- Les *sequences* sont des structures de données indicées qui peuvent contenir des éléments de
+- Les listes sont des *séquences* (comme `str`, `tuple`, `list`)
+- Les *séquences* sont des structures de données indicées qui peuvent contenir des éléments de
   différents types
-- Les *sequences* sont des *iterables*, les listes aussi donc
+- Les *séquences* sont des *itérables*, les listes aussi donc
 - Les éléments d'une liste peuvent être modifiés (*mutable*)
 - On accède à un élément par son indice (de 0 à n-1, n étant le nombre d'éléments)
 <!-- #endregion -->
@@ -647,7 +648,7 @@ couleurs.items()
 
 - Les tuples (`tuple`) sont des *séquences* similaires aux listes sauf qu'elles ne peuvent pas être
   modifiées (*immutable*).
-- Les tuples sont souvent utilisées comme valeur de retour d'une fonction.
+- Les tuples sont souvent utilisés comme valeur de retour d'une fonction.
 - Contrairement aux listes, les tuples peuvent être utilisés comme clé de dictionnaire, à votre
   avis pourquoi ?.
 <!-- #endregion -->
@@ -721,8 +722,8 @@ while i < 5:
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 - Les boucles `for` s'appliquent sur les *séquences* (`list`, `str`, `tuple`) et plus généralement
-  sur les *iterables* [voir doc](https://docs.python.org/3/glossary.html#term-iterable)
-- Les *iterables* sont des objets issus de classes qui implémentent la méthode `__iter__()` et/ou
+  sur les *itérables* [voir doc](https://docs.python.org/3/glossary.html#term-iterable)
+- Les *itérables* sont des objets issus de classes qui implémentent la méthode `__iter__()` et/ou
   `__getitem__()`
 - L'instruction `continue` permet de passer à l'itération suivante
 - L'instruction `break` permet de quitter la boucle en cours

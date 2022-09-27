@@ -323,7 +323,7 @@ np.matmul(m1, m2)
 
 ## Broadcasting
 
-Une notion un peu plus compliquée mais qui sert souvent
+Une notion un peu plus compliquée, mais qui sert souvent
 
 ```python
 a = np.array([[1, 2, 3], [5, 6, 7], [9, 10, 11]])
@@ -340,7 +340,8 @@ a+c
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-nversion pour que tout se passe comme si on avait ajouté parExplication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la co
+Explication : si un des tableaux a moins de dimensions que l'autre, numpy fait automatiquement la
+conversion pour que tout se passe comme si on avait ajouté par
 <!-- #endregion -->
 
 ```python
@@ -373,7 +374,8 @@ display(a)
 plt.plot(a)
 ```
 
-Après dès qu'on veut faire des trucs un peu plus compliqué ben ça devient plus compliqué matplotlib.
+Après dès qu'on veut faire des trucs un peu plus compliqués ben ça devient plus compliqué,
+matplotlib.
 
 Mais on peut aussi faire des trucs fun assez facilement. Exemple avec une image.  
 `plt.imread` permet de changer un fichier image en objet python… devinez lequel
@@ -383,7 +385,7 @@ im = plt.imread("../../data/the-queens-gambit.jpeg")
 type(im)
 ```
 
-Bingo, un *array* numpy. En même temps c'est jamais qu'une matrice de pixels une image. 
+Bingo, un *array* numpy. En même temps, c'est jamais qu'une matrice de pixels une image. 
 
 ```python
 im.shape
