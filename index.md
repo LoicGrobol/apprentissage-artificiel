@@ -50,8 +50,8 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 
 ### 2022-09-27 — Modèles de langues à n-grammes
 
-- {% notebook_badges slides/02-ngram_lms/ngram-lms.py.md %}
-  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms.py.html)
+- {% notebook_badges slides/02-ngram_lms/ngram-lms-slides.py.md %}
+  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms-slides.py.html)
 - {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
   [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.html)
 
