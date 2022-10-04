@@ -100,11 +100,11 @@ place, je le garderais donc à portée de main, le poly *et* les slides.
 On veut assigner des probabilités (≈) à des séquences de mots.
 
 
-Si on note une séquence de mots $S = w_1, w_2, …, w_n$, on notera sa probabilité $P( w_1, w_2, …,
+Si on note une séquence de mots $S = w_1, w_2, …, w_n$, on notera sa probabilité $P(w_1, w_2, …,
 w_n)$.
 
 
-### Estimateur du maximum de vraisemblance
+### Estimateur du maximum de vraisemblance 
 
 Rappel : on peut estimer la probabilité d'un truc en calculant sa fréquence d'apparition.
 
@@ -258,7 +258,7 @@ mais en fin de phrase on retombe sur le problème précédent.
 \end{equation}
 
 
-On va donc faire une hypothèse un peu grossière : on va supposer par exemple que 
+On va donc faire une hypothèse un peu grossière : on va supposer par exemple que
 
 \begin{equation}
     P([w_0, w_1, w_2, w_3, *]~|~[w_0, w_1, w_2, *]) = P([w_0, w_1, w_2, w_3, *]~|~[w_1, w_2, *])
