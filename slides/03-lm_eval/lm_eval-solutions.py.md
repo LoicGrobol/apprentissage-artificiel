@@ -103,6 +103,29 @@ def generate_from_ngrams(ngram_probs):
     return sent[n-1:-1]
 ```
 
+```python
+# Unpacking dans un appel de fonction, on va voir qui ? Oui, la doc.
+bigram_probs = get_ngram_probs(*read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", 2))
+
+for _ in range(8):
+    print(" ".join(generate_from_ngrams(bigram_probs)))
+```
+
+```python
+# Unpacking dans un appel de fonction, on va voir qui ? Oui, la doc.
+trigram_probs = get_ngram_probs(*read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", 3))
+
+for _ in range(8):
+    print(" ".join(generate_from_ngrams(trigram_probs)))
+```
+
+```python
+pentagram_probs = get_ngram_probs(*read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", 5))
+
+for _ in range(8):
+    print(" ".join(generate_from_ngrams(pentagram_probs)))
+```
+
 ## 🎲 Vraisemblance d'une phrase 🎲
 
 
