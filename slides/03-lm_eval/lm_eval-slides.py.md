@@ -159,7 +159,7 @@ Oups
 On verra plus tard dans le cours une définition formelle de l'apprentissage automatique/artificiel,
 mais ce qu'on a ici c'en est : on a conçu un programme qui ingère des données et essaie de produire
 des résultats qui reproduisent (avec des gros guillemets) ce qu'il y avait dans ces données. On dit
-qu'il a **appris** ces données, dont ont dit qu'on appelle **données d'entraînement**.
+qu'il a **appris** ces données, qu'on appelle **données d'entraînement**.
 
 
 Alors ici quel est le problème ? On voit que pour $n=5$, le modèle de langue à $n$-grammes commence
