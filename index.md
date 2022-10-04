@@ -55,6 +55,13 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
   [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.html)
 
+### 2022-10-05 — Évaluer des modèles de langues à n-grammes
+
+- {% notebook_badges slides/03-lm_eval/lm_eval-slides.py.md %}
+  [Slides Évaluer des modèles de langues](slides/03-lm_eval/lm_eval-slides.py.md)
+- {% notebook_badges slides/03-lm_eval/lm_eval-solutions.py.md %}
+  [Solutions](slides/03-lm_eval/lm_eval-solutions.py.html)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
