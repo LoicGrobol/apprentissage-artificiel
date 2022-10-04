@@ -1,3 +1,5 @@
 classifieur
 perceptron
 toustes
+bigrammes
+unigrammes

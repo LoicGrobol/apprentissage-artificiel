@@ -25,10 +25,6 @@ Cours 2 : Modèles de langues à n-grammes
 2022-09-28
 <!-- #endregion -->
 
-```python
-from IPython.display import display
-```
-
 ## Modèles de langues
 
 Qu'est-ce que vous pensez des phrases suivantes ?
@@ -216,6 +212,8 @@ Autrement dit :
   commencent par $w_0, w_1$
 - …
 
+<!-- TODO: commencer par regarder le calcul des probas sur un petit exemple comme dans J&M avant de passer au cas général -->
+
 
 Les probabilités ici sont plus faciles à estimer :
 
@@ -348,7 +346,8 @@ asser = crude_tokenizer_and_normalizer("Je reconnais l'existence du kiwi-fruit."
 
 ## 💜 Extraire les bigrammes 💜
 
-Écrire une fonction `extract_bigrams` qui prend en entrée une liste de mots et renvoie la liste des bigrammes correspondants sous forme de couples de mots.
+Écrire une fonction `extract_bigrams` qui prend en entrée une liste de mots et renvoie la liste des
+bigrammes correspondants sous forme de couples de mots.
 
 
 Version directe
@@ -404,7 +403,11 @@ certain mot $w_1$ sachant que le mot précédent est $w_0$. On le fait en utilis
 maximum de vraisemblance :
 
 \begin{equation}
-   P(w_1|w_0) := P\!\left([w_0, w_1]~|~[w_0, *]\right) = \frac{\text{nombre d'occurrences du bigramme $w_0 w_1$}}{\text{nombre d'occurrences de l'unigramme $w_0$}}
+   P(w_1|w_0) := P\!\left([w_0, w_1]~|~[w_0, *]\right)
+    = \frac{
+        \text{nombre d'occurrences du bigramme $w_0 w_1$}
+      }{
+        \text{nombre d'occurrences de l'unigramme $w_0$}}
 \end{equation}
 
 Pour que ce soit plus agréable à sampler on va utiliser un dictionnaire de dictionnaires :
@@ -426,9 +429,12 @@ assert probs["je"]["déjeune"] == 0.002232142857142857
 
 ## 🤔 Générer 🤔
 
+<!-- TODO: en fait on pourrait déjà générer ici ! Juste pas le premier mot ! Ce serait plus logique -->
+
 Pour l'instant on ne va pas se préoccuper de sauvegarder le modèle on va l'utiliser directement pour
-sampler. Le principe est simple : on choisit le premier mot, puis on choisit le deuxième mot en
-prenant en compte celui qu'on vient de générer (le premier donc si vous suivez) et ainsi de suite.
+générer du text. Le principe est simple : on choisit le premier mot, puis on choisit le deuxième mot
+en prenant en compte celui qu'on vient de générer (le premier donc si vous suivez) et ainsi de
+suite.
 
 
 **Questions**
@@ -439,9 +445,11 @@ prenant en compte celui qu'on vient de générer (le premier donc si vous suivez
 
 Jurafsky et Martin nous disent
 
->  We’ll first need to augment each sentence with a special symbol `<s>` at the beginning of the
+<!-- LTeX: language=en-Us -->
+> We’ll first need to augment each sentence with a special symbol `<s>` at the beginning of the
 > sentence, to give us the bigram context of the first word. We’ll also need a special end-symbol.
 > `</s>`
+<!-- LTeX: language=fr -->
 
 Heureusement on a un fichier bien fait : il y a une seule phrase par ligne.
 
@@ -506,14 +514,15 @@ assert probs["<s>"]["le"] == 0.0298110566829951
 **Bon c'est bon maintenant ?**
 
 
-À peu près. On va pouvoir sampler.
+Oui ! On va enfin pouvoir générer des trucs !
 
 
 Pour ça on va piocher dans le module [`random`](https://docs.python.org/3/library/random.html) de la
 bibliothèque standard, et en particulier la fonction
 [`random.choices`](https://docs.python.org/3/library/random.html#random.choices) qui permet de tirer
-au sort dans une population finie en précisant les probabilités de chacun de éléments. Le poids
-n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, évidemment).
+au sort dans une population finie en précisant les probabilités (ou *poids*) de chacun des éléments.
+Les poids n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, vu comme on les a
+construits).
 
 ```python
 import random
@@ -526,7 +535,7 @@ Voici par exemple comment choisir un mot qui suivrait « je » :
 candidates = list(probs["je"].keys())
 # Leurs poids, ce sont les probabilités qu'on a déjà calculé
 weights = [probs["je"][c] for c in candidates] 
-random.choices(candidates, weights, k=1)[0]  # Attention `choices` renvoit une liste
+random.choices(candidates, weights, k=1)[0]  # Attention: `choices` renvoit une liste
 ```
 
 Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un
@@ -534,15 +543,21 @@ dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en part
 ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
 
 ```python
-def sample(bigram_probs):
+def generate(bigram_probs):
     pass # À toi de coder
 ```
 
-Pas de assert ici comme on a de l'aléatoire, mais la cellule suivante permet de tester si ça marche
+Pas de `assert` ici comme on a de l'aléatoire, mais la cellule suivante permet de tester si ça
+marche :
 
 ```python
-print(sample(probs))
-print(" ".join(sample(probs)[1:-1]))
+print(generate(probs))
+```
+
+Et ici pour avoir du texte qui ressemble à quelque chose :
+
+```python
+print(" ".join(generate(probs)[1:-1]))
 ```
 
 C'est rigolo, hein ?
@@ -553,5 +568,4 @@ Qu'est-ce que vous pensez des textes qu'on génère ?
 ## 🧐 Aller plus loin 🧐
 
 
-En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes,
-tétragrammes (4), puis de n-grammes arbitraires.
+En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes, puis de n-grammes arbitraires.

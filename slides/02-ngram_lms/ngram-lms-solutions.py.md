@@ -68,7 +68,8 @@ assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
 4\. Écrire une fonction `crude_tokenizer_and_normalizer` qui en plus de tokenizer comme précédemment
 met tous les mots en minuscules
 
-On peut évidemment copier-coller le code au-dessus, mais on peut aussi réutiliser ce qu'on a déjà défini :
+On peut évidemment copier-coller le code au-dessus, mais on peut aussi réutiliser ce qu'on a déjà
+défini :
 
 ```python
 def crude_tokenizer_and_normalizer(s):
@@ -81,7 +82,8 @@ asser = crude_tokenizer_and_normalizer("Je reconnais l'existence du kiwi-fruit."
 
 ## 💜 Extraire les bigrammes 💜
 
-Écrire une fonction `extract_bigrams` qui prend en entrée une liste de mots et renvoie la liste des bigrammes correspondants sous forme de couples de mots.
+Écrire une fonction `extract_bigrams` qui prend en entrée une liste de mots et renvoie la liste des
+bigrammes correspondants sous forme de couples de mots.
 
 
 Version directe
@@ -135,7 +137,6 @@ for t in zip(first_words, second_words):
 
 ## 🔢 Compter 🔢
 
-
 Écrire une fonction `read_corpus` qui prend en argument un chemin vers un fichier texte, l'ouvre, le
 tokenize et y compte les unigrammes et les bigrammes en renvoyant deux `Counter` associant
 respectivement à chaque mot et à chaque bigramme leurs nombres d'occurrences.
@@ -168,23 +169,11 @@ assert bigram_counts.most_common(4) == [
 
 ## 🤓 Estimer les probas 🤓
 
-
-On va ensuite estimer les probabilités de transition, c'est-à-dire la probabilité de générer un
-certain mot $w_1$ sachant que le mot précédent est $w_0$. On le fait en utilisant la formule du
-maximum de vraisemblance :
-
-\begin{equation}
-   P(w_1|w_0) := P\!\left([w_0, w_1]~|~[w_0, *]\right) = \frac{\text{nombre d'occurrences du bigramme $w_0 w_1$}}{\text{nombre d'occurrences de l'unigramme $w_0$}}
-\end{equation}
-
-Pour que ce soit plus agréable à sampler on va utiliser un dictionnaire de dictionnaires :
-`probs[v][w]` stockera $P(w|v)$.
-
-À vous de jouer : écrire une fonction `get_probs`, qui prend en entrée la les compteurs de bigrammes
-et d'unigrammes et renvoie le dictionnaire `probs`
+Écrire une fonction `get_probs`, qui prend en entrée les compteurs de bigrammes et
+d'unigrammes et renvoie le dictionnaire `probs`
 
 ```python
-def get_probs(unigram_counts, bigram_counts):
+def get_probs(unigram_counts, bigàram_counts):
     probs = dict()
     for (v, w), c in bigram_counts.items():
         if v not in probs:
@@ -219,27 +208,8 @@ assert probs["je"]["déjeune"] == 0.002232142857142857
 
 ## 🤔 Générer 🤔
 
-Pour l'instant on ne va pas se préoccuper de sauvegarder le modèle on va l'utiliser directement pour
-sampler. Le principe est simple : on choisit le premier mot, puis on choisit le deuxième mot en
-prenant en compte celui qu'on vient de générer (le premier donc si vous suivez) et ainsi de suite.
-
-
-**Questions**
-
-- Comment on choisit le premier mot ?
-- Et quand est-ce qu'on décide de s'arrêter ?
-
-
-Jurafsky et Martin nous disent
-
->  We’ll first need to augment each sentence with a special symbol `<s>` at the beginning of the
-> sentence, to give us the bigram context of the first word. We’ll also need a special end-symbol.
-> `</s>`
-
-Heureusement on a un fichier bien fait : il y a une seule phrase par ligne.
-
-
-1\. Modifier `read_corpus` pour ajouter ajouter à la volée `<s>` au début de chaque ligne et `</s>` à la fin de chaque ligne.
+1\. Modifier `read_corpus` pour ajouter à la volée `<s>` au début de chaque ligne et `</s>`
+à la fin de chaque ligne.
 
 ```python
 def read_corpus(file_path):
@@ -266,19 +236,6 @@ assert bigram_counts.most_common(4) == [
     (('<s>', 'elle'), 576)
 ]
 ```
-
-Il y a encore un petit problème
-
-```python
-bigram_counts.most_common(1)
-```
-
-🤔
-
-
-On a compté les lignes vides 😤. Ça ne posait pas de problème jusque-là puisque ça n'ajoutait rien
-aux compteurs de n-grammes, mais maintenant ça nous fait des `["<s>", "</s>"]`.
-
 
 2\. Modifier `read_corpus` pour ignorer les lignes vides
 
@@ -315,36 +272,14 @@ assert probs["<s>"]["le"] == 0.0298110566829951
 
 ## 😌 Générer pour de vrai 😌
 
-**Bon c'est bon maintenant ?**
-
-
-À peu près. On va pouvoir sampler.
-
-
-Pour ça on va piocher dans le module [`random`](https://docs.python.org/3/library/random.html) de la
-bibliothèque standard, et en particulier la fonction
-[`random.choices`](https://docs.python.org/3/library/random.html#random.choices) qui permet de tirer
-au sort dans une population finie en précisant les probabilités de chacun de éléments. Le poids
-n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, évidemment).
+Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un
+dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en
+ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
 
 ```python
 import random
-```
 
-Voici par exemple comment choisir un mot qui suivrait « je » :
-
-```python
-# Les candidats mots qui peuvent suivre « je »
-candidates = list(probs["je"].keys())
-# Leurs poids, ce sont les probabilités qu'on a déjà calculé
-weights = [probs["je"][c] for c in candidates] 
-random.choices(candidates, weights, k=1)[0]  # Attention `choices` renvoit une liste
-```
-
-Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
-
-```python
-def sample(bigram_probs):
+def generate(bigram_probs):
     sent = ["<s>"]
     while sent[-1] != "</s>":
         candidates = list(probs[sent[-1]].keys())
@@ -353,21 +288,181 @@ def sample(bigram_probs):
     return sent
 ```
 
-Pas de assert ici comme on a de l'aléatoire, mais la cellule suivante permet de tester si ça marche
+Pas de `assert` ici comme on a de l'aléatoire, mais la cellule suivante permet de tester si ça
+marche :
 
 ```python
-print(sample(probs))
-print(" ".join(sample(probs)[1:-1]))
+print(generate(probs))
 ```
 
-C'est rigolo, hein ?
+Et ici pour avoir du texte qui ressemble à quelque chose :
 
-
-Qu'est-ce que vous pensez des textes qu'on génère ?
+```python
+print(" ".join(generate(probs)[1:-1]))
+```
 
 ## 🧐 Aller plus loin 🧐
 
 
-En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes,
-tétragrammes (4), puis de n-grammes arbitraires.
+### 3️⃣ Trigrammes 3️⃣
 
+Coder un générateur de phrases à partir de trigrammes.
+
+On va reprendre les mêmes idées qu'avant, cette fois sans tomber dans les pièges, ça devrait aller
+plus vite ! La seule différence, c'est qu'au lieu de compter les bigrammes on compte les trigrammes
+afin de pouvoir choisir chaque mot en fonction des deux précédents.
+
+Un petit changement supplémentaire pour choisir le premier mot : au lieu d'un seul marqueur de début
+de phrase `<s>`, on va maintenant devoir en mettre deux `<s> <s>`. Par contre, il suffit toujours
+d'un seul `</s>`, vous suivez ?
+
+```python
+def extract_trigrams(words):
+    res = []
+    for i in range(len(words)-2):
+        res.append((words[i], words[i+1], words[i+2]))
+    return res
+
+assert extract_trigrams(['je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit']) == [
+    ('je', 'reconnais', "l'",),
+    ('reconnais', "l'", "existence"),
+    ("l'", 'existence', "du"),
+    ('existence', 'du', "kiwi-fruit"),
+]
+```
+
+```python
+def read_corpus_for_trigrams(file_path):
+    unigrams = Counter()
+    trigrams = Counter()
+    with open(file_path) as in_stream:
+        for line in in_stream:
+            words = crude_tokenizer_and_normalizer(line.strip())
+            words = ["<s>", "<s>"] + words
+            words.append("</s>")
+            unigrams.update(words)
+            trigrams.update(extract_trigrams(words))
+    
+    return unigrams, trigrams
+```
+
+
+```python
+def get_trigram_probs(unigram_counts, trigram_counts):
+    probs = defaultdict(dict)
+    for (w_1, w_2, w_3), c in trigram_counts.items():
+        probs[(w_1, w_2)][w_3] = c/unigram_counts[w_3]
+
+    return dict(probs)
+```
+
+```python
+def generate_from_trigrams(trigram_probs):
+    sent = ["<s>", "<s>"]
+    while sent[-1] != "</s>":
+        candidates = list(trigram_probs[(sent[-2], sent[-1])].keys())
+        weights = [trigram_probs[(sent[-2], sent[-1])][c] for c in candidates]
+        sent.append(random.choices(candidates, weights)[0])
+    return sent
+```
+
+Et pour tester
+
+```python
+unigram_counts, trigram_counts = read_corpus_for_trigrams("data/zola_ventre-de-paris.txt")
+trigram_probs = get_trigram_probs(unigram_counts, trigram_counts)
+```
+
+```python
+print(" ".join(generate_from_trigrams(trigram_probs)[2:-1]))
+```
+
+### 🇳 N-grammes 🇳
+
+Toujours la même chose, simplement il va falloir réfléchir un peu pour généraliser :
+
+```python
+def extract_ngrams(words, n):
+    res = []
+    for i in range(len(words)-n+1):
+        # Tuple pour pouvoir s'en servir comme clé de dictionnaire et donc OK avec `Counter`
+        res.append(tuple(words[i:i+n]))
+    return res
+```
+
+```python
+def read_corpus_for_ngrams(file_path, n):
+    unigrams = Counter()
+    ngrams = Counter()
+    with open(file_path) as in_stream:
+        for line in in_stream:
+            words = crude_tokenizer_and_normalizer(line.strip())
+            # Il nous faut bien `n-1` symboles de début de phrase 
+            words = ["<s>"]*(n-1) + words
+            words.append("</s>")
+            unigrams.update(words)
+            ngrams.update(extract_ngrams(words, n))
+    
+    return unigrams, ngrams
+```
+
+
+```python
+def get_ngram_probs(unigram_counts, ngram_counts):
+    probs = defaultdict(dict)
+    for ngram, c in ngram_counts.items():
+        probs[tuple(ngram[:-1])][ngram[-1]] = c/unigram_counts[ngram[-1]]
+
+    return dict(probs)
+```
+
+On peut aussi écrire ça comme ceci avec un
+[*unpacking*](https://stackabuse.com/unpacking-in-python-beyond-parallel-assignment/) (voir aussi
+[la doc](https://docs.python.org/3/reference/expressions.html#expression-lists) pour la syntaxe
+abstraite et la [PEP 448](https://peps.python.org/pep-0448/) qui l'a introduite)
+
+```python
+def get_ngram_probs(unigram_counts, ngram_counts):
+    probs = defaultdict(dict)
+    for ngram, c in ngram_counts.items():
+        *previous_words, target_word = ngram
+        probs[tuple(previous_words)][target_word] = c/unigram_counts[target_word]
+
+    return dict(probs)
+```
+
+voire même
+
+```python
+def get_ngram_probs(unigram_counts, ngram_counts):
+    probs = defaultdict(dict)
+    for (*previous_words, target_word), c in ngram_counts.items():
+        probs[tuple(previous_words)][target_word] = c/unigram_counts[target_word]
+
+    return dict(probs)
+```
+
+```python
+def generate_from_ngrams(ngram_probs, n):
+    # On pourrait deviner `n` à partir de `ngram_probs…
+    sent = ["<s>"] * (n-1)
+    while sent[-1] != "</s>":
+        # Essayer de bien réfléchir pour comprendre le `1-n`
+        previous_words = tuple(sent[1-n:])
+        candidates = list(ngram_probs[previous_words].keys())
+        weights = [ngram_probs[previous_words][c] for c in candidates]
+        sent.append(random.choices(candidates, weights)[0])
+    return sent
+```
+
+Et pour tester
+
+```python
+n = 4
+unigram_counts, ngram_counts = read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", n)
+ngram_probs = get_ngram_probs(unigram_counts, ngram_counts)
+```
+
+```python
+print(" ".join(generate_from_ngrams(ngram_probs, n)[n-1:-1]))
+```
