@@ -25,13 +25,14 @@ jupyter:
 2022-10-05
 <!-- #endregion -->
 
-## Précédently
-
 ```python
+import math
 import random
 import re
 from collections import Counter, defaultdict
 ```
+
+## Précédently
 
 ```python
 def crude_tokenizer_and_normalizer(s):
@@ -210,5 +211,5 @@ Paris*.
 
 ```python
 def perplexity(ngram_probs, file_path, n):
-    math.exp(-avg_log_likelihood(ngram_probs, file_path, n))
+    return math.exp(-avg_log_likelihood(ngram_probs, file_path, n))
 ```
