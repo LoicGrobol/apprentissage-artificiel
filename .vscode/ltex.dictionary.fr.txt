@@ -3,3 +3,4 @@ perceptron
 toustes
 bigrammes
 unigrammes
+Skłodowska

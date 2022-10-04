@@ -122,7 +122,7 @@ de suite, même avec un dé équilibré. C'est improbable, mais ça peut arriver
 estimation de la probabilité sera affreusement fausse.
 
 
-Cette façon d'estimer une probabilité c'est (un cas particulier de) l'**estimateur du maximum de
+Cette façon d'estimer une probabilité, c'est (un cas particulier de) l'**estimateur du maximum de
 vraisemblance**. La façon la plus simple d'estimer des probabilités.
 
 
@@ -169,8 +169,8 @@ on veut mettre la même probabilité à ces deux phrases ?
 Oups.
 
 
-Le problème c'est que l'échantillon qu'il nous faudrait ce n'est pas un échantillon de tout ce qui a
-déjà été produit comme phrase, mais un échantillon de tout ce qui **pourrait** être produit. Et
+Le problème, c'est que l'échantillon qu'il nous faudrait ce n'est pas un échantillon de tout ce qui
+a déjà été produit comme phrase, mais un échantillon de tout ce qui **pourrait** être produit. Et
 évidemment ce n'est pas accessible.
 
 ### Décomposer pour régner
@@ -294,7 +294,7 @@ Puis on étendra à des trigrammes et des n-grammes.
 1\. Écrire une fonction `crude_tokenizer` qui prend comme argument une chaine de caractères et
     renvoie la liste des mots de cette chaîne en séparant sur les espaces.
 
-```python
+```python tags=["raises-exception"]
 def crude_tokenizer(s):
     pass # À toi de coder
 
@@ -308,7 +308,7 @@ assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
    régulières](https://docs.python.org/3/library/re.html) ou de relire [un tuto à ce
    sujet](https://realpython.com/regex-python/).
 
-```python
+```python tags=["raises-exception"]
 def crude_tokenizer(s):
     pass # À toi de coder
 
@@ -320,7 +320,7 @@ assert crude_tokenizer("Je reconnais l'existence du kiwi-fruit.") == [
 3\. On aimerait maintenant garder les apostrophes à la fin du mot qui les précède, ainsi que les
 mots composés ensemble.
 
-```python
+```python tags=["raises-exception"]
 def crude_tokenizer(s):
     pass # À toi de coder
 
@@ -335,7 +335,7 @@ met tous les mots en minuscules
 On peut évidemment copier-coller le code au-dessus, mais on peut aussi réutiliser ce qu'on a déjà
 défini :
 
-```python
+```python tags=["raises-exception"]
 def crude_tokenizer_and_normalizer(s):
     pass # À toi de coder
 
@@ -352,7 +352,7 @@ bigrammes correspondants sous forme de couples de mots.
 
 Version directe
 
-```python
+```python tags=["raises-exception"]
 def extract_bigrams(words):
     pass # À toi de coder
 
@@ -373,7 +373,7 @@ assert extract_bigrams(['je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit'
 tokenize et y compte les unigrammes et les bigrammes en renvoyant deux `Counter` associant
 respectivement à chaque mot et à chaque bigramme leurs nombres d'occurrences.
 
-```python
+```python tags=["raises-exception"]
 from collections import Counter
     
 def read_corpus(file_path):
@@ -416,7 +416,7 @@ Pour que ce soit plus agréable à sampler on va utiliser un dictionnaire de dic
 À vous de jouer : écrire une fonction `get_probs`, qui prend en entrée les compteurs de bigrammes
 et d'unigrammes et renvoie le dictionnaire `probs`.
 
-```python
+```python tags=["raises-exception"]
 def get_probs(unigram_counts, bigram_counts):
     pass # À toi de coder
 
@@ -457,7 +457,7 @@ Heureusement on a un fichier bien fait : il y a une seule phrase par ligne.
 1\. Modifier `read_corpus` pour ajouter à la volée `<s>` au début de chaque ligne et `</s>` à la fin
 de chaque ligne.
 
-```python
+```python tags=["raises-exception"]
 def read_corpus(file_path):
     pass # À toi de coder
     
@@ -477,7 +477,7 @@ assert bigram_counts.most_common(4) == [
 
 Il y a encore un petit problème
 
-```python
+```python tags=["raises-exception"]
 bigram_counts.most_common(1)
 ```
 
@@ -490,7 +490,7 @@ aux compteurs de n-grammes, mais maintenant ça nous fait des `["<s>", "</s>"]`.
 
 2\. Modifier `read_corpus` pour ignorer les lignes vides
 
-```python
+```python tags=["raises-exception"]
 def read_corpus(file_path):
     pass # À toi de coder
 
@@ -530,7 +530,7 @@ import random
 
 Voici par exemple comment choisir un mot qui suivrait « je » :
 
-```python
+```python tags=["raises-exception"]
 # Les candidats mots qui peuvent suivre « je »
 candidates = list(probs["je"].keys())
 # Leurs poids, ce sont les probabilités qu'on a déjà calculé
@@ -542,7 +542,7 @@ random.choices(candidates, weights, k=1)[0]  # Attention: `choices` renvoit une 
 dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en
 ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
 
-```python
+```python tags=["raises-exception"]
 def generate(bigram_probs):
     pass # À toi de coder
 ```
@@ -556,7 +556,7 @@ print(generate(probs))
 
 Et ici pour avoir du texte qui ressemble à quelque chose :
 
-```python
+```python tags=["raises-exception"]
 print(" ".join(generate(probs)[1:-1]))
 ```
 

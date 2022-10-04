@@ -75,7 +75,7 @@ défini :
 def crude_tokenizer_and_normalizer(s):
     return crude_tokenizer(s.lower())
 
-assert crude_tokenizer_and_normalizer("Je reconnais l'existence du kiwi-fruit.") == [
+asser = crude_tokenizer_and_normalizer("Je reconnais l'existence du kiwi-fruit.") == [
     'je', 'reconnais', "l'", 'existence', 'du', 'kiwi-fruit'
 ]
 ```
@@ -458,7 +458,7 @@ def generate_from_ngrams(ngram_probs, n):
 Et pour tester
 
 ```python
-n = 5
+n = 4
 unigram_counts, ngram_counts = read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", n)
 ngram_probs = get_ngram_probs(unigram_counts, ngram_counts)
 ```
