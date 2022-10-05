@@ -463,13 +463,6 @@ assert avg_log_likelihood(trigram_probs, "data/zola_ventre-de-paris.txt", 3) == 
 assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) == -88.25016939038316
 ```
 
-3\. En pratique, on évalue pas vraiment les modèles de langues avec les log-vraisemblances, mais
-avec une quantité appelée **perplexité**, définie comme $\exp(-\text{avg-log-l})$, où
-$\text{avg-log-l}$ est la log-vraisemblance moyenne et $\exp$ est la fonction exponentielle
-`math.exp`. Écrire une fonction `perplexity` qui calcule la perplexité d'un modèle de langue à
-n-grammes sur un corpus donné. Là encore, testez avec les modèles précédents et *Le Ventre de
-Paris*.
-
 
 ## Mots inconnus et évaluation en général
 

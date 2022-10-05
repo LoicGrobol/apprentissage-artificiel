@@ -160,7 +160,7 @@ def sent_likelihood(ngram_probs, sent, n):
 assert sent_likelihood(trigram_probs, ["pénitentes", ",", "que", "prenez-vous", "?"], 3) == 3.9225257586711874e-14
 ```
 
-## 🤘🏻 Calculer la perplexité 🤘🏻
+## 🤘🏻 Vraisemblance globale 🤘🏻
 
 1\. Écrire une fonction `sent_loglikelihood`, qui les mêmes arguments que `sent_likelihood` et
 renvoie la **log-vraisemblance** de cette phrase.
@@ -200,16 +200,4 @@ def avg_log_likelihood(ngram_probs, file_path, n):
 assert avg_log_likelihood(bigram_probs, "data/zola_ventre-de-paris.txt", 2) == -56.321217776181875
 assert avg_log_likelihood(trigram_probs, "data/zola_ventre-de-paris.txt", 3) == -81.20968449380536
 assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) == -88.25016939038316
-```
-
-3\. En pratique, on évalue pas vraiment les modèles de langues avec les log-vraisemblances, mais
-avec une quantité appelée **perplexité**, définie comme $\exp(-\text{avg-log-l})$, où
-$\text{avg-log-l}$ est la log-vraisemblance moyenne et $\exp$ est la fonction exponentielle
-`math.exp`. Écrire une fonction `perplexity` qui calcule la perplexité d'un modèle de langue à
-n-grammes sur un corpus donné. Là encore, testez avec les modèles précédents et *Le Ventre de
-Paris*.
-
-```python
-def perplexity(ngram_probs, file_path, n):
-    return math.exp(-avg_log_likelihood(ngram_probs, file_path, n))
 ```

@@ -37,9 +37,9 @@ est indisponible.
 ### 2021-09-22 — Introduction et *crash course* Python
 
 - {% notebook_badges slides/01-intro_rappels/intro_rappels-slides.py.md %}
-  [Slides Introduction et crash course](slides/01-intro_rappels/intro_rappels-slides.py.html)
+  [Slides Introduction et crash course](slides/01-intro_rappels/intro_rappels-slides.py.ipynb)
 - {% notebook_badges slides/01-intro_rappels/intro_rappels-solutions.py.md %}
-  [Solutions](slides/01-intro_rappels/intro_rappels-solutions.py.html)
+  [Solutions](slides/01-intro_rappels/intro_rappels-solutions.py.ipynb)
 
 Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 
@@ -51,16 +51,16 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 ### 2022-09-27 — Modèles de langues à n-grammes
 
 - {% notebook_badges slides/02-ngram_lms/ngram-lms-slides.py.md %}
-  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms-slides.py.html)
+  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms-slides.py.ipynb)
 - {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
-  [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.html)
+  [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.ipynb)
 
 ### 2022-10-05 — Évaluer des modèles de langues à n-grammes
 
 - {% notebook_badges slides/03-lm_eval/lm_eval-slides.py.md %}
-  [Slides Évaluer des modèles de langues](slides/03-lm_eval/lm_eval-slides.py.md)
+  [Slides Évaluer des modèles de langues](slides/03-lm_eval/lm_eval-slides.py.ipynb)
 - {% notebook_badges slides/03-lm_eval/lm_eval-solutions.py.md %}
-  [Solutions](slides/03-lm_eval/lm_eval-solutions.py.html)
+  [Solutions](slides/03-lm_eval/lm_eval-solutions.py.ipynb)
 
 ## Lire les slides en local
 
