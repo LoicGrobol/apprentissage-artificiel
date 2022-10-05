@@ -160,7 +160,7 @@ def sent_likelihood(ngram_probs, sent, n):
 assert sent_likelihood(trigram_probs, ["pénitentes", ",", "que", "prenez-vous", "?"], 3) == 3.9225257586711874e-14
 ```
 
-## 🤘🏻 Vraisemblance globale 🤘🏻
+## 🤘🏻 Vraisemblance moyenne 🤘🏻
 
 1\. Écrire une fonction `sent_loglikelihood`, qui les mêmes arguments que `sent_likelihood` et
 renvoie la **log-vraisemblance** de cette phrase.

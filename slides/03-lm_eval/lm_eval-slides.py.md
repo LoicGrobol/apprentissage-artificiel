@@ -345,7 +345,7 @@ un corpus différent du corpus d'entraînement, si possible même un qui n'a auc
 On appellera ce deuxième corpus le **corpus de test** ou d'**évaluation**.
 
 
-## Perplexité
+## Vraisemblance
 
 ### 🎲 Vraisemblance d'une phrase 🎲
 
@@ -434,7 +434,7 @@ print(math.log(0))
 
 Mais c'est pas grave : on a par construction pas de mots de probabilité $0$.
 
-### 🤘🏻 Calculer la perplexité 🤘🏻
+### 🤘🏻 Log-Vraisemblance 🤘🏻
 
 1\. Écrire une fonction `sent_loglikelihood`, qui les mêmes arguments que `sent_likelihood` et
 renvoie la **log-vraisemblance** de cette phrase.
@@ -468,8 +468,15 @@ assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) =
 
 À vous de jouer maintenant !
 
-Coder l'évaluation sur [*Le Rouge et le Noir*](data/rouge_noir.txt) (il
-se trouve dans `"data/rouge_noir.txt"`) des modèles de langues appris sur *Le Ventre de Paris*.
+Coder l'évaluation sur [*Le Rouge et le Noir*](data/rouge_noir.txt) (il se trouve dans
+`"data/rouge_noir.txt"`) des modèles de langues appris sur *Le Ventre de Paris* pour déterminer quel
+$n$ est le plus satisfaisant.
+
 Attention, vous allez vous heurter à des problèmes de vocabulaires incompatibles et de n-grammes
 inexistants. Pour les résoudre, vous allez devoir vous servir des infos des sections 3.4 et 3.5.1 de
 [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/3.pdf).
+
+Vous devriez vous rendre compte que les résultats ne sont en général pas très satisfaisants. Vous
+pouvez alors entraîner des nouveaux modèles de langues à partir de corpus plus gros, par exemple
+[CIDRE](https://www.ortolang.fr/market/corpora/cidre). Attention, il faudra en faire la segmentation
+en phrases, par exemple avec [spaCy](spacy.io/).
