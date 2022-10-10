@@ -62,6 +62,13 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/03-lm_eval/lm_eval-solutions.py.md %}
   [Solutions](slides/03-lm_eval/lm_eval-solutions.py.ipynb)
 
+### 2022-10-12 — Théorie et modules indispensables
+
+- {% notebook_badges slides/04-pip_venv/pip-venv.py.md %}
+  [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv.py.ipynb)
+- {% notebook_badges slides/04-pip_venv/pip-venv.py.md %}
+  [Slides Numpy](slides/05-tuto-numpy/tuto-numpy.py.mdb)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec

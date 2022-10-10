@@ -288,6 +288,16 @@ source .venv/bin/activate
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
+- Notez qu'on peut utiliser un autre nom que `.venv`, mais c'est la convention la plus répandue.
+- Rien n'oblige non plus à le mettre dans le même dossier que votre script :
+  - Vous pouvez le mettre où vous voulez, par exemple dans `~/virtualenvs/mon-environnement`, qui
+    est aussi assez conventionnel et plutôt pratique.
+  - Dans ce cas, allez aussi voir du côté de
+    [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io).
+
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ### Et alors ?
 <!-- #endregion -->
 
@@ -342,7 +352,7 @@ plusieurs versions de Python en parallèle.
 - **Toujours** travailler dans un virtualenv
 - **Toujours** lister vos dépendances tierces dans un requirements.txt
 - **Toujours** `pip freeze`er les versions exactes pour vos expés (dans un `frozen-requirements.txt`
-  par exemple.
+  par exemple).
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->

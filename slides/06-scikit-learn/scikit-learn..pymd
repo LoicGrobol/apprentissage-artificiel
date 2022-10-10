@@ -22,7 +22,7 @@ Cours 7 : `scikit-learn`
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-10-05
+2022-10-10
 <!-- #endregion -->
 
 ```python
@@ -34,21 +34,20 @@ from IPython.display import display
 [`scikit-learn `](https://scikit-learn.org/stable/index.html).
 
 `scikit-learn ` est une bibliothèque Python dédiée à l'apprentissage artificiel. Ce package est
-développé sur licence libre. Il y a une forte proportion de français parmi les développeurs, le
-projet est soutenu par l'INRIA notamment.
+distribué sous une licence libre.
 
 `scikit-learn ` repose sur NumPy et SciPy. Il est écrit en Python et Cython. Il s'interface très
-bien avec `matplotlib`, `plotly` ou `pandas`. C'est devenu un incontournable du *machine learning*
-et de la *datascience* en Python.
+bien avec `matplotlib`, `seaborn` ou `pandas`. C'est devenu un incontournable du *machine learning*
+et des *data sciences* en Python.
 
-Dans ce notebook nous nous limiterons à la classification, une partie seulement du package [scikit-learn](https://scikit-learn.org/stable/index.html).
+Dans ce notebook nous nous limiterons à la classification, une partie seulement du package
+[scikit-learn](https://scikit-learn.org/stable/index.html).
 
 La classification est souvent utilisée en TAL, par exemple dans les tâches d'analyse de sentiment,
 de détection d'émotion ou l'identification de la langue.
 
-On va faire de l'apprentissage *supervisé*, vous connaissez la chanson : l'idée est d'apprendre un
-modèle à partir de données étiquetées et de prédire la bonne étiquette pour une donnée inconnue du
-modèle.
+On va faire de l'apprentissage *supervisé* : l'idée est d'apprendre un modèle à partir de données
+étiquetées et de prédire la bonne étiquette pour une donnée inconnue du modèle.
 
 Dit autrement, on a un échantillon d'entraînement composé de $n$ couples $Z_{i}=(X_{i}, Y_{i}),
 i=1...n$ où les $X_{i}$ sont les inputs avec plusieurs traits et les $Y_{i}$ seront les outputs, les
@@ -216,12 +215,12 @@ print(classification_report(y_test, y_pred))
 
 1. Essayez un autre algo de classification (Un SVM polynomial par exemple) et comparez les
    résultats.
-2. Sur ce même algo, refaites une partition train/test et comparez l'évaluation avec les résultats
-   précédents.
+2. Sur ce même algo, refaites une partition train/test différente et comparez l'évaluation avec les
+   résultats précédents.
 
 ## Validation croisée
 
-Pour améliorer la robustesse de l'évaluation on va utiliser la validation croisé
+Pour améliorer la robustesse de l'évaluation on peut utiliser la validation croisée
 (*cross-validation*). `scikit-learn` a des classes pour ça.
 
 ```python
@@ -324,6 +323,7 @@ print(classification_report(y_test, y_pred))
 ## 🤖 Exo  🤖
 
 ### 1. D'autres traits
+
 Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre d'adjectifs, la présence
 d'entités nommées, …
 
