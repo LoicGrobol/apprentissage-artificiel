@@ -227,7 +227,7 @@ représentations précédentes ?
 
 Le défaut principal de ces représentations, c'est qu'elles sont très **creuses** : beaucoup de
 dimensions, mais qui contiennent surtout des zéros. Ce n'est pas très économique à manipuler et
-c'est moins utile quan on veut les utiliser comme entrée pour des systèmes de TAL, comme des réseaux
+c'est moins utile quand on veut les utiliser comme entrée pour des systèmes de TAL, comme des réseaux
 de neurones
 
 L'essentiel du travail fait ces dix dernières années dans ce domaine consiste à trouver des
