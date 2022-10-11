@@ -67,7 +67,7 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/04-pip_venv/pip-venv.py.md %}
   [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv.py.ipynb)
 - {% notebook_badges slides/05-tuto-numpy/tuto-numpy.py.md %}
-  [Slides Numpy](slides/05-tuto-numpy/tuto-numpy.py.ipynb)
+  [Slides Numpy](slides/05-tuto-numpy/tuto-numpy-slides.py.ipynb)
 - {% notebook_badges slides/06-scikit-learn/scikit-learn.py.md %}
   [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn.py.ipynb)
 
