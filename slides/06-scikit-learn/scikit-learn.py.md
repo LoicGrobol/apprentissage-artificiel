@@ -22,7 +22,7 @@ Cours 7 : `scikit-learn`
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-10
+2022-10-12
 <!-- #endregion -->
 
 ```python
