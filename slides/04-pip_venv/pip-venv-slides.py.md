@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.12.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -84,11 +84,17 @@ help("modules")
 ```python
 import pathlib
 
-p = pathlib.Path(".").resolve()
-display(p)
-display(list(p.glob("*.ipynb")))
-projet = p.parent / "assignments"
-display(list(exos.glob("*")))
+p = pathlib.Path.cwd()
+p
+```
+
+```python
+list(p.glob("*.ipynb"))
+```
+
+```python
+intro = p.parent / "01-intro_rappels"
+list(intro.glob("*"))
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -139,7 +145,7 @@ regex.findall(pattern, text)
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## `pip`, le gestionnaire
 
-[`pip`](https://pip.pypa.io) est le gestionnaire de paquets intégré à python (sauf sous Debian 😠).
+[`pip`](https://pip.pypa.io) est le gestionnaire de paquets intégré à Python (enfin, sous Debian et Ubuntu, il faut installer le paquet `python3-pip`…).
 Comme tout bon gestionnaire de paquet il sait
 
 - Installer un paquet `pip install regex`
@@ -157,11 +163,7 @@ communauté — pour Python.
 Quand vous demandez à `pip` d'installer un paquet, c'est là qu'il va le chercher par défaut.
 <!-- #endregion -->
 
-```python
-!pip search regex
-```
-
-Vous pouvez aussi le parcourir dans l'interface web, c'est un bon point de départ pour éviter de
+Vous pouvez le parcourir dans l'interface web, c'est un bon point de départ pour éviter de
 réinventer la roue.
 
 Le moteur de PyPI est libre et rien ne vous empêche d'héberger votre propre instance, il suffira
@@ -173,7 +175,7 @@ git
 <!-- #endregion -->
 
 ```python
-!pip install --force-reinstall git+https://github.com/psf/requests.git
+%pip install --force-reinstall git+https://github.com/psf/requests.git
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -220,10 +222,12 @@ les restaurer
 %pip freeze
 ```
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
 (Traditionnellement, pour les sauvegarder : `pip freeze > requirements.txt`)
 
 Il est **fortement** recommandé de le faire quand on lance une expérience pour pouvoir la reproduire
 dans les mêmes conditions si besoin.
+<!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
 Pour restaurer les mêmes versions
@@ -254,7 +258,7 @@ Et arrive la conclusion
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-**En fait il me faudrait une installation différente de python pour chaque projet !**
+**En fait il me faudrait une installation différente de Python pour chaque projet !**
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
@@ -336,8 +340,7 @@ En particulier, si rien ne va plus, il suffit de supprimer `.venv`
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### `virtualenv` vs `venv`
 
-Il existe dans la distribution standard (sauf pour Debian 🙃) le module `venv` et un module tiers
-`virtualenv`.
+Il existe dans la distribution standard (sauf pour Ubuntu et Debian 🙃 vs `python3-venv`) le module `venv` et un module tiers `virtualenv`.
 
 `venv` est essentiellement une version minimale de `virtualenv` avec uniquement les fonctionnalités
 strictement nécessaires. En pratique on a rarement besoin de plus **sauf** quand on veut installer
