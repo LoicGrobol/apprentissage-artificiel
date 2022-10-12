@@ -64,12 +64,12 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 
 ### 2022-10-12 — Un peu de héorie et modules indispensables
 
-- {% notebook_badges slides/04-pip_venv/pip-venv.py.md %}
-  [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv-slide.py.ipynb)
+- {% notebook_badges slides/04-pip_venv/pip-venv-slides.py.md %}
+  [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv-slides.py.ipynb)
 - {% notebook_badges slides/05-tuto-numpy/tuto-numpy.py.md %}
   [Slides Numpy](slides/05-tuto-numpy/tuto-numpy-slides.py.ipynb)
-- {% notebook_badges slides/06-scikit-learn/scikit-learn.py.md %}
-  [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn-slide.py.ipynb)
+- {% notebook_badges slides/06-scikit-learn/scikit-learn-slides.py.md %}
+  [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn-slides.py.ipynb)
 
 ## Lire les slides en local
 

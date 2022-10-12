@@ -469,7 +469,7 @@ assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) =
 À vous de jouer maintenant !
 
 Coder l'évaluation sur [*Le Rouge et le Noir*](data/rouge_noir.txt) (il se trouve dans
-`"data/rouge_noir.txt"`) des modèles de langues appris sur *Le Ventre de Paris* pour déterminer quel
+`data/rouge_noir.txt`) des modèles de langues appris sur *Le Ventre de Paris* pour déterminer quel
 $n$ est le plus satisfaisant.
 
 Attention, vous allez vous heurter à des problèmes de vocabulaires incompatibles et de n-grammes

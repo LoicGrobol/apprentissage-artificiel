@@ -201,3 +201,61 @@ assert avg_log_likelihood(bigram_probs, "data/zola_ventre-de-paris.txt", 2) == -
 assert avg_log_likelihood(trigram_probs, "data/zola_ventre-de-paris.txt", 3) == -81.20968449380536
 assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) == -88.25016939038316
 ```
+
+## Mots inconnus et évaluation en général
+
+À vous de jouer maintenant !
+
+Coder l'évaluation sur [*Le Rouge et le Noir*](data/rouge_noir.txt) (il se trouve dans
+`data/rouge_noir.txt`) des modèles de langues appris sur *Le Ventre de Paris* pour déterminer quel
+$n$ est le plus satisfaisant.
+
+Attention, vous allez vous heurter à des problèmes de vocabulaires incompatibles et de n-grammes
+inexistants. Pour les résoudre, vous allez devoir vous servir des infos des sections 3.4 et 3.5.1 de
+[*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/3.pdf).
+
+Vous devriez vous rendre compte que les résultats ne sont en général pas très satisfaisants. Vous
+pouvez alors entraîner des nouveaux modèles de langues à partir de corpus plus gros, par exemple
+[CIDRE](https://www.ortolang.fr/market/corpora/cidre). Attention, il faudra en faire la segmentation
+en phrases, par exemple avec [spaCy](spacy.io/).
+
+```python
+def get_unk_counts(unigram_counts, ngram_counts, minimum_unigram_count):
+    new_ngram_counts = defaultdict(int)
+    for ngram, count in ngram_counts.items():
+        ngram_with_unks = tuple(w if unigram_counts[w] >= minimum_unigram_count else "<UNK>" for w in ngram)
+        new_ngram_counts[ngram_with_unks] += count
+    new_unigram_counts = {"<UNK>": 0}
+    for word, count in unigram_counts.items():
+        if count >= minimum_unigram_count:
+            new_unigram_counts[word] = count
+        else:
+            new_unigram_counts["<UNK>"] += count
+    return  new_unigram_counts, dict(new_ngram_counts)
+
+unk_unigram_counts, unk_bigram_counts = get_unk_counts(*read_corpus_for_ngrams("data/zola_ventre-de-paris.txt", 2), 2)
+```
+
+```python
+def get_ngram_probs_with_smoothing(unigram_counts, ngram_counts):
+    probs = defaultdict(dict)
+    for (*previous_words, target_word), c in ngram_counts.items():
+        probs[tuple(previous_words)][target_word] = (c+1)/(unigram_counts[target_word]+len
+
+    return dict(probs)
+```
+
+```python
+def sent_loglikelihood_with_unks_and(ngram_probs, sent, n):
+    sent = ["<s>"] * (n-1) + sent + ["</s>"]
+    result = 0.0
+    for i in range(len(sent)-n+1):
+        # Notez que du coup, on pourrait dès le début calculer les log-probas de n-grammes
+        result += math.log(ngram_probs[tuple(sent[i:i+n-1])][sent[i+n-1]])
+    return result
+```
+
+```python
+with open("data/rouge_noir.txt") as in_stream:
+    
+```
