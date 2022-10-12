@@ -18,7 +18,7 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 
-Cours 6 : NumPy
+Cours 5 : NumPy
 =================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
@@ -101,8 +101,7 @@ On peut faire des maths comme d'habitude avec
 <!-- #endregion -->
 
 ```python
-print(double + double, type(double + do
-                            uble))
+print(double + double, type(double + double))
 ```
 
 ```python
@@ -324,7 +323,7 @@ b
 ```
 
 ```python slideshow={"slide_type": "fragment"}
-b[1,1] # 2e ligne, 2e colonne
+b[1,2] 
 ```
 
 ```python slideshow={"slide_type": "fragment"}
@@ -357,7 +356,7 @@ a[a > 7]
 ```
 
 ```python slideshow={"slide_type": "fragment"}
-a > 2
+a > 7
 ```
 
 ```python slideshow={"slide_type": "subslide"}
@@ -631,62 +630,3 @@ Pour vous entraîner à manipuler des *arrays* et découvrir les fonctions de Nu
 la série d'exercices corrigés à <https://www.w3resource.com/python-exercises/numpy/index-array.php>.
 Essayez au maximum de les résoudre sans écrire de boucles.
 <!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "slide"} -->
-## 👜 Exo : les sacs de mots 👜
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-![](bow.png)
-
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-### 1. Faire des sacs
-
-- Écrire un script (un fichier `.py`, quoi) qui prend en unique argument de ligne de commande un
-  dossier contenant des documents (sous forme de fichier textes) et sort un fichier TSV donnant pour
-  chaque document sa représentation en sac de mots (en nombre d'occurrences des mots du vocabulaire
-  commun)
-  - Un fichier par ligne, un mot par colonne
-  - Pour itérer sur les fichiers dans un dossier on peut utiliser `for f in
-    pathlib.Path(chemin_du_dossier).glob('*'):` avec le module
-    [`pathlib`](https://docs.python.org/3/library/pathlib.html#module-pathlib) (il y a d'autres
-    solutions…).
-  - Pour récupérer des arguments en ligne de commande : [`argparse` ou
-    `sys.argv`](https://docs.python.org/3/tutorial/stdlib.html#command-line-arguments)
-  - Pour écrire un `array` dans un fichier TSV :
-    [`np.savetxt`](https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html)
-- Tester sur la partie positive du [mini-corpus imdb](../../data/imdb_smol.tar.gz)
-
-Pensez à ce qu'on a vu les cours précédents pour ne pas réinventer la roue. Par exemple vous savez
-tokenizer.
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-### 2. Faire des sacs relatifs
-
-Modifier le script précédent pour qu'il génère des sacs de mots utilisant les fréquences relatives
-plutôt que les fréquences absolues
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-### 3. Faire des tfidsacs
-<!-- #endregion -->
-
-Modifier le script de précédent pour qu'il renvoie non plus les fréquences relatives de chaque mot,
-mais leur tf⋅idf avec la définition suivante pour un mot $w$, un document $D$ et un corpus $C$
-
-- $\mathrm{tf}(w, D)$ est la fréquence relative de $w$ dans $D$
-- $$\mathrm{idf}(w, C) = \log\!\left(\frac{\text{nombre de documents dans $C$}}{\text{nombre de
-  documents de $C$ qui contiennent $w$}}\right)$$
-- $\log$ est le logarithme naturel
-  [`np.log`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.log.html)
-- $\mathrm{tfidf}(w, D, C) = \mathrm{tf}(w, D)×\mathrm{idf}(w, C)$
-
-Pistes de recherche :
-
-- L'option `keepdims` de `np.sum`
-- `np.transpose`
-- `np.count_nonzero`
-- Regarder ce que donne `np.array([[1, 0], [2, 0]]) > 0`
