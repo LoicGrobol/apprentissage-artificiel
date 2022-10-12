@@ -202,7 +202,7 @@ assert avg_log_likelihood(trigram_probs, "data/zola_ventre-de-paris.txt", 3) == 
 assert avg_log_likelihood(pentagram_probs, "data/zola_ventre-de-paris.txt", 5) == -88.25016939038316
 ```
 
-## Mots inconnus et évaluation en général
+<!-- ## Mots inconnus et évaluation en général
 
 À vous de jouer maintenant !
 
@@ -258,4 +258,4 @@ def sent_loglikelihood_with_unks_and(ngram_probs, sent, n):
 ```python
 with open("data/rouge_noir.txt") as in_stream:
     
-```
+``` -->
