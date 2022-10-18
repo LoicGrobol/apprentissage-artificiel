@@ -747,7 +747,7 @@ Point notation :
   ou $\overrightarrow{\operatorname{grad}} f$ (pour dire que c'est un vecteur)
 - Si $θ=(θ_1, …, θ_n)$, autrement dit si $f$ est une fonction de $n$ variables, on note
   $\operatorname{grad}f = \left(\frac{∂f(θ)}{∂θ_1}, …, \frac{∂f(θ)}{∂θ_n}\right)$. Autrement dit
-  $\frac{∂f(θ)}{∂θ_i}$, la **dérivée partielle** de $f(θ)$ par rapport à $θ_i$ est la $i$-ème
+  $\frac{∂f(θ)}{∂θ_i}$, la **dérivée partielle** de $f(θ)$ par rapport à $θ_i$, est la $i$-ème
   coordonnées du gradient de $f$.
 - **Le taux d'apprentissage** est souvent noté $α$ ou $η$
 
@@ -904,7 +904,7 @@ grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
 
 ### 2. Descendre le gradient
 
-S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du  [mini-corpus
+S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du [mini-corpus
 IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
 
 ```python

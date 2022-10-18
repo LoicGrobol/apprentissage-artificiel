@@ -62,12 +62,17 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/03-lm_eval/lm_eval-solutions.py.md %}
   [Solutions](slides/03-lm_eval/lm_eval-solutions.py.ipynb)
 
-### 2022-10-12 — Un peu de héorie et modules indispensables
+### 2022-10-12 — Un peu de théorie et modules indispensables
 
 - {% notebook_badges slides/04-pip_venv/pip-venv-slides.py.md %}
   [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv-slides.py.ipynb)
 - {% notebook_badges slides/05-tuto-numpy/tuto-numpy.py.md %}
   [Slides Numpy](slides/05-tuto-numpy/tuto-numpy-slides.py.ipynb)
+
+### 2022-10-18 — Scikit-learn et la classification
+
+- {% notebook_badges slides/06-scikit-learn/scikit-learn-slides.py.md %}
+  [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn-slides.py.ipynb)
 
 ## Lire les slides en local
 

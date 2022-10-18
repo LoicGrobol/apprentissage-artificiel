@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -22,7 +22,7 @@ Cours 7 : `scikit-learn`
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-12
+2022-10-19
 <!-- #endregion -->
 
 ```python
@@ -133,7 +133,7 @@ X_wine, y_wine = wine.data, wine.target
 ```
 
 Vous pouvez séparer les données en train et test facilement à l'aide de
-`sklearn.model_selection.train_test_split` ( voir la
+`sklearn.model_selection.train_test_split` (voir la
 [doc](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split))
 
 ```python
@@ -183,8 +183,8 @@ choix de ces paramètres.
 Exemple un peu bateau avec une méthode de type SVM.
 
 ```python
-from sklearn.svm import SVC
-clf = SVC(C=1, kernel="linear")
+from sklearn.svm import LinearSVC
+clf = LinearSVC()
 clf.fit(X_train, y_train)
 ```
 
@@ -213,8 +213,8 @@ print(classification_report(y_test, y_pred))
 ## ✍️ Exo ✍️
 
 
-1. Essayez un autre algo de classification (Un SVM polynomial par exemple) et comparez les
-   résultats.
+1. Essayez un autre algo de classification ([un SVM à fonction de base radiale] par exemple) et
+   comparez les résultats.
 2. Sur ce même algo, refaites une partition train/test différente et comparez l'évaluation avec les
    résultats précédents.
 
@@ -225,8 +225,8 @@ Pour améliorer la robustesse de l'évaluation on peut utiliser la validation cr
 
 ```python
 from sklearn.model_selection import cross_validate, cross_val_score
-print(cross_validate(SVC(C=1, kernel="linear"), X_wine, y_wine)) # infos d'accuracy mais aussi de temps
-print(cross_val_score(SVC(C=1, kernel="linear"), X_wine, y_wine)) # uniquement accuracy
+print(cross_validate(LinearSVC(), X_wine, y_wine)) # infos d'accuracy mais aussi de temps
+print(cross_val_score(LinearSVC(), X_wine, y_wine)) # uniquement accuracy
 ```
 
 ## Optimisation des hyperparamètres
@@ -237,6 +237,7 @@ fait une recherche exhaustive sur tous les paramètres donnés au constructeur. 
 aussi la validation croisée.
 
 ```python
+from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 
 param_grid =  {'C': [0.1, 0.5, 1, 10, 100, 1000], 'kernel':['rbf','linear']}
@@ -264,19 +265,21 @@ utilisés pour représenter les textes.
 ```python
 from sklearn.datasets import fetch_20newsgroups
 
-categories = [ 'sci.crypt',
- 'sci.electronics',
- 'sci.med',
- 'sci.space']
+categories = [
+    "sci.crypt",
+    "sci.electronics",
+    "sci.med",
+    "sci.space",
+]
 
 data_train = fetch_20newsgroups(
-    subset='train',
+    subset="train",
     categories=categories,
     shuffle=True,
 )
 
 data_test = fetch_20newsgroups(
-    subset='test',
+    subset="test",
     categories=categories,
     shuffle=True,
 )
@@ -288,10 +291,54 @@ print(len(data_test.data))
 ```
 
 Ici on a un jeu de 2373 textes catégorisés pour train. À nous d'en extraire les features désirées.
-tf⋅idf est un grand classique.
+Le modèle des [sacs de
+mots](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html)
+est le plus basique.
 
 Attention aux valeurs par défaut des paramètres. Ici par exemple on passe tout en minuscule et la
-tokenisation est rudimentaire. Ça fonctionnera mal pour d'autres langues que l'anglais.
+tokenisation est rudimentaire. Ça fonctionnera mal pour d'autres langues que l'anglais. Cependant,
+presque tout est modifiable et vous pouvez passer des fonctions de prétraitement personnalisées.
+
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+
+vectorizer = CountVectorizer(stop_words="english")
+X_train = vectorizer.fit_transform(data_train.data) # données de train vectorisées
+y_train = data_train.target
+X_train.shape
+```
+
+Voilà la tête que ça a
+
+```python
+X_train[0, :]
+```
+
+Euh
+
+
+La tête que ça a
+
+```python
+print(X_train[0, :])
+```
+
+```python
+X_test = vectorizer.transform(data_test.data)
+y_test = data_test.target
+```
+
+Pour l'entraînement et l'évaluation on reprend le code vu auparavant
+
+```python
+clf = LinearSVC(C=0.5)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print(classification_report(y_test, y_pred))
+```
+
+[TF⋅IDF](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
+est un raffinement de ce modèle, qui donne en général de meilleurs résultats.
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -304,17 +351,11 @@ vectorizer = TfidfVectorizer(
 X_train = vectorizer.fit_transform(data_train.data) # données de train vectorisées
 y_train = data_train.target
 X_train.shape
-```
 
-```python
 X_test = vectorizer.transform(data_test.data)
 y_test = data_test.target
-```
 
-Pour l'entraînement et l'évaluation on reprend le code vu auparavant
-
-```python
-clf = SVC(C=1, kernel="linear")
+clf = LinearSVC(C=0.5)
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print(classification_report(y_test, y_pred))
@@ -322,28 +363,32 @@ print(classification_report(y_test, y_pred))
 
 ## 🤖 Exo  🤖
 
-### 1. D'autres traits
+### 1. Un projet complet
 
-Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre d'adjectifs, la présence
-d'entités nommées, …
+L'archive [`imdb_smol.tar.gz`](data/imdb_smol.tar.gz) (aussi disponible [dans le
+dépôt](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/slides/06-scikit-learn/data/imdb_smol.tar.gz))
+contient 602 critiques de films sous formes de fichiers textes, réparties en deux classes :
+positives et négatives (matérialisées par des sous-dossiers). Votre mission est de réaliser un
+script qui :
 
-Pour récupérer ce genre de features, vous pouvez regarder du côté de [spaCy](http://spacy.io/).
+- Charge et vectorise ces données
+- Entraîne et compare des classifieurs sur ce jeu de données
 
+L'objectif est de déterminer quel type de vectorisation et de modèle semble le plus adapté et quels
+hyperparamètres choisir. Vous pouvez par exemple tester des SVM comme ci-dessus, [un modèle de
+régression
+logistique](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html),
+[un arbre de
+décision](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html),
+[un modèle bayésien
+naïf](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html) ou
+[une forêt d'arbres de
+décision](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
 
-### 2. Et les réseaux de neurones ?
+### 2. D'autres traits
 
-`scikit-learn` permet d'utiliser un Multi-layer Perceptron (MLP). Et comme la bibliothèque ne permet
-pas d'utiliser un GPU pour les calculs, son utilisation est limitée à des jeux de données de taille
-moyenne.
+Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre ou le type  d'adjectifs,
+la présence d'entités nommées, …
 
-`scikit-learn` n'est pas fait pour le *deep learning*. Il existe des bibliothèques associées qui
-permettent de combiner Keras ou pytorch avec `scikitlearn` néanmoins.
-
-Essayez en suivant [la
-doc](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)
-
-
-Il y a encore plein d'autre choses marrantes à faire avec `scikit-learn` et on en verra, mais en
-attendant vous pouvez aller voir [leur exemple sur ce
-dataset](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html#sphx-glr-auto-examples-text-plot-document-classification-20newsgroups-py)
-qui a de bien jolis graphiques.
+Pour récupérer ce genre de *features*, vous pouvez regarder du côté de [spaCy](http://spacy.io/)
+comme prétraitement de vos données.
