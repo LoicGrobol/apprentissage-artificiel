@@ -132,6 +132,14 @@ Mais l'essentiel est de retrouver nos inputs X et outputs y nécessaires à l'ap
 X_wine, y_wine = wine.data, wine.target
 ```
 
+```python
+X_wine.shape
+```
+
+```python
+y_wine
+```
+
 Vous pouvez séparer les données en train et test facilement à l'aide de
 `sklearn.model_selection.train_test_split` (voir la
 [doc](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split))

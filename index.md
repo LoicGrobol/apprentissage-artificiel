@@ -74,6 +74,13 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/06-scikit-learn/scikit-learn-slides.py.md %}
   [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn-slides.py.ipynb)
 
+### 2022-10-25 — Régression Logistique
+
+- {% notebook_badges slides/07-lr/lr-slides.py.md %}
+  [Slides LR](slides/07-lr/lr-slides.py.ipynb)
+- {% notebook_badges slides/07-lr/lr-solutions.py.md %}
+  [Solutions](slides/07-lr/lr-solutions.py.ipynb)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
