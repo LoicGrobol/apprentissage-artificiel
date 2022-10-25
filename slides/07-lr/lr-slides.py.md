@@ -850,9 +850,13 @@ $\operatorname{softmax}$ prend en entrée un **vecteur** non-normalisé et renvo
 normalisé.
 
 
-Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2, 1.6)$. Son maximum $\max(v)$ c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du maximum, c'est $3$.
+Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2, 1.6)$. Son
+maximum $\max(v)$ c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du
+maximum, c'est $3$.
 
-Pour *argmax* à la place d'une position, on peut aussi le voir comme un masque : $(0, 0, 1, 0, 0)$, autrement dit un vecteur dont les valeurs sont $0$ pour chaque position, sauf la position du maximum, qui contient un $1$ (on parle de représentation *one-hot*). Visualisons ces vecteur :
+Pour *argmax* à la place d'une position, on peut aussi le voir comme un masque : $(0, 0, 1, 0, 0)$,
+autrement dit un vecteur dont les valeurs sont $0$ pour chaque position, sauf la position du
+maximum, qui contient un $1$ (on parle de représentation *one-hot*). Visualisons ces vecteur :
 
 ```python
 v = np.array([0.1, -0.5, 2.1, 1.8, 0.6])
@@ -871,7 +875,9 @@ plt.title("Coordonnées de $\operatorname{argmax}(v)$")
 plt.show()
 ```
 
-Et softmax ? Et bien regardez (on l'importe depuis [SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html), un des adelphes de NumPy, pour ne pas avoir à le recoder nous-même).
+Et softmax ? Et bien regardez (on l'importe depuis
+[SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html), un des
+adelphes de NumPy, pour ne pas avoir à le recoder nous-même).
 
 ```python
 from scipy.special import softmax
@@ -896,11 +902,12 @@ softmax(v).sum()
 Ok, à l'erreur d'arrondi en virgule flottante près…
 
 
-Autrement dit, on a, comme pour la fonction logistique, une fonction qui *normalise* les valeurs tout en préservant certaines propriétés.
+Autrement dit, on a, comme pour la fonction logistique, une fonction qui *normalise* les valeurs
+tout en préservant certaines propriétés.
 
 
-Revenons à nos moutons : on définit enfin le classifieur logistique multinomial $f$ de la façon suivante : pour tout exemple
-$x$, on a
+Revenons à nos moutons : on définit enfin le classifieur logistique multinomial $f$ de la façon
+suivante : pour tout exemple $x$, on a
 
 $$f(x) = \operatorname{softmax}(w_1⋅x+b_1, …, w_n⋅x+b_n) = \left(\frac{e^{w_1⋅x+b_1}}{\sum_i
 e^{w_i⋅x+b_i}}, …, \frac{e^{w_n⋅x+b_n}}{\sum_i e^{w_i⋅x+b_i}}\right)$$
