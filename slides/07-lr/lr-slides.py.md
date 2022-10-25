@@ -274,7 +274,7 @@ def logistic(z):
 ## Régression logistique
 
 Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
-telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
+telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On voudrait
 approcher cette fonction par une fonction $g$ de la forme
 
 $$g(x) = σ(w⋅x+b)$$
@@ -343,7 +343,7 @@ ensemble d'apprentissage
 On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
 fonction de coût (*loss*) $L$ qui mesure l'erreur faite par le classifieur sur un exemple.
 
-$$L(g(x), y) = \text{l'écart entre la classe prédite par $g$ pour $x$ et la classe correcte $y$}$$
+$$L(g(x), y) = \text{l'écart entre la classe $ŷ$ prédite par $g$ pour $x$ et la classe correcte $y$}$$
 
 Étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on estime l'erreur faite par le
 classifieur logistique $g$ pour chaque exemple $(x_i, y_i)$ comme le coût local $L(g(xᵢ), yᵢ)$ et
@@ -375,7 +375,7 @@ $$L(a, y) = -\log(V(a, y))$$
 Le $\log$ est là pour plusieurs raisons, calculatoires et théoriques<sup>1</sup> et le $-$ à
 s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).
 
-<small>1. Entre autres, comme pour *Naïve Bayes*, parce qu'une somme de $\log$-vraisemblance peut
+<small>1. Entre autres, parce qu'une somme de $\log$-vraisemblance peut
 être vue comme le $\log$ de la probabilité d'une conjonction d'événements indépendants. Mais surtout
 parce qu'il rend la fonction de coût **convexe** par rapport à $w$</small>.
 
@@ -850,7 +850,56 @@ $\operatorname{softmax}$ prend en entrée un **vecteur** non-normalisé et renvo
 normalisé.
 
 
-On définit enfin le classifieur logistique multinomial $f$ de la façon suivante : pour tout exemple
+Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2, 1.6)$. Son maximum $\max(v)$ c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du maximum, c'est $3$.
+
+Pour *argmax* à la place d'une position, on peut aussi le voir comme un masque : $(0, 0, 1, 0, 0)$, autrement dit un vecteur dont les valeurs sont $0$ pour chaque position, sauf la position du maximum, qui contient un $1$ (on parle de représentation *one-hot*). Visualisons ces vecteur :
+
+```python
+v = np.array([0.1, -0.5, 2.1, 1.8, 0.6])
+```
+
+```python
+plt.bar(np.arange(v.shape[0]), v)
+plt.title("Coordonnées de $v$")
+plt.show()
+```
+
+
+```python
+plt.bar(np.arange(v.shape[0]), v == v.max())
+plt.title("Coordonnées de $\operatorname{argmax}(v)$")
+plt.show()
+```
+
+Et softmax ? Et bien regardez (on l'importe depuis [SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html), un des adelphes de NumPy, pour ne pas avoir à le recoder nous-même).
+
+```python
+from scipy.special import softmax
+plt.bar(np.arange(v.shape[0]), softmax(v))
+plt.title("Coordonnées de $\operatorname{softmax}(v)$")
+plt.show()
+```
+
+On voit que c'est un genre d'entre-deux entre $v$ et $\operatorname{argmax}(v)$ :
+
+- La distributions des coordonnées ressemble à celle de $v$…
+- mais les coordonnées sont toutes entre $0$ et $1$.
+- Le max est tiré vers $1$ et toutes les autres coordonnées vers $0$.
+- La somme des coordonnées fait $1$.
+
+Si, si, je vous assure :
+
+```python
+softmax(v).sum()
+```
+
+Ok, à l'erreur d'arrondi en virgule flottante près…
+
+
+Autrement dit, on a, comme pour la fonction logistique, une fonction qui *normalise* les valeurs tout en préservant certaines propriétés.
+
+
+Revenons à nos moutons : on définit enfin le classifieur logistique multinomial $f$ de la façon suivante : pour tout exemple
 $x$, on a
 
 $$f(x) = \operatorname{softmax}(w_1⋅x+b_1, …, w_n⋅x+b_n) = \left(\frac{e^{w_1⋅x+b_1}}{\sum_i
