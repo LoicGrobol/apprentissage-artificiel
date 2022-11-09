@@ -81,6 +81,26 @@ Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
 - {% notebook_badges slides/07-lr/lr-solutions.py.md %}
   [Solutions](slides/07-lr/lr-solutions.py.ipynb)
 
+### 2022-11-09 — Classifieurs usuels
+
+Informations pour le projet (page dédiée à venir) :
+
+- Tâche à réaliser : tâche 3 de l'édition 2009 du DÉfi Fouille de Texte (DEFT): apprentissage de
+  classification par parti politique d'interventions au parlement européen.
+- Les données sont disponibles sur le site de [DEFT](https://deft.limsi.fr/), leur description et
+  celle de la tâche sur [la page de l'édition 2009](https://deft.lisn.upsaclay.fr/2009)
+- À faire : proposer un (des) classifieur(s) pour cette tâche, étudier ses (leurs) performances sur
+  cette tâche. Comparer aux informations données dans les
+  [actes](https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf).
+- À rendre : rapport sous forme d'un article court dans le [style
+  ACL](https://github.com/acl-org/acl-style-files) (4 pages+bibliographie, format pdf, anglais ou
+  français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
+  conclusions. Compléter par une archive comprenant vos données et votre code.
+- Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
+  au plus tard le 6 janvier 2023.
+- L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
+  et de vos analyses.
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
