@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.15.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -17,12 +17,11 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 2 : Modèles de langues à n-grammes
+TP 1 : Modèles de langues à n-grammes
 ========================================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-09-28
 <!-- #endregion -->
 
 ## Modèles de langues
@@ -86,13 +85,13 @@ sur une application marrante et très très très à la mode : la génération
   - Je ne peux pas **croitre** cette histoire
   - $P(\text{peux pas croire cette}) > P(\text{peux pas croitre cette})$
 - Reconnaissance de la parole (ASR)
-  - $P(\text{Par les temps qui courent}) >> P(\text{Parle et t'en qui cours})$
+  - $P(\text{Par les temps qui courent}) ≫ P(\text{Parle et t'en qui cours})$
 - Résumé automatique, questions/réponses…
 
 
 On se basera pour la théorie et les notations sur le chapitre 3 de [*Speech and Language
 Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin. À ta
-place, je le garderais donc à portée de main, le poly *et* les slides.
+place, je le garderais donc à portée de main, le poly *et* les slides (et je prendrais le temps de lire les chapitres précédents au calme).
 
 ## Formalisons (un peu)
 
@@ -104,7 +103,7 @@ Si on note une séquence de mots $S = w_1, w_2, …, w_n$, on notera sa probabil
 w_n)$.
 
 
-### Estimateur du maximum de vraisemblance 
+### Estimateur du maximum de vraisemblance
 
 Rappel : on peut estimer la probabilité d'un truc en calculant sa fréquence d'apparition.
 
@@ -236,7 +235,7 @@ et ainsi de suite.
 
 
 Et c'est quoi alors la probabilité de la phrase entière ? Et bien, c'est simplement le produit des
-probabilités, comme quand on suit une série d'expériences avec un arbre (todo dessiner un arbre) :
+probabilités, comme quand on suit une série d'expériences avec un arbre :
 
 \begin{equation}
     P(w_0, w_1, …, w_n) = P(w_0) × P(w_1|w_0) × P(w_2|w_0, w1) × … × P(w_n | w_0, w_1, …, w_{n-1})
@@ -265,8 +264,7 @@ On va donc faire une hypothèse un peu grossière : on va supposer par exemple
 \end{equation}
 
 Autrement dit la probabilité d'apparition d'un mot ne dépend que des $n$ (ici $3$) mots précédents.
-Nous donnant ainsi un **modèle de langue à n-grams** (ici trigrammes). Ou plus exactement **une
-grammaire à n-grams** (mais tout le monde dit modèle de langue, ou *language model*).
+Nous donnant ainsi un **modèle de langue à n-grams** (ici trigrammes).
 
 ## À vous de jouer !
 
@@ -426,15 +424,42 @@ assert probs["je"]["déjeune"] == 0.002232142857142857
 
 **Astuce** on peut utilise un `defaultdict`.
 
+## 💁🏻 Générer un mot 💁🏻
 
-## 🤔 Générer 🤔
+**Bon c'est bon maintenant ?**
 
-<!-- TODO: en fait on pourrait déjà générer ici ! Juste pas le premier mot ! Ce serait plus logique -->
 
-Pour l'instant on ne va pas se préoccuper de sauvegarder le modèle on va l'utiliser directement pour
-générer du text. Le principe est simple : on choisit le premier mot, puis on choisit le deuxième mot
-en prenant en compte celui qu'on vient de générer (le premier donc si vous suivez) et ainsi de
-suite.
+Oui ! On va enfin pouvoir générer des trucs !
+
+
+Pour ça on va piocher dans le module [`random`](https://docs.python.org/3/library/random.html) de la
+bibliothèque standard, et en particulier la fonction
+[`random.choices`](https://docs.python.org/3/library/random.html#random.choices) qui permet de tirer
+au sort dans une population finie en précisant les probabilités (ou *poids*) de chacun des éléments.
+Les poids n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, vu comme on les a
+construits).
+
+```python
+import random
+```
+
+Voici par exemple comment choisir un élément dans la liste `["a", "b", "c"]` en donnant comme probabilités respectives à ses éléments $0.5$, $0.25$ et $0.25$
+
+```python
+candidates = ["a", "b", "c"]
+weights = [0.5, 0.25, 0.25]
+random.choices(candidates, weights, k=1)[0]  # Attention: `choices` renvoit une liste
+```
+
+À vous de jouer : écrire une fonction `gen_next_word` qui prend en entrée le dictionnaire `probs` et
+un mot et renvoie en sortie un mot suivant, choisi en suivant les probabilités estimées précédemment
+
+
+## 🤔 Générer un texte  🤔
+
+On va maintenant pouvoir utiliser notre modèle pour générer du texte. Le principe est simple : on
+choisit le premier mot, puis on choisit le deuxième mot en prenant en compte celui qu'on vient de
+générer (le premier donc si vous suivez) et ainsi de suite.
 
 
 **Questions**
@@ -511,33 +536,6 @@ assert probs["<s>"]["le"] == 0.0298110566829951
 
 ## 😌 Générer pour de vrai 😌
 
-**Bon c'est bon maintenant ?**
-
-
-Oui ! On va enfin pouvoir générer des trucs !
-
-
-Pour ça on va piocher dans le module [`random`](https://docs.python.org/3/library/random.html) de la
-bibliothèque standard, et en particulier la fonction
-[`random.choices`](https://docs.python.org/3/library/random.html#random.choices) qui permet de tirer
-au sort dans une population finie en précisant les probabilités (ou *poids*) de chacun des éléments.
-Les poids n'ont en principe pas besoin d'être normalisés (mais ils le seront ici, vu comme on les a
-construits).
-
-```python
-import random
-```
-
-Voici par exemple comment choisir un mot qui suivrait « je » :
-
-```python tags=["raises-exception"]
-# Les candidats mots qui peuvent suivre « je »
-candidates = list(probs["je"].keys())
-# Leurs poids, ce sont les probabilités qu'on a déjà calculé
-weights = [probs["je"][c] for c in candidates] 
-random.choices(candidates, weights, k=1)[0]  # Attention: `choices` renvoit une liste
-```
-
 Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un
 dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en
 ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
@@ -568,4 +566,5 @@ Qu'est-ce que vous pensez des textes qu'on génère ?
 ## 🧐 Aller plus loin 🧐
 
 
-En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes, puis de n-grammes arbitraires.
+En vous inspirant de ce qui a été fait, coder un générateur de phrases à partir de trigrammes, puis
+de n-grammes arbitraires.

@@ -30,16 +30,15 @@ Tous les supports sont sur [github](https://github.com/loicgrobol/apprentissage-
 notebooks. À défaut, ce sont des fichiers Markdown assez standards, qui devraient se visualiser
 correctement sur la plupart des plateformes (mais ne seront pas dynamiques).
 
-Les slides et les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
-sans rien installer. Les slides ont aussi des liens vers une version HTML statique utile si Binder
-est indisponible.
+Les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
+sans rien installer.
 
 ### 2023-09-21 — Introduction et modèles de langues à n-grammes
 
-- {% notebook_badges slides/02-ngram_lms/ngram-lms-slides.py.md %}
-  [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms-slides.py.ipynb)
-<!-- - {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
-  [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.ipynb) -->
+- {% notebook_badges slides/01-ngram_lms/ngram-lms-slides.py.md %}
+  [TP Modèles de langues](slides/01-ngram_lms/ngram-lms-slides.py.ipynb)
+<!-- - {% notebook_badges slides/01-ngram_lms/ngram-lms-solutions.py.md %}
+  [Solutions](slides/01-ngram_lms/ngram-lms-solutions.py.ipynb) -->
 
 
 ## Lire les slides en local
