@@ -7,7 +7,7 @@ layout: default
 
 ## News
 
-- **2023-09-19** Premier cours du semestre le 20/09/2023
+- **2021-09-20** Premier cours du semestre le 21/09/2022
 
 ## Infos pratiques
 
@@ -34,13 +34,72 @@ Les slides et les notebooks ci-dessous ont tous des liens Binder pour une utilis
 sans rien installer. Les slides ont aussi des liens vers une version HTML statique utile si Binder
 est indisponible.
 
-### 2023-09-21 — Introduction et modèles de langues à n-grammes
+### 2021-09-22 — Introduction et *crash course* Python
+
+- {% notebook_badges slides/01-intro_rappels/intro_rappels-slides.py.md %}
+  [Slides Introduction et crash course](slides/01-intro_rappels/intro_rappels-slides.py.ipynb)
+- {% notebook_badges slides/01-intro_rappels/intro_rappels-solutions.py.md %}
+  [Solutions](slides/01-intro_rappels/intro_rappels-solutions.py.ipynb)
+
+Si c'était vraiment trop facile et que vous vous ennuyez, go CodinGame :
+
+- [*Power of Thor* E01](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
+- [*ASCII art*](https://www.codingame.com/ide/puzzle/ascii-art)
+- [*The descent*](https://www.codingame.com/ide/puzzle/the-descent)
+- [*Shadow of the knight* E01](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
+
+### 2022-09-27 — Modèles de langues à n-grammes
 
 - {% notebook_badges slides/02-ngram_lms/ngram-lms-slides.py.md %}
   [Slides Modèles de langues](slides/02-ngram_lms/ngram-lms-slides.py.ipynb)
-<!-- - {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
-  [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.ipynb) -->
+- {% notebook_badges slides/02-ngram_lms/ngram-lms-solutions.py.md %}
+  [Solutions](slides/02-ngram_lms/ngram-lms-solutions.py.ipynb)
 
+### 2022-10-05 — Évaluer des modèles de langues à n-grammes
+
+- {% notebook_badges slides/03-lm_eval/lm_eval-slides.py.md %}
+  [Slides Évaluer des modèles de langues](slides/03-lm_eval/lm_eval-slides.py.ipynb)
+- {% notebook_badges slides/03-lm_eval/lm_eval-solutions.py.md %}
+  [Solutions](slides/03-lm_eval/lm_eval-solutions.py.ipynb)
+
+### 2022-10-12 — Un peu de théorie et modules indispensables
+
+- {% notebook_badges slides/04-pip_venv/pip-venv-slides.py.md %}
+  [Slides Pip et Virtualenv](slides/04-pip_venv/pip-venv-slides.py.ipynb)
+- {% notebook_badges slides/05-tuto-numpy/tuto-numpy.py.md %}
+  [Slides Numpy](slides/05-tuto-numpy/tuto-numpy-slides.py.ipynb)
+
+### 2022-10-18 — Scikit-learn et la classification
+
+- {% notebook_badges slides/06-scikit-learn/scikit-learn-slides.py.md %}
+  [Slides Scikit-learn](slides/06-scikit-learn/scikit-learn-slides.py.ipynb)
+
+### 2022-10-25 — Régression Logistique
+
+- {% notebook_badges slides/07-lr/lr-slides.py.md %}
+  [Slides LR](slides/07-lr/lr-slides.py.ipynb)
+- {% notebook_badges slides/07-lr/lr-solutions.py.md %}
+  [Solutions](slides/07-lr/lr-solutions.py.ipynb)
+
+### 2022-11-09 — Classifieurs usuels
+
+Informations pour le projet (page dédiée à venir) :
+
+- Tâche à réaliser : tâche 3 de l'édition 2009 du DÉfi Fouille de Texte (DEFT): apprentissage de
+  classification par parti politique d'interventions au parlement européen.
+- Les données sont disponibles sur le site de [DEFT](https://deft.limsi.fr/), leur description et
+  celle de la tâche sur [la page de l'édition 2009](https://deft.lisn.upsaclay.fr/2009)
+- À faire : proposer un (des) classifieur(s) pour cette tâche, étudier ses (leurs) performances sur
+  cette tâche. Comparer aux informations données dans les
+  [actes](https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf).
+- À rendre : rapport sous forme d'un article court dans le [style
+  ACL](https://github.com/acl-org/acl-style-files) (4 pages+bibliographie, format pdf, anglais ou
+  français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
+  conclusions. Compléter par une archive comprenant vos données et votre code.
+- Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
+  au plus tard le 6 janvier 2023.
+- L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
+  et de vos analyses.
 
 ## Lire les slides en local
 
@@ -53,7 +112,9 @@ extensions adéquates. Le plus simple est le suivant
    [l'archive](https://github.com/LoicGrobol/apprentissage-artificiel/archive/refs/heads/main.zip)
    soit en le clonant avec git : `git clone
    https://github.com/LoicGrobol/apprentissage-artificiel.git` et placez-vous dans ce dossier.
-2. Créez un environnement virtuel pour le cours (par exemple ici avec [virtualenv](https://virtualenv.pypa.io)) 
+2. Créez un environnement virtuel pour le cours (allez voir [le cours
+   5](https://mybinder.org/v2/gh/loicgrobol/apprentissage-artificiel/main?urlpath=tree/slides/lecture-05/lecture-05.md)
+   pour plus de détails sur ce que ça signifie)
 
    ```console
    python3 -m virtualenv .venv
