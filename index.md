@@ -1,5 +1,5 @@
 ---
-title: Apprentissage artificiel — M2 PluriTAL 2022
+title: Apprentissage artificiel — M2 PluriTAL 2023
 layout: default
 ---
 
@@ -35,8 +35,8 @@ sans rien installer.
 
 ### 2023-09-21 — Introduction et modèles de langues à n-grammes
 
-- {% notebook_badges slides/01-ngram_lms/ngram-lms-slides.py.md %}
-  [TP Modèles de langues](slides/01-ngram_lms/ngram-lms-slides.py.ipynb)
+- {% notebook_badges slides/01-ngram_lms/ngram-lms.py.md %}
+  [TP Modèles de langues](slides/01-ngram_lms/ngram-lms.py.ipynb)
 <!-- - {% notebook_badges slides/01-ngram_lms/ngram-lms-solutions.py.md %}
   [Solutions](slides/01-ngram_lms/ngram-lms-solutions.py.ipynb) -->
 
