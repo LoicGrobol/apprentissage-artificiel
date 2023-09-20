@@ -444,7 +444,8 @@ construits).
 import random
 ```
 
-Voici par exemple comment choisir un élément dans la liste `["a", "b", "c"]` en donnant comme probabilités respectives à ses éléments $0.5$, $0.25$ et $0.25$
+Voici par exemple comment choisir un élément dans la liste `["a", "b", "c"]` en donnant comme
+probabilités respectives à ses éléments $0.5$, $0.25$ et $0.25$
 
 ```python
 candidates = ["a", "b", "c"]

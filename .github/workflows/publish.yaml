@@ -48,7 +48,7 @@ jobs:
           shopt -s globstar
           jupytext --to ipynb ${{ github.workspace }}/**/*.py.md
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/**/*.py.ipynb
-          jupyter nbconvert --to slides ${{ github.workspace }}/slides/**/*-slides.py.ipynb
+          # jupyter nbconvert --to slides ${{ github.workspace }}/slides/**/*-slides.py.ipynb
       
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
