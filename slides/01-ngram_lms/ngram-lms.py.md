@@ -91,7 +91,8 @@ sur une application marrante et très très très à la mode : la génération
 
 On se basera pour la théorie et les notations sur le chapitre 3 de [*Speech and Language
 Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin. À ta
-place, je le garderais donc à portée de main, le poly *et* les slides (et je prendrais le temps de lire les chapitres précédents au calme).
+place, je le garderais donc à portée de main, le poly *et* les slides (et je prendrais le temps de
+lire les chapitres précédents au calme).
 
 ## Formalisons (un peu)
 
@@ -228,7 +229,7 @@ La probabilité $P([w_0, w_1, *]~|~[w_0, *])$, ou $P(w_1|w_0)$ qu'une phrase com
 sachant qu'elle commence par $w_1$ (on parle de probabilité conditionnelle), c'est
 
 \begin{equation}
-    P(w_0) = \frac{\text{Nombre de phrases qui commencent par $w_0, w_1$}}{\text{Nombre de phrases qui commencent par $w_0$}}
+    P(w_1|w_0) = \frac{\text{Nombre de phrases qui commencent par $w_0, w_1$}}{\text{Nombre de phrases qui commencent par $w_0$}}
 \end{equation}
 
 et ainsi de suite.
@@ -260,11 +261,11 @@ mais en fin de phrase on retombe sur le problème précédent.
 On va donc faire une hypothèse un peu grossière : on va supposer par exemple que
 
 \begin{equation}
-    P([w_0, w_1, w_2, w_3, *]~|~[w_0, w_1, w_2, *]) = P([w_0, w_1, w_2, w_3, *]~|~[w_1, w_2, *])
+    P(w_3~|~w_0, w_1, w_2) = P(w_3~|~w_2)
 \end{equation}
 
-Autrement dit la probabilité d'apparition d'un mot ne dépend que des $n$ (ici $3$) mots précédents.
-Nous donnant ainsi un **modèle de langue à n-grams** (ici trigrammes).
+Autrement dit la probabilité d'apparition d'un mot ne dépend que des $n-1$ (ici $1$) mots
+précédents. Nous donnant ainsi un **modèle de langue à n-grams** (ici bigrammes).
 
 ## À vous de jouer !
 
