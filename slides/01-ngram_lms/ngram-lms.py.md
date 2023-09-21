@@ -457,7 +457,7 @@ random.choices(candidates, weights, k=1)[0]  # Attention: `choices` renvoit une 
 un mot et renvoie en sortie un mot suivant, choisi en suivant les probabilités estimées précédemment
 
 
-## 🤔 Générer un texte  🤔
+## 🤔 Générer un texte 🤔
 
 On va maintenant pouvoir utiliser notre modèle pour générer du texte. Le principe est simple : on
 choisit le premier mot, puis on choisit le deuxième mot en prenant en compte celui qu'on vient de

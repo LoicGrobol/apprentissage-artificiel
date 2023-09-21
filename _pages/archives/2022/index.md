@@ -1,6 +1,7 @@
 ---
 title: Apprentissage artificiel — M2 PluriTAL 2022
 layout: default
+permalink: /2022/
 ---
 
 <!-- LTeX: language=fr -->
