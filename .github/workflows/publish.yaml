@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python 🐍
         uses: actions/setup-python@v4
@@ -60,7 +60,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v3.0.5
+        uses: actions/configure-pages@v3.0.6
 
       - name: Build with Jekyll 🔨
         run: bundle exec jekyll build --baseurl ${{ steps.pages.outputs.base_path }} # defaults output to '/_site'
