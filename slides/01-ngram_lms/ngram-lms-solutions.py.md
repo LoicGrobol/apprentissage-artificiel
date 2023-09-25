@@ -206,6 +206,23 @@ probs = get_probs(unigram_counts, bigram_counts)
 assert probs["je"]["déjeune"] == 0.002232142857142857
 ```
 
+## 💁🏻 Générer un mot 💁🏻
+
+> À vous de jouer : écrire une fonction `gen_next_word` qui prend en entrée le dictionnaire `probs`
+> et un mot et renvoie en sortie un mot suivant, choisi en suivant les probabilités estimées
+> précédemment
+
+```python
+import random
+
+def gen_next_word(probs, prompt):
+    # On convertit en liste pour s'assurer que les mots et les poids sont bien dans le même ordre
+    candidates = list(probs[prompt].keys())
+    weights = [probs[sent[-1]][c] for c in candidates]
+    return random.choices(candidates, weights)[0]
+```
+
+
 ## 🤔 Générer 🤔
 
 1\. Modifier `read_corpus` pour ajouter à la volée `<s>` au début de chaque ligne et `</s>`
@@ -282,9 +299,7 @@ import random
 def generate(bigram_probs):
     sent = ["<s>"]
     while sent[-1] != "</s>":
-        candidates = list(probs[sent[-1]].keys())
-        weights = [probs[sent[-1]][c] for c in candidates]
-        sent.append(random.choices(candidates, weights)[0])
+        sent.append(gen_next_word(bigram_probs, sent[-1]))[0]
     return sent
 ```
 

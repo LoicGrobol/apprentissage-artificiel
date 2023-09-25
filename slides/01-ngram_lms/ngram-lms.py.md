@@ -538,9 +538,9 @@ assert probs["<s>"]["le"] == 0.0298110566829951
 
 ## 😌 Générer pour de vrai 😌
 
-Écrire une fonction `sample` qui prend en argument les probabilités de bigrammes (sous la forme d'un
-dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et en
-ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
+Écrire une fonction `generate` qui prend en argument les probabilités de bigrammes (sous la forme
+d'un dictionnaire de dictionnaires comme notre `prob`) et génère une phrase en partant de `<s>` et
+en ajoutant des mots itérativement, s'arrêtant quand `</s>` a été choisi.
 
 ```python tags=["raises-exception"]
 def generate(bigram_probs):
