@@ -18,12 +18,11 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 
-Cours 5 : NumPy
+TP 2 : NumPy
 =================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-12
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -275,7 +274,7 @@ np.linspace(0, 10, num=5)
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-- `np.empty` (crée un array vide, enfin avec des valeurs aléatoires)
+- `np.empty` (crée un array vide, enfin avec des valeurs aléatoires car non-initialisées)
 <!-- #endregion -->
 
 ```python

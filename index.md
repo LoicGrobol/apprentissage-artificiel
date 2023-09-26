@@ -41,6 +41,10 @@ sans rien installer.
 - {% notebook_badges slides/01-ngram_lms/ngram-lms-solutions.py.md %}
   [Solutions](slides/01-ngram_lms/ngram-lms-solutions.py.ipynb)
 
+### 2023-09-27 — Évaluation et Numpy
+
+- {% notebook_badges slides/02-intro-numpy/numpy-slides.py.md %}
+  [TP Introduction à Numpy](slides/02-intro-numpy/numpy-slides.py.ipynb)
 
 ## Lire les slides en local
 
