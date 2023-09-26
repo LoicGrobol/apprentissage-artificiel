@@ -625,7 +625,11 @@ Si vous voulez en savoir plus je vous invite à consulter les pages suivantes 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## S'entraîner avec NumPy
 
-Pour vous entraîner à manipuler des *arrays* et découvrir les fonctions de NumPy. Je vous recommande
-la série d'exercices corrigés à <https://www.w3resource.com/python-exercises/numpy/index-array.php>.
-Essayez au maximum de les résoudre sans écrire de boucles.
+À vous de jouer maintenant. Allez à <https://www.w3resource.com/python-exercises/numpy/index.php> et
+faites autant d'exercices que possible. Évitez la série « *Linear Algebra* » sur laquelle on
+reviendra.
+
+Essayez au maximum de les résoudre sans écrire de boucles. Utilisez la doc au maximum, si vous ne
+réussissez pas un exercice, assurez-vous de complètement comprendre la solution avant de passer à la
+suite.
 <!-- #endregion -->
