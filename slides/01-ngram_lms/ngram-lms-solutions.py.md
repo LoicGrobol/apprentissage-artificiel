@@ -299,7 +299,7 @@ import random
 def generate(bigram_probs):
     sent = ["<s>"]
     while sent[-1] != "</s>":
-        sent.append(gen_next_word(bigram_probs, sent[-1]))[0]
+        sent.append(gen_next_word(bigram_probs, sent[-1]))
     return sent
 ```
 
