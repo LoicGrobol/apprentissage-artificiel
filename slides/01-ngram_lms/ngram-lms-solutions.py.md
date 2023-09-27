@@ -218,7 +218,7 @@ import random
 def gen_next_word(probs, prompt):
     # On convertit en liste pour s'assurer que les mots et les poids sont bien dans le même ordre
     candidates = list(probs[prompt].keys())
-    weights = [probs[sent[-1]][c] for c in candidates]
+    weights = [probs[prompt][c] for c in candidates]
     return random.choices(candidates, weights)[0]
 ```
 
