@@ -17,44 +17,43 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 7 : `scikit-learn`
+TP 3 : `scikit-learn`
 =======================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-19
 <!-- #endregion -->
 
 ```python
 from IPython.display import display
 ```
 
-## `scikit-learn ` ?
+## scikit-learn  ?
 
-[`scikit-learn `](https://scikit-learn.org/stable/index.html).
-
-`scikit-learn ` est une bibliothèque Python dédiée à l'apprentissage artificiel. Ce package est
-distribué sous une licence libre.
-
-`scikit-learn ` repose sur NumPy et SciPy. Il est écrit en Python et Cython. Il s'interface très
-bien avec `matplotlib`, `seaborn` ou `pandas`. C'est devenu un incontournable du *machine learning*
-et des *data sciences* en Python.
-
-Dans ce notebook nous nous limiterons à la classification, une partie seulement du package
 [scikit-learn](https://scikit-learn.org/stable/index.html).
+
+scikit-learn est une bibliothèque Python dédiée à l'apprentissage artificiel qui repose sur
+[NumPy](https://numpy.org/) et [SciPy](https://scipy.org/). Il est écrit en Python et
+[Cython](https://cython.org/). Il s'interface très bien avec [matplotlib](https://matplotlib.org),
+[seaborn](https://seaborn.pydata.org/) ou [pandas](https://pandas.pydata.org/) (qui lui-même marche
+très bien avec [plotnine](https://plotnine.readthedocs.io/)). C'est devenu un incontournable du
+*machine learning* et des *data sciences* en Python.
+
+Dans ce notebook on se limitera à la classification, une partie seulement de ce qu'offre
+scikit-learn.
 
 La classification est souvent utilisée en TAL, par exemple dans les tâches d'analyse de sentiment,
 de détection d'émotion ou l'identification de la langue.
 
-On va faire de l'apprentissage *supervisé* : l'idée est d'apprendre un modèle à partir de données
-étiquetées et de prédire la bonne étiquette pour une donnée inconnue du modèle.
+On va faire de l'apprentissage *supervisé* de classifieurs : l'idée est d'apprendre un modèle à
+partir de données réparties en classes (une classe et une seule pour chaque exemple), puis de ce
+servir de ce modèle pour répartir parmi les mêmes classes des données nouvelles
 
-Dit autrement, on a un échantillon d'entraînement composé de $n$ couples $Z_{i}=(X_{i}, Y_{i}),
-i=1...n$ où les $X_{i}$ sont les inputs avec plusieurs traits et les $Y_{i}$ seront les outputs, les
-catégories à prédire.
-
-L'objectif du problème d'apprentissage est de trouver une fonction $g:X→Y$ de prédiction, qui
-minimise les erreurs de prédiction.
+Dit autrement, on a un échantillon d'entraînement $\matchcal{D}$, composé de $n$ couples $(X_{i},
+Y_{i}), i=1, …, n$ où les $X_{i}$ sont les entrées (en général des **vecteurs** de traits ou
+*features*) et les $y_{i}$ seront les sorties, les classes à prédire. On cherche alors dans une
+famille $\mathbb{M}$ de modèles un modèle de classification $M$ qui soit le plus performant possible
+sur $\matchcal{D}$.
 
 `scikit-learn` offre beaucoup d'algorithmes d'apprentissage. Vous en trouverez un aperçu sur
 [cette carte](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) et sur ces
@@ -77,11 +76,13 @@ d'apprentissage :
 
 ### Les données
 
-C'est la clé de voute du *machine learning*, vous le savez n'est-ce pas ? Nous allons travailler
+C'est la clé de voute du *machine learning*, vous le savez n'est-ce pas ? Nous allons travailler
 avec un des jeux de données fourni par scikit-learn : [le jeu de données de reconnaissance des
 vins](https://scikit-learn.org/stable/datasets/toy_dataset.html#wine-recognition-dataset)
 
-C'est plus facile pour commencer parce que les données sont déjà nettoyées et organisées.
+C'est plus facile pour commencer parce que les données sont déjà nettoyées et organisées, mais vous
+pourrez bien sûr par la suite [charger des données venant d'autres
+sources](https://scikit-learn.org/stable/datasets/loading_other_datasets.html).
 
 ```python
 from sklearn import datasets
@@ -102,6 +103,8 @@ Python, ces objets contiennent :
 - `feature_names`
 - `target_names`
 
+Et d'autres trucs comme
+
 ```python
 print(wine.DESCR)
 ```
@@ -116,7 +119,7 @@ Si on a installé `pandas`
 %pip install -U pandas
 ```
 
-On peut convertir ces données en `Dataframe` pandas si on veut.
+On peut convertir ces données en `DataFrame` pandas si on veut.
 
 ```python
 import pandas as pd
@@ -126,7 +129,7 @@ df['target']=wine.target
 df.head()
 ```
 
-Mais l'essentiel est de retrouver nos inputs X et outputs y nécessaires à l'apprentissage.
+Mais l'essentiel est de retrouver nos inputs $X$ et outputs $y$ nécessaires à l'apprentissage.
 
 ```python
 X_wine, y_wine = wine.data, wine.target
@@ -157,9 +160,9 @@ import matplotlib.pyplot as plt
 plt.hist(y_train, align="right", label="train") 
 plt.hist(y_test, align="left", label="test")
 plt.legend()
-plt.xlabel("classe")
-plt.ylabel("nombre d'exemples")
-plt.title("répartition des classes") 
+plt.xlabel("Classe")
+plt.ylabel("Nombre d'exemples")
+plt.title("Répartition des classes") 
 plt.show()
 ```
 
@@ -174,16 +177,18 @@ X_train, X_test, y_train, y_test = train_test_split(X_wine, y_wine, test_size=0.
 plt.hist(y_train, align="right", label="train") 
 plt.hist(y_test, align="left", label="test") 
 plt.legend()
-plt.xlabel("classe")
-plt.ylabel("nombre d'exemples")
-plt.title("répartition des classes avec échantillonnage stratifié") 
+plt.xlabel("Classe")
+plt.ylabel("Nombre d'exemples")
+plt.title("Répartition des classes avec échantillonnage stratifié") 
 plt.show()
 ```
 
 ## Entraînement
 
-L'étape suivante est de choisir un algorithme (un *estimator*), de l'entraîner sur nos données train
-(avec la fonction `fit()`) puis de faire la prédiction (avec la fonction `predict`).  
+L'étape suivante est de choisir un algorithme (un *estimator* dans la terminologie de scikit-learn),
+de l'entraîner sur nos données (avec la fonction `fit()`) puis de faire la prédiction (avec la
+fonction `predict`).
+
 Quelque soit l'algo choisi vous allez retrouver les fonctions `fit` et `predict`. Ce qui changera ce
 seront les paramètres à passer au constructeur de la classe de l'algo. Votre travail portera sur le
 choix de ces paramètres.
@@ -393,9 +398,10 @@ naïf](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.Mul
 [une forêt d'arbres de
 décision](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
 
+
 ### 2. D'autres traits
 
-Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre ou le type  d'adjectifs,
+Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre ou le type d'adjectifs,
 la présence d'entités nommées, …
 
 Pour récupérer ce genre de *features*, vous pouvez regarder du côté de [spaCy](http://spacy.io/)

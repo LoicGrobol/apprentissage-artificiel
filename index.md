@@ -46,6 +46,11 @@ sans rien installer.
 - {% notebook_badges slides/02-intro-numpy/numpy-slides.py.md %}
   [TP Introduction à Numpy](slides/02-intro-numpy/numpy-slides.py.ipynb)
 
+### 2023-10-04 — Arbres de décision et scikit-learn
+
+- {% notebook_badges slides/03-scikit-learn/scikit-learn-slides.py.md %}
+  [TP Introduction à scikit-learn](slides/03-scikit-learn/scikit-learn-slides.py.ipynb)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
