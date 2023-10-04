@@ -230,6 +230,9 @@ print(classification_report(y_test, y_pred))
 2. Essayez un autre algo de classification ([un SVM à fonction de base
    radiale](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) par exemple) et
    comparez les résultats.
+   - Voir [le tuto sur les noyaux
+     SVM](https://scikit-learn.org/stable/auto_examples/svm/plot_svm_kernels.html) pour une idée de
+     ce que ça signifie d'utiliser un RBF.
 
 ## Validation croisée
 
