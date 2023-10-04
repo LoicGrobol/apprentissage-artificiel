@@ -50,6 +50,7 @@ sans rien installer.
 
 - {% notebook_badges slides/03-scikit-learn/scikit-learn-slides.py.md %}
   [TP Introduction à scikit-learn](slides/03-scikit-learn/scikit-learn-slides.py.ipynb)
+  - [Jeu de données IMDB smol](slides/03-scikit-learn/data/imdb_smol.tar.gz)
 
 ## Lire les slides en local
 
