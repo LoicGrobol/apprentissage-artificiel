@@ -226,11 +226,10 @@ print(classification_report(y_test, y_pred))
 ## ✍️ Exo ✍️
 
 
-1. Essayez un autre algo de classification ([un SVM à fonction de base
+1. Refaites une partition train/test différente et comparez les résultats
+2. Essayez un autre algo de classification ([un SVM à fonction de base
    radiale](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) par exemple) et
    comparez les résultats.
-2. Sur ce même algo, refaites une partition train/test différente et comparez l'évaluation avec les
-   résultats précédents.
 
 ## Validation croisée
 
