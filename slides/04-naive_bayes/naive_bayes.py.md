@@ -45,14 +45,19 @@ bayésien naïf ») appliquées au modèle de représentation des documents pa
 
 On se basera pour la théorie et les notations sur les chapitres 4 de [*Speech and Language
 Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin, qu'il
-est donc bon de garder à portée de main. On pourra aussi aller regarder pour des maths plus rigoureuses l'article [*Multinomial Naive Bayes for Text Categorization Revisited*](https://link.springer.com/chapter/10.1007/978-3-540-30549-1_43) (Kibriya et al., 2006).
+est donc bon de garder à portée de main. On pourra aussi aller regarder pour des maths plus
+rigoureuses l'article [*Multinomial Naive Bayes for Text Categorization
+Revisited*](https://link.springer.com/chapter/10.1007/978-3-540-30549-1_43) (Kibriya et al., 2006). 
+
 
 Pour éviter d'avoir à prédater des données, on va se servir du [dataset d'exemple de `scikit-learn`
 *20
-newsgroups*](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html)
-qu'on a [déjà](../lecture-07/lecture-07.md#Classification-de-textes) rencontré, en revanche on
-évitera de se servir directement des fonctions de `scikit-learn`. On sait déjà faire et l'objectif
-ici est de le faire à la main pour bien comprendre ce qui se passe
+newsgroups*](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html),
+en revanche on évitera de se servir directement des fonctions de `scikit-learn`. On sait déjà faire
+et l'objectif ici est de le faire à la main pour bien comprendre ce qui se passe. Par contre en
+dehors de ce TP, ne réinventez pas la roue, et n'hésitez pas à aller lire [la
+doc](https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes) de
+scikit-learn qui, comme d'habitude est particulièrement intéressante.
 
 **C'est parti !**
 
@@ -212,7 +217,7 @@ def get_class_probs(target):
 
 2\. Une fonction qui prend en argument un tableau comme `bow_array` et un tableau de classes
 `target` comme précédemment et renvoie un tableau `word_probs` tel que `word_probs[c][w]` soit
-$P(w|c)$. On utilise toujours le modèle de vraisemblance maximal mais avec un **lissage
+$P(w|c)$. On utilise toujours le modèle de vraisemblance maximal, mais avec un **lissage
 laplacien** : $P(w|c)=\frac{\text{nombre d'occurences de $w$ dans $c$} + 1}{\text{nombre de mots
 dans l'ensemble des documents de $c$}+\text{taille du vocabulaire}}$.
 
