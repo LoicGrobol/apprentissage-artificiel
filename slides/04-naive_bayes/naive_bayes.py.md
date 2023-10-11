@@ -17,12 +17,11 @@ jupyter:
 <!-- LTeX: language=fr -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 9 : *Naïve Bayes*
+TP 4 : *Naïve Bayes*
 =======================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2021-10-11
 <!-- #endregion -->
 
 ```python
@@ -41,21 +40,19 @@ elle est aussi d'une importance cruciale.
 
 En ce qui nous concerne, elle est aussi intéressante parce que les techniques classiques de
 classification par apprentissage vont nous donner l'occasion de (re?)découvrir des concepts qui vont
-nous servir dans toute la suite de ce cours.
-On va l'aborder au travers de deux techniques : *Naïve Bayes* (le « modèle bayésien naïf » 🙄) et la
-régression logistique, appliquées au modèle de représentation des documents par **sacs de mots**.
+nous servir dans toute la suite de ce cours. On va l'aborder au modèle *Naïve Bayes* (le « modèle
+bayésien naïf ») appliquées au modèle de représentation des documents par **sacs de mots**.
 
-On se basera pour la théorie et les notations sur les chapitres 4 et 5 de [*Speech and Language
+On se basera pour la théorie et les notations sur les chapitres 4 de [*Speech and Language
 Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et James H. Martin, qu'il
-est donc bon de garder à portée de main.
+est donc bon de garder à portée de main. On pourra aussi aller regarder pour des maths plus rigoureuses l'article [*Multinomial Naive Bayes for Text Categorization Revisited*](https://link.springer.com/chapter/10.1007/978-3-540-30549-1_43) (Kibriya et al., 2006).
 
 Pour éviter d'avoir à prédater des données, on va se servir du [dataset d'exemple de `scikit-learn`
 *20
 newsgroups*](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html)
 qu'on a [déjà](../lecture-07/lecture-07.md#Classification-de-textes) rencontré, en revanche on
 évitera de se servir directement des fonctions de `scikit-learn`. On sait déjà faire et l'objectif
-ici est de le faire à la mano pour bien comprendre ce qui se passe. On se servira aussi pas mal de
-NumPy, n'hésitez donc pas à aller revoir [le cours qui le concerne](../lecture-06/lecture-06.md).
+ici est de le faire à la main pour bien comprendre ce qui se passe
 
 **C'est parti !**
 
@@ -134,7 +131,7 @@ Bon, c'est plutôt clair
 ## Sac de mots
 
 
-On va commencer par transformer ces documents en sacs de mots. Pour ça on [recycle](../lecture-08/lecture-08.md)
+On va commencer par transformer ces documents en sacs de mots.
 
 ```python
 import re
@@ -167,9 +164,7 @@ len(vocab)
 
 Et pour rendre le tout facile à manipuler on va en en faire un tableau NumPy de la forme
 `len(train_data)×len(vocab)` qui tel que le contenu de la cellule `(i, j)` soit le nombre
-d'occurrences du mot `i` dans le document `j`. On a
-[déjà](../lecture-06/lecture-06.md#%F0%9F%91%9C-Exo%E2%80%AF:-les-sacs-de-mots-%F0%9F%91%9C) fait
-ça.
+d'occurrences du mot `i` dans le document `j`.
 
 
 On commence par faire un dict avec le vocabulaire
@@ -185,7 +180,7 @@ for i, bag in enumerate(bows):
         bow_array[i, w_to_i[w]] = c
 ```
 
-On peut aussi faire comme ça mais c'est **beaucoup** plus lent. Est-ce que vous pouvez devinez pourquoi ?
+On peut aussi faire comme ça, mais c'est plus lent. Est-ce que vous pouvez devinez pourquoi ?
 
 ```python
 # bow_array = np.array(
@@ -200,9 +195,6 @@ On peut aussi faire comme ça mais c'est **beaucoup** plus lent. Est-ce que vous
 bow_array
 ```
 
-## Le modèle *Naïve Bayes*
-
-À suivre au tableau !
 
 ## 🧙🏻 Exo 🧙🏻
 
@@ -234,12 +226,12 @@ def get_word_probs(bows):
 Voilà, on a un modèle de classification *Naïve Bayes* 👏🏻
 
 
-Il reste à savoir comment s'en servir. Je vous laisse coder ça vous-mêmes. N'hésitez pas à faire des
-fonctions auxiliaires.
+Il reste à savoir comment s'en servir. N'hésitez pas à faire des fonctions auxiliaires et à aller
+lire le chapitre *Naïve Bayes* de *Speech and Language Processing.
 
 
-3\. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre
-modèle. Pensez à travailler en log-probabilités
+3\. Écrire une fonction qui prend en argument un document et renvoie la classe la plus probable
+notre modèle. Pensez à travailler en log-probabilités
 
 ```python
 def predict_class(doc):
@@ -249,8 +241,9 @@ def predict_class(doc):
 Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.
 
 
-4\. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
-appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.
+4\. Un script avec deux commandes : une qui entraîne le modèle et le sauvegarde (sous la forme qui
+vous paraît la plus appropriée) et une qui charge le modèle et prédit la classe de chacun des
+documents d'un corpus.
 
-
-Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
+Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir
+[click](https://click.palletsprojects.com/en/8.0.x/).

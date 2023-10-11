@@ -306,7 +306,7 @@ display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {g_x:
 ```
 
 
-Quelle est la vraisemblance de la classe $0$ (review négative) ? Et bien le reste
+Quelle est la vraisemblance de la classe $0$ (*review* négative) ? Et bien le reste
 
 ```python
 1.0 - classifier_confidence(doc_features)
@@ -963,6 +963,3 @@ On reparlera de tout ça en temps utile. Pour la suite de vos aventures au pays 
 logistiques, je vous recommande plutôt d'utiliser [leur implémentation dans
 scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
 Maintenant que vous savez comment ça marche, vous pouvez le faire la tête haute. Bravo !
-
-<small>Vous avez aussi découvert les premiers réseaux de neurones de ce cours et ce n'est pas
-rien !</small>

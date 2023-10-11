@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.15.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -113,10 +113,14 @@ print(wine.DESCR)
 wine.feature_names
 ```
 
-Si on a installé `pandas`
+```python
+wine.target_names
+```
+
+Si on a installé `pandas` ou `polars`
 
 ```python
-%pip install -U pandas
+%pip install -U pandas polars
 ```
 
 On peut convertir ces données en `DataFrame` pandas si on veut.
@@ -125,6 +129,14 @@ On peut convertir ces données en `DataFrame` pandas si on veut.
 import pandas as pd
 
 df = pd.DataFrame(data=wine.data,columns=wine.feature_names)
+df['target']=wine.target
+df.head()
+```
+
+```python
+import polars as pl
+
+df = pl.DataFrame(data=wine.data,columns=wine.feature_names)
 df['target']=wine.target
 df.head()
 ```

@@ -9,6 +9,7 @@ nbgitpuller
 numpy
 matplotlib
 pandas
+polars
 regex
 seaborn
 scikit-learn

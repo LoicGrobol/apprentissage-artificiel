@@ -370,8 +370,8 @@ get_word_probs(bow_array, data_train.target)
 
 Voilà, on a un modèle de classification *Naïve Bayes* 👏🏻
 
-> 3\. Une fonction qui prend en argument un document et renvoie la classe la plus probable notre
-> modèle. Pensez à travailler en log-probabilités
+> 3\. Écrire une fonction qui prend en argument un document et renvoie la classe la plus probable
+> notre modèle. Pensez à travailler en log-probabilités
 
 On va s'inspirer de l'algo 4.2 de *Speech and Language Processing* en le compactifiant un peu.
 
@@ -446,7 +446,8 @@ def predict_class(doc):
     return np.argmax(class_likelihoods)
 ```
 
-Si vous voulez vous motiver à mieux apprendre numpy, je vous recommande de chronométrer les temps d'exécution de la suite avec les différentes versions de cette fonction.
+Si vous voulez vous motiver à mieux apprendre numpy, je vous recommande de chronométrer les temps
+d'exécution de la suite avec les différentes versions de cette fonction.
 
 
 > Vous pouvez maintenant évaluer le modèle en calculant son exactitude sur l'ensemble de test.
@@ -475,11 +476,12 @@ def evaluate(documents, target):
 evaluate(data_test.data, data_test.target)
 ```
 
-> 4\. Un script qui entraîne le modèle et le sauvegarde (sous la forme qui vous paraît la plus
-> appropriée) et un qui charge le modèle et prédit la classe de chacun des documents d'un corpus.
-
-
-> Courage, c'est pour votre bien. Si vous vous ennuyez ça peut être le bon moment pour découvrir [click](https://click.palletsprojects.com/en/8.0.x/).
+> 4\. Un script avec deux commandes: une qui entraîne le modèle et le sauvegarde (sous la forme qui
+> vous paraît la plus appropriée) et une qui charge le modèle et prédit la classe de chacun des
+> documents d'un corpus.
+>
+> Si vous vous ennuyez ça peut être le bon moment pour découvrir
+> [click](https://click.palletsprojects.com/en/8.0.x/).
 
 
 Voir [`nb_script.py`](nb_script.py)

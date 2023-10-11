@@ -52,6 +52,12 @@ sans rien installer.
   [TP Introduction à scikit-learn](slides/03-scikit-learn/scikit-learn-slides.py.ipynb)
   - [Jeu de données IMDB smol](slides/03-scikit-learn/data/imdb_smol.tar.gz)
 
+
+### 2023-10-11 — *Naïve Bayes*
+
+- {% notebook_badges slides/04-naive_bayes/naive_bayes.py.md %}
+  [TP Naïve Bayes](slides/04-naive_bayes/naive_bayes.py.ipynb)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
