@@ -49,11 +49,11 @@ On va faire de l'apprentissage *supervisé* de classifieurs : l'idée est d'ap
 partir de données réparties en classes (une classe et une seule pour chaque exemple), puis de ce
 servir de ce modèle pour répartir parmi les mêmes classes des données nouvelles
 
-Dit autrement, on a un échantillon d'entraînement $\matchcal{D}$, composé de $n$ couples $(X_{i},
+Dit autrement, on a un échantillon d'entraînement $\mathcal{D}$, composé de $n$ couples $(X_{i},
 Y_{i}), i=1, …, n$ où les $X_{i}$ sont les entrées (en général des **vecteurs** de traits ou
 *features*) et les $y_{i}$ seront les sorties, les classes à prédire. On cherche alors dans une
 famille $\mathbb{M}$ de modèles un modèle de classification $M$ qui soit le plus performant possible
-sur $\matchcal{D}$.
+sur $\mathcal{D}$.
 
 `scikit-learn` offre beaucoup d'algorithmes d'apprentissage. Vous en trouverez un aperçu sur
 [cette carte](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) et sur ces
@@ -129,15 +129,18 @@ On peut convertir ces données en `DataFrame` pandas si on veut.
 import pandas as pd
 
 df = pd.DataFrame(data=wine.data,columns=wine.feature_names)
-df['target']=wine.target
+df["target"] = wine.target
 df.head()
 ```
 
 ```python
 import polars as pl
 
-df = pl.DataFrame(data=wine.data,columns=wine.feature_names)
-df['target']=wine.target
+df = pl.DataFrame(
+    data=wine.data, schema=wine.feature_names
+).with_columns(
+    target=pl.Series(wine.target)
+)
 df.head()
 ```
 
