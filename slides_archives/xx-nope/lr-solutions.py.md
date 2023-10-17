@@ -16,12 +16,11 @@ jupyter:
 
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 10 : Régression logistique
+TP 5 : Régression logistique
 ===============================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-26
 <!-- #endregion -->
 
 ```python

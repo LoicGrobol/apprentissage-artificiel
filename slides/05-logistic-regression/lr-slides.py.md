@@ -16,12 +16,11 @@ jupyter:
 
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
-Cours 10 : Régression logistique
+TP 5 : Régression logistique
 ===============================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-2022-10-26
 <!-- #endregion -->
 
 ```python
@@ -72,22 +71,12 @@ doc_features
 
 Utiliser la fonction précédente pour vectoriser [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
 
-Commençons par l'extraire
-
-```bash
-cd ../../local
-tar -xzf ../data/imdb_smol.tar.gz 
-ls -lah imdb_smol
-```
-
-Maintenant on parcourt le dossier pour construire nos représentations
-
 ```python
 def featurize_dir(corpus_root, lexicon):
     pass # À vous!
 
 # On réutilise le lexique précédent
-featurize_dir("../../local/imdb_smol", lexicon)
+featurize_dir("data/imdb_smol", lexicon)
 ```
 
 ## Visualisation
@@ -99,8 +88,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from corrections import featurize_dir, read_vader
 
-lexicon = read_vader("../../data/vader_lexicon.txt")
-imdb_features = featurize_dir("../../local/imdb_smol", lexicon)
+lexicon = read_vader("data/vader_lexicon.txt")
+imdb_features = featurize_dir("data/imdb_smol", lexicon)
 
 X = np.array([d[0] for d in (*imdb_features["pos"], *imdb_features["neg"])])
 Y = np.array([d[1] for d in (*imdb_features["pos"], *imdb_features["neg"])])
@@ -168,7 +157,7 @@ classifieur sur le mini-corpus IMDB qu'on a vectorisé et calculez son exactitud
 
 ```python
 def hardcoded_classifier(x):
-    return False  # À vous de jouer
+    return 0  # À vous de jouer
 
 hardcoded_classifier(doc_features)
 ```
@@ -274,8 +263,8 @@ def logistic(z):
 ## Régression logistique
 
 Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
-telle que pour tout couple exemple/étiquette $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On voudrait
-approcher cette fonction par une fonction $g$ de la forme
+telle que pour tout couple exemple/classe $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
+voudrait approcher cette fonction par une fonction $g$ de la forme
 
 $$g(x) = σ(w⋅x+b)$$
 
@@ -414,8 +403,8 @@ Enfin, on peut l'écrire $L$ en une ligne : pour un exemple $x$, le coût de l
 
 $$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$
 
-C'est un *trick*, l'astuce c'est que comme $y$ vaut soit $0$ soit $1$, soit $y=0$, soit $1-y=0$ et
-donc la somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.
+C'est une astucs : comme $y$ vaut soit $0$ soit $1$, on a  soit $y=0$, soit $1-y=0$, et donc la
+somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.
 
 La formule diffère un peu de celle de *Speech and Language Processing*, mais les résultats sont les
 mêmes et celle-ci est mieux pour notre problème !
@@ -666,8 +655,8 @@ $\operatorname{grad}L(g(x_i), y_i)$ avant de modifier $θ$, on va le modifier à
 - **Inconvénient** : il se pourrait qu'en essayant de faire baisser $L(g(x_0), y_0)$, on fasse
   augmenter $L(g(x_1), y_1)$.
 
-Notre espoir ici c'est que cette situation n'arrivera pas, et qu'on bon paramètre pour un certain
-couple $(x, y)$ c'est un bon paramètres pour $tous$ les couples `(exemple, classe)`.
+Notre espoir ici, c'est que cette situation n'arrivera pas, et qu'on bon paramètre pour un certain
+couple $(x, y)$, c'est un bon paramètre pour $tous$ les couples `(exemple, classe)`.
 
 
 Ce nouvel algorithme s'appelle l'**algorithme de descente de gradient stochastique**, et il est
@@ -719,7 +708,7 @@ grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
 
 ### 2. Descendre le gradient
 
-S'en servir pour apprendre les poids à donner aux features précédentes à l'aide du [mini-corpus
+S'en servir pour apprendre les poids à donner aux *features* précédentes à l'aide du [mini-corpus
 IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
 
 ```python
@@ -759,9 +748,10 @@ ax.legend()
 plt.show()
 ```
 
-Ici comme on a peut, on peut même se permettre le luxe de regarder la loss qu'on aurait pour toutes
-leurs valeurs, par exemple si on fixe $b=0$, voilà la tête qu'à la loss globale (l'abscisse et
-l'ordonnées sont les coordonnées de $w$, l'altitude/la couleur est la valeur de la loss.
+Ici comme on a peu de données, on peut même se permettre le luxe de regarder la loss qu'on aurait
+pour toutes leurs valeurs, par exemple si on fixe $b=0$, voilà la tête qu'à la loss globale
+(l'abscisse et l'ordonnées sont les coordonnées de $w$, l'altitude/la couleur est la valeur de la
+loss).
 
 ```python
 def make_vector_corpus(featurized_corpus):
@@ -888,7 +878,7 @@ plt.show()
 
 On voit que c'est un genre d'entre-deux entre $v$ et $\operatorname{argmax}(v)$ :
 
-- La distributions des coordonnées ressemble à celle de $v$…
+- La distribution des coordonnées ressemble à celle de $v$…
 - mais les coordonnées sont toutes entre $0$ et $1$.
 - Le max est tiré vers $1$ et toutes les autres coordonnées vers $0$.
 - La somme des coordonnées fait $1$.

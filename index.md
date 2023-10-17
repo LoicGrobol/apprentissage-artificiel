@@ -58,6 +58,13 @@ sans rien installer.
 - {% notebook_badges slides/04-naive_bayes/naive_bayes.py.md %}
   [TP Naïve Bayes](slides/04-naive_bayes/naive_bayes.py.ipynb)
 
+### 2023-10-18 — Régression logistique et descente de gradient
+
+- {% notebook_badges slides/05-logistic-regression/lr-slides.py.md %}
+  [TP Régression logistique](slides/05-logistic-regression/lr-slides.py.ipynb)
+  - [Lexique VADER](slides/05-logistic-regression/data/vader_lexicon.txt)
+  - [Jeu de données IMDB smol](slides/05-logistic-regression/data/imdb_smol.tar.gz)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
