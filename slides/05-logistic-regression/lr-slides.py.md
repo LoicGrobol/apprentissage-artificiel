@@ -655,8 +655,8 @@ $\operatorname{grad}L(g(x_i), y_i)$ avant de modifier $θ$, on va le modifier à
 - **Inconvénient** : il se pourrait qu'en essayant de faire baisser $L(g(x_0), y_0)$, on fasse
   augmenter $L(g(x_1), y_1)$.
 
-Notre espoir ici, c'est que cette situation n'arrivera pas, et qu'on bon paramètre pour un certain
-couple $(x, y)$, c'est un bon paramètre pour $tous$ les couples `(exemple, classe)`.
+Notre espoir ici, c'est que cette situation n'arrivera pas, et qu'un bon paramètre pour un certain
+couple $(x, y)$ soit aussi un bon paramètre pour $tous$ les couples `(exemple, classe)`.
 
 
 Ce nouvel algorithme s'appelle l'**algorithme de descente de gradient stochastique**, et il est
@@ -822,7 +822,7 @@ $$
     \begin{cases}
         z_1 = w_1⋅x + b_1\\
         \vdots\\
-        z_n = w_n⋅x + b_1
+        z_n = w_n⋅x + b_n
     \end{cases}
 $$
 
@@ -841,7 +841,7 @@ normalisé.
 
 
 Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2, 1.6)$. Son
-maximum $\max(v)$ c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du
+maximum $\max(v)$, c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du
 maximum, c'est $3$.
 
 Pour *argmax* à la place d'une position, on peut aussi le voir comme un masque : $(0, 0, 1, 0, 0)$,
@@ -941,7 +941,7 @@ appliquer ce qu'on a vu pour deux classes, avec $w=w_0-w_1$ et $b=b_0-b_1$.
 
 ## La suite
 
-Vous êtes arrivé⋅e⋅s au bout de ce cours et vous devriez avoir quelques idées de plusieurs concepts
+Vous êtes arrivé⋅es au bout de ce cours et vous devriez avoir quelques idées de plusieurs concepts
 importants :
 
 - Le concept de classifieur linéaire
