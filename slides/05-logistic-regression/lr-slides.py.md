@@ -50,6 +50,8 @@ texte en anglais et renvoie sa représentation sous forme d'un vecteur de featur
 polarité positive moyenne (la somme des polarités positives des mots qu'il contient divisée par sa
 longueur en nombre de mots) et polarité négative moyenne.
 
+Le polarité d'un mot correspond à la deuxième colonne (`MEAN-SENTIMENT-RATING`) dans le fichier.
+
 ```python
 def read_vader(vader_path):
     pass  # À vous de jouer

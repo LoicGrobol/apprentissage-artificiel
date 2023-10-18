@@ -57,6 +57,9 @@ sans rien installer.
 
 - {% notebook_badges slides/04-naive_bayes/naive_bayes.py.md %}
   [TP Naïve Bayes](slides/04-naive_bayes/naive_bayes.py.ipynb)
+  - {% notebook_badges slides/04-naive_bayes/correction.py.md %}
+  [Solutions](slides/04-naive_bayes/correction.py.ipynb)
+  - [Script](slides/04-naive_bayes/nb_script.py)
 
 ### 2023-10-18 — Régression logistique et descente de gradient
 
