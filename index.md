@@ -68,6 +68,10 @@ sans rien installer.
   - [Lexique VADER](slides/05-logistic-regression/data/vader_lexicon.txt)
   - [Jeu de données IMDB smol](slides/05-logistic-regression/data/imdb_smol.tar.gz)
 
+Les notebooks remplis sont à envoyer par mail à <lgrobol@parisnanterre.fr> avant le 9/11 à 9:30.
+L'objet du message devra être `[ML 2023] TP Prénom Nom` et le nom de fichier devra être de la forme
+`prénom_nom-établissment.ipynb`, `établissement` étant `Nanterre`, `P3` ou `Inalco`.
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
@@ -98,7 +102,7 @@ extensions adéquates. Le plus simple est le suivant
    jupyter notebook
    ```
 
-   JupyterLab est aussi utilisable, mais la fonctionnalité slide n'y fonctionne pas pour l'instant.
+   JupyterLab est aussi utilisable.
 
 ## Ressources
 
