@@ -88,7 +88,6 @@ Comment se répartissent les documents du corpus avec la représentation qu'on a
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
-from corrections import featurize_dir, read_vader
 
 lexicon = read_vader("data/vader_lexicon.txt")
 imdb_features = featurize_dir("data/imdb_smol", lexicon)
@@ -167,7 +166,6 @@ hardcoded_classifier(doc_features)
 Pour l'exactitude, on devrait obtenir quelque chose comme ça
 
 ```python
-from corrections import classifier_accuracy
 classifier_accuracy(np.array([0.6, -0.4]), np.array(-0.01), imdb_features)
 ```
 
@@ -283,9 +281,6 @@ complexes), mais on peut interpréter la confiance qu'il a dans sa décision.
 Par exemple voici la confiance que notre classifieur codé en dur a en ses décisions
 
 ```python
-from corrections import affine_combination, featurize, logistic
-
-
 def classifier_confidence(x):
     return logistic(affine_combination(x, np.array([0.6, -0.4]), -0.01))
 
@@ -435,7 +430,6 @@ Servez-vous en pour calculer le coût du classifieur de l'exercise précédent s
 Le résultat devrait ressembler à ça
 
 ```python
-from corrections import loss_on_imdb
 loss_on_imdb(np.array([0.6, -0.4]), -0.01, imdb_features)
 ```
 
@@ -725,7 +719,6 @@ descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
 Dans une version où on affiche et on garde trace de l'historique
 
 ```python
-from corrections import descent_with_logging
 theta, theta_history = descent_with_logging(imdb_features, np.array([0.6, -0.4, -0.01]), 0.1, 100)
 ```
 
