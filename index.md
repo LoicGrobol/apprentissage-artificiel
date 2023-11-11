@@ -20,6 +20,8 @@ layout: default
 
 ## Liens utiles
 
+- Prendre rendez-vous pour des *office hours* en visio :
+  [Calendly](https://calendly.com/lgrobol/remote-office-hour)
 - Lien Binder de secours :
   [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LoicGrobol/apprentissage-artificiel/main)
 
