@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.15.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -361,7 +361,7 @@ $$L(a, y) = -\log(V(a, y))$$
 Le $\log$ est là pour plusieurs raisons, calculatoires et théoriques<sup>1</sup> et le $-$ à
 s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).
 
-<small>1. Entre autres, parce qu'une somme de $\log$-vraisemblance peut
+<small>1. Entre autres, parce qu'une somme de $\log$-vraisemblances peut
 être vue comme le $\log$ de la probabilité d'une conjonction d'événements indépendants. Mais surtout
 parce qu'il rend la fonction de coût **convexe** par rapport à $w$</small>.
 

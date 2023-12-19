@@ -366,7 +366,7 @@ square("test")
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Les chaînes de caractère
+## Les chaînes de caractères
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "-"} -->
@@ -448,9 +448,9 @@ doc](https://docs.python.org/3/library/stdtypes.html#string-methods)
 - `lower()` transforme la chaine en minuscules
 - `upper()` transforme la chaine en majuscules
 - `replace(old, new)` remplace les occurrences de `old` par `new`
-- `strip(chars=None)` appelé sans arguments supprime le ou les espaces en tête et en fin de chaîne  
-- `rstrip(chars=None)` fait la même chose en fin de chaîne uniquement
-- `lstrip(chars=None)` idem en début de chaîne
+- `strip()` appelé sans arguments supprime le ou les espaces en tête et en fin de chaîne  
+- `rstrip()` fait la même chose en fin de chaîne uniquement
+- `lstrip()` idem en début de chaîne
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -496,7 +496,7 @@ print("Tiens salut {}. T'aurais pas {} euros pour 2 cafés ?".format(name, coffe
 **Si possible utiliser des *f-strings*** (c'est presque toujours possible).
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-On évite de faire ça avec `+` parce que c'est moins lisible et que c'est **lent**. De fait on créée
+On évite de faire ça avec `+` parce que c'est moins lisible et que c'est **lent**. De fait on crée
 une chaîne intermédiaire à chaque étape.
 <!-- #endregion -->
 
@@ -1479,15 +1479,11 @@ re.sub(r'e|é', 'i', 'éléphanteau')
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-## `\w` et Python3
+## `\w`
 
-`\w` est la classe prédéfinie des caractères alphanumériques :
-
-- En Python 2 `\w` ~correspond~ correspondait à `[A-Za-z0-9_]`, avec les locales il est possible d'y
-  ajouter d'autres caractères
-- En Python 3 `\w` correspond à tous les caractères qui ont la propriété Unicode Letter d'après le
-  module `unicodedata` (sauf si le motif est compilé en binaire ou si l'option `re.ASCII` est
-  activée)
+`\w` est la classe prédéfinie des caractères alphanumériques, c'est-à-dire à tous les caractères qui
+ont la propriété Unicode `Letter`` d'après le module `unicodedata` (sauf si le motif est compilé
+en binaire ou si l'option `re.ASCII` est activée)
 <!-- #endregion -->
 
 ```python
@@ -1531,8 +1527,8 @@ assert get_austro_words('Malay', 'Balinese', ['new', 'old', 'good']) == \
     }
 ```
 
-2\. Pour chaque mot du Cebuano de la liste Swadesh austronésienne, trouvez les mots des autres
-   langues qui ont les deux ou trois premiers caractères en commun.  
+2\. Pour chaque mot du Cebuano de la liste [Swadesh austronésienne](data/swadesh_light.csv), trouvez
+   les mots des autres langues qui ont les deux ou trois premiers caractères en commun.  
    (optionnel si vous voulez jouer avec les expressions régulières) Si le mot commence par une
    voyelle, elle pourra différer dans les autres langues. Ex: isa / usa seront considérées comme
    similaires (i/u) parce qu'à part la première lettre voyelle elles sont similaires.
