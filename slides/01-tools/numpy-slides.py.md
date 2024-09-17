@@ -271,6 +271,10 @@ np.zeros((3,4), dtype=int)
 np.ones(3)
 ```
 
+```python
+np.ones(3, dtype=np.float32)
+```
+
 <!-- #region slideshow={"slide_type": "fragment"} -->
 - `np.full`
 <!-- #endregion -->
@@ -479,7 +483,7 @@ m1
 m2 = np.array([[7, 8, 9, 10], [11, 12, 13, 14]])
 m2
 ```
-
+·
 ```python
 np.matmul(m1, m2)
 ```

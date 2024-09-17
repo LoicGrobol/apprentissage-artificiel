@@ -43,6 +43,8 @@ sans rien installer.
     [Solutions](slides/01-tools/python_crash_course-solutions.py.ipynb)
 - {% notebook_badges slides/01-tools/numpy-slides.py.md %}
   [Présentation Numpy](slides/01-tools/numpy-slides.py.ipynb)
+- {% notebook_badges slides/01-tools/polars.py.md %}
+  [Présentation Polars](slides/01-tools/polars.py.ipynb)
 
 
 ## Utilisation en local
