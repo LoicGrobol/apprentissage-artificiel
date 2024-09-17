@@ -271,4 +271,4 @@ df.with_columns(
 À partir de
 [SUBTLEX-US](https://www.ugent.be/pp/experimentele-psychologie/en/research/documents/subtlexus) et
 des outils vus aujourd'hui, vérifiez si la loi de Zipf tient pour les sous-titres de films en
-anglais. Faites des graphiques, tout le monde aime les graphiques.
+anglais. Faites des graphiques, tous mes potos aiment les graphiques.
