@@ -37,13 +37,12 @@ sans rien installer.
 
 ### 2024-09-18 — Outils de travail
 
-Rappels Python ; Numpy ; Polars.
-
-- {% notebook_badges slides/01-ngram_lms/ngram-lms.py.md %}
-  [TP Modèles de langues](slides/01-ngram_lms/ngram-lms.py.ipynb)
-  - Données : [`zola_ventre-de-paris.txt`](slides/01-ngram_lms/data/zola_ventre-de-paris.txt)
-- {% notebook_badges slides/01-ngram_lms/ngram-lms-solutions.py.md %}
-  [Solutions](slides/01-ngram_lms/ngram-lms-solutions.py.ipynb)
+- {% notebook_badges slides/01-tools/python_crash_course.py.md %}
+  [Crash course Python](slides/01-tools/python_crash_course.py.ipynb)
+  - {% notebook_badges slides/01-tools/python_crash_course-solutions.py.md %}
+    [Solutions](slides/01-tools/python_crash_course-solutions.py.ipynb)
+- {% notebook_badges slides/01-tools/numpy-slides.py.md %}
+  [Présentation Numpy](slides/01-tools/numpy-slides.py.ipynb)
 
 
 ## Utilisation en local

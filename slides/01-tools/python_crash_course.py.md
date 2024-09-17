@@ -1503,3 +1503,46 @@ assert get_austro_words('Malay', 'Balinese', ['new', 'old', 'good']) == \
    fonction qui calcule la distance de Levenshtein. (Vous pouvez chercher ce que c'est que la
    distance de Levenshtein et l'algorithme en pseudo-code, mais n'allez pas chercher directement
    d'implémentation en Python !)
+
+## Packages et installation
+
+**Cette partie est vraiment vraiment importante. Il faut la lire, la relire, l'apprendre par cœur et
+l'appliquer**
+
+On parlera en détails de ces questions dans un cours futur, mais les essentiels de ce que vous devez
+savoir :
+
+- Les environnements virtuels sont des installations isolées de Python. Ils vous permettent d'avoir
+  des versions indépendantes de Python et des packages que vous installez
+  - Pour créer un environnement virtuel : `python -m venv /chemin/vers/…`
+  - La convention, c'est `python -m venv .venv`, ce qui créée un dossier (caché) `.venv` dans le
+    dossier courant (habituellement le dossier principal de votre projet). Donc faites ça.
+  - Il est **obligatoire** de travailler dans un environnement virtuel. L'idéal est d'en avoir un
+    par cours, un par projet, etc.
+  - Un environnement virtuel doit être **activé** avant de s'en servir. Concrètement ça remplace la
+    commande `python` de votre système par celle de l'environnement.
+    - Sous Bash, ça se fait avec `source .venv/bin/activate` (en remplaçant par le chemin de
+      l'environnement s'il est différent)
+    - `deactivate` pour le désactiver et rétablir votre commande `python`. À faire avant d'en
+      activer un autre.
+- On installe des packages avec `pip`.
+  - `python -m pip install numpy` pour installer Numpy. On appelle **toujours** `pip` via `python -m
+    pip` pour être sûr⋅e qu'on est en train d'installer dans le bon environnement.
+  - Si vous avez un fichier avec un nom de package par ligne (par exemple le
+    [`requirements.txt`](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt)
+    du cours) : `python -m pip install -r requirements.txt`
+  - Le flag `-U` pour mettre à jour les packages si possible : `python -m pip install -U numpy` etc.
+- Je répète : on installe uniquement dans un environnement virtuel, on garde ses environnements bien
+  séparés (un par cours, pas un pour tout le M2).
+  - Dans un projet, on note dans un `requirements.txt` les packages dont le projet a besoin pour
+    fonctionner.
+  - Les environnements doivent être légers : ça ne doit pas être un problème de les effacer, de les
+    recréer… Si vous ne savez pas recréer un environnement que vous auriez perdu, c'est qu'il y a un
+    problème dans votre façon de les gérer.
+- Si vous voulez en savoir plus, **et je recommande très fortement de vouloir en savoir plus, c'est
+  vital de connaître ses outils de travail**, il faut :
+  - Lire Real Python sur [pip](https://realpython.com/what-is-pip/),
+    [virtualenv](https://realpython.com/python-virtual-environments-a-primer/).
+  - Envisager d'utiliser un outil comme
+    [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/stable/) ou
+    [uv](https://docs.astral.sh/uv/) qui facilitent la gestion de projets et d'environnements.
