@@ -226,3 +226,42 @@ df.with_columns(
 ```
 
 Cette dernière façon d'écrire est très utile pour décrire des séries de traitements de données et je vous encourage très fort à l'utiliser. En plus, si Polars est en mode *lazy* (allez voir [la doc](https://docs.pola.rs/user-guide/concepts/lazy-vs-eager/), etc.), il optimisera automatiquement les opérations que vous demandez, ce qui peut être un gain de temps énorme quand il y a beaucoup de données à traiter.
+
+
+Il y a vraiment beaucoup d'opérations qui existent déjà dans Polars et sont optimisées et il faut toujours commencer par là et chercher attentivement, mais des fois il n'y pas le truc exact dont on a besoin. Il y a alors deux options :
+
+
+Soit ce dont vous avez besoin existe dans Numpy (ou vous êtes capable de créer une `ufunc` vous mêmes). Dans ce cas c'est utilisable directement :
+
+```python
+import numpy as np
+
+df.with_columns(np.sqrt(pl.col("integer")).alias("sqrt"))
+```
+
+Soit vraiment vous avez besoin de plus de personnalisation :
+
+```python
+def ma_fonction_tordue(s):
+    if s == "a":
+        return 2713
+    if s == "b":
+        return -2
+    return 0
+```
+
+Dans ce cas on peut appliquer une fonction qu'on aura défini en Python. Attention c'est **beaucoup** plus lent :
+
+```python
+df.with_columns(pl.col("string").map_elements(ma_fonction_tordue).alias("bidule"))
+```
+
+Dans ce cas c'est mieux de préciser le type de données renvoyé
+
+```python
+df.with_columns(
+    pl.col("string").map_elements(
+        ma_fonction_tordue, return_dtype=str
+    ).alias("bidule")
+)
+```

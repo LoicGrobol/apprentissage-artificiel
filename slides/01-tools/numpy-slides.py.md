@@ -207,42 +207,139 @@ a
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-### Infos sur les `ndarray`
-
-b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
-
-Pour avoir des infos sur les `array` que vous manipulez vous avez :
-
-- `dtype` (type des éléments)
+## Opérations
 <!-- #endregion -->
 
-```python
-b.dtype
-```
+On peut se servir des `array`s pour faire des maths.
 
-- `shape` (un tuple avec la taille de chaque dimension)
+### Opérations classiques
 
 ```python
-b.shape
+a = np.array([5, 6, 7, 8, 9, 10])
+a
 ```
-
-- `ndim` (le nombre de dimensions)
 
 ```python
-print(a.ndim)
-print(b.ndim)
+a.sum()
 ```
+
+```python slideshow={"slide_type": "subslide"}
+a.max()
+```
+
+```python
+a.argmax()
+```
+
+```python
+a.min()
+```
+
+### ufunc
+
+C'est un des points les plus important des Numpy : ses fonctions opèrent sur les `array`s coordonnée
+par coordonnée :
+
+```python
+a = np.array([5, 6, 7, 8, 9, 10])
+a
+```
+
+```python
+np.sqrt(a)
+```
+
+Pourquoi c'est si intéressant ? Parce que comme ces opérations traitent les coordonnées de façon
+indépendantes, elles peuvent se faire **en parallèle** : dans Numpy il n'y a pas de boucle Python
+qui traite les coordonnées une par une, mais des implémentations qui exploitent entre autres les
+capacités de votre machine pour faire tous ces calculs simultanément, ce qui va beaucoup, beaucoup
+plus vite.
+
+Ces fonctions, définies pour opérer sur une coordonnée, et qui peuvent se paralléliser à l'échelle
+d'un `array` s'appellent des [`ufunc`](https://numpy.org/doc/stable/reference/ufuncs.html)
+(*Universal FUNctions*), Numpy en fournit beaucoup par défaut, et c'est en général mieux de les
+utiliser, mais vous pouvez aussi définir les vôtres si vous avez vraiment un besoin particulier.
+
+TL;DR: **ne traitez les `array` avec des boucles que si vous n'avez vraiment pas le choix.**
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- `size` (le nombre d'éléments)
+### Opérations sur plusieurs `array`s
+<!-- #endregion -->
+
+Les opérateurs usuels, comme le reste, agissent en général coordonnée par coordonnée :
+
+```python slideshow={"slide_type": "-"}
+c = np.arange(10,16)
+c
+```
+
+```python
+a = np.arange(6)
+a
+```
+
+```python slideshow={"slide_type": "subslide"}
+a + c
+```
+
+```python
+a - c
+```
+
+```python
+a * c
+```
+
+```python
+a / c
+```
+
+```python
+a + 1
+```
+
+Tiens, celui-ci est un peu curieux : vous voyez pourquoi ?
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Produit matriciel : c'est l'exception !
 <!-- #endregion -->
 
 ```python
-b.size
+m1 = np.array([[1, 2],[ 3, 4], [5, 6]])
+m1
+```
+
+```python
+m2 = np.array([[7, 8, 9, 10], [11, 12, 13, 14]])
+m2
+```
+
+·
+
+```python
+np.matmul(m1, m2)
+```
+
+On peut aussi utiliser l'opérateur `@`
+
+```python
+m1@m2
+```
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
+- Transposition (échanger lignes et colonnes)
+<!-- #endregion -->
+
+```python
+m1
+```
+
+```python
+m1.T
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-### Créer un `array`
+## Créer un `array`
 
 - `np.zeros`
 <!-- #endregion -->
@@ -333,6 +430,33 @@ Allez lire [la doc](https://numpy.org/doc) !
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Infos sur les `ndarray`
+
+Pour avoir des infos sur les `array` que vous manipulez vous avez :
+
+- `dtype` (type des éléments)
+<!-- #endregion -->
+
+```python
+b.dtype
+```
+
+- `shape` (un tuple avec la taille de chaque dimension)
+
+```python
+b.shape
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+- `size` (le nombre total d'éléments)
+<!-- #endregion -->
+
+```python
+b.size
+```
+
 ### Indexer et trancher
 
 - Comme pour les listes Python
@@ -414,98 +538,6 @@ a%2 == 1
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Opérations
-
-- Les trucs classiques
-<!-- #endregion -->
-
-```python
-a = np.array([5, 6, 7, 8, 9, 10])
-a
-```
-
-```python
-a.sum()
-```
-
-```python slideshow={"slide_type": "subslide"}
-a.max()
-```
-
-```python
-a.argmax()
-```
-
-```python
-a.min()
-```
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-- Opérations sur `array` à une dimension
-<!-- #endregion -->
-
-```python slideshow={"slide_type": "-"}
-c = np.arange(10,16)
-c
-```
-
-```python
-a = np.arange(6)
-a
-```
-
-```python slideshow={"slide_type": "subslide"}
-a + c
-```
-
-```python
-a - c
-```
-
-```python
-a * c
-```
-
-```python
-a/c
-```
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-- Produit matriciel
-<!-- #endregion -->
-
-```python
-m1 = np.array([[1, 2],[ 3, 4], [5, 6]])
-m1
-```
-
-```python
-m2 = np.array([[7, 8, 9, 10], [11, 12, 13, 14]])
-m2
-```
-·
-```python
-np.matmul(m1, m2)
-```
-
-On peut aussi utiliser l'opérateur `@`
-
-```python
-m1@m2
-```
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-- Transposition (échanger lignes et colonnes)
-<!-- #endregion -->
-
-```python
-m1
-```
-```python
-m1.T
-```
-
-<!-- #region slideshow={"slide_type": "slide"} -->
 ## Broadcasting
 
 Bon à savoir :
@@ -534,7 +566,16 @@ conversion pour que tout se passe comme si on avait ajouté des dimensions par c
 np.broadcast_to(c, [3,3])
 ```
 
-Attention, ça ne marche que si les dimensions sont compatibles : ici il faut que `c` et `a` aient le même nombre de colonnes.
+C'est aussi ce qui se passait tout à l'heure avec
+
+```python
+a + 1
+```
+
+Ici `1` est considéré comme un tableau de `shape` `[0]`, et broadcasté en conséquence.
+
+Attention, ça ne marche que si les dimensions sont compatibles : ici il faut que `c` et `a` aient le
+même nombre de colonnes.
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 Pensez à [lire la doc](https://numpy.org/doc/stable/user/basics.broadcasting.html).
