@@ -1,15 +1,16 @@
 ---
 jupyter:
   jupytext:
+    custom_cell_magics: kql
     formats: ipynb,md
     split_at_heading: true
     text_representation:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.15.2
+      jupytext_version: 1.11.2
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: cours-ml
     language: python
     name: python3
 ---
@@ -30,13 +31,14 @@ TP 2 : NumPy
 
 [NumPy](https://numpy.org/).
 
-NumPy est un des packages les plus utilisés de Python. Il ajoute au langage des maths plus performantes, le support des tableaux multidimensionnels (`ndarray`) et du calcul matriciel.
+NumPy est un des packages les plus utilisés de Python. Il ajoute au langage des maths plus
+performantes, le support des tableaux multidimensionnels (`ndarray`) et du calcul matriciel.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### Installation
 
-[Comme on l'a dit](../04-pip_venv/pip-venv.py.md), il est vivement recommandé de travailler dans un environnement virtuel.
+Il est vivement recommandé de travailler dans un environnement virtuel.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
@@ -63,18 +65,59 @@ import numpy as np
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-Ne faites pas autrement, c'est devenu une formule consacrée. Faire autrement, notamment en lui
-donnant un autre nom, c'est de la perversion
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-![](https://i.redd.it/eam52i3vyny41.jpg)
+Ne faites pas autrement, ne lui donnez pas d'autre nom que le conventionnel `np`, sinon ça rendra
+votre code plus désagréable pour tout le monde.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Maths de base
 <!-- #endregion -->
 
+A priori rien de bien extraordinaire.
+
+Numpy vous donne accès à des fonctions mathématiques, souvent plus efficaces que les
+équivalents du module standard `math`, plus variées et apportant souvent d'autres avantages, comme
+une meilleure stabilité numérique.
+
+```python
+np.log(1.5)
+```
+
+```python
+np.sqrt(2)
+```
+
+```python
+np.logaddexp(2.7, 1.3)
+```
+
+Comment on les apprend ? **En allant lire la [doc](https://numpy.org/doc/stable/). Par exemple pour
+[`np.sqrt`](https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html#numpy.sqrt).
+
+Ça parle d'`array`, on explique ça dans une grosse minute.
+
+On peut aussi construire directement des nombres
+
+```python
+x = np.float64(27.13)  # on revient dans un instant sur pourquoi 64
+y = np.float64(3.14)
+```
+
+qui s'utilisent exactement comme les nombres de Python.
+
+```python
+x+y
+```
+
+```python
+x*y
+```
+
+etc.
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Précision
+<!-- #endregion -->
 Numpy a ses propres types numériques, qui permettent par exemple de travailler avec différentes précisions.
 
 ```python slideshow={"slide_type": "-"}
@@ -90,7 +133,7 @@ type(single)
 ```
 
 ```python
-# Un nombre à virgule flottante codé sur 64 bits
+# Un nombre à virgule flottante codé sur 64 bits, comme ceux par défaut
 double = np.float64(1.0)
 type(double)
 ```
@@ -108,41 +151,29 @@ print(double + single, type(double + single))
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-Et même les combiner avec les types habituels de Python
+Et même les combiner avec les types habituels de Python (qui sont considérés comme des `float64`)
 <!-- #endregion -->
 
 ```python
 print(double + 1.0, type(double + 1.0))
 ```
 
-<!-- #region slideshow={"slide_type": "subslide"} -->
-Et Numpy vous donne accès à plein de fonctions mathématiques, souvent plus efficaces que les équivalents du module standard `math`, plus variées, et apportant souvent d'autres avantages, comme une meilleur stabilité numérique.
-<!-- #endregion -->
-
-```python
-np.log(1.5)
-```
-
-```python
-np.logaddexp(2.7, 1.3)
-```
-
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## `ndarray`
 
-Le grand apport de NumPy ce sont les *array* (classe `ndarray`), à une dimension (vecteur), deux
-dimensions (matrices) ou trois et plus (tenseur).
+Le principal intérêt de Numpy ce sont les `array` (classe `ndarray`), à une dimension (vecteurs), deux
+dimensions (matricess) ou trois et plus (« tenseurs »).
 
-Un *array* sera plus rapide et plus compact (moins de taille en mémoire) qu'une liste Python.
+Un `array` sera en général plus rapide et plus compact (moins de taille en mémoire) qu'une liste Python.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "-"} -->
-NumPy ajoute plein de fonctions pour manipuler ses *array* de façon optimisée. À tel point qu'il est
-recommandé de ne pas utiliser de boucle pour les manipuler.
+NumPy ajoute plein de fonctions pour manipuler ses `array` de façon optimisée. Il est recommandé
+d'utiliser ces fonctions plutôt que des boucles, qui seront en général beaucoup plus lentes.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-On peut créer un *array* à partir d'une liste (ou d'un tuple) :
+On peut créer un `array` à partir d'une liste (ou d'un tuple) :
 <!-- #endregion -->
 
 ```python
@@ -158,13 +189,15 @@ b
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-**Mais** à la différence d'une liste, un *array* aura les caractéristiques suivantes :
+**Mais** à la différence d'une liste, un `array` aura les caractéristiques suivantes :
 
-- Une taille fixe (donnée à la création)
-- Ses éléments doivent tous être de même type
+- Une taille fixe (donnée à la création).
+- Ses éléments doivent tous être de même type.
+
+(C'est ça qui permet d'optimiser les opérations et la mémoire)
 <!-- #endregion -->
 
-```python tags=["raises-exception"] slideshow={"slide_type": "fragment"}
+```python slideshow={"slide_type": "fragment"} tags=["raises-exception"]
 b.append(1)
 ```
 
@@ -176,13 +209,21 @@ a
 <!-- #region slideshow={"slide_type": "slide"} -->
 ### Infos sur les `ndarray`
 
-Pour avoir des infos sur les *array* que vous manipulez vous avez :
+b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+
+Pour avoir des infos sur les `array` que vous manipulez vous avez :
 
 - `dtype` (type des éléments)
 <!-- #endregion -->
 
 ```python
 b.dtype
+```
+
+- `shape` (un tuple avec la taille de chaque dimension)
+
+```python
+b.shape
 ```
 
 - `ndim` (le nombre de dimensions)
@@ -200,14 +241,8 @@ print(b.ndim)
 b.size
 ```
 
-- `shape` (un tuple avec la taille de chaque dimension)
-
-```python
-b.shape
-```
-
 <!-- #region slideshow={"slide_type": "slide"} -->
-### Créer un *array*
+### Créer un `array`
 
 - `np.zeros`
 <!-- #endregion -->
@@ -265,8 +300,8 @@ np.arange(10)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- `np.linspace(start, stop)` (crée un *array* avec des valeurs réparties uniformément entre start et
-   stop (50 valeurs par défaut))
+- `np.linspace(start, stop)` (crée un `array` avec des valeurs réparties uniformément entre `start`
+   et `stop` (50 par défaut))
 <!-- #endregion -->
 
 ```python
@@ -274,7 +309,7 @@ np.linspace(0, 10, num=5)
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-- `np.empty` (crée un array vide, enfin avec des valeurs aléatoires car non-initialisées)
+- `np.empty` (crée un `array` vide, ou plus précisément avec des valeurs non-initialisées)
 <!-- #endregion -->
 
 ```python
@@ -290,7 +325,7 @@ np.random.rand(3,2)
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
-Allez lire [la doc](https://numpy.org/doc) 👀
+Allez lire [la doc](https://numpy.org/doc) !
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -342,7 +377,7 @@ b[1]
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- On peut aussi faire des sélections avec des conditions (oui comme dans pandas)
+- On peut aussi faire des sélections avec des conditions (comme dans pandas et co.)
 <!-- #endregion -->
 
 ```python
@@ -375,49 +410,6 @@ a%2 == 1
 ```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Changer de dimension
-<!-- #endregion -->
-
-```python
-c = np.arange(6)
-c
-```
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-J'en fais une matrice de 2 lignes et 3 colonnes
-<!-- #endregion -->
-
-```python
-c.reshape(2, 3)
-```
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-On revient à une dimension
-<!-- #endregion -->
-
-```python
-c.flatten()
-```
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-Hop, on ajoute une dimension
-<!-- #endregion -->
-
-```python
-c[:, np.newaxis]
-```
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-Transposition (lignes deviennent colonnes et colonnes deviennent lignes)
-<!-- #endregion -->
-
-```python
-c2 = c.reshape(2, 3)
-print(c2)
-print(c2.T)
-```
-
-<!-- #region slideshow={"slide_type": "slide"} -->
 ## Opérations
 
 - Les trucs classiques
@@ -445,7 +437,7 @@ a.min()
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-- Opérations sur *array* à une dimension
+- Opérations sur `array` à une dimension
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "-"}
@@ -479,27 +471,40 @@ a/c
 <!-- #endregion -->
 
 ```python
-m1 = np.array([[1, 2],[ 3, 4]])
+m1 = np.array([[1, 2],[ 3, 4], [5, 6]])
 m1
 ```
 
 ```python
-m2 = np.array([[5, 6],[ 7, 8]])
+m2 = np.array([[7, 8, 9, 10], [11, 12, 13, 14]])
 m2
-```
-
-```python
-m1@m2
 ```
 
 ```python
 np.matmul(m1, m2)
 ```
 
+On peut aussi utiliser l'opérateur `@`
+
+```python
+m1@m2
+```
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
+- Transposition (échanger lignes et colonnes)
+<!-- #endregion -->
+
+```python
+m1
+```
+```python
+m1.T
+```
+
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Broadcasting
 
-Une notion un peu plus compliquée, mais qui sert souvent.
+Bon à savoir :
 <!-- #endregion -->
 
 ```python
@@ -513,30 +518,62 @@ c
 ```
 
 ```python
-a+c
+a + c
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Explication : si un des tableaux a moins de dimensions que l'autre, Numpy fait automatiquement la
-conversion pour que tout se passe comme si on avait ajouté par
+Ce qui se passe : si un des tableaux a moins de dimensions que l'autre, Numpy fait automatiquement la
+conversion pour que tout se passe comme si on avait ajouté des dimensions par copie :
 <!-- #endregion -->
 
 ```python
 np.broadcast_to(c, [3,3])
 ```
 
-Ajouter un tableau à une dimension revient donc à ajouter colonne par colonne
+Attention, ça ne marche que si les dimensions sont compatibles : ici il faut que `c` et `a` aient le même nombre de colonnes.
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+Pensez à [lire la doc](https://numpy.org/doc/stable/user/basics.broadcasting.html).
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Changer de forme
+<!-- #endregion -->
 
 ```python
-a*-1
+c = np.arange(6)
+c
+```
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
+J'en fais une matrice de 2 lignes et 3 colonnes
+<!-- #endregion -->
+
+```python
+d = c.reshape(2, 3)
+d
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Pensez à ?
+Inversement on peut tout aplatir
 <!-- #endregion -->
 
-À [lire la doc](https://numpy.org/doc/stable/user/basics.broadcasting.html).
+```python
+d.flatten()
+```
 
+<!-- #region slideshow={"slide_type": "fragment"} -->
+Ou ajouter des dimensions (par exemple pour guider le broadcasting, voir la doc, etc.)
+<!-- #endregion -->
+
+```python
+e = c[:, np.newaxis]
+e
+```
+
+
+```python
+print(c.shape, e.shape)
+```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Matplotlib
@@ -561,10 +598,9 @@ plt.plot(a)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Après dès qu'on veut faire des trucs un peu plus compliqués ben ça devient plus compliqué,
-matplotlib.
+En pratique, quand on veut faire des trucs un peu plus complexes, il vaut mieux utiliser des surcouches comme [`plotnine`](https://plotnine.org/). On en reparlera si on a le temps.
 
-Mais on peut aussi faire des trucs fun assez facilement. Exemple avec une image.
+Juste un exemple avec une image pour la culture :
 <!-- #endregion -->
 
 `plt.imread` permet de changer un fichier image en objet python… devinez lequel
@@ -575,16 +611,16 @@ type(im)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Bingo, un *array* Numpy. En même temps, c'est jamais qu'une matrice de pixels une image.
+Bingo, un `array`. En même temps, c'est jamais qu'une matrice de pixels, une image.
 <!-- #endregion -->
 
 ```python
 im.shape
 ```
 
-Un *array* à trois dimensions : X, Y (les coordonnées du pixel) et la valeur RGB du pixel
+Un `array` à trois dimensions : X, Y (les coordonnées du pixel) et la valeur RGB du pixel (trois valeurs).
 
-Le pixel `(200, 200)` par exemple est un *array* de 3 éléments `(r,g,b)` :
+Le pixel `(200, 200)` par exemple est un `array` de 3 éléments `(r, g, b)` :
 
 ```python
 im[200,200]
@@ -599,20 +635,19 @@ plt.imshow(im)
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-si je ne prends que la valeur de R dans RGB j'obtiens des niveaux de gris (ça marche aussi pour G ou
-B)
+si je ne prends que la valeur de R dans RGB :
 <!-- #endregion -->
 
 ```python
-plt.imshow(im[:,:,0])
+plt.imshow(im[:, :, 0])
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Magie
+qu'est-ce qui se passe ici ?
 <!-- #endregion -->
 
 ```python
-plt.imshow(im[:,:,0], cmap=plt.get_cmap('gray'))
+plt.imshow(im[:, :, 0], cmap=plt.get_cmap('gray'))
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -626,8 +661,7 @@ Si vous voulez en savoir plus je vous invite à consulter les pages suivantes 
 ## S'entraîner avec NumPy
 
 À vous de jouer maintenant. Allez à <https://www.w3resource.com/python-exercises/numpy/index.php> et
-faites autant d'exercices que possible. Évitez la série « *Linear Algebra* » sur laquelle on
-reviendra.
+faites autant d'exercices que possible.
 
 Essayez au maximum de les résoudre sans écrire de boucles. Utilisez la doc au maximum, si vous ne
 réussissez pas un exercice, assurez-vous de complètement comprendre la solution avant de passer à la
