@@ -11,7 +11,7 @@ module Jekyll
             if @notebook_path.end_with?(".md")
                notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
             else
-               notebook_path = @notebook_path
+               notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
             end
             urlpath = (
                "?repo=#{ERB::Util.url_encode("https://github.com/" + context['site']['repository'])}" +
