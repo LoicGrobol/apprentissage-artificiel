@@ -3,6 +3,9 @@ module Jekyll
       def initialize(tag_name, notebook_path, tokens)
          super
          @notebook_path = notebook_path
+         if @notebook_path.end_with?(".md")
+            @notebook_path += "?factory=Jupytext+Notebook"
+         end
       end
   
       def render(context)
