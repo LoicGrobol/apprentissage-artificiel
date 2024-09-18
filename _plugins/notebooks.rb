@@ -8,10 +8,10 @@ module Jekyll
       def render(context)
           if context['site'].key?("environ_repository")
             repo_dir = context['site']['repository'].split("/").last
-            if @notebook_path.end_with?(".md")
-               notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
-            else
-               notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
+            if @notebook_path.strip.end_with?(".md")
+               notebook_path = @notebook_path.strip + "?factory=Jupytext+Notebook"
+            else:
+               notebook_path = @notebook_path.strip
             end
             urlpath = (
                "?repo=#{ERB::Util.url_encode("https://github.com/" + context['site']['repository'])}" +
@@ -25,7 +25,7 @@ module Jekyll
                "?urlpath=git-pull#{urlpath_escaped})"
             )
          else
-            res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{notebook_path})"
+            res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{@notebook_path})"
          end
          return res
       end
