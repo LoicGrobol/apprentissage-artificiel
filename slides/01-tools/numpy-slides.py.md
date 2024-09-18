@@ -162,7 +162,7 @@ print(double + 1.0, type(double + 1.0))
 ## `ndarray`
 
 Le principal intérêt de Numpy ce sont les `array` (classe `ndarray`), à une dimension (vecteurs), deux
-dimensions (matricess) ou trois et plus (« tenseurs »).
+dimensions (matrices) ou trois et plus (« tenseurs »).
 
 Un `array` sera en général plus rapide et plus compact (moins de taille en mémoire) qu'une liste Python.
 <!-- #endregion -->
@@ -237,7 +237,7 @@ a.min()
 
 ### ufunc
 
-C'est un des points les plus important des Numpy : ses fonctions opèrent sur les `array`s coordonnée
+C'est un des points les plus important de Numpy : ses fonctions opèrent sur les `array`s coordonnée
 par coordonnée :
 
 ```python
@@ -260,7 +260,7 @@ d'un `array` s'appellent des [`ufunc`](https://numpy.org/doc/stable/reference/uf
 (*Universal FUNctions*), Numpy en fournit beaucoup par défaut, et c'est en général mieux de les
 utiliser, mais vous pouvez aussi définir les vôtres si vous avez vraiment un besoin particulier.
 
-TL;DR: **ne traitez les `array` avec des boucles que si vous n'avez vraiment pas le choix.**
+TL;DR: **ne traitez les `array`s avec des boucles que si vous n'avez vraiment pas le choix.**
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### Opérations sur plusieurs `array`s
@@ -295,7 +295,7 @@ a / c
 ```
 
 ```python
-a + 1
+a / 1000
 ```
 
 Tiens, celui-ci est un peu curieux : vous voyez pourquoi ?
@@ -472,7 +472,7 @@ a[4]
 ```
 
 ```python slideshow={"slide_type": "fragment"}
-a[:2]
+a[2:5]
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -485,11 +485,19 @@ b
 ```
 
 ```python slideshow={"slide_type": "fragment"}
-b[1,2] 
+b[1, 2]
+```
+
+```python
+b[1, 2:5]
 ```
 
 ```python slideshow={"slide_type": "fragment"}
-b[1,:] # 2e ligne, toutes les colonnes
+b[1, :] # 2e ligne, toutes les colonnes
+```
+
+```python
+b[1, ...]
 ```
 
 ```python slideshow={"slide_type": "subslide"}
@@ -563,7 +571,7 @@ conversion pour que tout se passe comme si on avait ajouté des dimensions par c
 <!-- #endregion -->
 
 ```python
-np.broadcast_to(c, [3,3])
+np.broadcast_to(c, [4,3])
 ```
 
 C'est aussi ce qui se passait tout à l'heure avec

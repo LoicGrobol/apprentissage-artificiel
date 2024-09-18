@@ -2,20 +2,20 @@ module Jekyll
    class NotebookBadges < Liquid::Tag
       def initialize(tag_name, notebook_path, tokens)
          super
-         @notebook_path = notebook_path
+         @notebook_path = notebook_path.strip
       end
   
       def render(context)
           if context['site'].key?("environ_repository")
             repo_dir = context['site']['repository'].split("/").last
-            if @notebook_path.strip.end_with?(".md")
-               notebook_path = @notebook_path.strip + "?factory=Jupytext+Notebook"
+            if @notebook_path.end_with?(".md")
+               notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
             else
-               notebook_path = @notebook_path.strip
+               notebook_path = @notebook_path
             end
             urlpath = (
                "?repo=#{ERB::Util.url_encode("https://github.com/" + context['site']['repository'])}" +
-               "&urlpath=#{ERB::Util.url_encode("tree/#{repo_dir}/#{notebook_path}")}" +
+               "&urlPath=#{ERB::Util.url_encode("notebooks/#{repo_dir}/#{notebook_path}")}" +
                "&branch=#{context['site']['repo_branch']}"
             )
             urlpath_escaped = ERB::Util.url_encode(urlpath)
