@@ -38,23 +38,8 @@ performantes, le support des tableaux multidimensionnels (`ndarray`) et du calcu
 <!-- #region slideshow={"slide_type": "subslide"} -->
 ### Installation
 
-Il est vivement recommandé de travailler dans un environnement virtuel.
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "fragment"} -->
-Si vous avez installé le
-[requirements.txt](../../requirements.txt) de ce cours, NumPy est déjà installé.
-
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "subslide"} -->
-Sinon installez NumPy, soit dans votre terminal avec `pip`, soit en exécutant la cellule de code
-suivante :
-<!-- #endregion -->
-
-```python
-%pip install -U numpy
-```
+Si vous n'avez pas déjà installé le `requirements.txt` du cours, installez Numpy **dans votre
+environnement virtuel** avec `python -m pip install numpy`.
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 On importe Numpy comme ceci
@@ -552,7 +537,7 @@ Bon à savoir :
 <!-- #endregion -->
 
 ```python
-a = np.array([[1, 2, 3], [5, 6, 7], [9, 10, 11]])
+a = np.array([[1, 2, 3], [5, 6, 7]])
 a
 ```
 
@@ -566,12 +551,12 @@ a + c
 ```
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
-Ce qui se passe : si un des tableaux a moins de dimensions que l'autre, Numpy fait automatiquement la
-conversion pour que tout se passe comme si on avait ajouté des dimensions par copie :
+Ce qui se passe : si un des tableaux a moins de dimensions que l'autre, Numpy fait automatiquement
+la conversion pour que tout se passe comme si on avait ajouté des dimensions par copie :
 <!-- #endregion -->
 
 ```python
-np.broadcast_to(c, [4,3])
+np.broadcast_to(c, [2, 3])
 ```
 
 C'est aussi ce qui se passait tout à l'heure avec
