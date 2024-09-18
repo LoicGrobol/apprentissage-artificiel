@@ -10,7 +10,7 @@ module Jekyll
             repo_dir = context['site']['repository'].split("/").last
             if @notebook_path.end_with?(".md")
                notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
-            else:
+            else
                notebook_path = @notebook_path
             end
             urlpath = (
