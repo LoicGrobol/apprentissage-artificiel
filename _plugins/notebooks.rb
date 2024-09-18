@@ -3,17 +3,19 @@ module Jekyll
       def initialize(tag_name, notebook_path, tokens)
          super
          @notebook_path = notebook_path
-         if @notebook_path.end_with?(".md")
-            @notebook_path += "?factory=Jupytext+Notebook"
-         end
       end
   
       def render(context)
           if context['site'].key?("environ_repository")
             repo_dir = context['site']['repository'].split("/").last
+            if @notebook_path.end_with?(".md")
+               notebook_path = @notebook_path + "?factory=Jupytext+Notebook"
+            else:
+               notebook_path = @notebook_path
+            end
             urlpath = (
                "?repo=#{ERB::Util.url_encode("https://github.com/" + context['site']['repository'])}" +
-               "&urlpath=#{ERB::Util.url_encode("tree/#{repo_dir}/#{@notebook_path}")}" +
+               "&urlpath=#{ERB::Util.url_encode("tree/#{repo_dir}/#{notebook_path}")}" +
                "&branch=#{context['site']['repo_branch']}"
             )
             urlpath_escaped = ERB::Util.url_encode(urlpath)
@@ -23,7 +25,7 @@ module Jekyll
                "?urlpath=git-pull#{urlpath_escaped})"
             )
          else
-            res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{@notebook_path})"
+            res = "[![Launch in Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/#{context['site']['repository']}/#{context['site']['repo_branch']}?urlpath=tree/#{notebook_path})"
          end
          return res
       end
