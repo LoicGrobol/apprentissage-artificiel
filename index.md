@@ -7,7 +7,7 @@ layout: default
 
 ## News
 
-- **2023-09-17** Premier cours du semestre le 18/09/2023
+- **2024-09-17** Premier cours du semestre le 18/09/2024
 
 ## Infos pratiques
 
@@ -35,7 +35,7 @@ correctement sur la plupart des plateformes (mais ne seront pas dynamiques).
 Les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
 sans rien installer.
 
-### 2024-09-18 — Outils de travail
+### 2024-09-18 : Outils de travail
 
 - {% notebook_badges slides/01-tools/python_crash_course.py.md %}
   [Crash course Python](slides/01-tools/python_crash_course.py.ipynb)
@@ -45,6 +45,12 @@ sans rien installer.
   [Présentation Numpy](slides/01-tools/numpy-slides.py.ipynb)
 - {% notebook_badges slides/01-tools/polars.py.md %}
   [Présentation Polars](slides/01-tools/polars.py.ipynb)
+
+### 2024-09-25 : Intuitions et vocabulaire
+
+- [Slides intro](slides/02-intro/intro.pdf)
+- {% notebook_badges slides/03-scikit-learn/scikit-learn-slides.py.md %}
+  [TP intro à scikit-learn](slides/03-scikit-learn/scikit-learn-slides.py.ipynb)
 
 
 ## Utilisation en local

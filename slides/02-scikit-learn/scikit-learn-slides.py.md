@@ -35,7 +35,7 @@ from IPython.display import display
 scikit-learn est une bibliothèque Python dédiée à l'apprentissage artificiel qui repose sur
 [NumPy](https://numpy.org/) et [SciPy](https://scipy.org/). Il est écrit en Python et
 [Cython](https://cython.org/). Il s'interface très bien avec [matplotlib](https://matplotlib.org),
-[seaborn](https://seaborn.pydata.org/) ou [pandas](https://pandas.pydata.org/) (qui lui-même marche
+[seaborn](https://seaborn.pydata.org/) ou [polars](https://pola.rs/) (qui lui-même marche
 très bien avec [plotnine](https://plotnine.readthedocs.io/)). C'est devenu un incontournable du
 *machine learning* et des *data sciences* en Python.
 
@@ -96,7 +96,7 @@ nous intéresse plutôt que tout le package. Notez aussi le nom `sklearn` pour l
 Ces jeux de données sont des objets `sklearn.utils.Bunch`. Organisés un peu comme des dictionnaires
 Python, ces objets contiennent :
 
-- `data` : array NumPy à deux dimensions d'échantillons de données de dimensions `(n_samples,
+- `data` : array NumPy à deux dimensions d'échantillons de données de di;mensions `(n_samples,
   n_features)`, les inputs, les X
 - `target` : les variables à prédire, les catégories des échantillons si vous voulez, les outputs,
   les y
@@ -420,7 +420,7 @@ décision](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.Ra
 ### 2. D'autres traits
 
 Essayez avec d'autres *features* : La longueur moyenne des mots, le nombre ou le type d'adjectifs,
-la présence d'entités nommées, …
+la présence d'entités nommées…
 
 Pour récupérer ce genre de *features*, vous pouvez regarder du côté de [spaCy](http://spacy.io/)
 comme prétraitement de vos données.
