@@ -48,6 +48,7 @@ jobs:
       
       - name: Build slides 📚
         run: |
+          source .venv/bin/activate
           shopt -s globstar
           jupytext --to ipynb ${{ github.workspace }}/**/*.py.md
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/**/*.py.ipynb
