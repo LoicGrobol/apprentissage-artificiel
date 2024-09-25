@@ -49,9 +49,9 @@ sans rien installer.
 ### 2024-09-25 : Intuitions et vocabulaire
 
 - [Slides intro](slides/02-intro/intro.pdf)
-- {% notebook_badges slides/03-scikit-learn/scikit-learn-slides.py.md %}
+- {% notebook_badges slides/02-scikit-learn/scikit-learn-slides.py.md %}
   [TP intro à scikit-learn](slides/02-scikit-learn/scikit-learn-slides.py.ipynb)
-  - [imdb_smol.tar.gz](slides/02-scikit-learn/data/imdb_smol.tar.gz)
+  - [`imdb_smol.tar.gz`](slides/02-scikit-learn/data/imdb_smol.tar.gz)
 
 
 ## Utilisation en local
