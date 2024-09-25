@@ -31,14 +31,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install uv
+      - name: Install uv 🐍
         uses: astral-sh/setup-uv@v3
         with:
           cache-dependency-glob: "**/requirements.txt"
           cache-suffix: ${{ github.job }}
           enable-cache: true
 
-      - name: Create base venv
+      - name: Create base venv 🐙
         run: uv venv --python ${{ matrix.python-version }}
 
       - name: Install dependencies 💁🏻
