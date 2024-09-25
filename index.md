@@ -50,7 +50,8 @@ sans rien installer.
 
 - [Slides intro](slides/02-intro/intro.pdf)
 - {% notebook_badges slides/03-scikit-learn/scikit-learn-slides.py.md %}
-  [TP intro à scikit-learn](slides/03-scikit-learn/scikit-learn-slides.py.ipynb)
+  [TP intro à scikit-learn](slides/02-scikit-learn/scikit-learn-slides.py.ipynb)
+  - [imdb_smol.tar.gz](slides/02-scikit-learn/data/imdb_smol.tar.gz)
 
 
 ## Utilisation en local
