@@ -392,12 +392,12 @@ y_pred = clf.predict(X_test)
 print(classification_report(y_test, y_pred))
 ```
 
-## 🤖 Exo  🤖
+## 🤖 Exo 🤖
 
 ### 1. Un projet complet
 
 L'archive [`imdb_smol.tar.gz`](data/imdb_smol.tar.gz) (aussi disponible [dans le
-dépôt](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/slides/06-scikit-learn/data/imdb_smol.tar.gz))
+dépôt](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/slides/03-scikit-learn/data/imdb_smol.tar.gz))
 contient 602 critiques de films sous formes de fichiers textes, réparties en deux classes :
 positives et négatives (matérialisées par des sous-dossiers). Votre mission est de réaliser un
 script qui :
