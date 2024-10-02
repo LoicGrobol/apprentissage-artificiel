@@ -65,7 +65,10 @@ pour étudier les capacités de quelques classifieurs.
   décision](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
   en faisant varier la profondeur pour étudier dans quelle mesure ils sous-apprennent quand la
   profondeur est trop faible et déterminer à partir de quand ils surapprennent. Penser à la
-  validation croisée, penser à faire des courbes d'apprentissage, penser à visualiser les arbres.
+  validation croisée, penser à faire des courbes d'apprentissage, penser à visualiser les arbres,
+  penser à regarder les matrices de confusion, chercher dans [les métriques de
+  scikit-learn](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics)
+  celles qui pourraient être intéressantes.
 - Étudier l'influence de la taille du corpus d'apprentissage (mêmes indices)
 - Même jeu avec un
   [perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html),
