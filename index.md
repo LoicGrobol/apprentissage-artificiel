@@ -53,6 +53,25 @@ sans rien installer.
   [TP intro à scikit-learn](slides/02-scikit-learn/scikit-learn-slides.py.ipynb)
   - [`imdb_smol.tar.gz`](slides/02-scikit-learn/data/imdb_smol.tar.gz)
 
+### 2024-10-02 : Évaluation
+
+TP : full autonomie ! Préparez un notebook (avec du code **et** du texte) où vous utiliserez le
+scikit-learn sur le jeu de données [20
+newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html)
+pour étudier les capacités de quelques classifieurs.
+
+- Présenter rapidement le jeu de données (origine, composition, quelques stats descriptives)
+- Entraîner [des arbres de
+  décision](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
+  en faisant varier la profondeur pour étudier dans quelle mesure ils sous-apprennent quand la
+  profondeur est trop faible et déterminer à partir de quand ils surapprennent. Penser à la
+  validation croisée, penser à faire des courbes d'apprentissage, penser à visualiser les arbres.
+- Étudier l'influence de la taille du corpus d'apprentissage (mêmes indices)
+- Même jeu avec un
+  [perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html),
+  en étudiant l'influence du paramètre `max_iter` (commencer à 1)
+
+Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 
 ## Utilisation en local
 
