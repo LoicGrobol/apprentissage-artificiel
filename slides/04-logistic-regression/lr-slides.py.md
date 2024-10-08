@@ -1,22 +1,23 @@
 ---
 jupyter:
   jupytext:
+    custom_cell_magics: kql
     formats: ipynb,md
     split_at_heading: true
     text_representation:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.15.2
+      jupytext_version: 1.11.2
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: cours-ml
     language: python
     name: python3
 ---
 
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
-TP 5 : Régression logistique
+TP 5 : Regression logistique
 ===============================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
@@ -28,42 +29,64 @@ from IPython.display import display, Markdown
 ```
 
 ```python
+import matplotlib.pyplot as plt
 import numpy as np
+import polars as pl
+import seaborn as sns
+import tol_colors as tc
 ```
-
-## Vectorisations arbitraires de documents
-
-On a vu des façons de traiter des documents vus comme des sacs des mots en les représentant comme
-des vecteurs dont les coordonnées correspondaient à des nombres d'occurrences.
-
-Mais on aimerait — entre autres — pouvoir travailler avec des représentations arbitraires, on peut
-par exemple imaginer vouloir représenter un document par ŀa polarité (au sens de l'analyse du
-sentiment) de ses mots.
 
 ## 🧠 Exo 🧠
 
 ### 1. Vectoriser un document
 
-À l'aide du lexique [VADER](https://github.com/cjhutto/vaderSentiment) (vous le trouverez aussi dans
-[`data/vader_lexicon.txt`](data/vader_lexicon.txt)), écrivez une fonction qui prend en entrée un
-texte en anglais et renvoie sa représentation sous forme d'un vecteur de features à deux traits :
-polarité positive moyenne (la somme des polarités positives des mots qu'il contient divisée par sa
-longueur en nombre de mots) et polarité négative moyenne.
+Regardez la tête du lexique [VADER](https://github.com/cjhutto/vaderSentiment) (vous le
+trouverez aussi dans [`data/vader_lexicon.txt`](data/vader_lexicon.txt)). Il contient une liste de
+mots (première colonne) avec pour chaque mot $w$ une polarité (deuxième colonne) $p(w)$, positive ou
+négative.
 
-Le polarité d'un mot correspond à la deuxième colonne (`MEAN-SENTIMENT-RATING`) dans le fichier.
+1\. Écrivez une fonction qui lit le lexique VADER et renvoie un `dict` associant à chaque mot sa
+polarité.
 
 ```python
-def read_vader(vader_path):
+def read_vader(vader_path: str) -> dict[str, float]:
     pass  # À vous de jouer
 ```
 
+(Il y a des annotations de types dans la cellule précédente, je vais essayer d'en mettre autant que
+possible dans les TPSs futurs. Il est vivement conseillé de lire
+<https://realpython.com/lessons/type-hinting/> et <https://realpython.com/python-type-checking/> et
+de parcourir [la doc](https://docs.python.org/3/library/typing.html) à ce sujet).
+
+Étant donné un document $d$, vu comme un sac de mots de longueur $N$, on peut utiliser VADER pour
+donner une représentation très (trop) simple de $d$ : un vecteur de deux *features* : sa polarité
+positive moyenne $g$ et sa polarité négative moyenne $b$, définies par :
+
+$$
+\begin{equation}
+    \begin{aligned}
+        g &= \frac{1}{N}\sum_{w∈d} \max(p(w), 0)\\
+        b &= \frac{1}{N}\sum_{w∈d} (-\min(p(w), 0))
+    \end{aligned}
+\end{equation}
+$$
+
+(notez bien que $g$ et $b$ sont tous les deux des nombres **positifs**)
+
+
+2\. Écrire une fonction qui prend en entrée un texte en anglais et le dictionnaire précédent et
+renvoie cette représentation. On pourra supposer que les mots inconnus ont une polarité de $0$.
+
 ```python
-def featurize(doc, lexicon):
+def featurize(doc: list[str], lexicon: dict[str, float]) -> np.ndarray:
     pass # À vous de jouer !
 ```
 
+Vous aurez besoin d'extraire les mots du texte, vous pouvez le faire avec nltk, spacy, ou
+sauvagement avec une regex comme celle de scikit-learn : `(?u)\\b\\w\\w+\\b'`.
+
 ```python
-lexicon = read_vader("../../data/vader_lexicon.txt")
+lexicon = read_vader("data/vader_lexicon.txt")
 doc = "I came in in the middle of this film so I had no idea about any credits or even its title till I looked it up here, where I see that it has received a mixed reception by your commentators. I'm on the positive side regarding this film but one thing really caught my attention as I watched: the beautiful and sensitive score written in a Coplandesque Americana style. My surprise was great when I discovered the score to have been written by none other than John Williams himself. True he has written sensitive and poignant scores such as Schindler's List but one usually associates his name with such bombasticities as Star Wars. But in my opinion what Williams has written for this movie surpasses anything I've ever heard of his for tenderness, sensitivity and beauty, fully in keeping with the tender and lovely plot of the movie. And another recent score of his, for Catch Me if You Can, shows still more wit and sophistication. As to Stanley and Iris, I like education movies like How Green was my Valley and Konrack, that one with John Voigt and his young African American charges in South Carolina, and Danny deVito's Renaissance Man, etc. They tell a necessary story of intellectual and spiritual awakening, a story which can't be told often enough. This one is an excellent addition to that genre."
 doc_features = featurize(doc, lexicon)
 doc_features
@@ -71,10 +94,13 @@ doc_features
 
 ### 2. Vectoriser un corpus
 
-Utiliser la fonction précédente pour vectoriser [le mini-corpus IMDB](../../data/imdb_smol.tar.gz)
+Utiliser la fonction précédente pour vectoriser [le mini-corpus IMDB](../../data/imdb_smol.tar.gz) :
+générez un `DataFrame` polars où chaque document est représenté par une ligne, les colonnes étant
+`g`, `b` et `cls`, la classe (`"pos"` ou `"neg"`) du document (qui vous est donnée par son
+sous-dossier)
 
 ```python
-def featurize_dir(corpus_root, lexicon):
+def featurize_dir(corpus_root_path: str, lexicon: dict[str, float]) -> pl.DataFrame:
     pass # À vous!
 
 # On réutilise le lexique précédent
@@ -86,15 +112,12 @@ featurize_dir("data/imdb_smol", lexicon)
 Comment se répartissent les documents du corpus avec la représentation qu'on a choisi ?
 
 ```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 lexicon = read_vader("data/vader_lexicon.txt")
 imdb_features = featurize_dir("data/imdb_smol", lexicon)
 
-X = np.array([d[0] for d in (*imdb_features["pos"], *imdb_features["neg"])])
-Y = np.array([d[1] for d in (*imdb_features["pos"], *imdb_features["neg"])])
-H = np.array([*("pos" for _ in imdb_features["pos"]), *("neg" for _ in imdb_features["neg"])])
+X = imdb_features.get_column("g").to_numpy()
+Y = imdb_features.get_column("b").to_numpy()
+H = imdb_features.get_column("cls").to_numpy()
 
 fig = plt.figure(dpi=200)
 sns.scatterplot(x=X, y=Y, hue=H, s=5)
@@ -111,22 +134,22 @@ $$\mathbf{x} = (x₁, …, x_n)$$
 
 Un vecteur de poids de dimension $n$
 
-$$\mathbf{w} = (w₁, …, w_n)$$
+$$\mathbf{α} = (α₁, …, α_n)$$
 
-et un biais $b$ scalaire (un nombre quoi).
+et un biais $β$ scalaire (un nombre quoi).
 
-Pour réaliser une classification on considère le nombre $z$ (on parle parfois de *logit*)
+Pour réaliser une classification on considère le nombre $z$
 
-$$z=w₁×x₁ + … + w_n×x_n + b = \sum_iw_ix_i + b$$
+$$z=α₁×x₁ + … + α_n×x_n + β = \sum_iα_ix_i + β$$
 
 Ce qu'on note aussi
 
-$$z = \mathbf{w}⋅\mathbf{x}+b$$
+$$z = \mathbf{α}⋅\mathbf{x}+β$$
 
-$\mathbf{w}⋅\mathbf{x}$ se lit « w scalaire x », on parle de *produit scalaire* en français et de
+$\mathbf{α}⋅\mathbf{x}$ se lit « alpha scalaire x », on parle de *produit scalaire* en français et de
 *inner product* en anglais.
 
-(ou pour les mathématicien⋅ne⋅s acharné⋅e⋅s $z = \langle w\ |\ x \rangle + b$)
+(ou pour les mathématicien⋅nes acharné⋅es $z = \langle α\ |\ x \rangle + β$)
 
 Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la classe $0$ si $z < 0$ et la
 classe $1$ sinon.
@@ -136,11 +159,13 @@ classe $1$ sinon.
 ### 1. Une fonction affine
 
 Écrire une fonction qui prend en entrée un vecteur de features et un vecteur de poids sous forme de
-tableaux numpy $x$ et $w$ de dimensions `(n,)` et un biais $b$ sous forme d'un tableau numpy de
-dimensions `(1,)` et renvoie $z=\sum_iw_ix_i + b$.
+tableaux numpy $x$ et $α$ de dimensions `(n,)` et un biais $β$ sous forme d'un tableau numpy de
+dimensions `(1,)` et renvoie $z=\sum_iα_ix_i + β$.
 
 ```python
-def affine_combination(x, w, b):
+def affine_combination(x: np.ndarray, alpha: np.ndarray, beta: np.ndarray) -> np.ndarray:
+    # Attention, j'ai typé la valeur de retour comme un ndarray, mais il devra être
+    # de forme (1,)
     pass # À vous de jouer !
 
 affine_combination(
@@ -152,20 +177,26 @@ affine_combination(
 
 ### 2. Un classifieur linéaire
 
-Écrire un classifieur linéaire qui prend en entrée des vecteurs de features à deux dimensions
-précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $-0.01$. Appliquez ce
-classifieur sur le mini-corpus IMDB qu'on a vectorisé et calculez son exactitude.
+1\. Écrire un classifieur linéaire qui prend en entrée des vecteurs de features à deux dimensions
+précédents et utilise les poids respectifs $0.6$ et $-0.4$ et un biais de $-0.01$.
 
 ```python
-def hardcoded_classifier(x):
-    return 0  # À vous de jouer
-
-hardcoded_classifier(doc_features)
+lexicon = read_vader("data/vader_lexicon.txt")
+imdb_features = featurize_dir("data/imdb_smol", lexicon)
 ```
 
-Pour l'exactitude, on devrait obtenir quelque chose comme ça
+```python
+def hardcoded_classifier(x: np.ndarray) -> str:
+    return "pos"  # À vous de jouer
+
+hardcoded_classifier(np.array([2.7, 1.3]))
+```
+
+2\. Appliquez ce classifieur sur le mini-corpus IMDB qu'on a vectorisé et calculez son exactitude.
 
 ```python
+# Faites marcher cette cellule. Il faudra sans doute écrire une fonction.
+
 classifier_accuracy(np.array([0.6, -0.4]), np.array(-0.01), imdb_features)
 ```
 
@@ -175,8 +206,6 @@ Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$
 la valeur de $z$.
 
 ```python
-import tol_colors as tc
-
 x = np.linspace(0, 1, 1000)
 y = np.linspace(0, 1, 1000)
 X, Y = np.meshgrid(x, y)
@@ -192,7 +221,6 @@ plt.show()
 Ou encore plus clairement, si on représente la classe assignée
 
 ```python
-import tol_colors as tc
 
 x = np.linspace(0, 1, 1000)
 y = np.linspace(0, 1, 1000)
@@ -223,9 +251,10 @@ Z = (0.6*X - 0.4*Y) -0.01 > 0.0
 
 heatmap = plt.pcolormesh(X, Y, Z, shading="auto", cmap=tc.tol_cmap("sunset"))
 
-X = np.array([d[0] for d in (*imdb_features["pos"], *imdb_features["neg"])])
-Y = np.array([d[1] for d in (*imdb_features["pos"], *imdb_features["neg"])])
-H = np.array([*(1 for _ in imdb_features["pos"]), *(0 for _ in imdb_features["neg"])])
+X = imdb_features.get_column("g").to_numpy()
+Y = imdb_features.get_column("b").to_numpy()
+H = imdb_features.get_column("cls").to_numpy()
+
 plt.scatter(x=X, y=Y, c=H, cmap="viridis", s=5)
 
 plt.show()
@@ -250,7 +279,7 @@ $1$ et proche de $0$ sinon.
 renvoie le tableau $[σ(z_1), … , σ(z_n)]$.
 
 ```python
-def logistic(z):
+def logistic(z: np.ndarray) -> np.ndarray:
     pass  # À vous
 ```
 
@@ -264,31 +293,32 @@ def logistic(z):
 
 Formellement : on suppose qu'il existe une fonction $f$ qui prédit parfaitement les classes, donc
 telle que pour tout couple exemple/classe $(x, y)$ avec $y$ valant $0$ ou $1$, $f(x) = y$. On
-voudrait approcher cette fonction par une fonction $g$ de la forme
+voudrait approcher cette fonction par une fonction $M$ de la forme
 
-$$g(x) = σ(w⋅x+b)$$
+$$M(x) = σ(\langle α\ |\ x \rangle + β)$$
 
 Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
 notre ensemble d'apprentissage, on dit que $g$ est la *régression logistique de $f$* sur cet
 ensemble.
 
 Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
-$g(x) < 0.5$ et $1$ sinon. Il a exactement les mêmes capacités de discrimination qu'un classifieur
+$M(x) < 0.5$ et $1$ sinon. Il a exactement les mêmes capacités de discrimination qu'un classifieur
 linéaire (sa frontière de décision est la même et il ne sait donc pas prendre de décisions plus
-complexes), mais on peut interpréter la confiance qu'il a dans sa décision.
+complexes), mais on a accès à un score qui peut être interprété comme la confiance qu'il a dans sa
+décision.
 
 
 Par exemple voici la confiance que notre classifieur codé en dur a en ses décisions
 
 ```python
-def classifier_confidence(x):
+def classifier_confidence(x: np.ndarray) -> np.ndarray:
     return logistic(affine_combination(x, np.array([0.6, -0.4]), -0.01))
 
 doc_features = featurize(doc, lexicon)
-g_x = classifier_confidence(doc_features)
-display(g_x)
-display(Markdown(f"Le classifieur est sûr à {g_x:.06%} que ce document est dans la classe $1$."))
-display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {g_x:.06%} de vraisemblance pour ce document"))
+M_x = classifier_confidence(doc_features)
+display(M_x)
+display(Markdown(f"Le classifieur est sûr à {M_x:.06%} que ce document est dans la classe $1$."))
+display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {M_x:.06%} de vraisemblance pour ce document"))
 ```
 
 
@@ -319,56 +349,67 @@ Moralité : nos poids ne sont pas très bien choisis, et notre préoccupation 
 chercher comment choisir des poids pour que la confiance moyenne de la classe correcte soit aussi
 haute que possible.
 
+
+**Attention** le score que nous donne le classifieur peut être vu sa confiance dans la décision prise **mais** ça ne veut pas dire que ce score a beaucoup de valeur pour étudier le modèle. De fait, la confiance en question n'est que très rarement corrélée avec l'exactitude des précisions. 
+
+Autrement dit : **quand un classifieur logistique se trompe, il a tendance à le faire avec beaucoup de confiance mal placée.**
+
 ## Fonction de coût
 
 On a dit que notre objectif était
 
-> Chercher les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur notre
+> Chercher les poids $α$ et le biais $β$ tels que $M$ soit la plus proche possible de $f$ sur notre
 ensemble d'apprentissage
 
-On formalise « être le plus proche possible » de la section précédente comme minimiser une certaine
-fonction de coût (*loss*) $L$ qui mesure l'erreur faite par le classifieur sur un exemple.
+On formalise « être le plus proche possible » de la section précédente comme **minimiser** une
+certaine fonction de **coût** (*loss*) $\mathcal{L}$ qui mesure l'erreur faite par le classifieur.
 
-$$L(g(x), y) = \text{l'écart entre la classe $ŷ$ prédite par $g$ pour $x$ et la classe correcte $y$}$$
+On déifinit souvent $\mathcal{L}$ en évaluant d'abord un coût *local* $L$ pour chaque exemple :
 
-Étant donné un ensemble de test $(x₁, y₁), …, (x_n, y_n)$, on estime l'erreur faite par le
-classifieur logistique $g$ pour chaque exemple $(x_i, y_i)$ comme le coût local $L(g(xᵢ), yᵢ)$ et
-son erreur sur tout l'ensemble de test par le coût global $\mathcal{L}$ :
+$$L(M(x), y) = \text{l'écart entre la classe $ŷ=M(x)$ prédite par $M$ pour $x$ et la classe correcte $y$}$$
 
-$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$
+Puis, étant donné un ensemble de test $\mathcal{D}_t = \{(x₁, y₁), …, (x_n, y_n)\}$, on définit $\mathcal{L}$ comme le coût total :
+
+$$\mathcal{L}(M, \mathcal{D}_t) = \sum_i L(M(xᵢ), yᵢ)$$
 
 Plus $\mathcal{L}$ sera bas, meilleur sera notre classifieur.
+
+
+
 
 Dans le cas de la régression logistique, on va s'inspirer de ce qu'on a vu dans la section
 précédente et utiliser la *log-vraisemblance négative* (*negative log-likelihood*) :
 
 On définit la *vraisemblance* $V$ comme précédemment par
 $$
-V(a, y) =
+V(M(x), y) =
     \begin{cases}
-        a & \text{si $y = 1$}\\
-        1-a & \text{sinon}
+        M(x) & \text{si $y = 1$}\\
+        1-M(x) & \text{sinon}
     \end{cases}
 $$
 
-Intuitivement, il s'agit de la vraisemblance affectée par le modèle à la classe correcte $y$. Il ne
+Intuitivement, il s'agit du score attribué par le modèle à la classe correcte $y$. Il ne
 s'agit donc pas d'un coût, mais d'un *gain* (si sa valeur est haute, c'est que le modèle est bon)
 
 La *log-vraisemblance négative* $L$ est alors définie par
 
-$$L(a, y) = -\log(V(a, y))$$
+$$L(M(x), y) = -\log(V(M(x), y))$$
 
-Le $\log$ est là pour plusieurs raisons, calculatoires et théoriques<sup>1</sup> et le $-$ à
+Le $\log$ est là pour plusieurs raisons, calculatoires et théoriques et le $-$ à
 s'assurer qu'on a bien un coût (plus la valeur est basse, meilleur le modèle est).
 
-<small>1. Entre autres, parce qu'une somme de $\log$-vraisemblances peut
+<details>
+<summary>Details</summary>
+Entre autres, parce qu'une somme de $\log$-vraisemblances peut
 être vue comme le $\log$ de la probabilité d'une conjonction d'événements indépendants. Mais surtout
-parce qu'il rend la fonction de coût **convexe** par rapport à $w$</small>.
+parce qu'il rend la fonction de coût **convexe** par rapport à $(α, β)$.
 
-Une interprétation possible : $L(a, y)$, c'est la
+Une interprétation possible : $L(M(x), y)$, c'est la
 [surprise](https://en.wikipedia.org/wiki/Information_content) de $y$ au sens de la théorie de
 l'information. Autrement dit : si j'estime qu'il y a une probabilité $a$ d'observer la classe $y$,
 $L(a, y)$ mesure à quel point il serait surprenant d'observer effectivement $y$.
+</details>
 
 
 On peut vérifier qu'il s'agit bien d'un coût :
@@ -391,28 +432,31 @@ On peut vérifier qu'il s'agit bien d'un coût :
     \end{cases}
   $$
 
-On peut aussi vérifier facilement que $L(a, 1)$ est décroissant par rapport à $a$ et que $L(1-a, 0)$
-est croissant par rapport à $a$. Autrement dit, plus le classifieur juge que la classe correcte est
+On peut aussi vérifier facilement que $L(M(x), 1)$ est décroissant par rapport à $M(x)$ et que $L(1-M(x), 0)$
+est croissant par rapport à $M(x)$. Autrement dit, plus le classifieur juge que la classe correcte est
 vraisemblable plus le coût $L$ est bas.
 
 
-Enfin, on peut l'écrire $L$ en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est
+Enfin, on peut écrire $L$ en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est
 
-$$L(g(x), y) = -\log\left[g(x)×y + (1-g(x))×(1-y)\right]$$
+$$L(M(x), y) = -\log\left[M(x)×y + (1-M(x))×(1-y)\right]$$
 
-C'est une astucs : comme $y$ vaut soit $0$ soit $1$, on a  soit $y=0$, soit $1-y=0$, et donc la
-somme dans le $\log$ se simplifie dans tous les cas. Rien de transcendant là-dedans.
-
-La formule diffère un peu de celle de *Speech and Language Processing*, mais les résultats sont les
-mêmes et celle-ci est mieux pour notre problème !
-
-<small>En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
-à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
-nous complique la vie.</small>
+C'est une astuce : comme $y$ vaut soit $0$ soit $1$, on a  soit $y=0$, soit $1-y=0$, et donc la
+somme dans le $\log$ se simplifie dans tous les cas.
 
 Une dernière façon de l'écrire en une ligne :
 
-$$L(g(x), y) = -\log\left[g(x)\mathbb{1}_{y=1} + (1-g(x))\mathbb{1}_{y=0}\right]$$
+$$L(M(x), y) = -\log\left[M(x)\mathbb{1}_{y=1} + (1-M(x))\mathbb{1}_{y=0}\right]$$
+
+<details>
+<summary>Si vous lisez SLP</summary>
+La formule diffère un peu de celle de *Speech and Language Processing*, mais les résultats sont les
+mêmes et celle-ci est mieux pour notre problème !
+
+En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
+à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
+nous complique la vie.
+</details>
 
 ## 📉 Exo 📉
 
@@ -422,7 +466,7 @@ $$L(g(x), y) = -\log\left[g(x)\mathbb{1}_{y=1} + (1-g(x))\mathbb{1}_{y=0}\right]
 - Un vecteur de poids $w$ de taille $n$ et un biais $b$ (de taille $1$)
 - Une classe cible $y$ ($0$ ou $1$)
 
-Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(w, b)$ pour l'exemple
+Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(α, β)$ pour l'exemple
 $(x, y)$.
 
 Servez-vous en pour calculer le coût du classifieur de l'exercise précédent sur le mini-corpus IMDB.
@@ -456,11 +500,6 @@ n'ait qu'un seul point localement le plus bas. Par exemple ça marche avec une v
 <!-- #endregion -->
 
 ```python
-%matplotlib inline
-import tol_colors as tc
-import matplotlib.pyplot as plt
-import numpy as np
-
 fig = plt.figure(figsize=(20, 20), dpi=200)
 ax = plt.axes(projection='3d')
 
@@ -480,11 +519,6 @@ plt.show()
 Mais pas pour celle-là
 
 ```python
-%matplotlib inline
-import tol_colors as tc
-import matplotlib.pyplot as plt
-import numpy as np
-
 fig = plt.figure(figsize=(20, 20), dpi=200)
 ax = plt.axes(projection='3d')
 
@@ -517,10 +551,10 @@ fonction décroît le plus vite.
 
 <!-- #region -->
 Concrètement si on veut trouver $\theta$ tel que $f(\theta)$ soit minimale pour une certaine
-fonction $f$ dont le gradient est donné par `grad_f` ça donne l'algo suivant
+fonction $f$ dont le gradient est donné par `grad_f`, ça donne l'algo suivant
 
 ```python
-def descent(grad_f, theta_0, learning_rate, n_steps):
+def descent(grad_f: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_steps: int) -> np.ndarray:
     theta = theta_0
     for _ in range(n_steps):
         # On trouve la direction de plus grande pente
@@ -560,16 +594,20 @@ Point notation :
   $\operatorname{grad}f = \left(\frac{∂f(θ)}{∂θ_1}, …, \frac{∂f(θ)}{∂θ_n}\right)$. Autrement dit
   $\frac{∂f(θ)}{∂θ_i}$, la **dérivée partielle** de $f(θ)$ par rapport à $θ_i$, est la $i$-ème
   coordonnées du gradient de $f$.
-- **Le taux d'apprentissage** est souvent noté $α$ ou $η$
+- **Le taux d'apprentissage** est souvent noté $η$ (ou $α$ mais ici c'est déjà quelque chose)
+
+L'étape de mise à jour de $θ$ peut donc se noter
+
+$$θ ← θ - η \operatorname{grad}f
 
 
 ### Descente de gradient stochastique
 
 Rappelez-vous, on a dit que notre fonction de coût, c'était
 
-$$\mathcal{L} = \sum_i L(g(xᵢ), yᵢ)$$
+$$\mathcal{L} = \sum_i L(M(xᵢ), yᵢ)$$
 
-et on cherche la valeur du paramètre $θ = (w_1, …, w_n, b)$ tel que $\mathcal{L}$ soit le plus petit
+et on cherche la valeur du paramètre $θ = (α_1, …, α_n, β)$ tel que $\mathcal{L}$ soit le plus petit
 possible.
 
 
@@ -579,24 +617,24 @@ $$\operatorname{grad}(f+g) = \operatorname{grad}f + \operatorname{grad}g$$
 
 Donc ici
 
-$$\operatorname{grad}\mathcal{L} = \sum_i \operatorname{grad}L(g(xᵢ), yᵢ)$$
+$$\operatorname{grad}_{θ}\mathcal{L} = \sum_i \operatorname{grad}_{θ}L(M(xᵢ), yᵢ)$$
 
 <!-- #region -->
-Si on dispose d'une fonction `grad_L` qui, étant donnés $g(x_i)$ et $y_i$, renvoie
-$\operatorname{grad}L(g(x_i), y_i)$, l'algorithme de descente du gradient devient alors
+Si on dispose d'une fonction `grad_L` qui, étant donnés $M(x_i)$ et $y_i$, renvoie
+$\operatorname{grad}_{θ}L(M(x_i), y_i)$, l'algorithme de descente du gradient devient alors
 
 ```python
-def descent(train_set, theta_0, learning_rate, n_steps):
+def descent(train_set: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_steps: int) -> np.ndarray:
     theta = theta_0
     for _ in range(n_steps):
-        w = theta[:-1]
-        b = theta[-1]
+        alpha = theta[:-1]
+        beta = theta[-1]
         partial_grads = []
         for (x, y) in train_set:
             # On calcule g(x)
-            g_x = logistic(np.inner(w,x)+b)
+            M_x = logistic(np.inner(alpha, x)+beta)
             # On calcule le gradient de L(g(x), y))
-            partial_grads.append(grad_L(g_x, y))
+            partial_grads.append(grad_L(M_x, y))
         # On trouve la direction de plus grande pente
         steepest_direction = -np.sum(partial_grads)
         # On fait quelques pas dans cette direction
@@ -606,16 +644,16 @@ def descent(train_set, theta_0, learning_rate, n_steps):
 ```
 <!-- #endregion -->
 
-Pour chaque étape, on doit calculer tous les $g(x_i)$ et $\operatorname{grad}L(g(x_i), y_i)$. C'est
+Pour chaque étape, on doit calculer tous les $M(x_i)$ et $\operatorname{grad}_{θ}L(M(x_i), y_i)$. C'est
 très couteux, il doit y avoir moyen de faire mieux.
 
 
-Si les $L(g(xᵢ), yᵢ)$ étaient indépendants, ce serait plus simple : on pourrait les optimiser
+Si les $L(M(xᵢ), yᵢ)$ étaient indépendants, ce serait plus simple : on pourrait les optimiser
 séparément.
 
 
-Ce n'est évidemment pas le cas : si on change $g$ pour que $g(x_0)$ soit plus proche de $y_0$, ça
-changera aussi la valeur de $g(x_1)$.
+Ce n'est évidemment pas le cas : si on change $M$ pour que $M(x_0)$ soit plus proche de $y_0$, ça
+changera aussi la valeur de $M(x_1)$.
 
 
 **Mais on va faire comme si**
@@ -625,31 +663,31 @@ C'est une approximation sauvage, mais après tout on commence à avoir l'habitud
 l'algo suivant
 
 ```python
-def descent(train_set, theta_0, learning_rate, n_steps):
+def descent(train_set: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_steps: int) -> np.ndarray:
     theta = theta_0
     for _ in range(n_steps):
         for (x, y) in train_set:
-            w = theta[:-1]
-            b = theta[-1]
+            alpha = theta[:-1]
+            beta = theta[-1]
             # On calcule g(x)
-            g_x = logistic(np.inner(w,x)+b)
+            M_x = logistic(np.inner(alpha, x)+beta)
             # On trouve la direction de plus grande pente
-            steepest_direction = -grad_L(g_x, y)
+            steepest_direction = -grad_L(M_x, y)
             # On fait quelques pas dans cette direction
             theta += learning_rate*steepest_direction
-        
+
     return theta
 ```
 <!-- #endregion -->
 
 Faites bien attention à la différence : au lieu d'attendre d'avoir calculé tous les
-$\operatorname{grad}L(g(x_i), y_i)$ avant de modifier $θ$, on va le modifier à chaque fois.
+$\operatorname{grad}L(M(x_i), y_i)$ avant de modifier $θ$, on va le modifier à chaque fois.
 
 
 - **Avantage** : on modifie beaucoup plus souvent le paramètre, si tout se passe bien, on devrait
   arriver à une bonne approximation très vite.
-- **Inconvénient** : il se pourrait qu'en essayant de faire baisser $L(g(x_0), y_0)$, on fasse
-  augmenter $L(g(x_1), y_1)$.
+- **Inconvénient** : il se pourrait qu'en essayant de faire baisser $L(M(x_0), y_0)$, on fasse
+  augmenter $L(M(x_1), y_1)$.
 
 Notre espoir ici, c'est que cette situation n'arrivera pas, et qu'un bon paramètre pour un certain
 couple $(x, y)$ soit aussi un bon paramètre pour $tous$ les couples `(exemple, classe)`.
@@ -663,40 +701,40 @@ globale.
 Il ne nous reste plus qu'à savoir comment on calcule `grad_L`. On ne fera pas la preuve, mais on a
 
 
-$$\frac{∂L(g(x), y)}{∂w_i} = (g(x)-y)x_i$$
+$$
+\begin{equation}
+    \operatorname{grad}_θL(M(x), y) =
+        \begin{pmatrix}
+            \frac{∂L(M(x), y)}{∂α_1}\\
+            \vdots\\
+             \frac{∂L(M(x), y)}{∂α_n}\\
+             \frac{∂L(M(x), y)}{∂β}\\
+        \end{pmatrix}
+\end{equation}
+$$
+
+
+Avec pour tout $i$
+
+$$\frac{∂L(M(x), y)}{∂α_i} = (M(x)-y)x_i$$
 
 
 et
 
 
-$$\frac{∂L(g(x), y)}{∂b} = g(x)-y$$
-
-
-Autrement dit on mettra à jour $w$ en calculant
-
-$$w ← w -η×\operatorname{d}_wL(g(x), y) = w - η×(g(x)-y)x$$
-
-
-<small>$\operatorname{d}_wL(g(x), y) = \left(\frac{∂L(g(x), y)}{∂w_1}, …, \frac{∂L(g(x),
-y)}{∂w_n}\right)$ est la *différentielle partielle* de $L(g(x), y)$ par rapport à $w$.</small>
-
-
-Et $b$ en calculant
-
-$$b ← b -η×\frac{∂L(g(x), y)}{∂b} = b - η×(g(x)-y)$$
+$$\frac{∂L(M(x), y)}{∂β} = M(x)-y$$
 
 <!-- #region -->
 ## 🧐 Exo 🧐
 
 ### 1. Calculer le gradient
 
-Reprendre la fonction qui calcule la fonction de coût, et la transformer pour qu'elle renvoie le
-gradient par rapport à $w$ et la dérivée partielle par rapport à $b$ en $(x, y)$.
+Écrire une fonction qui calcule $\operatorname{grad}_θL(M(x), y)$.
 <!-- #endregion -->
 
 ```python
-def grad_L(x, w, b, y):
-    grad = np.zeros(w.size+b.size)  # À vous !
+def grad_L(x: np.ndarray, alpha: np.ndarray, beta: np.ndarray, y: np.ndarray) -> np.ndarray:
+    grad = np.zeros(alpha.size+beta.size)  # À vous !
     return grad
 
 grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
@@ -705,84 +743,21 @@ grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
 ### 2. Descendre le gradient
 
 S'en servir pour apprendre les poids à donner aux *features* précédentes à l'aide du [mini-corpus
-IMDB](../../data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
+IMDB](data/imdb_smol.tar.gz) en utilisant l'algorithme de descente de gradient stochastique.
 
 ```python
-def descent(featurized_corpus, theta_0, learning_rate, n_steps):
+def descent(
+    featurized_corpus: pl.DataFrame,
+    theta_0: np.ndarray,
+    learning_rate: float,
+    n_steps: int
+) -> np.ndarray:
     theta = theta_0
     for _ in range(n_steps):
         pass  # À vous !
-    return 
+
+
 descent(imdb_features, np.array([0.6, -0.4, 0.0]), 0.001, 100)
-```
-
-Dans une version où on affiche et on garde trace de l'historique
-
-```python
-theta, theta_history = descent_with_logging(imdb_features, np.array([0.6, -0.4, -0.01]), 0.1, 100)
-```
-
-Un peu de visu supplémentaire :
-
-
-Le trajet fait par $θ$ au cours de l'apprentissage
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-fig = plt.figure(figsize=(20, 20), dpi=200)
-ax = plt.axes(projection='3d')
-
-x, y, z = np.hsplit(np.array(theta_history), 3)
-
-ax.plot(x.squeeze(), y.squeeze(), z.squeeze(), label="Trajet de $θ$ au cours de l'apprentissage")
-ax.legend()
-
-plt.show()
-```
-
-Ici comme on a peu de données, on peut même se permettre le luxe de regarder la loss qu'on aurait
-pour toutes leurs valeurs, par exemple si on fixe $b=0$, voilà la tête qu'à la loss globale
-(l'abscisse et l'ordonnées sont les coordonnées de $w$, l'altitude/la couleur est la valeur de la
-loss).
-
-```python
-def make_vector_corpus(featurized_corpus):
-    vector_corpus = np.stack([*featurized_corpus["pos"], *featurized_corpus["neg"]])
-    vector_target = np.concatenate([np.ones(len(featurized_corpus["pos"])), np.zeros(len(featurized_corpus["neg"]))])
-    return vector_corpus, vector_target
-
-vector_corpus, vector_target = make_vector_corpus(imdb_features)
-```
-
-```python
-w1 = np.linspace(-50, 100, 200)
-w2 = np.linspace(-100, 50, 200)
-W1, W2 = np.meshgrid(w1, w2)
-W = np.stack((W1, W2), axis=-1)
-# Un peu de magie pour accélérer le calcul
-confidence = logistic(
-    np.einsum("ijn,kn->ijk", W, vector_corpus)
-)
-broadcastable_target = vector_target[np.newaxis, np.newaxis, :]
-loss = -np.log(confidence * broadcastable_target + (1-confidence)*(1-broadcastable_target)).sum(axis=-1)
-fig = plt.figure(figsize=(20, 20), dpi=200)
-ax = plt.axes(projection='3d')
-ax.set_xlim(-50, 100)
-ax.set_ylim(-100, 50)
-ax.set_zlim(0, 3000)
-
-surf = ax.plot_surface(W1, W2, loss, cmap=tc.tol_cmap("sunset"), edgecolor="none", rstride=1, cstride=1, alpha=0.8)
-fig.colorbar(surf, shrink=0.5, aspect=5)
-ax.plot_wireframe(W1, W2, loss, color='black')
-
-heatmap = ax.contourf(W1, W2, loss, offset=-30, cmap=tc.tol_cmap("sunset"))
-
-plt.title("Paysage de la fonction de coût en fonction des valeurs de $w$ pour $b=0$")
-
-plt.show()
 ```
 
 ## Régression multinomiale
@@ -860,7 +835,7 @@ plt.title("Coordonnées de $\operatorname{argmax}(v)$")
 plt.show()
 ```
 
-Et softmax ? Et bien regardez (on l'importe depuis
+Et softmax ? Regardez (on l'importe depuis
 [SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.softmax.html), un des
 adelphes de NumPy, pour ne pas avoir à le recoder nous-même).
 
@@ -936,15 +911,13 @@ appliquer ce qu'on a vu pour deux classes, avec $w=w_0-w_1$ et $b=b_0-b_1$.
 
 ## La suite
 
-Vous êtes arrivé⋅es au bout de ce cours et vous devriez avoir quelques idées de plusieurs concepts
-importants :
+Vous devriez maintenant avoir quelques idées de plusieurs concepts importants :
 
 - Le concept de classifieur linéaire
 - Le concept de fonction de coût
 - L'algorithme de descente de gradient stochastique
 - La fonction softmax
 
-On reparlera de tout ça en temps utile. Pour la suite de vos aventures au pays des classifieurs
-logistiques, je vous recommande plutôt d'utiliser [leur implémentation dans
+Pour la suite de vos aventures au pays des classifieurs logistiques, je vous recommande plutôt
+d'utiliser [leur implémentation dans
 scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
-Maintenant que vous savez comment ça marche, vous pouvez le faire la tête haute. Bravo !
