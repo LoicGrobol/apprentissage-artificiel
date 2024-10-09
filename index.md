@@ -76,6 +76,14 @@ pour étudier les capacités de quelques classifieurs.
 
 Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 
+
+### 2024-10-09 : Régression logistique et descente de gradient
+
+- {% notebook_badges slides/04-logistic-regression/lr-slides.py.md %}
+  [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
+  - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
+  - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
+
 ## Utilisation en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec

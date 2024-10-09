@@ -17,7 +17,7 @@ jupyter:
 
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
-TP 5 : Regression logistique
+TP 4 : Régsression logistique
 ===============================
 
 **Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
@@ -297,8 +297,8 @@ voudrait approcher cette fonction par une fonction $M$ de la forme
 
 $$M(x) = σ(\langle α\ |\ x \rangle + β)$$
 
-Si on choisit les poids $w$ et le biais $b$ tels que $g$ soit la plus proche possible de $f$ sur
-notre ensemble d'apprentissage, on dit que $g$ est la *régression logistique de $f$* sur cet
+Si on choisit les poids $α$ et le biais $β$ tels que $M$ soit la plus proche possible de $f$ sur
+notre ensemble d'apprentissage, on dit que $M$ est la *régression logistique de $f$* sur cet
 ensemble.
 
 Un classifieur logistique, c'est simplement un classifieur qui pour un exemple $x$ renvoie $0$ si
@@ -463,7 +463,7 @@ nous complique la vie.
 Écrire une fonction qui prend en entrée
 
 - Un vecteur de features $x$ de taille $n$
-- Un vecteur de poids $w$ de taille $n$ et un biais $b$ (de taille $1$)
+- Un vecteur de poids $α$ de taille $n$ et un biais $β$ (de taille $1$)
 - Une classe cible $y$ ($0$ ou $1$)
 
 Et renvoie la log-vraisemblance négative du classifieur logistique de poids $(α, β)$ pour l'exemple
@@ -768,31 +768,31 @@ de classification à deux classes. Comment on l'étend à $n$ classes ?
 
 Réfléchissons déjà à quoi ressemblerait la sortie d'un tel classifieur :
 
-Pour un problème à deux classes, le classifieur $g$ nous donne pour chaque exemple $x$ une
-estimation $g(x)$ de la vraisemblance de la classe $1$, et on a vu que la vraisemblance de la classe
+Pour un problème à deux classes, le classifieur $M$ nous donne pour chaque exemple $x$ une
+estimation $M(x)$ de la vraisemblance de la classe $1$, et on a vu que la vraisemblance de la classe
 $0$ était nécessairement $1-g(x)$ pour que la somme des vraisemblances fasse 1.
 
 
-On peut le présenter autrement : considérons le classifieur $f$ tel que pour tout exemple $x$
+On peut le présenter autrement : considérons le classifieur $K$ tel que pour tout exemple $x$
 
-$$f(x) = (1-g(x), g(x))$$
+$$K(x) = \begin{pmatrix}1-M(x)\\M(x)\end{pmatrix}$$
 
-$f$ nous donne un vecteur à deux coordonnées, $f_0(x)$ et $f_1(x)$, qui sont respectivement les
+$K$ nous donne un vecteur à deux coordonnées, $K_0(x)$ et $K_1(x)$, qui sont respectivement les
 vraisemblances des classes $0$ et $1$.
 
 
 Pour un problème à $n$ classes, on va vouloir une vraisemblance par classe, on va donc procéder de
 la façon suivante :
 
-On considère des poids $(w_1, b_1), …, (w_n, b_n)$. Ils définissent un classifieur linéaire.
+On considère des poids $(α_1, β_1), …, (α_n, β_n)$. Ils définissent un classifieur linéaire.
 
 En effet, si on considère les $z_i$ définis pour tout exemple $x$ par
 
 $$
     \begin{cases}
-        z_1 = w_1⋅x + b_1\\
+        z_1 = α_1⋅x + β_1\\
         \vdots\\
-        z_n = w_n⋅x + b_n
+        z_n = α_n⋅x + β_n
     \end{cases}
 $$
 
@@ -859,7 +859,7 @@ Si, si, je vous assure :
 softmax(v).sum()
 ```
 
-Ok, à l'erreur d'arrondi en virgule flottante près…
+À l'erreur d'arrondi en virgule flottante près on est bien.
 
 
 Autrement dit, on a, comme pour la fonction logistique, une fonction qui *normalise* les valeurs
@@ -869,13 +869,13 @@ tout en préservant certaines propriétés.
 Revenons à nos moutons : on définit enfin le classifieur logistique multinomial $f$ de la façon
 suivante : pour tout exemple $x$, on a
 
-$$f(x) = \operatorname{softmax}(w_1⋅x+b_1, …, w_n⋅x+b_n) = \left(\frac{e^{w_1⋅x+b_1}}{\sum_i
-e^{w_i⋅x+b_i}}, …, \frac{e^{w_n⋅x+b_n}}{\sum_i e^{w_i⋅x+b_i}}\right)$$
+$$f(x) = \operatorname{softmax}(α_1⋅x+β_1, …, α_n⋅x+β_n) = \left(\frac{e^{α_1⋅x+β_1}}{\sum_i
+e^{α_i⋅x+β_i}}, …, \frac{e^{α_n⋅x+β_n}}{\sum_i e^{α_i⋅x+β_i}}\right)$$
 
 et on choisit pour $x$ la classe
 
 $$y = \operatorname{argmax}\limits_i f_i(x) = \operatorname{argmax}\limits_i
-\frac{e^{w_i⋅x+b_i}}{\sum_j e^{w_j⋅x+b_j}}$$
+\frac{e^{α_i⋅x+β_i}}{\sum_j e^{α_j⋅x+β_j}}$$
 
 Comme la fonction exponentielle est croissante, ce sera la même classe que le classifieur linéaire
 précédent. Comme pour le cas à deux classe, la différence se fera lors de l'apprentissage. Je vous
@@ -895,19 +895,19 @@ Oui, regarde : dans ce cas
 $$
     \begin{align}
         f_1(x)
-            &= \frac{e^{w_1⋅x+b_1}}{e^{w_0⋅x+b_0}+e^{w_1⋅x+b_1}}\\
+            &= \frac{e^{α_1⋅x+β_1}}{e^{α_0⋅x+β_0}+e^{α_1⋅x+β_1}}\\
             &= \frac{1}{
-                \frac{e^{w_0⋅x+b_0}}{e^{w_1⋅x+b_1}} + 1
+                \frac{e^{α_0⋅x+β_0}}{e^{α_1⋅x+β_1}} + 1
             }\\
-            &= \frac{1}{e^{(w_0⋅x+b_0)-(w_1⋅x+b_1)} + 1}\\
-            &= \frac{1}{1 + e^{(w_0-w_1)⋅x+(b_0-b_1)}}\\
-            &= σ((w_0-w_1)⋅x+(b_0-b_1))
+            &= \frac{1}{e^{(α_0⋅x+β_0)-(α_1⋅x+β_1)} + 1}\\
+            &= \frac{1}{1 + e^{(α_0-α_1)⋅x+(β_0-β_1)}}\\
+            &= σ((α_0-α_1)⋅x+(β_0-β_1))
     \end{align}
 $$
 
 
 Autrement dit, appliquer ce qu'on vient de voir pour le cas multinomial, si $n=2$, c'est comme
-appliquer ce qu'on a vu pour deux classes, avec $w=w_0-w_1$ et $b=b_0-b_1$.
+appliquer ce qu'on a vu pour deux classes, avec $w=α_0-α_1$ et $b=β_0-β_1$.
 
 ## La suite
 
