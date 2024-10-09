@@ -82,8 +82,8 @@ def featurize(doc: str, lexicon: dict[str, float]) -> np.ndarray:
     pass # À vous de jouer !
 ```
 
-Vous aurez besoin d'extraire les mots du texte, vous pouvez le faire avec nltk, spacy, ou
-sauvagement avec une regex comme celle de scikit-learn : `(?u)\\b\\w\\w+\\b'`.
+Vous aurez besoin d'extraire les mots du texte, vous pouvez le faire avec nltk, spacy, ou comme
+scikit-learn, sauvagement avec une regex comme `\b\w+\b'`.
 
 ```python
 lexicon = read_vader("data/vader_lexicon.txt")
