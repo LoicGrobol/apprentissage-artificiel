@@ -78,7 +78,7 @@ $$
 renvoie cette représentation. On pourra supposer que les mots inconnus ont une polarité de $0$.
 
 ```python
-def featurize(doc: list[str], lexicon: dict[str, float]) -> np.ndarray:
+def featurize(doc: str, lexicon: dict[str, float]) -> np.ndarray:
     pass # À vous de jouer !
 ```
 
