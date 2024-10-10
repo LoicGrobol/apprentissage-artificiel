@@ -94,10 +94,18 @@ doc_features
 
 ### 2. Vectoriser un corpus
 
-Utiliser la fonction précédente pour vectoriser [le mini-corpus IMDB](../../data/imdb_smol.tar.gz) :
+Utiliser la fonction précédente pour vectoriser [le mini-corpus IMDB](data/imdb_smol.tar.gz) :
 générez un `DataFrame` polars où chaque document est représenté par une ligne, les colonnes étant
 `g`, `b` et `cls`, la classe (`"pos"` ou `"neg"`) du document (qui vous est donnée par son
-sous-dossier)
+sous-dossier).
+
+Rappel : vous pouvez bien sûr commencer par vectoriser chaque document et ensuite construire un
+DataFrame, mais en ce qui me concerne, je préfère faire l'inverse : construire d'abord un DataFrame
+avec les contenus des documents et leurs classes et construire les colonnes `g` et `b` en utilisant
+[`map_elements()`](https://docs.pola.rs/user-guide/expressions/user-defined-functions/).
+
+(Réécrire `featurize` comme une expression polars, c'est *possible*, c'est pas très agréable, mais
+c'est plus rapide. À vous de voir selon vos goûts.)
 
 ```python
 def featurize_dir(corpus_root_path: str, lexicon: dict[str, float]) -> pl.DataFrame:
