@@ -40,6 +40,9 @@ import tol_colors as tc
 
 ### 1. Vectoriser un document
 
+**Important : il existe un package Python `vaderSentiment` pour manipuler VADER. On ne va _pas_ s'en
+servir, inutile de l'installer.**
+
 Regardez la tête du lexique [VADER](https://github.com/cjhutto/vaderSentiment) (vous le
 trouverez aussi dans [`data/vader_lexicon.txt`](data/vader_lexicon.txt)). Il contient une liste de
 mots (première colonne) avec pour chaque mot $w$ une polarité (deuxième colonne) $p(w)$, positive ou
