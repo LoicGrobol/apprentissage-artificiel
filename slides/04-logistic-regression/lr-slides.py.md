@@ -361,7 +361,9 @@ chercher comment choisir des poids pour que la confiance moyenne de la classe co
 haute que possible.
 
 
-**Attention** le score que nous donne le classifieur peut être vu sa confiance dans la décision prise **mais** ça ne veut pas dire que ce score a beaucoup de valeur pour étudier le modèle. De fait, la confiance en question n'est que très rarement corrélée avec l'exactitude des précisions. 
+**Attention** le score que nous donne le classifieur peut être vu sa confiance dans la décision
+prise **mais** ça ne veut pas dire que ce score a beaucoup de valeur pour étudier le modèle. De
+fait, la confiance en question n'est que très rarement corrélée avec l'exactitude des précisions. 
 
 Autrement dit : **quand un classifieur logistique se trompe, il a tendance à le faire avec beaucoup de confiance mal placée.**
 
@@ -375,11 +377,13 @@ ensemble d'apprentissage
 On formalise « être le plus proche possible » de la section précédente comme **minimiser** une
 certaine fonction de **coût** (*loss*) $\mathcal{L}$ qui mesure l'erreur faite par le classifieur.
 
-On déifinit souvent $\mathcal{L}$ en évaluant d'abord un coût *local* $L$ pour chaque exemple :
+On définit souvent $\mathcal{L}$ en évaluant d'abord un coût *local* $L$ pour chaque exemple :
 
-$$L(M(x), y) = \text{l'écart entre la classe $ŷ=M(x)$ prédite par $M$ pour $x$ et la classe correcte $y$}$$
+$$L(M(x), y) = \text{l'écart entre la classe $ŷ=M(x)$ prédite par $M$ pour $x$ et la classe correcte
+$y$}$$
 
-Puis, étant donné un ensemble de test $\mathcal{D}_t = \{(x₁, y₁), …, (x_n, y_n)\}$, on définit $\mathcal{L}$ comme le coût total :
+Puis, étant donné un ensemble de test $\mathcal{D}_t = \{(x₁, y₁), …, (x_n, y_n)\}$, on définit
+$\mathcal{L}$ comme le coût total :
 
 $$\mathcal{L}(M, \mathcal{D}_t) = \sum_i L(M(xᵢ), yᵢ)$$
 
