@@ -86,7 +86,7 @@ Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 
 ### 2024-10-23 : *Failure modes*
 
-- Slides [*failure mode*]()
+- Slides [*failure mode*](slides/05-stuff/nice.pdf)
 - Présentations à la journée [Éthique et TAL 2024](https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-)
 - Suite du TP descente de gradient : voir cours 2024-10-09
 
