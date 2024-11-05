@@ -695,6 +695,19 @@ Si vous voulez en savoir plus je vous invite à consulter les pages suivantes 
 - <https://www.degeneratestate.org/posts/2016/Oct/23/image-processing-with-numpy/>
 <!-- #endregion -->
 
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Plus de lecture
+
+Il y a beaucoup à dire sur Numpy, aussi bien dans l'étendue de ses fonctionnalités que pour les détails de son implémentations.
+
+Si vous voulez tirer au mieux partie de votre machine et rendre votre code plus efficace (et vous **devez** le vouloir), plus vous en saurez sur NumPy, mieux ce sera.
+
+Comme introduction à l'implémentations de NumPy et à pourquoi c'est tellement plus efficace que du Python pur, je vous renvoie à l'excellent [Performance tips of NumPy arrays](https://shihchinw.github.io/2019/03/performance-tips-of-numpy-ndarray.html). Prenez le temps de le lire attentivement, de le comprendre, de le mémoriser, de me poser des questions dessus et d'aller lire tous les articles cités dans la bibliographie (oui, tous, et en particulier [Advanced Numpy](https://scipy-lectures.org/advanced/advanced_numpy/).
+
+Revenez-y fréquement et ne cessez jamais de vous demander comment marchent les bibliothèques que vous utilisez.
+<!-- #endregion -->
+
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## S'entraîner avec NumPy
 

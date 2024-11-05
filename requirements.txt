@@ -10,7 +10,9 @@ numpy
 matplotlib
 pandas
 polars
+plotnine
 regex
+rich
 seaborn
 scikit-learn
 tol-colors

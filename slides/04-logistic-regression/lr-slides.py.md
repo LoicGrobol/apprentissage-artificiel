@@ -328,8 +328,8 @@ def classifier_confidence(x: np.ndarray) -> np.ndarray:
 doc_features = featurize(doc, lexicon)
 M_x = classifier_confidence(doc_features)
 display(M_x)
-display(Markdown(f"Le classifieur est sûr à {M_x:.06%} que ce document est dans la classe $1$."))
-display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {M_x:.06%} de vraisemblance pour ce document"))
+display(Markdown(f"Le classifieur est sûr à {float(M_x[0]):.06%} que ce document est dans la classe $1$."))
+display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {float(M_x[0]):.06%} de vraisemblance pour ce document"))
 ```
 
 

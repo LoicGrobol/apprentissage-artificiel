@@ -250,7 +250,8 @@ def ma_fonction_tordue(s):
     return 0
 ```
 
-Dans ce cas on peut appliquer une fonction qu'on aura défini en Python. Attention c'est **beaucoup** plus lent :
+Dans ce cas on peut appliquer une fonction qu'on aura défini en Python. Attention c'est **beaucoup**
+plus lent :
 
 ```python
 df.with_columns(pl.col("string").map_elements(ma_fonction_tordue).alias("bidule"))
