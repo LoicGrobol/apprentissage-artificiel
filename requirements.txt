@@ -11,6 +11,7 @@ matplotlib
 pandas
 polars
 plotnine
+pyarrow
 regex
 rich
 seaborn

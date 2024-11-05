@@ -24,7 +24,10 @@ TP 6 : Régularisation
 
 <!-- #endregion -->
 
-Les questions auxquelles vous devez répondre sont données dans des cellules tout *en italiques*. Répondez dans de nouvelles cellules (markdown et code) à la suite. Tous les coups sont permis, y compris l'utilisation d'autres packages, mais pensez à signaler lesquels dans la présente section et mettez tous vos import dans la cellule ci-dessous.
+Les questions auxquelles vous devez répondre sont données dans des cellules tout *en italiques*.
+Répondez dans de nouvelles cellules (markdown et code) à la suite. Tous les coups sont permis, y
+compris l'utilisation d'autres packages, mais pensez à signaler lesquels dans la présente section et
+mettez tous vos import dans la cellule ci-dessous.
 
 ```python
 import matplotlib.pyplot as plt
@@ -64,7 +67,9 @@ classes
 ### Régularisation et norme des coefficients
 
 
-Pour voir ce que font les régularisations dites « *bridge* » sur un modèle linéaire, on va entraîner des classifieurs logistiques par descente de gradient stochastique et tracer les valeurs des coefficients, dont on va afficher les valeurs et les normes $L¹$ et $L²$ :
+Pour voir ce que font les régularisations dites « *bridge* » sur un modèle linéaire, on va entraîner
+des classifieurs logistiques par descente de gradient stochastique et tracer les valeurs des
+coefficients, dont on va afficher les valeurs et les normes $L¹$ et $L²$ :
 
 ```python
 # Coefs are set to zero initially: see <https://github.com/scikit-learn/scikit-learn/blob/6e9039160f0dfc3153643143af4cfdca941d2045/sklearn/linear_model/_stochastic_gradient.py#L221>
@@ -114,12 +119,14 @@ plt.ylabel("Coefficients $L¹$ norm")
 plt.show()
 ```
 
-> *Tracez les mêmes courbes pour les régularisations $L¹$, $L²$ et elasticnet. Faites un court résumé de vos observations et interprétations.*
+> *Tracez les mêmes courbes pour les régularisations $L¹$, $L²$ et elasticnet. Faites un court
+> résumé de vos observations et interprétations.*
 
 ### Et le modèle ?
 
 
-Il faut **toujours** vérifier ce que fait le modèle, et dans ce cas, manifestement, il n'est pas terrible :
+Il faut **toujours** vérifier ce que fait le modèle, et dans ce cas, manifestement, il n'est pas
+terrible :
 
 ```python
 # Coefs are set to zero initially: see <https://github.com/scikit-learn/scikit-learn/blob/6e9039160f0dfc3153643143af4cfdca941d2045/sklearn/linear_model/_stochastic_gradient.py#L221>
@@ -174,22 +181,30 @@ plt.show()
 
 ```
 
-> *Allez voir [la doc](https://scikit-learn.org/dev/auto_examples/linear_model/plot_sgd_iris.html), et faites une conjecture sur les raisons de cet échec. Essayez ensuite de trouver de meilleurs hyperparmètres (tous les coups sont permis). Pensez à montrer votre travail : ne donnez pas juste des valeurs mais expliquez comment vous les avez trouvées.*
+> *Allez voir [la doc](https://scikit-learn.org/dev/auto_examples/linear_model/plot_sgd_iris.html),
+> et faites une conjecture sur les raisons de cet échec. Essayez ensuite de trouver de meilleurs
+> hyperparmètres (tous les coups sont permis). Pensez à montrer votre travail : ne donnez pas juste
+> des valeurs mais expliquez comment vous les avez trouvées.*
 
-## Des données plus intéressantes : 20 newsgroup
+## Du texte : 20 newsgroups
 
 ```python
-twentyng = datasets.fetch_20newsgroups_vectorized()
-print(twentyng.DESCR)
+# See <https://scikit-learn.org/1.5/datasets/real_world.html#filtering-text-for-more-realistic-training> for why `remove`
+# There's already a train/test split, let's use it
+twentyng_train = datasets.fetch_20newsgroups_vectorized(
+    subset="train", remove=("headers", "footers", "quotes")
+)
+twentyng_test = datasets.fetch_20newsgroups_vectorized(
+    subset="test", remove=("headers", "footers", "quotes")
+)
+print(twentyng_train.DESCR)
 ```
 
 ```python
-X_train, X_test, y_train, y_test = train_test_split(
-    twentyng.data, twentyng.target, test_size=0.25, random_state=0
-)
+X_train, y_train = twentyng_train.data, twentyng_train.target
+X_test, y_test = twentyng_test.data, twentyng_test.target
 
-classes = list(set(twentyng.target))
-classes
+classes = list(set(twentyng_test.target))
 ```
 
 ```python
@@ -197,28 +212,29 @@ print(X_train.shape)
 ```
 
 ```python
-# Coefs are set to zero initially: see <https://github.com/scikit-learn/scikit-learn/blob/6e9039160f0dfc3153643143af4cfdca941d2045/sklearn/linear_model/_stochastic_gradient.py#L221>
-clf = SGDClassifierclf = SGDClassifier(
-    loss="log_loss",
-    penalty=None,
-)
+# The default hyperparameters aren't bad actually
+clf = SGDClassifierclf = SGDClassifier(loss="log_loss")
 
 X = X_train
 y = y_train
 
-batch_size = 128
-n_epochs = 2
+batch_size = 512
+n_epochs = 8
 norms = []
 
 for e in range(n_epochs):
     X, y = shuffle(X, y, random_state=0)
     # With a progress bar woo
-    for i in track(range(0, X.shape[0], batch_size), description=f"Epoch {e}", transient=True):
+    for i in track(
+        range(0, X.shape[0], batch_size), description=f"Epoch {e+1}/{n_epochs}", transient=True
+    ):
         clf.partial_fit(X[i : i + batch_size], y[i : i + batch_size], classes=classes)
-        norms.append({str(n): np.linalg.norm(clf.coef_.ravel(), ord=n) for n in [1, 2]})
+        norms.append(
+            {"step": i, **{str(n): np.linalg.norm(clf.coef_.ravel(), ord=n) for n in [1, 2]}}
+        )
 
 y_test_pred = clf.predict(X_test)
-print(classification_report(y_test, y_test_pred, target_names=twentyng.target_names))
+print(classification_report(y_test, y_test_pred, target_names=twentyng_test.target_names))
 
 plt.figure()
 ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred, display_labels=clf.classes_)
@@ -228,5 +244,23 @@ plt.show()
 ```
 
 ```python
-pl.from_dicts(norms)
+norms_df = pl.from_dicts(norms)
+norms_df
 ```
+
+Une démo avec plotnine pour changer.
+
+```python
+(
+    p9.ggplot(norms_df, p9.aes(x="step", y="1"))
+    + p9.geom_line()
+)
+
+```
+
+```python
+(p9.ggplot(norms_df, p9.aes(x="step", y="2")) + p9.geom_line())
+```
+
+> *Tester les régularisation disponibles en optimisant les hyperparamètres du mieux que vous pouvez
+> et proposer une explication de vos observations.*
