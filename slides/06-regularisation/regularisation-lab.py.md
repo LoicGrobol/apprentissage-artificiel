@@ -15,6 +15,8 @@ jupyter:
     name: python3
 ---
 
+TODO: This is bad and should be made better by figuring out a task where regularisation actually works lol
+
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
 TP 6 : Régularisation

@@ -90,6 +90,72 @@ Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 - Présentations à la journée [Éthique et TAL 2024](https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-)
 - Suite du TP descente de gradient : voir cours 2024-10-09
 
+### 2024-11-13 : Cours annulé
+
+### 2024-11-13 : méta-apprentissage et régularisation
+
+#### TP
+
+(Il est conseillé de partir de votre travail du 2024-10-02)
+
+Votre objectif est de trouver le meilleur classifieur possible pour 20newgroups.
+
+- À rendre : un notebook qui récupère les données, entraîne un (ou plusieurs) modèle et l'évalue.
+  - Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
+    du code et la qualité de vos explications.
+  - Le notebook doit s'exécuter sur une machine standard, avec Python 3.12 ou 3.13 et sans
+    configuration non-documentéee.
+  - Si vous utilisez des packages autres que ceux utilisés dans le cours **documentez-le** au début
+    du notebook.
+  - Si votre notebook ne fonctionne pas sans que j'ai à le modifier, ce sera pénalisé.
+  - Les résultats doivent être clairement affichés à la fin. Cet affichage doit être *généré* (pas
+    écrit à la main).
+  - Les résultats doivent être exactement les mêmes à chaque exécution du notebook (après un
+    redémarrage du kernel). Pensez aux *random seed*.
+  - Si vous mettez du texte explicatif, des titres, etc., c'est mieux. **A minima le notebook doit
+    contenir vos noms, prénoms et établissement principal**.
+- Les données doivent être celles venant de scikit-learn.
+  - Vous devez utiliser le split train/test standard.
+  - Vous pouvez utiliser une vectorisation et de prétraitements différents de ceux par défaut.
+  - Les données **doivent** être chargées avec `remove=("headers", "footers", "quotes")` (voir [la
+    doc](https://scikit-learn.org/1.5/datasets/real_world.html#filtering-text-for-more-realistic-training)
+    pour savoir pourquoi.)
+- Tous les coups sont permis : vous avez droit à tout sauf aux réseaux de neurones (à part
+  éventuellement un perceptron).
+- Les choix d'hyperparamètres différents de ceux par défauts doivent être justifiés (dans des
+  cellules de textes) de façon aussi convaincante que possible). Si vous utilisez des algorithmes de
+  recherches (type grid search), ils doivent faire partie du notebook (et donc compter dans le temps
+  d'exécution).
+- Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP 20ng` et vos noms, prénoms
+  et établissement dans le corps du mail.
+  - **Si l'objet est différent, je ne verrai pas votre rendu**.
+  - J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
+  - Vous pouvez faire plusieurs rendus si vous voulez être plus haut sur le leaderboard :-)
+
+#### Informations pour le projet final
+
+- Tâche à réaliser : tâche 3 de l'édition 2009 du DÉfi Fouille de Texte (DEFT): apprentissage de
+  classification par parti politique d'interventions au parlement européen.
+- Les données sont disponibles sur le site de [DEFT](https://deft.lisn.upsaclay.fr/), leur
+  description et celle de la tâche dans les
+  [actes](https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf).
+  - Si besoin les données sont aussi disponibles [ici](data/deft09.tar.gz)
+- À faire : proposer un (des) classifieur(s) pour cette tâche, étudier ses (leurs) performances sur
+  cette tâche. Comparer aux informations données dans les actes.
+- À rendre : rapport sous forme d'un article court dans le [style
+  ACL](https://github.com/acl-org/acl-style-files) (4 pages+bibliographie, format pdf, anglais ou
+  français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
+  conclusions. Compléter par une archive comprenant vos données et votre code.
+- Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
+  au plus tard le 6 janvier 2025.
+- L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
+  et de vos analyses.
+- Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] Projet final` et les noms,
+  prénoms et établissements de tous les membres du groupe dans le corps du mail.
+  - **Si l'objet est différent, je ne verrai pas votre rendu**. Et si un nom manque, vous risquez de
+    ne pas avoir de note.
+  - J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
+
 ## Utilisation en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
