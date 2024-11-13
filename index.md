@@ -100,7 +100,7 @@ Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 
 Votre objectif est de trouver le meilleur classifieur possible pour 20newgroups.
 
-- À rendre : un notebook qui récupère les données, entraîne un (ou plusieurs) modèle et l'évalue.
+- À rendre avant le 2024-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs) modèle et l'évalue.
   - Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
     du code et la qualité de vos explications.
   - Le notebook doit s'exécuter sur une machine standard, avec Python 3.12 ou 3.13 et sans
