@@ -192,16 +192,21 @@ extensions adéquates. Le plus simple est le suivant
 
 ### Apprentissage artificiel
 
+La référence pour le TAL :
+
 - [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et
   James H. Martin est **indispensable**. Il parle de bien plus de chose que simplement de
   l'apprentissage artificiel, mais sur le plan théorique il contient tout ce dont on parlera
-  concernant l'apprentissage pour le TAL. Il est disponible gratuitement, donc n'hésitez pas à le
-  consulter très fréquemment. J'essaierai d'indiquer pour chaque cours les chapitres en rapport.
+  concernant l'apprentissage pour le TAL. Il est disponible gratuitement et mis à jour tous les ans, donc n'hésitez pas à le
+  consulter très fréquemment.
+  
+ Les suivants sont des textbook avec une approche mathématique plus complète et détaillée, c'est vers eux qu'il faut se tourner pour répondre aux questions profondes. Ils sont un peu cher alors si vous voulez les utiliser, commencez par me demander et je vous prêterai les miens.
+ 
+- [Pattern Recognition and Machine Learning](https://link.springer.com/book/9780387310732) Christopher M. Bishop (2006), le textbook classique.
+- [Machine Learning: A Probabilistic Perspective](https://mitpress.mit.edu/9780262018029/machine-learning/) de Kevin P. Murphy, (2012) on peut difficilement faire plus complet.
 - [*Apprentissage artificiel - Concepts et
   algorithmes*](https://www.eyrolles.com/Informatique/Livre/apprentissage-artificiel-9782416001048/)
-  d'Antoine Cornuéjols et Laurent Miclet. Plus ancien mais en français et une référence très
-  complète sur l'apprentissage (en particulier non-neuronal). Il est un peu cher alors si vous
-  voulez l'utiliser, commencez par me demander et je vous prêterai le mien.
+  d'Antoine Cornuéjols et Laurent Miclet. (En français!)
 
 ### Python général
 
