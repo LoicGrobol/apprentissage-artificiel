@@ -7,15 +7,15 @@ layout: default
 
 ## News
 
-- **2024-09-17** Premier cours du semestre le 18/09/2024
+- **2025-09-23** Premier cours du semestre le 24/09/2025
 
 ## Infos pratiques
 
 - **Quoi** « Apprentissage artificiel »
-- **Où** Salle 410, BFC
-- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 18/09 au 13/11
+- **Où** Salle R06, BFC
+- **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 24/09 au ??/11
   - Voir le planning pour les dates exactes
-- **Contact** Loïc Grobol [<loic.grobol@parisnanterre.fr>](mailto:loic.grobol@parisnanterre.fr)
+- **Contact** L. Grobol [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 - **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet
 
 ## Liens utiles
@@ -27,15 +27,19 @@ layout: default
 
 ## Séances
 
-Tous les supports sont sur [github](https://github.com/loicgrobol/apprentissage-artificiel), voir
-[Utilisation en local](#utilisation-en-local) pour les utiliser sur votre machine comme des
+Les liens dans chaque séance vous permettent de télécharger les fichiers `.ipynb` à utiliser (et
+données additionnelles éventuelles). Attention, pour les utiliser en local il faudra installer les
+packages d `requirements.txt` (dansun environnement virtuel).
+
+Tous les supports sont aussi sur [github](https://github.com/loicgrobol/apprentissage-artificiel),
+voir [Utilisation en local](#utilisation-en-local) pour les utiliser sur votre machine comme des
 notebooks. À défaut, ce sont des fichiers Markdown assez standards, qui devraient se visualiser
-correctement sur la plupart des plateformes (mais ne seront pas dynamiques).
+correctement sur la plupart des plateformes.
 
 Les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
 sans rien installer.
 
-### 2024-09-18 : Outils de travail
+### 2025-09-24 : Outils de travail
 
 - {% notebook_badges slides/01-tools/python_crash_course.py.md %}
   [Crash course Python](slides/01-tools/python_crash_course.py.ipynb)
@@ -45,116 +49,6 @@ sans rien installer.
   [Présentation Numpy](slides/01-tools/numpy-slides.py.ipynb)
 - {% notebook_badges slides/01-tools/polars.py.md %}
   [Présentation Polars](slides/01-tools/polars.py.ipynb)
-
-### 2024-09-25 : Intuitions et vocabulaire
-
-- [Slides intro](slides/02-intro/intro.pdf)
-- {% notebook_badges slides/02-scikit-learn/scikit-learn-slides.py.md %}
-  [TP intro à scikit-learn](slides/02-scikit-learn/scikit-learn-slides.py.ipynb)
-  - [`imdb_smol.tar.gz`](slides/02-scikit-learn/data/imdb_smol.tar.gz)
-
-### 2024-10-02 : Évaluation
-
-TP : full autonomie ! Préparez un notebook (avec du code **et** du texte) où vous utiliserez le
-scikit-learn sur le jeu de données [20
-newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html)
-pour étudier les capacités de quelques classifieurs.
-
-- Présenter rapidement le jeu de données (origine, composition, quelques stats descriptives)
-- Entraîner [des arbres de
-  décision](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
-  en faisant varier la profondeur pour étudier dans quelle mesure ils sous-apprennent quand la
-  profondeur est trop faible et déterminer à partir de quand ils surapprennent. Penser à la
-  validation croisée, penser à faire des courbes d'apprentissage, penser à visualiser les arbres,
-  penser à regarder les matrices de confusion, chercher dans [les métriques de
-  scikit-learn](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics)
-  celles qui pourraient être intéressantes.
-- Étudier l'influence de la taille du corpus d'apprentissage (mêmes indices)
-- Même jeu avec un
-  [perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html),
-  en étudiant l'influence du paramètre `max_iter` (commencer à 1)
-
-Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
-
-
-### 2024-10-09 : Régression logistique et descente de gradient
-
-- {% notebook_badges slides/04-logistic-regression/lr-slides.py.md %}
-  [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
-  - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
-  - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
-
-### 2024-10-23 : *Failure modes*
-
-- Slides [*failure mode*](slides/05-stuff/nice.pdf)
-- Présentations à la journée [Éthique et TAL 2024](https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-)
-- Suite du TP descente de gradient : voir cours 2024-10-09
-
-### 2024-11-13 : Cours annulé
-
-### 2024-11-13 : méta-apprentissage et régularisation
-
-#### TP
-
-(Il est conseillé de partir de votre travail du 2024-10-02)
-
-Votre objectif est de trouver le meilleur classifieur possible pour 20newgroups.
-
-- À rendre avant le 2024-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs) modèle et l'évalue.
-  - Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
-    du code et la qualité de vos explications.
-  - Le notebook doit s'exécuter sur une machine standard, avec Python 3.12 ou 3.13 et sans
-    configuration non-documentéee.
-  - Si vous utilisez des packages autres que ceux utilisés dans le cours **documentez-le** au début
-    du notebook.
-  - Si votre notebook ne fonctionne pas sans que j'ai à le modifier, ce sera pénalisé.
-  - Les résultats doivent être clairement affichés à la fin. Cet affichage doit être *généré* (pas
-    écrit à la main).
-  - Les résultats doivent être exactement les mêmes à chaque exécution du notebook (après un
-    redémarrage du kernel). Pensez aux *random seed*.
-  - Si vous mettez du texte explicatif, des titres, etc., c'est mieux. **A minima le notebook doit
-    contenir vos noms, prénoms et établissement principal**.
-- Les données doivent être celles venant de scikit-learn.
-  - Vous devez utiliser le split train/test standard.
-  - Vous pouvez utiliser une vectorisation et de prétraitements différents de ceux par défaut.
-  - Les données **doivent** être chargées avec `remove=("headers", "footers", "quotes")` (voir [la
-    doc](https://scikit-learn.org/1.5/datasets/real_world.html#filtering-text-for-more-realistic-training)
-    pour savoir pourquoi.)
-- Tous les coups sont permis : vous avez droit à tout sauf aux réseaux de neurones (à part
-  éventuellement un perceptron).
-- Les choix d'hyperparamètres différents de ceux par défauts doivent être justifiés (dans des
-  cellules de textes) de façon aussi convaincante que possible). Si vous utilisez des algorithmes de
-  recherches (type grid search), ils doivent faire partie du notebook (et donc compter dans le temps
-  d'exécution).
-- Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP 20ng` et vos noms, prénoms
-  et établissement dans le corps du mail.
-  - **Si l'objet est différent, je ne verrai pas votre rendu**.
-  - J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
-  - Vous pouvez faire plusieurs rendus si vous voulez être plus haut sur le leaderboard :-)
-
-#### Informations pour le projet final
-
-- Tâche à réaliser : tâche 3 de l'édition 2009 du DÉfi Fouille de Texte (DEFT): apprentissage de
-  classification par parti politique d'interventions au parlement européen.
-- Les données sont disponibles sur le site de [DEFT](https://deft.lisn.upsaclay.fr/), leur
-  description et celle de la tâche dans les
-  [actes](https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf).
-  - Si besoin les données sont aussi disponibles [ici](data/deft09.tar.gz)
-- À faire : proposer un (des) classifieur(s) pour cette tâche, étudier ses (leurs) performances sur
-  cette tâche. Comparer aux informations données dans les actes.
-- À rendre : rapport sous forme d'un article court dans le [style
-  ACL](https://github.com/acl-org/acl-style-files) (4 pages+bibliographie, format pdf, anglais ou
-  français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
-  conclusions. Compléter par une archive comprenant vos données et votre code.
-- Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
-  au plus tard le 6 janvier 2025.
-- L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
-  et de vos analyses.
-- Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] Projet final` et les noms,
-  prénoms et établissements de tous les membres du groupe dans le corps du mail.
-  - **Si l'objet est différent, je ne verrai pas votre rendu**. Et si un nom manque, vous risquez de
-    ne pas avoir de note.
-  - J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
 
 ## Utilisation en local
 
@@ -170,14 +64,14 @@ extensions adéquates. Le plus simple est le suivant
 2. Créez un environnement virtuel pour le cours (par exemple ici avec [virtualenv](https://virtualenv.pypa.io)) 
 
    ```console
-   python3 -m virtualenv .venv
+   uv venv .venv
    source .venv/bin/activate
    ```
 
 3. Installez les dépendances
 
    ```console
-   pip install -U -r requirements.txt
+   uv pip install -U -r requirements.txt
    ```
 
 4. Lancez Jupyter
