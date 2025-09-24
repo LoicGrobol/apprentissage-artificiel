@@ -115,12 +115,13 @@ tout seul.
 ### Utilisation avancée
 
 Vous pouvez aussi (mais je ne le recommande pas forcément car ce sera plus compliqué pour vous de le
-maintenir à jour) cloner [le dépôt du cours]https://github.com/loicgrobol/apprentissage-artificiel).
-Tous les supports y sont, sous forme de fichiers Markdown assez standards, qui devraient se
-visualiser correctement sur la plupart des plateformes. Pour les utiliser comme des notebooks, il
-vous faudra utiliser l'extension [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres
-une façon d'avoir un historique git propre, malheureusement ça signifie que pour les ouvrir en
-local, il faut installer des trucs. Le plus simple est le suivant
+maintenir à jour) cloner [le dépôt du
+cours](https://github.com/loicgrobol/apprentissage-artificiel). Tous les supports y sont, sous forme
+de fichiers Markdown assez standards, qui devraient se visualiser correctement sur la plupart des
+plateformes. Pour les utiliser comme des notebooks, il vous faudra utiliser l'extension
+[Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
+git propre, malheureusement ça signifie que pour les ouvrir en local, il faut installer des trucs.
+Le plus simple est le suivant
 
 1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
    [l'archive](https://github.com/LoicGrobol/apprentissage-artificiel/archive/refs/heads/main.zip)
