@@ -120,33 +120,7 @@ cours](https://github.com/loicgrobol/apprentissage-artificiel). Tous les support
 de fichiers Markdown assez standards, qui devraient se visualiser correctement sur la plupart des
 plateformes. Pour les utiliser comme des notebooks, il vous faudra utiliser l'extension
 [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
-git propre, malheureusement ça signifie que pour les ouvrir en local, il faut installer des trucs.
-Le plus simple est le suivant
-
-1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
-   [l'archive](https://github.com/LoicGrobol/apprentissage-artificiel/archive/refs/heads/main.zip)
-   soit en le clonant avec git : `git clone
-   https://github.com/LoicGrobol/apprentissage-artificiel.git` et placez-vous dans ce dossier.
-2. Créez un environnement virtuel pour le cours (par exemple ici avec [virtualenv](https://virtualenv.pypa.io)) 
-
-   ```console
-   uv venv .venv
-   source .venv/bin/activate
-   ```
-
-3. Installez les dépendances
-
-   ```console
-   uv pip install -U -r requirements.txt
-   ```
-
-4. Lancez Jupyter
-
-   ```console
-   jupyter notebook
-   ```
-
-   JupyterLab est aussi utilisable.
+git propre.
 
 ## Ressources
 
