@@ -8,7 +8,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.16.4
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -39,7 +39,7 @@ performantes, le support des tableaux multidimensionnels (`ndarray`) et du calcu
 ### Installation
 
 Si vous n'avez pas déjà installé le `requirements.txt` du cours, installez Numpy **dans votre
-environnement virtuel** avec `python -m pip install numpy`.
+environnement virtuel** avec `uv pip install numpy`.
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
 On importe Numpy comme ceci
