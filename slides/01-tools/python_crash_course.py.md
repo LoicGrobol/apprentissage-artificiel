@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.16.4
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -53,8 +53,8 @@ savoir :
   - `uv pip install numpy` pour installer Numpy.
   - Si vous avez un fichier avec un nom de package par ligne (par exemple le
     [`requirements.txt`](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt)
-    du cours) : `uv pip install -r requirements.txt`
-  - Le flag `-U` pour mettre à jour les packages si possible : `uv pip install -U numpy` etc.
+    du cours) : `uv pip install -U -r requirements.txt`
+  - Le flag `-U` ou `--upgrade` sert à mettre à jour les packages si possible : `uv pip install -U numpy` etc.
 - Je répète : on installe uniquement dans un environnement virtuel, on garde ses environnements bien
   séparés (un par cours, pas un pour tout le M2).
   - Dans un projet, on note dans un `requirements.txt` (ou `.lst`) les packages dont le projet a
@@ -64,7 +64,7 @@ savoir :
     problème dans votre façon de les gérer.
 - Si vous voulez en savoir plus, **et je recommande très fortement de vouloir en savoir plus, c'est
   vital de connaître ses outils de travail**, il faut : *lire les documentations de **tous** les
-  outils et **toutes** les commandes que vous utilisez.
+  outils et **toutes** les commandes que vous utilisez*.
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Opérateurs mathématiques et fonctions

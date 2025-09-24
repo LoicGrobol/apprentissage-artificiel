@@ -28,13 +28,9 @@ layout: default
 ## Séances
 
 Les liens dans chaque séance vous permettent de télécharger les fichiers `.ipynb` à utiliser (et
-données additionnelles éventuelles). Attention, pour les utiliser en local il faudra installer les
-packages d `requirements.txt` (dansun environnement virtuel).
-
-Tous les supports sont aussi sur [github](https://github.com/loicgrobol/apprentissage-artificiel),
-voir [Utilisation en local](#utilisation-en-local) pour les utiliser sur votre machine comme des
-notebooks. À défaut, ce sont des fichiers Markdown assez standards, qui devraient se visualiser
-correctement sur la plupart des plateformes.
+données additionnelles éventuelles). Attention: pour les utiliser en local il faudra installer les
+packages du `requirements.txt` (dans un environnement virtuel). Si vous ne savez pas comment faire,
+allez voir [« Utilisation en local »](#utilisation-en-local)
 
 Les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
 sans rien installer.
@@ -52,10 +48,79 @@ sans rien installer.
 
 ## Utilisation en local
 
-Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
-[Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
-git propre, malheureusement ça signifie que pour les ouvrir en local, il faut installer les
-extensions adéquates. Le plus simple est le suivant
+### Environnements virtuels et packages
+
+Je cite le [Crash course Python](slides/01-tools/python_crash_course.py.ipynb):
+
+- Les environnements virtuels sont des installations isolées de Python. Ils vous permettent d'avoir
+  des versions indépendantes de Python et des packages que vous installez
+  - Gérez vos environnements et vos packages avec [uv](https://docs.astral.sh/uv/). Installez-le,
+    lisez la doc.
+  - Pour créer un environnement virtuel : `uv venv /chemin/vers/…`
+  - La convention, c'est `uv venv .venv`, ce qui créée un dossier (caché par défaut sous Linux et Mac
+    OS car son nom commence par  point) `.venv` dans le dossier courant (habituellement le dossier
+    principal de votre projet). Donc faites ça.
+  - Il est **obligatoire** de travailler dans un environnement virtuel. L'idéal est d'en avoir un
+    par cours, un par projet, etc.
+  - Un environnement virtuel doit être **activé** avant de s'en servir. Concrètement ça remplace la
+    commande `python` de votre système par celle de l'environnement.
+    - Sous Bash, ça se fait avec `source .venv/bin/activate` (en remplaçant par le chemin de
+      l'environnement s'il est différent)
+    - `deactivate` pour le désactiver et rétablir votre commande `python`. À faire avant d'en
+      activer un autre.
+- On installe des packages avec `uv pip` ou `python -m pip` (mais plutôt `uv pip`, et jamais juste
+  `pip`).
+  - `uv pip install numpy` pour installer Numpy.
+  - Si vous avez un fichier avec un nom de package par ligne (par exemple le
+    [`requirements.txt`](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt)
+    du cours) : `uv pip install -U -r requirements.txt`
+  - Le flag `-U` ou `--upgrade` sert à mettre à jour les packages si possible : `uv pip install -U numpy` etc.
+- Je répète : on installe uniquement dans un environnement virtuel, on garde ses environnements bien
+  séparés (un par cours, pas un pour tout le M2).
+  - Dans un projet, on note dans un `requirements.txt` (ou `.lst`) les packages dont le projet a
+    besoin pour fonctionner.
+  - Les environnements doivent être légers : ça ne doit pas être un problème de les effacer, de les
+    recréer… Si vous ne savez pas recréer un environnement que vous auriez perdu, c'est qu'il y a un
+    problème dans votre façon de les gérer.
+- Si vous voulez en savoir plus, **et je recommande très fortement de vouloir en savoir plus, c'est
+  vital de connaître ses outils de travail**, il faut : *lire les documentations de **tous** les
+  outils et **toutes** les commandes que vous utilisez*.
+
+Maintenant à vous de jouer :
+
+- Installez uv
+- Créez un dossier pour ce cours
+- Dans ce dossier, créez un environnement virtuel nommé `.venv`
+- Activez-le
+- Téléchargez le
+  [`requirements.txt`](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt)
+  et installez les packages qu'il liste
+
+### Notebooks Jupyter
+
+Si vous avez une installation propre (par exemple en suivant les étapes précédentes), vous pouvez
+facilement ouvrir les notebooks du cours :
+
+- Téléchargez le notebook du [Crash course Python](slides/01-tools/python_crash_course.py.ipynb) et
+  mettez-le dans le dossier du cours.
+- Dans un terminal (avec votre environnement virtuel activé) lancez jupyter avec `jupyter notebook
+  python_crash_course.py.ipynb`.
+- Votre navigateur devrait s'ouvrir directement sur le notebook. Si ça ne marche pas, le terminal
+  vous donne dans tous les cas un lien à suivre.
+
+Alternativement, des IDE comme vscode permettent d'ouvrir directement les fichiers ipynb. Pensez à
+lui préciser que le kernel a utiliser est celui de votre environnement virtuel s'il ne le trouve pas
+tout seul.
+
+### Utilisation avancée
+
+Vous pouvez aussi (mais je ne le recommande pas forcément car ce sera plus compliqué pour vous de le
+maintenir à jour) cloner [le dépôt du cours]https://github.com/loicgrobol/apprentissage-artificiel).
+Tous les supports y sont, sous forme de fichiers Markdown assez standards, qui devraient se
+visualiser correctement sur la plupart des plateformes. Pour les utiliser comme des notebooks, il
+vous faudra utiliser l'extension [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres
+une façon d'avoir un historique git propre, malheureusement ça signifie que pour les ouvrir en
+local, il faut installer des trucs. Le plus simple est le suivant
 
 1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
    [l'archive](https://github.com/LoicGrobol/apprentissage-artificiel/archive/refs/heads/main.zip)
