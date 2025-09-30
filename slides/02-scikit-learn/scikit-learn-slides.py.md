@@ -69,10 +69,6 @@ d'apprentissage :
 - Évaluation
 - Optimisation des hyperparamètres
 
-```python
-%pip install -U scikit-learn
-```
-
 ## Un premier exemple
 
 ### Les données
@@ -201,9 +197,10 @@ plt.show()
 
 ## Entraînement
 
-L'étape suivante est de choisir un algorithme (un *estimator* dans la terminologie de scikit-learn),
-de l'entraîner sur nos données (avec la fonction `fit()`) puis de faire la prédiction (avec la
-fonction `predict`).
+L'étape suivante est de choisir un algorithme d'apprentissage (un *estimator* dans la terminologie
+de scikit-learn, parce qu'il permet d'*estimer* les valeurs des paramètres d'un modèle), de
+l'entraîner sur nos données (avec la fonction `fit`) puis de faire la prédiction (avec la fonction
+`predict`).
 
 Quelque soit l'algo choisi vous allez retrouver les fonctions `fit` et `predict`. Ce qui changera ce
 seront les paramètres à passer au constructeur de la classe de l'algo. Votre travail portera sur le
