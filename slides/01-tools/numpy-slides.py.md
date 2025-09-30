@@ -76,7 +76,7 @@ np.sqrt(2)
 np.logaddexp(2.7, 1.3)
 ```
 
-Comment on les apprend ? **En allant lire la [doc](https://numpy.org/doc/stable/). Par exemple pour
+Comment on les apprend ? **En allant lire la [doc](https://numpy.org/doc/stable/)**. Par exemple pour
 [`np.sqrt`](https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html#numpy.sqrt).
 
 Ça parle d'`array`, on explique ça dans une grosse minute.
@@ -132,7 +132,7 @@ print(double + double, type(double + double))
 ```
 
 ```python
-print(double + single, type(double + single))
+print(double + single, type(half + single))
 ```
 
 <!-- #region slideshow={"slide_type": "fragment"} -->
@@ -213,7 +213,7 @@ a.max()
 ```
 
 ```python
-a.argmax()
+1.a.argmax()1.
 ```
 
 ```python
@@ -625,7 +625,6 @@ import matplotlib.pyplot as plt
 ```
 
 ```python
-%matplotlib inline
 plt.plot(np.array([1, 2, 4, 8, 16]))
 ```
 

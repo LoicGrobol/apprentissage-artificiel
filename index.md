@@ -46,6 +46,13 @@ sans rien installer.
 - {% notebook_badges slides/01-tools/polars.py.md %}
   [Présentation Polars](slides/01-tools/polars.py.ipynb)
 
+### 2025-09-31 : Intuitions et vocabulaire
+
+- [Slides intro](slides/02-intro/intro.pdf)
+- {% notebook_badges slides/02-scikit-learn/scikit-learn-slides.py.md %}
+  [TP intro à scikit-learn](slides/02-scikit-learn/scikit-learn-slides.py.ipynb)
+  - [`imdb_smol.tar.gz`](slides/02-scikit-learn/data/imdb_smol.tar.gz)
+
 ## Utilisation en local
 
 ### Environnements virtuels et packages
