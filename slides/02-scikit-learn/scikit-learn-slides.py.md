@@ -25,10 +25,6 @@ TP 3 : `scikit-learn`
 
 <!-- #endregion -->
 
-```python
-from IPython.display import display
-```
-
 ## scikit-learn  ?
 
 [scikit-learn](https://scikit-learn.org/stable/index.html).
@@ -93,7 +89,7 @@ nous intéresse plutôt que tout le package. Notez aussi le nom `sklearn` pour l
 Ces jeux de données sont des objets `sklearn.utils.Bunch`. Organisés un peu comme des dictionnaires
 Python, ces objets contiennent :
 
-- `data` : array NumPy à deux dimensions d'échantillons de données de di;mensions `(n_samples,
+- `data` : array NumPy à deux dimensions d'échantillons de données de dimensions `(n_samples,
   n_features)`, les inputs, les X
 - `target` : les variables à prédire, les catégories des échantillons si vous voulez, les outputs,
   les y
@@ -114,21 +110,7 @@ wine.feature_names
 wine.target_names
 ```
 
-Si on a installé `pandas` ou `polars`
-
-```python
-%pip install -U pandas polars
-```
-
-On peut convertir ces données en `DataFrame` pandas si on veut.
-
-```python
-import pandas as pd
-
-df = pd.DataFrame(data=wine.data,columns=wine.feature_names)
-df["target"] = wine.target
-df.head()
-```
+On peut convertir ces données en `DataFrame` polars si on veut.
 
 ```python
 import polars as pl
@@ -269,8 +251,8 @@ aussi la validation croisée.
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 
-param_grid =  {'C': [0.1, 0.5, 1, 10, 100, 1000], 'kernel':['rbf','linear']}
-grid = GridSearchCV(SVC(), param_grid, cv = 5, scoring = 'accuracy')
+param_grid =  {'C': [0.1, 0.5, 1.0, 2.0, 128.0, 27.13], 'kernel':['rbf','linear']}
+grid = GridSearchCV(SVC(), param_grid, cv = 4, scoring = 'accuracy')
 estimator = grid.fit(X_wine, y_wine)
 estimator.cv_results_
 ```

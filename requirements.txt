@@ -8,7 +8,6 @@ nbconvert
 nbgitpuller
 numpy
 matplotlib
-pandas
 polars
 plotnine
 pyarrow
