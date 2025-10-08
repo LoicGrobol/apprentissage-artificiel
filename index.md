@@ -102,14 +102,16 @@ Je cite le [Crash course Python](slides/01-tools/python_crash_course.py.ipynb):
     lisez la doc.
   - Pour créer un environnement virtuel : `uv venv /chemin/vers/…`
   - La convention, c'est `uv venv .venv`, ce qui créée un dossier (caché par défaut sous Linux et Mac
-    OS car son nom commence par  point) `.venv` dans le dossier courant (habituellement le dossier
+    OS car son nom commence par `.`) : `.venv` dans le dossier courant (habituellement le dossier
     principal de votre projet). Donc faites ça.
   - Il est **obligatoire** de travailler dans un environnement virtuel. L'idéal est d'en avoir un
     par cours, un par projet, etc.
+    - uv est assez précautionneux avec l'espace disque, il y a donc assez peu de désavantage à avoir
+      beaucoup d'environnements virtuels.
   - Un environnement virtuel doit être **activé** avant de s'en servir. Concrètement ça remplace la
     commande `python` de votre système par celle de l'environnement.
-    - Sous Bash, ça se fait avec `source .venv/bin/activate` (en remplaçant par le chemin de
-      l'environnement s'il est différent)
+    - Dans Bash par exemple, ça se fait avec `source .venv/bin/activate` (en remplaçant par le
+      chemin de l'environnement s'il est différent)
     - `deactivate` pour le désactiver et rétablir votre commande `python`. À faire avant d'en
       activer un autre.
 - On installe des packages avec `uv pip` ou `python -m pip` (mais plutôt `uv pip`, et jamais juste
