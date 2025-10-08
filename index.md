@@ -55,6 +55,11 @@ sans rien installer.
 
 ### 2025-10-08 : Évaluation de modèles, sur- et sous-apprentissage
 
+- À lire sur les splits train/dev/test : Goot, Rob van der. 2021. ‘[We Need to Talk About
+  Train-Dev-Test Splits](https://aclanthology.org/2021.emnlp-main.368)’. Proceedings of the 2021
+  Conference on Empirical Methods in Natural Language Processing, November, 4485–94..
+
+
 TP : full autonomie ! Préparez un notebook (avec du code **et** du texte) où vous utiliserez le
 scikit-learn sur le jeu de données [20
 newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html)
