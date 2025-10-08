@@ -62,10 +62,15 @@ sans rien installer.
 
 TP : full autonomie ! Préparez un notebook (avec du code **et** du texte) où vous utiliserez le
 scikit-learn sur le jeu de données [20
-newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html)
+newsgroups](https://scikit-learn.org/stable/datasets/real_world.html#newsgroups-dataset) (récupérez
+le pré-vectorisé en Tf⋅Idf avec
+[`sklearn.datasets.fetch_20newsgroups_vectorized`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html))
 pour étudier les capacités de quelques classifieurs.
 
-- Présenter rapidement le jeu de données (origine, composition, quelques stats descriptives)
+- Présenter rapidement le jeu de données (origine, composition, quelques stats descriptives). Vous
+  devriez probablement aller chercher dans la doc d'où proviennent les données et aller examiner
+  leur contenu (quand on fait de la classification de textes, c'est souvent utile de regarder les
+  textes en question!).
 - Entraîner [des arbres de
   décision](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
   en faisant varier la profondeur pour étudier dans quelle mesure ils sous-apprennent quand la
@@ -75,11 +80,14 @@ pour étudier les capacités de quelques classifieurs.
   scikit-learn](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics)
   celles qui pourraient être intéressantes.
 - Étudier l'influence de la taille du corpus d'apprentissage (mêmes indices)
+- Si vous ne l'avez pas déjà fait, allez voir dans la doc à quoi sert le paramètre `remove` de
+  [`fetch_20newsgroups_vectorized`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html),
+  et reprenez vos expériences en le modifiant.
 - Même jeu avec un
   [perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html),
   en étudiant l'influence du paramètre `max_iter` (commencer à 1)
 
-Si vous voulez que j'y jette un œil, envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2025] TP
+Si vous voulez que j'y jette un œil, envoyez  à `lgrobol@parisnanterre.fr` avec en objet `[ML2025] TP
 Overfit`.
 
 ## Utilisation en local

@@ -10,7 +10,7 @@ a function $f$ such that:
 
 $$y ≈ f(x_1, …, x_n)$$
 
-In that case $f$ is a model of $y$ given the predictors $x_1, …, x_n$
+In that case $f$ is a *model* of $y$ given the predictors $x_1, …, x_n$
 
 There are many reasons why we would want to do this :
 
@@ -28,6 +28,8 @@ There are many reasons why we would want to do this :
   be directly observed.
   - For instance if one of the $x_i$ is *time*, having such a model can let you know what the future
     values of $y$ (that you can of course not observe *right now*) should be.
+- Sometimes, if $y$ is categorical (discrete, unordered), we'll say that $f$ is a *classifier* and
+  if not, that $f$ is a *regression*.
 - …
 
 In practice, for most of the situations we encounter :
@@ -105,6 +107,25 @@ problems (which is in fact where we get the least squares methods from).
 - [Legendre and Gauß history of least squares](https://www.jstor.org/stable/2240811)
 
 
-## Logistic regression
+## Logistic modelling
+
+While linear models are appropriate for many situations, one thing they don't do well is fit data
+where $y$ has a bounded range: nonconstant linear functions are always unbounded, so if the variable
+you are trying to predict is not, they don't really make sense.
+
+Note that *in practice* this is not necssarily an issue: if your predictors (the $x_i$) are bounded,
+$ŷ$ will be bounded too. So if you don't want to apply your model to new inputs far out of their
+domain, it might be OK and plenty of works do actually just that. On the other hand, if you can, it
+is better to use a more appropriate family of models such as *logistic* ones.
 
 - <https://papers.tinbergen.nl/02119.pdf>
+
+- Also called log-linear.
+- Used for modelling a variable $y∈]0,1[$, typically a (conditional) Bernoulli probability
+  distribution, can of course be shifted and scaled for other intervals.
+
+## Classifiers
+
+- If you have a scalar model, you can make it a binary classifier with a threshold
+- That works for both linear and logistic models, but the logistic model has the advantage that the
+  score can be interpreted as a likelihood
