@@ -155,36 +155,63 @@ $$z=α₁×x₁ + … + α_n×x_n + β = \sum_iα_ix_i + β$$
 
 Ce qu'on note aussi
 
+$$z = \langle α\ |\ x \rangle + β$$
+
+ou encore
+
 $$z = \mathbf{α}⋅\mathbf{x}+β$$
 
-$\mathbf{α}⋅\mathbf{x}$ se lit « alpha scalaire x », on parle de *produit scalaire* en français et de
-*inner product* en anglais.
-
-(ou pour les mathématicien⋅nes acharné⋅es $z = \langle α\ |\ x \rangle + β$)
-
-Quelle que soit la façon dont on le note, on affectera à $\mathbf{x}$ la classe $0$ si $z < 0$ et la
-classe $1$ sinon.
+Dans tous les cas, ça se lit « alpha scalaire x », on parle de *produit scalaire* en français et de
+*inner product* en anglais. Une fois qu'on l'aura calculé, on affectera à $\mathbf{x}$ la classe $0$
+si $z < 0$ et la classe $1$ sinon.
 
 ## 😴 Exo 😴
 
 ### 1. Une fonction affine
 
+**Rappel**: un peu à cause de l'influence de l'anglais, ce qu'on devrait normalement appeller
+*affine* (de la forme $Y=AX+B$), on l'appelle souvent *linéaire* (et qui devrait être juste
+normalement être de la forme $Y=AX$). En général, dans le contexte des statistiques (y compris de
+l'apprentissage artificiel), partez plutôt du principe qu'on parle de $Y=AX+B$.
+
 Écrire une fonction qui prend en entrée un vecteur de features et un vecteur de poids sous forme de
 tableaux numpy $x$ et $α$ de dimensions `(n,)` et un biais $β$ sous forme d'un tableau numpy de
-dimensions `(1,)` et renvoie $z=\sum_iα_ix_i + β$.
+dimensions `(1,)` et renvoie $z=\sum_iα_ix_i + β$ (il y a plein de solutions possibles).
 
 ```python
 def affine_combination(x: np.ndarray, alpha: np.ndarray, beta: np.ndarray) -> np.ndarray:
     # Attention, j'ai typé la valeur de retour comme un ndarray, mais il devra être
     # de forme (1,)
     pass # À vous de jouer !
+```
 
-affine_combination(
-    np.array([2, 0, 2, 1]),
-    np.array([-0.2, 999.1, 0.5, 2]),
-    np.array([1]),
+Testez en exécutant la cellule suivante (qui lèvera une exception si votre fonction ne donne pas le
+résultat attendu) :
+
+```python
+assert np.equal(
+    affine_combination(
+        np.array([2.0, 0.0, 2.0, 1.0]),
+        np.array([-0.2, 999.1, 0.5, 2.0]),
+        np.array([1.0]),
+    ),
+    np.array([3.6]),
 )
 ```
+
+Notes :
+
+- Pourquoi on revient à la ligne autant et pourquoi il y a des virgules même là où ce n'est pas
+  obligatoire ? Parce qu'on suit le [style
+  Ruff](https://docs.astral.sh/ruff/formatter/#style-guide).
+- Pourquoi `np.equal(…).all()` et pas juste `==` ? Parce que `==`, [comme les autre opérateurs de
+  comparaison de Numpy](https://llego.dev/posts/comparison-operators-numpy/) agit élément par
+  élément. C'est à dire que `np.array([1.0, 2.0]) == np.array([1.0, 5.0])` ne renvoie pas `False`,
+  mais `np.array([True, False])`. La méthode `.all` permet de combiner le résultat de la comparaison
+  en renvoyant `True` si toutes les valeurs d'un tableau booléen sont `True` et renvoie `False`
+  sinon, ce qui est ce qu'on veut ici (essayez `assert np.array([True, False])` pour voir). Et
+  pourquoi pas écrire `(… == …).all()` alors ? Parce que je préfère rendre explicite le fait que
+  l'opération renvoie bien un tableau et pas un booléen (comme c'est en général le cas en Python).
 
 ### 2. Un classifieur linéaire
 
@@ -365,7 +392,8 @@ haute que possible.
 prise **mais** ça ne veut pas dire que ce score a beaucoup de valeur pour étudier le modèle. De
 fait, la confiance en question n'est que très rarement corrélée avec l'exactitude des précisions. 
 
-Autrement dit : **quand un classifieur logistique se trompe, il a tendance à le faire avec beaucoup de confiance mal placée.**
+Autrement dit : **quand un classifieur logistique se trompe, il a tendance à le faire avec beaucoup
+de confiance mal placée.**
 
 ## Fonction de coût
 
@@ -654,7 +682,7 @@ def descent(train_set: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_
         steepest_direction = -np.sum(partial_grads)
         # On fait quelques pas dans cette direction
         theta += learning_rate*steepest_direction
-        
+
     return theta
 ```
 <!-- #endregion -->

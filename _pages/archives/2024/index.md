@@ -91,8 +91,6 @@ Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 - Présentations à la journée [Éthique et TAL 2024](https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-)
 - Suite du TP descente de gradient : voir cours 2024-10-09
 
-### 2024-11-13 : Cours annulé
-
 ### 2024-11-13 : méta-apprentissage et régularisation
 
 #### TP
@@ -101,7 +99,8 @@ Envoyer à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP Overfit`.
 
 Votre objectif est de trouver le meilleur classifieur possible pour 20newgroups.
 
-- À rendre avant le 2024-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs) modèle et l'évalue.
+- À rendre avant le 2024-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs)
+  modèle et l'évalue.
   - Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
     du code et la qualité de vos explications.
   - Le notebook doit s'exécuter sur une machine standard, avec Python 3.12 ou 3.13 et sans
