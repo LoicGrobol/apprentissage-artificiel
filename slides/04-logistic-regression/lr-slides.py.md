@@ -107,8 +107,8 @@ DataFrame, mais en ce qui me concerne, je préfère faire l'inverse : construi
 avec les contenus des documents et leurs classes et construire les colonnes `g` et `b` en utilisant
 [`map_elements()`](https://docs.pola.rs/user-guide/expressions/user-defined-functions/).
 
-(Réécrire `featurize` comme une expression polars, c'est *possible*, c'est pas très agréable, mais
-c'est plus rapide. À vous de voir selon vos goûts.)
+(Réécrire `featurize` comme une expression polars, c'est *possible*, moins agréable, et peu plus
+rapide. À vous de voir selon vos goûts et vos contraintes.)
 
 ```python
 def featurize_dir(corpus_root_path: str, lexicon: dict[str, float]) -> pl.DataFrame:
@@ -126,9 +126,9 @@ Comment se répartissent les documents du corpus avec la représentation qu'on a
 lexicon = read_vader("data/vader_lexicon.txt")
 imdb_features = featurize_dir("data/imdb_smol", lexicon)
 
-X = imdb_features.get_column("g").to_numpy()
-Y = imdb_features.get_column("b").to_numpy()
-H = imdb_features.get_column("cls").to_numpy()
+X = imdb_features["g"].to_numpy()
+Y = imdb_features["b"].to_numpy()
+H = imdb_features["cls"].to_numpy()
 
 fig = plt.figure(dpi=200)
 sns.scatterplot(x=X, y=Y, hue=H, s=5)
@@ -244,8 +244,8 @@ Pourquoi linéaire ? Regardez la figure suivante qui colore les points $(x,y)$
 la valeur de $z$.
 
 ```python
-x = np.linspace(0, 1, 1000)
-y = np.linspace(0, 1, 1000)
+x = np.linspace(0.0, 1.0, 1000)
+y = np.linspace(0.0, 1.0, 1000)
 X, Y = np.meshgrid(x, y)
 Z = (0.6*X - 0.4*Y) - 0.01
 
@@ -260,8 +260,8 @@ Ou encore plus clairement, si on représente la classe assignée
 
 ```python
 
-x = np.linspace(0, 1, 1000)
-y = np.linspace(0, 1, 1000)
+x = np.linspace(0.0, 1.0, 1000)
+y = np.linspace(0.0, 1.0, 1000)
 X, Y = np.meshgrid(x, y)
 Z = (0.6*X - 0.4*Y) -0.01 > 0.0
 
@@ -354,9 +354,9 @@ def classifier_confidence(x: np.ndarray) -> np.ndarray:
 
 doc_features = featurize(doc, lexicon)
 M_x = classifier_confidence(doc_features)
-display(M_x)
-display(Markdown(f"Le classifieur est sûr à {float(M_x[0]):.06%} que ce document est dans la classe $1$."))
-display(Markdown(f"Autrement dit, d'après le classifieur, la classe $1$ a {float(M_x[0]):.06%} de vraisemblance pour ce document"))
+print(M_x)
+print(f"Le classifieur est sûr à {float(M_x[0]):.06%} que ce document est dans la classe 1.")
+print(f"Autrement dit, d'après le classifieur, la classe 1 a {float(M_x[0]):.06%} de vraisemblance pour ce document")
 ```
 
 
@@ -390,16 +390,17 @@ haute que possible.
 
 **Attention** le score que nous donne le classifieur peut être vu sa confiance dans la décision
 prise **mais** ça ne veut pas dire que ce score a beaucoup de valeur pour étudier le modèle. De
-fait, la confiance en question n'est que très rarement corrélée avec l'exactitude des précisions. 
+fait, la confiance en question n'est pas en général très bien corrélée avec l'exactitude des
+précisions. 
 
-Autrement dit : **quand un classifieur logistique se trompe, il a tendance à le faire avec beaucoup
-de confiance mal placée.**
+Autrement dit : **quand un classifieur logistique se trompe, il a peut le faire avec beaucoup de
+confiance mal placée.**
 
 ## Fonction de coût
 
 On a dit que notre objectif était
 
-> Chercher les poids $α$ et le biais $β$ tels que $M$ soit la plus proche possible de $f$ sur notre
+> Chercher $α$ et $β$ tels que $M$ soit la plus proche possible de $f$ sur notre
 ensemble d'apprentissage
 
 On formalise « être le plus proche possible » de la section précédente comme **minimiser** une
@@ -416,8 +417,6 @@ $\mathcal{L}$ comme le coût total :
 $$\mathcal{L}(M, \mathcal{D}_t) = \sum_i L(M(xᵢ), yᵢ)$$
 
 Plus $\mathcal{L}$ sera bas, meilleur sera notre classifieur.
-
-
 
 
 Dans le cas de la régression logistique, on va s'inspirer de ce qu'on a vu dans la section
@@ -475,9 +474,9 @@ On peut vérifier qu'il s'agit bien d'un coût :
     \end{cases}
   $$
 
-On peut aussi vérifier facilement que $L(M(x), 1)$ est décroissant par rapport à $M(x)$ et que $L(1-M(x), 0)$
-est croissant par rapport à $M(x)$. Autrement dit, plus le classifieur juge que la classe correcte est
-vraisemblable plus le coût $L$ est bas.
+On peut aussi vérifier facilement que $L(M(x), 1)$ est décroissant par rapport à $M(x)$ et que
+$L(1-M(x), 0)$ est croissant par rapport à $M(x)$. Autrement dit, plus le classifieur juge que la
+classe correcte est vraisemblable plus $L$ est bas.
 
 
 Enfin, on peut écrire $L$ en une ligne : pour un exemple $x$, le coût de l'exemple $(x, y)$ est
@@ -496,9 +495,9 @@ $$L(M(x), y) = -\log\left[M(x)\mathbb{1}_{y=1} + (1-M(x))\mathbb{1}_{y=0}\right]
 La formule diffère un peu de celle de *Speech and Language Processing*, mais les résultats sont les
 mêmes et celle-ci est mieux pour notre problème !
 
-En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba
-à support dans $\{0, 1\}$, ce qui est une autre intuition pour cette fonction de coût, mais ici elle
-nous complique la vie.
+En fait la leur est la formule générale de l'entropie croisée pour des distributions de proba à
+support dans $\{0, 1\}$, ce qui est une autre intuition utile pour cette fonction de coût, mais ici
+elle nous complique la vie.
 </details>
 
 ## 📉 Exo 📉
@@ -546,10 +545,10 @@ n'ait qu'un seul point localement le plus bas. Par exemple ça marche avec une v
 fig = plt.figure(figsize=(20, 20), dpi=200)
 ax = plt.axes(projection='3d')
 
-r = np.linspace(0, 8, 100)
-p = np.linspace(0, 2*np.pi, 100)
+r = np.linspace(0.0, 8.0, 100)
+p = np.linspace(0.0, 2.0*np.pi, 100)
 R, P = np.meshgrid(r, p)
-Z = R**2 - 1
+Z = R**2 - 1.0
 
 X, Y = R*np.cos(P), R*np.sin(P)
 
@@ -565,10 +564,10 @@ Mais pas pour celle-là
 fig = plt.figure(figsize=(20, 20), dpi=200)
 ax = plt.axes(projection='3d')
 
-r = np.linspace(0, 8, 100)
-p = np.linspace(0, 2*np.pi, 100)
+r = np.linspace(0.0, 8.0, 100)
+p = np.linspace(0.0, 2.0*np.pi, 100)
 R, P = np.meshgrid(r, p)
-Z = -np.cos(R)/(1+0.5*R**2)
+Z = -np.cos(R)/(1.0+0.5*R**2)
 
 X, Y = R*np.cos(P), R*np.sin(P)
 
@@ -641,7 +640,7 @@ Point notation :
 
 L'étape de mise à jour de $θ$ peut donc se noter
 
-$$θ ← θ - η \operatorname{grad}f
+$$θ ← θ - η \operatorname{grad}f$$
 
 
 ### Descente de gradient stochastique
@@ -663,20 +662,25 @@ Donc ici
 $$\operatorname{grad}_{θ}\mathcal{L} = \sum_i \operatorname{grad}_{θ}L(M(xᵢ), yᵢ)$$
 
 <!-- #region -->
-Si on dispose d'une fonction `grad_L` qui, étant donnés $M(x_i)$ et $y_i$, renvoie
-$\operatorname{grad}_{θ}L(M(x_i), y_i)$, l'algorithme de descente du gradient devient alors
+Si on dispose d'une fonction `grad_L` qui, étant donnés $M(x)$ et $y$, renvoie
+$\operatorname{grad}_{θ}L(M(x), y)$, l'algorithme de descente du gradient devient alors
 
 ```python
-def descent(train_set: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_steps: int) -> np.ndarray:
+def descent(
+    train_set: list[tuple[np.ndarray, int]],
+    theta_0: np.ndarray,
+    learning_rate: float,
+    n_steps: int
+) -> np.ndarray:
     theta = theta_0
     for _ in range(n_steps):
         alpha = theta[:-1]
         beta = theta[-1]
         partial_grads = []
-        for (x, y) in train_set:
-            # On calcule g(x)
-            M_x = logistic(np.inner(alpha, x)+beta)
-            # On calcule le gradient de L(g(x), y))
+        for x, y in train_set:
+            # On calcule M(x)
+            M_x = logistic(np.inner(alpha, x) + beta)
+            # On calcule le gradient de L(M(x), y))
             partial_grads.append(grad_L(M_x, y))
         # On trouve la direction de plus grande pente
         steepest_direction = -np.sum(partial_grads)
@@ -706,14 +710,20 @@ C'est une approximation sauvage, mais après tout on commence à avoir l'habitud
 l'algo suivant
 
 ```python
-def descent(train_set: np.ndarray, theta_0: np.ndarray, learning_rate: float, n_steps: int) -> np.ndarray:
+def descent(
+    train_set: list[tuple[np.ndarray, int]],
+    theta_0: np.ndarray,
+    learning_rate: float,
+    n_steps: int
+) -> np.ndarray:
     theta = theta_0
+    # _ est la convention pour dire "je ne vais pas utiliser la variable de boucle"
     for _ in range(n_steps):
-        for (x, y) in train_set:
+        for x, y in train_set:
             alpha = theta[:-1]
             beta = theta[-1]
-            # On calcule g(x)
-            M_x = logistic(np.inner(alpha, x)+beta)
+            # On calcule M(x)
+            M_x = logistic(np.inner(alpha, x) + beta)
             # On trouve la direction de plus grande pente
             steepest_direction = -grad_L(M_x, y)
             # On fait quelques pas dans cette direction
@@ -776,11 +786,11 @@ $$\frac{∂L(M(x), y)}{∂β} = M(x)-y$$
 <!-- #endregion -->
 
 ```python
-def grad_L(x: np.ndarray, alpha: np.ndarray, beta: np.ndarray, y: np.ndarray) -> np.ndarray:
-    grad = np.zeros(alpha.size+beta.size)  # À vous !
-    return grad
+def grad_L(M_x: np.ndarray, y: int) -> np.ndarray:
+    pass
 
-grad_L(np.array([5, 10]), np.array([0.6, -0.4]), np.array([-0.01]), 0)
+M_x = logistic(np.inner(np.array([0.6, -0.4], np.array([5.0, 10.0]) +  np.array([-0.01]))
+grad_L(M_x, 0)
 ```
 
 ### 2. Descendre le gradient
@@ -832,11 +842,11 @@ On considère des poids $(α_1, β_1), …, (α_n, β_n)$. Ils définissent un c
 En effet, si on considère les $z_i$ définis pour tout exemple $x$ par
 
 $$
-    \begin{cases}
-        z_1 = α_1⋅x + β_1\\
-        \vdots\\
-        z_n = α_n⋅x + β_n
-    \end{cases}
+\begin{cases}
+    z_1 = α_1⋅x + β_1\\
+    \vdots\\
+    z_n = α_n⋅x + β_n
+\end{cases}
 $$
 
 On peut choisir la classe $y$ à affecter à $x$ en prenant $y=\operatorname{argmax}\limits_i z_i$
@@ -853,7 +863,7 @@ $\operatorname{softmax}$ prend en entrée un **vecteur** non-normalisé et renvo
 normalisé.
 
 
-Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2, 1.6)$. Son
+Pourquoi elle s'appelle *softmax* ? Considérez le vecteur $v = (0.1, -0.5, 2.1, 2.0, 1.6)$. Son
 maximum $\max(v)$, c'est $2.1$, et ce qu'on appelle $\operatorname{argmax}(v)$, la position du
 maximum, c'est $3$.
 
@@ -912,13 +922,24 @@ tout en préservant certaines propriétés.
 Revenons à nos moutons : on définit enfin le classifieur logistique multinomial $f$ de la façon
 suivante : pour tout exemple $x$, on a
 
-$$f(x) = \operatorname{softmax}(α_1⋅x+β_1, …, α_n⋅x+β_n) = \left(\frac{e^{α_1⋅x+β_1}}{\sum_i
-e^{α_i⋅x+β_i}}, …, \frac{e^{α_n⋅x+β_n}}{\sum_i e^{α_i⋅x+β_i}}\right)$$
+$$
+    f(x)
+        = \operatorname{softmax}(α_1x+β_1, …, α_nx + β_n)
+        =
+            \left(
+                \frac{e^{α_1⋅x+β_1}}{\sum_i e^{α_i⋅x+β_i}},
+                …,
+                \frac{e^{α_n⋅x+β_n}}{\sum_i e^{α_i⋅x+β_i}}
+            \right)
+$$
 
 et on choisit pour $x$ la classe
 
-$$y = \operatorname{argmax}\limits_i f_i(x) = \operatorname{argmax}\limits_i
-\frac{e^{α_i⋅x+β_i}}{\sum_j e^{α_j⋅x+β_j}}$$
+$$
+    y
+        = \operatorname{argmax}\limits_i f_i(x)
+        = \operatorname{argmax}\limits_i \frac{e^{α_i⋅x+β_i}}{\sum_j e^{α_j⋅x+β_j}}
+$$
 
 Comme la fonction exponentielle est croissante, ce sera la même classe que le classifieur linéaire
 précédent. Comme pour le cas à deux classe, la différence se fera lors de l'apprentissage. Je vous
@@ -939,9 +960,10 @@ $$
     \begin{align}
         f_1(x)
             &= \frac{e^{α_1⋅x+β_1}}{e^{α_0⋅x+β_0}+e^{α_1⋅x+β_1}}\\
-            &= \frac{1}{
-                \frac{e^{α_0⋅x+β_0}}{e^{α_1⋅x+β_1}} + 1
-            }\\
+            &=
+                \frac{1}{
+                    \frac{e^{α_0⋅x+β_0}}{e^{α_1⋅x+β_1}} + 1
+                }\\
             &= \frac{1}{e^{(α_0⋅x+β_0)-(α_1⋅x+β_1)} + 1}\\
             &= \frac{1}{1 + e^{(α_0-α_1)⋅x+(β_0-β_1)}}\\
             &= σ((α_0-α_1)⋅x+(β_0-β_1))
@@ -950,7 +972,7 @@ $$
 
 
 Autrement dit, appliquer ce qu'on vient de voir pour le cas multinomial, si $n=2$, c'est comme
-appliquer ce qu'on a vu pour deux classes, avec $w=α_0-α_1$ et $b=β_0-β_1$.
+appliquer ce qu'on a vu pour deux classes, avec $α=α_0-α_1$ et $β=β_0-β_1$.
 
 ## La suite
 

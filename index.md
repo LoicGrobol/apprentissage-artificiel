@@ -16,7 +16,7 @@ layout: default
 - **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 24/09 au ??/11
   - Voir le planning pour les dates exactes
 - **Contact** L. Grobol [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
-- **Évaluation** Un TP noté en temps limité (date à déterminer) et un projet
+- **Évaluation** Un TP noté (date à déterminer) et un projet
 
 ## Liens utiles
 
@@ -90,6 +90,13 @@ pour étudier les capacités de quelques classifieurs.
 Si vous voulez que j'y jette un œil, envoyez  à `lgrobol@parisnanterre.fr` avec en objet `[ML2025] TP
 Overfit`.
 
+### 2025-10-14 : Régression logistique et descente de gradient
+
+- {% notebook_badges slides/04-logistic-regression/lr-slides.py.md %}
+  [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
+  - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
+  - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
+
 ## Utilisation en local
 
 ### Environnements virtuels et packages
@@ -120,7 +127,8 @@ Je cite le [Crash course Python](slides/01-tools/python_crash_course.py.ipynb):
   - Si vous avez un fichier avec un nom de package par ligne (par exemple le
     [`requirements.txt`](https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt)
     du cours) : `uv pip install -U -r requirements.txt`
-  - Le flag `-U` ou `--upgrade` sert à mettre à jour les packages si possible : `uv pip install -U numpy` etc.
+  - Le flag `-U` ou `--upgrade` sert à mettre à jour les packages si possible : `uv pip install -U
+    numpy` etc.
 - Je répète : on installe uniquement dans un environnement virtuel, on garde ses environnements bien
   séparés (un par cours, pas un pour tout le M2).
   - Dans un projet, on note dans un `requirements.txt` (ou `.lst`) les packages dont le projet a
@@ -148,7 +156,7 @@ Si vous avez une installation propre (par exemple en suivant les étapes précé
 facilement ouvrir les notebooks du cours :
 
 - Téléchargez le notebook du [Crash course Python](slides/01-tools/python_crash_course.py.ipynb) et
-  mettez-le dans le dossier du cours.
+  mettez-le dans le dossier que vous utilisez pour ce cours.
 - Dans un terminal (avec votre environnement virtuel activé) lancez jupyter avec `jupyter notebook
   python_crash_course.py.ipynb`.
 - Votre navigateur devrait s'ouvrir directement sur le notebook. Si ça ne marche pas, le terminal
@@ -165,8 +173,8 @@ maintenir à jour) cloner [le dépôt du
 cours](https://github.com/loicgrobol/apprentissage-artificiel). Tous les supports y sont, sous forme
 de fichiers Markdown assez standards, qui devraient se visualiser correctement sur la plupart des
 plateformes. Pour les utiliser comme des notebooks, il vous faudra utiliser l'extension
-[Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
-git propre.
+[Jupytext](https://github.com/mwouts/jupytext) (qui est dans le `requirements.txt`). C'est entre
+autres une façon d'avoir un historique git propre.
 
 ## Ressources
 
@@ -177,13 +185,18 @@ La référence pour le TAL :
 - [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/) de Daniel Jurafsky et
   James H. Martin est **indispensable**. Il parle de bien plus de chose que simplement de
   l'apprentissage artificiel, mais sur le plan théorique il contient tout ce dont on parlera
-  concernant l'apprentissage pour le TAL. Il est disponible gratuitement et mis à jour tous les ans, donc n'hésitez pas à le
-  consulter très fréquemment.
+  concernant l'apprentissage pour le TAL. Il est disponible gratuitement et mis à jour tous les ans,
+  donc n'hésitez pas à le consulter très fréquemment.
   
- Les suivants sont des textbook avec une approche mathématique plus complète et détaillée, c'est vers eux qu'il faut se tourner pour répondre aux questions profondes. Ils sont un peu cher alors si vous voulez les utiliser, commencez par me demander et je vous prêterai les miens.
- 
-- [Pattern Recognition and Machine Learning](https://link.springer.com/book/9780387310732) Christopher M. Bishop (2006), le textbook classique.
-- [Machine Learning: A Probabilistic Perspective](https://mitpress.mit.edu/9780262018029/machine-learning/) de Kevin P. Murphy, (2012) on peut difficilement faire plus complet.
+ Les suivants sont des textbooks avec une approche mathématique plus complète et détaillée, c'est
+ vers eux qu'il faut se tourner pour répondre aux questions profondes. Ils sont un peu cher alors si
+ vous voulez les utiliser, commencez par me demander et je vous prêterai les miens.
+
+- [Pattern Recognition and Machine Learning](https://link.springer.com/book/9780387310732)
+  Christopher M. Bishop (2006), le textbook classique.
+- [Machine Learning: A Probabilistic
+  Perspective](https://mitpress.mit.edu/9780262018029/machine-learning/) de Kevin P. Murphy, (2012)
+  on peut difficilement faire plus complet.
 - [*Apprentissage artificiel - Concepts et
   algorithmes*](https://www.eyrolles.com/Informatique/Livre/apprentissage-artificiel-9782416001048/)
   d'Antoine Cornuéjols et Laurent Miclet. (En français!)
