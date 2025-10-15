@@ -34,10 +34,10 @@ There are many reasons why we would want to do this :
 
 In practice, for most of the situations we encounter :
 
-- We don't have exact measurements of any of the $x_i$ or $y$, and they are in any case only
-  approximations of reality.
+- In general, we don't have exact measurements of scalar (and sometimes even discrete) valuues of
+  the $x_i$ or of $y$ (and they are in any case only approximations of reality).
 - Even if we did, finding a perfectly accurate relationship between them is either impossible (if
-  your model of reality is inherentyl stochastic) or intractable. We will thus never have $y =
+  your model of reality is inherently stochastic) or intractable. We will thus never have $y =
   M(x_1, …, x_n)$, but only approximations.
 
 To take these limitations into account, we generally assume a slightly different form of our
@@ -47,7 +47,7 @@ problem :
   there is not necessarily a deterministic relation between them). This accounts for both sources of
   imprecision: inherent stochasticity of the phenomenon we are modelling and imprecision of
   measurements).
-- For any given model $M$, e define another random variable: $ε_M$, the *residual of $M$*, i.e. its
+- Given model $M$, we define another random variable: $ε_M$, the *residual of $M$*, i.e. its
   **prediction error**:
 
 $$ε_M = y - M(x_1, …, x_n)$$
@@ -58,7 +58,10 @@ $$y_M = M(x_1, …, x_n) + ε_f$$
 
 Now this looks like a cheap trick: for any choice of $f$, and any values of the variable, this last
 equality will always be true. But it will allow us to *reason* about what we are doing by giving a
-name to the incertitudes that we have to take into account.
+name to the incertitudes that we have to take into account. This is of course again most relevant in
+the case of a *scalar* $y$, and the discrete cases tend to be harder, precisely because if the
+phenomenon you're trying to model is all-or-nothing, it's harder to incrementally improve your
+model.
 
 Other notations:
 
@@ -123,6 +126,10 @@ is better to use a more appropriate family of models such as *logistic* ones.
 - Also called log-linear.
 - Used for modelling a variable $y∈]0,1[$, typically a (conditional) Bernoulli probability
   distribution, can of course be shifted and scaled for other intervals.
+
+$$M(x) = σ(\langle α\ |\ x \rangle + β)$$
+
+$$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$
 
 ## Classifiers
 

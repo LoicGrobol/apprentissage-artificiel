@@ -43,10 +43,13 @@ import tol_colors as tc
 **Important : il existe un package Python `vaderSentiment` pour manipuler VADER. On ne va _pas_ s'en
 servir, inutile de l'installer.**
 
-Regardez la tête du lexique [VADER](https://github.com/cjhutto/vaderSentiment) (vous le
-trouverez aussi dans [`data/vader_lexicon.txt`](data/vader_lexicon.txt)). Il contient une liste de
-mots (première colonne) avec pour chaque mot $w$ une polarité (deuxième colonne) $p(w)$, positive ou
-négative.
+Regardez la tête du lexique [VADER](https://github.com/cjhutto/vaderSentiment) (vous le trouverez
+aussi dans [`data/vader_lexicon.txt`](data/vader_lexicon.txt)). Il contient une liste de mots
+(première colonne) avec pour chaque mot $w$ une polarité (deuxième colonne) $p(w)$, positive ou
+négative et d'autres trucs. D'après sa doc :
+
+> FORMAT: the file is tab delimited with TOKEN, MEAN-SENTIMENT-RATING, STANDARD DEVIATION, and
+> RAW-HUMAN-SENTIMENT-RATINGS
 
 1\. Écrivez une fonction qui lit le lexique VADER et renvoie un `dict` associant à chaque mot sa
 polarité.
