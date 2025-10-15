@@ -25,10 +25,6 @@ TP 4 : Régression logistique
 <!-- #endregion -->
 
 ```python
-from IPython.display import display, Markdown
-```
-
-```python
 import matplotlib.pyplot as plt
 import numpy as np
 import polars as pl
@@ -694,8 +690,8 @@ def descent(
 ```
 <!-- #endregion -->
 
-Pour chaque étape, on doit calculer tous les $M(x_i)$ et $\operatorname{grad}_{θ}L(M(x_i), y_i)$. C'est
-très couteux, il doit y avoir moyen de faire mieux.
+Pour chaque étape, on doit calculer tous les $M(x_i)$ et $\operatorname{grad}_{θ}L(M(x_i), y_i)$.
+C'est très couteux, il doit y avoir moyen de faire mieux.
 
 
 Si les $L(M(xᵢ), yᵢ)$ étaient indépendants, ce serait plus simple : on pourrait les optimiser
@@ -709,8 +705,10 @@ changera aussi la valeur de $M(x_1)$.
 **Mais on va faire comme si**
 
 <!-- #region -->
-C'est une approximation sauvage, mais après tout on commence à avoir l'habitude. On va donc suivre
-l'algo suivant
+C'est une approximation brutale, mais après tout on commence à avoir l'habitude et on peut démontrer
+que dans des circonstances idéales ça marche à coup sûr.
+
+Plus précisément, on va suivre l'algo suivant :
 
 ```python
 def descent(
