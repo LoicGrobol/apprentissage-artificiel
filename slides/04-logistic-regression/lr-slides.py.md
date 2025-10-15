@@ -106,7 +106,7 @@ DataFrame, mais en ce qui me concerne, je préfère faire l'inverse : construi
 avec les contenus des documents et leurs classes et construire les colonnes `g` et `b` en utilisant
 [`map_elements()`](https://docs.pola.rs/user-guide/expressions/user-defined-functions/).
 
-(Réécrire `featurize` comme une expression polars, c'est *possible*, moins agréable, et peu plus
+(Réécrire `featurize` comme une expression polars, c'est *possible*, moins agréable, et un peu plus
 rapide. À vous de voir selon vos goûts et vos contraintes.)
 
 ```python
