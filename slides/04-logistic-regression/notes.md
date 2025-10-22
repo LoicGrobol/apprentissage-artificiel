@@ -143,3 +143,6 @@ $$σ(z) = \frac{1}{1 + e^{−z}} = \frac{1}{1 + \exp(−z)}$$
     classifiers learned with SGD tend to not be properly *calibrated*: they tend to give very high
     confidence to wrong results. There are ways to make them better at it but no silver bullet that
     I know of.
+- Another way to see it: for a binary classification problem, $y∈\{0,1\}$ (up to bijection), so in
+  particular, $y∈[0, 1]$, we can thus treat it as a scalar variable (albeit one with very specific
+  values) and attempt to fit a logistic model.

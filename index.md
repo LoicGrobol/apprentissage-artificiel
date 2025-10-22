@@ -90,7 +90,14 @@ pour étudier les capacités de quelques classifieurs.
 Si vous voulez que j'y jette un œil, envoyez  à `lgrobol@parisnanterre.fr` avec en objet `[ML2025] TP
 Overfit`.
 
-### 2025-10-14 : Régression logistique et descente de gradient
+### 2025-10-14 : Régression linéaire, régression logistique
+
+- {% notebook_badges slides/04-logistic-regression/lr-slides.py.md %}
+  [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
+  - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
+  - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
+
+### 2025-10-22 : Descente de gradient
 
 - {% notebook_badges slides/04-logistic-regression/lr-slides.py.md %}
   [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
