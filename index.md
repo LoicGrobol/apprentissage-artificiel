@@ -16,7 +16,7 @@ layout: default
 - **Quand** 8 séances, les mercredi de 9:30 à 12:30, du 24/09 au ??/11
   - Voir le planning pour les dates exactes
 - **Contact** L. Grobol [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
-- **Évaluation** Un TP noté (date à déterminer) et un projet
+- **Évaluation** Un TP noté et un projet
 
 ## Liens utiles
 
@@ -103,6 +103,43 @@ Overfit`.
   [TP régression logistique](slides/04-logistic-regression/lr-slides.py.ipynb)
   - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
   - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
+
+## Évaluations
+
+### TP 20ng
+
+À rendre avant le 2025-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs)
+  modèle et l'évalue.
+  
+- Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
+  du code et la qualité de vos explications.
+- Le notebook doit s'exécuter sur une machine standard, avec Python 3.12, 3.13 ou 3.14 et sans
+  configuration non-documentéee.
+- Si vous utilisez des packages autres que ceux utilisés dans le cours **documentez-les** au début
+  du notebook.
+- Si votre notebook ne fonctionne pas sans que j'ai à le modifier, ce sera pénalisé.
+- Les résultats doivent être clairement affichés à la fin. Cet affichage doit être *généré* (pas
+  écrit à la main).
+- Les résultats doivent être exactement les mêmes à chaque exécution du notebook (après un
+  redémarrage du kernel). Pensez aux *random seed*.
+- Si vous mettez du texte explicatif, des titres, etc., c'est mieux. **A minima le notebook doit
+  contenir vos noms, prénoms et établissement principal**.
+- Les données doivent être celles venant de scikit-learn.
+- Vous devez utiliser le split train/test standard.
+- Vous pouvez utiliser une vectorisation et des prétraitements différents de ceux par défaut.
+- Les données **doivent** être chargées avec `remove=("headers", "footers", "quotes")` (voir [la
+  doc](https://scikit-learn.org/1.5/datasets/real_world.html#filtering-text-for-more-realistic-training)
+  pour savoir pourquoi.)
+- Tous les coups sont permis : vous avez droit à tout sauf aux réseaux de neurones (à part
+éventuellement un perceptron).
+- Les choix d'hyperparamètres différents de ceux par défauts doivent être justifiés (dans des
+cellules de textes) de façon aussi convaincante que possible). Si vous utilisez des algorithmes de
+recherches (type grid search), ils doivent faire partie du notebook (et donc compter dans le temps
+d'exécution).
+- Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2024] TP 20ng` et vos noms, prénoms
+et établissement dans le corps du mail.
+- **Si l'objet est différent, je ne verrai pas votre rendu**.
+- J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
 
 ## Utilisation en local
 
