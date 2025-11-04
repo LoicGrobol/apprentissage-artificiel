@@ -17,10 +17,10 @@ jupyter:
 
 <!-- LTeX: language=fr -->
 <!-- #region slideshow={"slide_type": "slide"} -->
-TP 4 : Régression logistique
+TP : Régression logistique
 ===============================
 
-**Loïc Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
+**L. Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
 <!-- #endregion -->
 

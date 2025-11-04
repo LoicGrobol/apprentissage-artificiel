@@ -104,13 +104,19 @@ Overfit`.
   - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
   - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
 
+### 2025-11-05 : Apprentissage non-supervisé
+
+- {% notebook_badges slides/05-unsupervised/unsupervised.py.md %}
+  [TP apprentissage non-supervisé](slides/05-unsupervised/unsupervised.py.ipynb)
+
 ## Évaluations
 
 ### TP 20ng
 
-À rendre avant le 2025-12-20 : un notebook qui récupère les données, entraîne un (ou plusieurs)
-  modèle et l'évalue.
-  
+À rendre au plus tard le 2025-12-19T23:59:59
+  ([UTC-12](https://fr.wikipedia.org/wiki/Partout_sur_Terre)): un notebook qui récupère les données,
+  entraîne un (ou plusieurs) modèle et l'évalue.
+
 - Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
   du code et la qualité de vos explications.
 - Le notebook doit s'exécuter sur une machine standard, avec Python 3.12, 3.13 ou 3.14 et sans
