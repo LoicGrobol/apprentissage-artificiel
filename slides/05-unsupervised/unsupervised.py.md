@@ -221,6 +221,6 @@ Testez-les sur
 
 Toujours pareil : prenez des notes, faites des graphiques, lisez la doc.
 
-## Réduction de dimension
-
-## Les écueils
+Une fois que vous avez fait ça sérieusement et seulement à ce moment là, allez voir [la gallerie de
+scikit-learn](https://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html)
+pour une vision d'ensemble (si vous commencez par ça, ça vous apportera pas grand chose).
