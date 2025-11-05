@@ -211,6 +211,7 @@ Examinez les comportements des algos suivants :
 - [Mélanges de Gaussiennes Bayésiennes](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html)
 - BIRCH
 - [DBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)
+  - [Y a une visu!](https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/)
 
 Testez-les sur
 
