@@ -20,7 +20,8 @@ Apprentissage non-supervisé
 
 **L. Grobol** [<lgrobol@parisnanterre.fr>](mailto:lgrobol@parisnanterre.fr)
 
-Ce TP est en grande partie inspiré d'éléments de la documentation de scikit-learn et umap-learn. Vous devriez allez les lire en détails pour en savoir plus.
+Ce TP est en grande partie inspiré d'éléments de la documentation de scikit-learn et umap-learn.
+Vous devriez allez les lire en détails pour en savoir plus.
 
 
 Avant de commencer, allez jouer un peu avec [une version interactive de
@@ -28,7 +29,8 @@ K-Means](https://www.naftaliharris.com/blog/visualizing-k-means-clustering/) (ou
 d'autres !) pour se rafraîchir les idées.
 
 
-Le sujet est vraiment vaste et on ne va évidemment pas être exhaustifves, mais essayons de donner quelques idées. D'abord quelques outils.
+Le sujet est vraiment vaste et on ne va évidemment pas être exhaustifves, mais essayons de donner
+quelques idées. D'abord quelques outils.
 
 ```python
 import numpy as np
@@ -55,7 +57,9 @@ ax.scatter(x=points[:, 0], y=points[:, 1], marker=".")
 fig.show()
 ```
 
-Notez que dans la vie, pour faire des jolis graphiques sérieusement, il vaut mieux utiliser quelque chose comme [plotnine](https://plotnine.org/), mais ici on va rester sur pyplot, qui est un peu rudimentaire mais va nous suffire.
+Notez que dans la vie, pour faire des jolis graphiques sérieusement, il vaut mieux utiliser quelque
+chose comme [plotnine](https://plotnine.org/), mais ici on va rester sur pyplot, qui est un peu
+rudimentaire mais va nous suffire.
 
 
 Maintenant si on a un tableau qui associe une classe à chaque point, on peut les visualiser avec des
@@ -80,7 +84,8 @@ doc](https://matplotlib.org/stable/gallery/color/colormap_reference.html). Notez
 au même endroit que sur le graphique précédent : normal, on a la même seed :)
 
 
-scikit-learn a aussi des fonctions pour générer des points avec des propriétés choisies, comme [`make_blobs`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html) :
+scikit-learn a aussi des fonctions pour générer des points avec des propriétés choisies, comme
+[`make_blobs`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html) :
 
 ```python
 # On lui passe directement le nombre de point, la dimension, une seed, le nombre de blobs qu'on veut faire.
@@ -106,8 +111,8 @@ fig.show()
 
 ```
 
-Au fait, pourquoi on fait des jeux de données aléatoires (une forme de données *synthétiques*) ? Parce qu'en général les jeux de données
-réels ont plus de deux dimensions (même le tout petit
+Au fait, pourquoi on fait des jeux de données aléatoires (une forme de données *synthétiques*) ?
+Parce qu'en général les jeux de données réels ont plus de deux dimensions (même le tout petit
 [Iris](https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-dataset) en a quatre) et c'est
 donc plus difficile à visualiser directement. On s'oocupera de leurs cas plus tard.
 
@@ -179,7 +184,8 @@ fig.show()
 
 ```
 
-Est-ce que c'est un bon clustering du coup ? Réflechissez à la question et on en débat toustes ensemble tout à l'heure?
+Est-ce que c'est un bon clustering du coup ? Réflechissez à la question et on en débat toustes
+ensemble tout à l'heure?
 
 
 ⚠️ **Attention** un diagramme de Voronoi, ça n'a évidemment de sens que pour k-means et ses dérivés
