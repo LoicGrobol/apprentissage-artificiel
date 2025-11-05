@@ -88,7 +88,8 @@ scikit-learn a aussi des fonctions pour générer des points avec des propriét�
 [`make_blobs`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html) :
 
 ```python
-# On lui passe directement le nombre de point, la dimension, une seed, le nombre de blobs qu'on veut faire.
+# On lui passe directement le nombre de point, la dimension, une seed, le nombre de blobs qu'on veut
+# faire.
 points, _y = make_blobs(n_samples=1024, n_features=2, centers=3, random_state=0)
 
 fig, ax = plt.subplots()

@@ -104,7 +104,7 @@ Overfit`.
   - [Lexique VADER](slides/04-logistic-regression/data/vader_lexicon.txt)
   - [Jeu de données IMDB smol](slides/04-logistic-regression/data/imdb_smol.tar.gz)
 
-### 2025-11-05 : Apprentissage non-supervisé
+### 2025-11-05 : Clustering
 
 - {% notebook_badges slides/05-unsupervised/unsupervised.py.md %}
   [TP apprentissage non-supervisé](slides/05-unsupervised/unsupervised.py.ipynb)
@@ -162,13 +162,14 @@ Overfit`.
   français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
   conclusions. Compléter par une archive comprenant vos données et votre code.
 - Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
-  au plus tard le 6 janvier 2025.
+  au plus tard le 2026-01-05T23:59:59
+  ([UTC-12](https://fr.wikipedia.org/wiki/Partout_sur_Terre)).
 - L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
   et de vos analyses.
 - Rendus par mail à `lgrobol@parisnanterre.fr` avec en objet `[ML2025] Projet final` et les noms,
   prénoms et établissements de tous les membres du groupe dans le corps du mail.
   - **Si l'objet est différent, je ne verrai pas votre rendu**. Et si un nom manque, vous risquez de
-	ne pas avoir de note.
+    ne pas avoir de note.
   - J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.
 
 ## Utilisation en local
