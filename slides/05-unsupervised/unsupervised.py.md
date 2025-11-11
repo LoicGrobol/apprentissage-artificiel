@@ -478,6 +478,12 @@ plt.show()
 
 Qu'est-ce que vous en pensez ? Appellez moi qu'on en discute ensemble.
 
+
+Autre point à noter, qui est dit assez clairement dans les docs et les articles sur t-SNE mais que
+les gens oublient souvent : t-SNE galère en très haute dimension, ça peut donc valoir le coup de
+faire d'abord une ACP pour passer les données en quelque chose comme 50 dimensions pour ensuite
+appliquer t-SNE dans cet espace moins complexe.
+
 ### UMAP
 
 Un des derniers variants de la famille de t-SNE (en tout cas basé sur les mêmes principes, mais en
@@ -531,10 +537,4 @@ plt.show()
 
 - Voir ce que ça donne en 3D
 - Tester aussi sur [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist)
-
-## Réduction de dimension et clustering
-
-Dans quel ordre, faire montrer un exemple
-
-
-## limites de K-means cf sklearn
+  - Téléchargez les données et chargez les à la mano, sans leur `mnist_reader`, ça vous apprendra.
