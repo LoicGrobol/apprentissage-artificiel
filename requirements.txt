@@ -16,4 +16,5 @@ rich
 seaborn
 scikit-learn
 tol-colors
+umap-learn
 RISE
