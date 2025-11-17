@@ -109,6 +109,12 @@ Overfit`.
 - {% notebook_badges slides/05-unsupervised/unsupervised.py.md %}
   [TP apprentissage non-supervisé](slides/05-unsupervised/unsupervised.py.ipynb)
 
+### 2025-11-12 : Réduction de dimension
+
+- {% notebook_badges slides/05-unsupervised/unsupervised.py.md %}
+  [TP apprentissage non-supervisé](slides/05-unsupervised/unsupervised.py.ipynb)
+
+
 ## Évaluations
 
 ### TP 20ng

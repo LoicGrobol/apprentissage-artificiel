@@ -23,8 +23,10 @@ clusters, puis de de passer en dimension 2.
 ## Bon mais alors j'utilise quoi ?
 
 - Réduction de dimension simple et brutale qui n'invente pas des clusters ? **ACP**
-- Trouver des clusters ? **BGMM** → penser à bien choisir les hyperparamètres, dans le doute,
+- Trouver des clusters ?
+  - **BGMM** → penser à bien choisir les hyperparamètres, dans le doute,
   utiliser une covariance `full`
+  - Éventullement **Birch**
 - Visualiser des données → **UMAP**, surtout si c'est des données pour lesquelles vous avez des
   classes *gold*
 - CLusteriser après réduction en 2D → même pas en rêve.

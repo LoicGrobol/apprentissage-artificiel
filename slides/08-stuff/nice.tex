@@ -10,13 +10,14 @@
 \newcommand\titlepagetitle{\pdftitle}
 \newcommand\eventname{M2 Plurital}
 \newcommand\eventvenue{Nanterre, France}
-\newcommand\eventdate{2024-10-16}
+\newcommand\eventdate{2025-11-17}
 
 \documentclass[
 	xcolor={svgnames},
 	aspectratio=169,
 	french,
 ]{beamer}
+\usepackage{ninecolors}
 % Colour palettes from [Paul Tol's technical note](https://personal.sron.nl/~pault/data/colourschemes.pdf) v3.1
 % Bright scheme
 \definecolor{sronbrightblue}{RGB}{68, 119, 170}
@@ -169,6 +170,7 @@
 % 	\setminted{autogobble, fontsize=\normalsize, tabsize=4}
 % 	\setmintedinline{fontsize=auto}
 % 	\RenewDocumentCommand\listingscaption{}{Example} 
+\usepackage{multimedia}
 
 \usepackage[
 	english=american,
@@ -361,19 +363,19 @@
 \begin{frame}{Pourquoi tant de haine}
 	Rappelez-vous du cours d'introduction :
 
-	\pause
+	\onslide<+->
 
 	L'apprentissage automatique n'a quasiment rien à voir avec l'apprentissage humain.
 
-	\pause
+	\onslide<+->
 
 	Ce n'est donc pas que les modèles ici sont malicieux ou quelque autre qualité humaine. Il existe simplement des \alert{régularités} dans les données (dans des cas assez particuliers ici), qui sont suffisamment évidentes pour être repérées et utilisées.
 
-	\pause
+	\onslide<+->
 
 	Pour un⋅e humain⋅e, la différence entre exploiter un bug et effectuer légitimement la tâche est claire. Pour un algo d'apprentissage, \alert{c'est exactement la même chose}.
 
-	\pause
+	\onslide<+->
 
 	{\small Par contre l'histoire des tanks a bien l'air apocryphe, voir \textcite{branwen2019NeuralNetTank}}
 \end{frame}
@@ -496,11 +498,11 @@
 	
 	\quoteforeign{breton}{Ar yezh ma ra ganti un den a zo anezhi ur bed ma vev ha ma striv ennañ.}
 
-	\begin{description}
-		\item<+->[GPT-3.5] \quoteforeign{breton}{An teunga a implij ur vro eo ur bed en e ober a blij ha emdroadur.}
-		\item<+->[GPT-3.5] \quoteforeign{breton}{Yezh mae eun an hini a labour, ur bed e vev ha ober a raio.}
-		\item<+->[GPT-3.5] \quoteforeign{breton}{Yezh ar re a labour a zo bed ma vev ha ma c'hevrioù.}
-		\item<+->[GPT-3.5] …
+	\begin{description}[<+->]
+		\item[GPT-3.5] \quoteforeign{breton}{An teunga a implij ur vro eo ur bed en e ober a blij ha emdroadur.}
+		\item[GPT-3.5] \quoteforeign{breton}{Yezh mae eun an hini a labour, ur bed e vev ha ober a raio.}
+		\item[GPT-3.5] \quoteforeign{breton}{Yezh ar re a labour a zo bed ma vev ha ma c'hevrioù.}
+		\item[GPT-3.5] …
 	\end{description}	
 \end{frame}
 
@@ -515,6 +517,41 @@
 				\includegraphics[width=1\textwidth,height=\textheight, keepaspectratio]{pics/couturier 24.03.2024 - frontpage - fautes marquees.PNG}
 			}				
 	\end{overprint}
+\end{frame}
+
+\begin{frame}[c]{ASR}
+	\vfill
+	\begin{overprint}
+		\onslide<1-2>
+			 \movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_21512915.mp3}
+			\begin{description}
+				\item<1-3>[Original] \quoteforeign{breton}{Ne chom ganin nemet un nebeud eilennoù evit degas da soñj deoc'h n'eo ket echu ho labour war ar c'hentelioù-mañ pell alese.}
+				\item<2>[ASR] \quoteforeign{breton}{n'echom ganin nemet a nebeut eilennoù evit digas da soñj deoc'h n'eo ket echu o labour war ar c'hentelig emañ ar pelet ez se}
+				\item<1-2>[Français] \textcolor{gray5}{\enquote{Je n'ai que quelques secondes pour vous rappeler que votre travail sur cette leçon est loin d'être terminé.}}
+			\end{description}
+
+		\onslide<3-4>
+			\movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_18187629.mp3}
+			\begin{description}
+				\item<3-4>[Original] \quoteforeign{breton}{Zoo Pont-Skorf, bet difennet dec'h ivez gant dilennidi, atebeien ekonomikel, mistri letioù, pretiourien, n'eo ket ar skouer nemetañ, pell alese}
+				\item<4>[ASR] \quoteforeign{breton}{soponskorv ebet difennet derrivezh gant dinennediñ etebeien ekonomikel mistriletioù pretiourien n'eo ket ar skouer n'ementan pell aleze}
+				\item<3-4>[Français] \textcolor{gray5}{\enquote{Le zoo de Pont-Skorf, également défendu hier par des élus, des responsables économiques, des hôteliers et des restaurateurs, n'est pas le seul exemple, loin de là.}}
+			\end{description}
+			\vspace{1em}	
+
+		\onslide<5-7>
+			\movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_33181042.mp3}
+			\begin{description}
+				\item<5-7>[Original] \quoteforeign{breton}{da heul hon diviz e miz kerzu e Karaez, e kasan deoc'h an notennoù am boa dastumet diwar-benn ar renadenn-dra eeun}
+				\item<6-7>[ASR] \quoteforeign{breton}{da eul an divis emiskerzu e kareez e kasan deoc'h an aotennoù amañ da stummet diwar-benn ar renadenn dra e-eun}
+				\item<5-7>[Français] {\textcolor{gray5}{\enquote{Suite à notre discussion du mois de décembre à Carhaix, je vous envoie les notes que j'avais prises sur le complément d'objet direct}}}
+			\end{description}
+			
+			\vspace{1em}
+
+			\only<7>{D'après Google Translate : \enquote{Suite à notre discussion de juillet à Karaez, je vous envoie les notes que j'avais prises sur le simple renne}}
+	\end{overprint}
+	\vfill
 \end{frame}
 
 \subsection{With a little help from field linguistics}
@@ -588,7 +625,7 @@
 		\centering
 		\begin{tabular}{l*{2}{S[table-format=2.2]}S[table-format=3.2]}
 			\toprule
-			{\textbf{Model}} & {\textbf{BLEU}} & {\textbf{ChrF++}} & {\textbf{TER}}\\
+			{\textbf{Model}} & {\textbf{BLEU} ↑} & {\textbf{ChrF++} ↓} & {\textbf{TER} ↓}\\
 			\midrule
 			Apertium            & 24.15 & 50.23 &  63.93\\
 			m2m100-418M         & 00.58 & 11.85 & 114.49\\
@@ -597,7 +634,7 @@
 			\quad +Korpus Nevez & 40.37	& 59.14	&  44.10\\
 			\bottomrule
 		\end{tabular}
-		\caption{Evaluation results on the OPAB test dataset.}
+		\caption{Evaluation results on the OPAB test dataset. For ↓ metrics, lower is better.}
 	\end{table}
 	\onslide<+->
 
@@ -680,7 +717,34 @@
 				\item Support.
 				\item \alert{Don't be an outsider}.
 			\end{itemize}
+		\item Help us: \url{https://entrelangues.modyco.fr/}
 	\end{itemize}
+\end{frame}
+e
+\begin{frame}{Deux ans après}
+	Le dataset est en ligne depuis deux ans : \url{https://huggingface.co/datasets/lgrobol/ARBRES-Kenstur}.
+
+	\onslide<+->
+
+	\quoteforeign{breton}{Ar yezh ma ra ganti un den a zo anezhi ur bed ma vev ha ma striv ennañ}
+
+	\quoteforeign{french}{La langue que quelqu'un pratique est un monde dans lequel il vit et lutte.}
+
+	\onslide<+->
+
+	\begin{description}[<+->]
+		\item[DeepL (\enquote{en-GB})] \quoteforeign{english}{The language a person uses is a world in which they live and strive.}
+		\item[DeepL (fr)] \quoteforeign{french}{La langue qu'une personne utilise est le monde dans lequel elle vit et évolue.}
+	\end{description}
+
+	\onslide<+->
+
+	Google Translate est utilisable et utile, même s'il est loin d'être parfait. Mais il est
+	complètement \emph{closed source}, probablement en violation des licences des corpus.
+	\onslide<+->
+	
+	Il n'y a toujours aucun moyen de faire des retours sur la qualité des données ou des modèle, et
+	ces problèmes sont largement ignorés par les non-locuteurs.
 \end{frame}
 
 \section{Mental illusions}
