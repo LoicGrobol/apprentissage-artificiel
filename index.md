@@ -114,6 +114,11 @@ Overfit`.
 - {% notebook_badges slides/05-unsupervised/unsupervised.py.md %}
   [TP apprentissage non-supervisé](slides/05-unsupervised/unsupervised.py.ipynb)
 
+### 2025-11-19 : *Failure modes*
+
+- Slides [*failure mode*](slides/05-stuff/nice.pdf)
+- Présentations à la journée [Éthique et TAL
+  2024](https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-)
 
 ## Évaluations
 

@@ -119,8 +119,8 @@
 % \setbeameroption{show notes on second screen=left}
 
 \usepackage{polyglossia}
-	\setmainlanguage[variant=british]{english}
-	\setotherlanguage{french}
+	\setmainlanguage{french}
+	\setotherlanguage[variant=british]{english}
 	\setotherlanguage{breton}
 	\NewDocumentCommand\borrowing{ m m }{
 		\textlang{#1}{\textit}	
@@ -519,11 +519,27 @@
 	\end{overprint}
 \end{frame}
 
+\begin{frame}{ASR}
+	Tout beau, tout frais : \href{https://github.com/facebookresearch/omnilingual-asr}{\enquote{Omnilingual ASR: Open-Source Multilingual Speech Recognition for 1600+ Languages}}
+
+	Vous pouvez tester directement sur votre langue préférée : \url{https://huggingface.co/spaces/facebook/omniasr-transcriptions} (C'est pas clair quel modèle ça utilise en revanche).
+
+	\vspace{1em}
+
+	\foreignblockquote{english}{
+		
+		\textbf{Supported Languages}
+
+		For this public demo, we've restricted transcription to low-resource languages with error rates
+		below \qty{10}{\percent}. This ensures the best possible experience while focusing on languages that could benefit
+		most from improved transcription tools.
+	}
+\end{frame}
 \begin{frame}[c]{ASR}
 	\vfill
 	\begin{overprint}
 		\onslide<1-2>
-			 \movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_21512915.mp3}
+			 \movie[width=\textwidth,height=1cm]{▶️ \texttt{common voice br 18187629}}{audio/common_voice_br_21512915.mp3}
 			\begin{description}
 				\item<1-3>[Original] \quoteforeign{breton}{Ne chom ganin nemet un nebeud eilennoù evit degas da soñj deoc'h n'eo ket echu ho labour war ar c'hentelioù-mañ pell alese.}
 				\item<2>[ASR] \quoteforeign{breton}{n'echom ganin nemet a nebeut eilennoù evit digas da soñj deoc'h n'eo ket echu o labour war ar c'hentelig emañ ar pelet ez se}
@@ -531,7 +547,7 @@
 			\end{description}
 
 		\onslide<3-4>
-			\movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_18187629.mp3}
+			\movie[width=\textwidth,height=1cm]{▶️ \texttt{common voice br 18187629}}{audio/common_voice_br_18187629.mp3}
 			\begin{description}
 				\item<3-4>[Original] \quoteforeign{breton}{Zoo Pont-Skorf, bet difennet dec'h ivez gant dilennidi, atebeien ekonomikel, mistri letioù, pretiourien, n'eo ket ar skouer nemetañ, pell alese}
 				\item<4>[ASR] \quoteforeign{breton}{soponskorv ebet difennet derrivezh gant dinennediñ etebeien ekonomikel mistriletioù pretiourien n'eo ket ar skouer n'ementan pell aleze}
@@ -540,7 +556,7 @@
 			\vspace{1em}	
 
 		\onslide<5-7>
-			\movie[width=5cm,height=1cm]{▶️}{audio/common_voice_br_33181042.mp3}
+			\movie[width=\textwidth,height=1cm]{▶️ \texttt{common voice br 33181042}}{audio/common_voice_br_33181042.mp3}
 			\begin{description}
 				\item<5-7>[Original] \quoteforeign{breton}{da heul hon diviz e miz kerzu e Karaez, e kasan deoc'h an notennoù am boa dastumet diwar-benn ar renadenn-dra eeun}
 				\item<6-7>[ASR] \quoteforeign{breton}{da eul an divis emiskerzu e kareez e kasan deoc'h an aotennoù amañ da stummet diwar-benn ar renadenn dra e-eun}
