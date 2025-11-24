@@ -28,12 +28,9 @@ layout: default
 ## Séances
 
 Les liens dans chaque séance vous permettent de télécharger les fichiers `.ipynb` à utiliser (et
-données additionnelles éventuelles). Attention: pour les utiliser en local il faudra installer les
+données additionnelles éventuelles). Attention : pour les utiliser en local, il faudra installer les
 packages du `requirements.txt` (dans un environnement virtuel). Si vous ne savez pas comment faire,
 allez voir [« Utilisation en local »](#utilisation-en-local)
-
-Les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
-sans rien installer.
 
 ### 2025-09-24 : Outils de travail
 
