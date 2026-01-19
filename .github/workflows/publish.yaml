@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install uv 🐍
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
           cache-dependency-glob: "**/requirements.txt"
           cache-suffix: ${{ github.job }}
