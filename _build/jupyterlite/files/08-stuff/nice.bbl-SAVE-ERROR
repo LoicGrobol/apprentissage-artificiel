@@ -1,0 +1,811 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{artetxe2019MassivelyMultilingualSentence}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b1280147e284a598ae233c3c17f86b27}{%
+           family={Artetxe},
+           familyi={A\bibinitperiod},
+           given={Mikel},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=449689e8c1ced50f608244e3a96fe6d3}{%
+           family={Schwenk},
+           familyi={S\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{fullhash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{fullhashraw}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{bibnamehash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{authorbibnamehash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{authornamehash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{authorfullhash}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \strng{authorfullhashraw}{360b3f20dcd80d9f392ac8d0a8be1a52}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce an architecture to learn joint multilingual sentence representations for 93 languages, belonging to more than 30 different families and written in 28 different scripts. Our system uses a single BiLSTM encoder with a shared byte-pair encoding vocabulary for all languages, which is coupled with an auxiliary decoder and trained on publicly available parallel corpora. This enables us to learn a classifier on top of the resulting embeddings using English annotated data only, and transfer it to any of the 93 languages without any modification. Our experiments in cross-lingual natural language inference (XNLI data set), cross-lingual document classification (MLDoc data set), and parallel corpus mining (BUCC data set) show the effectiveness of our approach. We also introduce a new test set of aligned sentences in 112 languages, and show that our sentence embeddings obtain strong results in multilingual similarity search even for low- resource languages. Our implementation, the pre-trained encoder, and the multilingual test set are available at https://github.com/facebookresearch/LASER.}
+      \field{day}{1}
+      \field{issn}{2307-387X}
+      \field{journaltitle}{Transactions of the Association for Computational Linguistics}
+      \field{month}{9}
+      \field{shortjournal}{Transactions of the Association for Computational Linguistics}
+      \field{title}{Massively {{Multilingual Sentence Embeddings}} for {{Zero-Shot Cross-Lingual Transfer}} and {{Beyond}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{volume}{7}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{597\bibrangedash 610}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1162/tacl_a_00288
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1162/tacl_a_00288
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1162/tacl_a_00288
+      \endverb
+    \endentry
+    \entry{branwen2019NeuralNetTank}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=838ba0bc1c981c21cb55177b8710212d}{%
+           family={Branwen},
+           familyi={B\bibinitperiod},
+           given={Gwern},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{fullhash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{fullhashraw}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{bibnamehash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{authorbibnamehash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{authornamehash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{authorfullhash}{838ba0bc1c981c21cb55177b8710212d}
+      \strng{authorfullhashraw}{838ba0bc1c981c21cb55177b8710212d}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{AI folklore tells a story about a neural network trained to detect tanks which instead learned to detect time of day; investigating, this probably never happened.}
+      \field{day}{7}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{title}{The {{Neural Net Tank Urban Legend}}}
+      \field{urlday}{21}
+      \field{urlmonth}{2}
+      \field{urlyear}{2019}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gwern.net/Tanks
+      \endverb
+      \verb{url}
+      \verb https://www.gwern.net/Tanks
+      \endverb
+      \keyw{artificial intelligence,counterexample,evolutionary algorithm,failure,machine learning}
+    \endentry
+    \entry{chakravortyspivak1988CanSubalternSpeak}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e57ac5b897e0d7755b9252494c613fba}{%
+           family={Chakravorty\bibnamedelima Spivak},
+           familyi={C\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Gayatri},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {University of Illinois Press}%
+      }
+      \strng{namehash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{fullhash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{fullhashraw}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{bibnamehash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{authorbibnamehash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{authornamehash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{authorfullhash}{e57ac5b897e0d7755b9252494c613fba}
+      \strng{authorfullhashraw}{e57ac5b897e0d7755b9252494c613fba}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Marxism and the {{Interpretation}} of {{Culture}}}
+      \field{title}{Can the {{Subaltern Speak}}}
+      \field{urlday}{26}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{year}{1988}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf
+      \endverb
+      \verb{url}
+      \verb https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf
+      \endverb
+    \endentry
+    \entry{fan2021EnglishcentricMultilingualMachine}{article}{}{}
+      \name{author}{17}{}{%
+        {{un=0,uniquepart=base,hash=277117db6b938bd36379979ac719cc02}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Angela},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7681ed73d0f254dc4ce489faa0245a38}{%
+           family={Bhosale},
+           familyi={B\bibinitperiod},
+           given={Shruti},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=449689e8c1ced50f608244e3a96fe6d3}{%
+           family={Schwenk},
+           familyi={S\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80cbbaafbf6d7101aff5c9605af11866}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Zhiyi},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e23ef866a654e22453bdbfca6b0c976c}{%
+           family={El-Kishky},
+           familyi={E\bibinithyphendelim K\bibinitperiod},
+           given={Ahmed},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7248a724d5b9c938f0548c4190670225}{%
+           family={Goyal},
+           familyi={G\bibinitperiod},
+           given={Siddharth},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2006934b7451403c8cff60d7131da7c4}{%
+           family={Baines},
+           familyi={B\bibinitperiod},
+           given={Mandeep},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79c4c8b32d6ff6760be2f2cc0a22b9c0}{%
+           family={Celebi},
+           familyi={C\bibinitperiod},
+           given={Onur},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9187426ad03289115e1167fcbb50a3e}{%
+           family={Wenzek},
+           familyi={W\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2b6a497c32b61dbbfc24edec6778700}{%
+           family={Chaudhary},
+           familyi={C\bibinitperiod},
+           given={Vishrav},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=78a420900f50a8470ad085fb05231bf6}{%
+           family={Goyal},
+           familyi={G\bibinitperiod},
+           given={Naman},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=18a50dfb5fe20235390241839d1e58f2}{%
+           family={Birch},
+           familyi={B\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d092791ef7aa4f90fdfb20f313a91c03}{%
+           family={Liptchinsky},
+           familyi={L\bibinitperiod},
+           given={Vitaliy},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79caf76234e835df3dc38a785e0913e0}{%
+           family={Edunov},
+           familyi={E\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ebdea2c3aa9f759075733b20dce6b873}{%
+           family={Grave},
+           familyi={G\bibinitperiod},
+           given={Edouard},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d3ff0eff0a1d1258618c88f2ec57095f}{%
+           family={Auli},
+           familyi={A\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=977d047821122d1c2e7aa855c30c8cf2}{%
+           family={Joulin},
+           familyi={J\bibinitperiod},
+           given={Armand},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{767b98621bcdbbf4ab796a25a3c32748}
+      \strng{fullhash}{35069221226fc4a00be93b56753acd6c}
+      \strng{fullhashraw}{35069221226fc4a00be93b56753acd6c}
+      \strng{bibnamehash}{767b98621bcdbbf4ab796a25a3c32748}
+      \strng{authorbibnamehash}{767b98621bcdbbf4ab796a25a3c32748}
+      \strng{authornamehash}{767b98621bcdbbf4ab796a25a3c32748}
+      \strng{authorfullhash}{35069221226fc4a00be93b56753acd6c}
+      \strng{authorfullhashraw}{35069221226fc4a00be93b56753acd6c}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Existing work in translation demonstrated the potential of massively multilingual machine translation by training a single model able to translate between any pair of languages. However, much of this work is English-Centric, training only on data which was translated from or to English. While this is supported by large sources of training data, it does not reflect translation needs worldwide. In this work, we create a true Many-to-Many multilingual translation model that can translate directly between any pair of 100 languages. We build and open-source a training data set that covers thousands of language directions with parallel data, created through large-scale mining. Then, we explore how to effectively increase model capacity through a combination of dense scaling and language-specific sparse parameters to create high quality models. Our focus on non-English-Centric models brings gains of more than 10 BLEU when directly translating between non-English directions while performing competitively to the best single systems from the Workshop on Machine Translation (WMT). We open-source our scripts so that others may reproduce the data, evaluation, and final M2M- 100 model}
+      \field{day}{1}
+      \field{issn}{1532-4435}
+      \field{journaltitle}{The Journal of Machine Learning Research}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Beyond English-Centric Multilingual Machine Translation}
+      \field{volume}{22}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{107:4839\bibrangedash 107:4886}
+      \range{pages}{-1}
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/abs/10.5555/3546258.3546365
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/abs/10.5555/3546258.3546365
+      \endverb
+      \keyw{⛔ No DOI found,bitext mining,many-to-many,model scaling,multilingual machine translation,neural networks}
+    \endentry
+    \entry{jouitteau2009ARBRESWikigrammaireDialectes}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=474b27c97d6277c9e37def532afc5053}{%
+           family={Jouitteau},
+           familyi={J\bibinitperiod},
+           given={Mélanie},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{474b27c97d6277c9e37def532afc5053}
+      \strng{fullhash}{474b27c97d6277c9e37def532afc5053}
+      \strng{fullhashraw}{474b27c97d6277c9e37def532afc5053}
+      \strng{bibnamehash}{474b27c97d6277c9e37def532afc5053}
+      \strng{authorbibnamehash}{474b27c97d6277c9e37def532afc5053}
+      \strng{authornamehash}{474b27c97d6277c9e37def532afc5053}
+      \strng{authorfullhash}{474b27c97d6277c9e37def532afc5053}
+      \strng{authorfullhashraw}{474b27c97d6277c9e37def532afc5053}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{endyear}{2024}
+      \field{title}{{{ARBRES}}, Wikigrammaire Des Dialectes Du Breton et Centre de Ressources Pour Son Étude Linguistique Formelle}
+      \field{year}{2009}
+      \field{enddateera}{ce}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://arbres.iker.cnrs.fr
+      \endverb
+      \verb{url}
+      \verb http://arbres.iker.cnrs.fr
+      \endverb
+    \endentry
+    \entry{el-kishky2020CCAlignedMassiveCollection}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e23ef866a654e22453bdbfca6b0c976c}{%
+           family={El-Kishky},
+           familyi={E\bibinithyphendelim K\bibinitperiod},
+           given={Ahmed},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2b6a497c32b61dbbfc24edec6778700}{%
+           family={Chaudhary},
+           familyi={C\bibinitperiod},
+           given={Vishrav},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2e3a540fe772c40c15564f8e6056c14}{%
+           family={Guzmán},
+           familyi={G\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dac0b41a5ea5e261d00f3251b76b91bd}{%
+           family={Koehn},
+           familyi={K\bibinitperiod},
+           given={Philipp},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Online}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{b36b94d3e609a4fad26db11f3c11018c}
+      \strng{fullhash}{ae133aa96ac052e517da88f64244eba6}
+      \strng{fullhashraw}{ae133aa96ac052e517da88f64244eba6}
+      \strng{bibnamehash}{ae133aa96ac052e517da88f64244eba6}
+      \strng{authorbibnamehash}{ae133aa96ac052e517da88f64244eba6}
+      \strng{authornamehash}{b36b94d3e609a4fad26db11f3c11018c}
+      \strng{authorfullhash}{ae133aa96ac052e517da88f64244eba6}
+      \strng{authorfullhashraw}{ae133aa96ac052e517da88f64244eba6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Cross-lingual document alignment aims to identify pairs of documents in two distinct languages that are of comparable content or translations of each other. In this paper, we exploit the signals embedded in URLs to label web documents at scale with an average precision of 94.5\% across different language pairs. We mine sixty-eight snapshots of the Common Crawl corpus and identify web document pairs that are translations of each other. We release a new web dataset consisting of over 392 million URL pairs from Common Crawl covering documents in 8144 language pairs of which 137 pairs include English. In addition to curating this massive dataset, we introduce baseline methods that leverage cross-lingual representations to identify aligned documents based on their textual content. Finally, we demonstrate the value of this parallel documents dataset through a downstream task of mining parallel sentences and measuring the quality of machine translations from models trained on this mined data. Our objective in releasing this dataset is to foster new research in cross-lingual NLP across a variety of low, medium, and high-resource languages.}
+      \field{booktitle}{Proceedings of the 2020 {{Conference}} on {{Empirical Methods}} in {{Natural Language Processing}} ({{EMNLP}})}
+      \field{eventtitle}{{{EMNLP}} 2020}
+      \field{month}{11}
+      \field{shorttitle}{{{CCAligned}}}
+      \field{title}{{{CCAligned}}: {{A Massive Collection}} of {{Cross-Lingual Web-Document Pairs}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{5960\bibrangedash 5969}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.18653/v1/2020.emnlp-main.480
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2020.emnlp-main.480
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2020.emnlp-main.480
+      \endverb
+    \endentry
+    \entry{krakovna2018SpecificationGamingExamples}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0fc4cf02fbc566b425399612f16815e5}{%
+           family={Krakovna},
+           familyi={K\bibinitperiod},
+           given={Victoria},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{fullhash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{fullhashraw}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{bibnamehash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{authorbibnamehash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{authornamehash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{authorfullhash}{0fc4cf02fbc566b425399612f16815e5}
+      \strng{authorfullhashraw}{0fc4cf02fbc566b425399612f16815e5}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{2}
+      \field{month}{4}
+      \field{title}{Specification Gaming Examples in {{AI}} - Master List}
+      \field{urlday}{21}
+      \field{urlmonth}{2}
+      \field{urlyear}{2019}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.google.com/spreadsheets/d/e/2PACX-1vRPiprOaC3HsCf5Tuum8bRfzYUiKLRqJmbOoC-32JorNdfyTiRRsR7Ea5eWtvsWzuxo8bjOxCG84dAg/pubhtml
+      \endverb
+      \verb{url}
+      \verb https://docs.google.com/spreadsheets/d/e/2PACX-1vRPiprOaC3HsCf5Tuum8bRfzYUiKLRqJmbOoC-32JorNdfyTiRRsR7Ea5eWtvsWzuxo8bjOxCG84dAg/pubhtml
+      \endverb
+      \keyw{artificial intelligence,counterexample,evolutionary algorithm,failure,machine learning}
+    \endentry
+    \entry{lison2016OpenSubtitles2016ExtractingLarge}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c681ca461853a8f8c9328c4bf3126c99}{%
+           family={Lison},
+           familyi={L\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d78ca968eaba90115894696a2e2708a0}{%
+           family={Tiedemann},
+           familyi={T\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Portorož, Slovenia}%
+      }
+      \list{publisher}{1}{%
+        {European Language Resources Association (ELRA)}%
+      }
+      \strng{namehash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{fullhash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{fullhashraw}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{bibnamehash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{authorbibnamehash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{authornamehash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{authorfullhash}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \strng{authorfullhashraw}{ebfaa5e35bb66677e49d8110a0bb2643}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present a new major release of the OpenSubtitles collection of parallel corpora. The release is compiled from a large database of movie and TV subtitles and includes a total of 1689 bitexts spanning 2.6 billion sentences across 60 languages. The release also incorporates a number of enhancements in the preprocessing and alignment of the subtitles, such as the automatic correction of OCR errors and the use of meta-data to estimate the quality of each subtitle and score subtitle pairs.}
+      \field{booktitle}{Proceedings of the {{Tenth International Conference}} on {{Language Resources}} and {{Evaluation}} ({{LREC}}'16)}
+      \field{eventtitle}{{{LREC}} 2016}
+      \field{month}{5}
+      \field{shorttitle}{{{OpenSubtitles2016}}}
+      \field{title}{{{OpenSubtitles2016}}: {{Extracting Large Parallel Corpora}} from {{Movie}} and {{TV Subtitles}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{923\bibrangedash 929}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb https://aclanthology.org/L16-1147
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/L16-1147
+      \endverb
+    \endentry
+    \entry{schwenk2021WikiMatrixMining135M}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=449689e8c1ced50f608244e3a96fe6d3}{%
+           family={Schwenk},
+           familyi={S\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2b6a497c32b61dbbfc24edec6778700}{%
+           family={Chaudhary},
+           familyi={C\bibinitperiod},
+           given={Vishrav},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0e6235a754036d1e59873917d31eaba7}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Shuo},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4bc5841f00d6aca846b26de338122f86}{%
+           family={Gong},
+           familyi={G\bibinitperiod},
+           given={Hongyu},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2e3a540fe772c40c15564f8e6056c14}{%
+           family={Guzmán},
+           familyi={G\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Online}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{da0a0703391223e68afc443650d2dc99}
+      \strng{fullhash}{e466ce5b296f1470fa6337f3cae0e561}
+      \strng{fullhashraw}{e466ce5b296f1470fa6337f3cae0e561}
+      \strng{bibnamehash}{e466ce5b296f1470fa6337f3cae0e561}
+      \strng{authorbibnamehash}{e466ce5b296f1470fa6337f3cae0e561}
+      \strng{authornamehash}{da0a0703391223e68afc443650d2dc99}
+      \strng{authorfullhash}{e466ce5b296f1470fa6337f3cae0e561}
+      \strng{authorfullhashraw}{e466ce5b296f1470fa6337f3cae0e561}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present an approach based on multilingual sentence embeddings to automatically extract parallel sentences from the content of Wikipedia articles in 96 languages, including several dialects or low-resource languages. We do not limit the extraction process to alignments with English, but we systematically consider all possible language pairs. In total, we are able to extract 135M parallel sentences for 16720 different language pairs, out of which only 34M are aligned with English. This corpus is freely available. To get an indication on the quality of the extracted bitexts, we train neural MT baseline systems on the mined data only for 1886 languages pairs, and evaluate them on the TED corpus, achieving strong BLEU scores for many language pairs. The WikiMatrix bitexts seem to be particularly interesting to train MT systems between distant languages without the need to pivot through English.}
+      \field{booktitle}{Proceedings of the 16th {{Conference}} of the {{European Chapter}} of the {{Association}} for {{Computational Linguistics}}: {{Main Volume}}}
+      \field{eventtitle}{{{EACL}} 2021}
+      \field{month}{4}
+      \field{shorttitle}{{{WikiMatrix}}}
+      \field{title}{{{WikiMatrix}}: {{Mining 135M Parallel Sentences}} in 1620 {{Language Pairs}} from {{Wikipedia}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1351\bibrangedash 1361}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/2021.eacl-main.115
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2021.eacl-main.115
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2021.eacl-main.115
+      \endverb
+    \endentry
+    \entry{schwenk2021CCMatrixMiningBillions}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=449689e8c1ced50f608244e3a96fe6d3}{%
+           family={Schwenk},
+           familyi={S\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9187426ad03289115e1167fcbb50a3e}{%
+           family={Wenzek},
+           familyi={W\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79caf76234e835df3dc38a785e0913e0}{%
+           family={Edunov},
+           familyi={E\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ebdea2c3aa9f759075733b20dce6b873}{%
+           family={Grave},
+           familyi={G\bibinitperiod},
+           given={Edouard},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=977d047821122d1c2e7aa855c30c8cf2}{%
+           family={Joulin},
+           familyi={J\bibinitperiod},
+           given={Armand},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=277117db6b938bd36379979ac719cc02}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Angela},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Online}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{da0a0703391223e68afc443650d2dc99}
+      \strng{fullhash}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \strng{fullhashraw}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \strng{bibnamehash}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \strng{authorbibnamehash}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \strng{authornamehash}{da0a0703391223e68afc443650d2dc99}
+      \strng{authorfullhash}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \strng{authorfullhashraw}{0e7c68c6beb2ed493a7c0c4b93e5cce2}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We show that margin-based bitext mining in a multilingual sentence space can be successfully scaled to operate on monolingual corpora of billions of sentences. We use 32 snapshots of a curated common crawl corpus (Wenzel et al, 2019) totaling 71 billion unique sentences. Using one unified approach for 90 languages, we were able to mine 10.8 billion parallel sentences, out of which only 2.9 billions are aligned with English. We illustrate the capability of our scalable mining system to create high quality training sets from one language to any other by training hundreds of different machine translation models and evaluating them on the many-to-many TED benchmark. Further, we evaluate on competitive translation benchmarks such as WMT and WAT. Using only mined bitext, we set a new state of the art for a single system on the WMT'19 test set for English-German/Russian/Chinese. In particular, our English/German and English/Russian systems outperform the best single ones by over 4 BLEU points and are on par with best WMT'19 systems, which train on the WMT training data and augment it with backtranslation. We also achieve excellent results for distant languages pairs like Russian/Japanese, outperforming the best submission at the 2020 WAT workshop. All of the mined bitext will be freely available.}
+      \field{booktitle}{Proceedings of the 59th {{Annual Meeting}} of the {{Association}} for {{Computational Linguistics}} and the 11th {{International Joint Conference}} on {{Natural Language Processing}} ({{Volume}} 1: {{Long Papers}})}
+      \field{eventtitle}{{{ACL-IJCNLP}} 2021}
+      \field{month}{8}
+      \field{shorttitle}{{{CCMatrix}}}
+      \field{title}{{{CCMatrix}}: {{Mining Billions}} of {{High-Quality Parallel Sentences}} on the {{Web}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{6490\bibrangedash 6500}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/2021.acl-long.507
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2021.acl-long.507
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2021.acl-long.507
+      \endverb
+    \endentry
+    \entry{tiedemann2012ParallelDataTools}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d78ca968eaba90115894696a2e2708a0}{%
+           family={Tiedemann},
+           familyi={T\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Istanbul, Turkey}%
+      }
+      \list{publisher}{1}{%
+        {European Language Resources Association (ELRA)}%
+      }
+      \strng{namehash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{fullhash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{fullhashraw}{d78ca968eaba90115894696a2e2708a0}
+      \strng{bibnamehash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{authorbibnamehash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{authornamehash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{authorfullhash}{d78ca968eaba90115894696a2e2708a0}
+      \strng{authorfullhashraw}{d78ca968eaba90115894696a2e2708a0}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents the current status of OPUS, a growing language resource of parallel corpora and related tools. The focus in OPUS is to provide freely available data sets in various formats together with basic annotation to be useful for applications in computational linguistics, translation studies and cross-linguistic corpus studies. In this paper, we report about new data sets and their features, additional annotation tools and models provided from the website and essential interfaces and on-line services included in the project.}
+      \field{booktitle}{Proceedings of the {{Eighth International Conference}} on {{Language Resources}} and {{Evaluation}} ({{LREC}}'12)}
+      \field{eventtitle}{{{LREC}} 2012}
+      \field{month}{5}
+      \field{title}{Parallel {{Data}}, {{Tools}} and {{Interfaces}} in {{OPUS}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2214\bibrangedash 2218}
+      \range{pages}{5}
+      \verb{urlraw}
+      \verb http://www.lrec-conf.org/proceedings/lrec2012/pdf/463_Paper.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.lrec-conf.org/proceedings/lrec2012/pdf/463_Paper.pdf
+      \endverb
+    \endentry
+    \entry{tyers2009RuleBasedAugmentationTraining}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e8a05c165e02340ed918110411776e8e}{%
+           family={Tyers},
+           familyi={T\bibinitperiod},
+           given={Francis\bibnamedelima M.},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {European Association for Machine Translation}%
+      }
+      \strng{namehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{fullhash}{e8a05c165e02340ed918110411776e8e}
+      \strng{fullhashraw}{e8a05c165e02340ed918110411776e8e}
+      \strng{bibnamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorbibnamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authornamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorfullhash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorfullhashraw}{e8a05c165e02340ed918110411776e8e}
+      \field{extraname}{1}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 13th {{Annual}} Conference of the {{European Association}} for {{Machine Translation}}}
+      \field{day}{14}
+      \field{eventtitle}{{{EAMT}} 2009}
+      \field{month}{5}
+      \field{title}{Rule-{{Based Augmentation}} of {{Training Data}} in {{Breton-French Statistical Machine Translation}}}
+      \field{urlday}{23}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{venue}{Barcelona, España}
+      \field{year}{2009}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://aclanthology.org/2009.eamt-1.29
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2009.eamt-1.29
+      \endverb
+    \endentry
+    \entry{tyers2010RulebasedBretonFrench}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e8a05c165e02340ed918110411776e8e}{%
+           family={Tyers},
+           familyi={T\bibinitperiod},
+           given={Francis\bibnamedelima M.},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Saint Raphaël, France}%
+      }
+      \list{publisher}{1}{%
+        {European Association for Machine Translation}%
+      }
+      \strng{namehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{fullhash}{e8a05c165e02340ed918110411776e8e}
+      \strng{fullhashraw}{e8a05c165e02340ed918110411776e8e}
+      \strng{bibnamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorbibnamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authornamehash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorfullhash}{e8a05c165e02340ed918110411776e8e}
+      \strng{authorfullhashraw}{e8a05c165e02340ed918110411776e8e}
+      \field{extraname}{2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 14th {{Annual Conference}} of the {{European Association}} for {{Machine Translation}}}
+      \field{day}{27}
+      \field{eventtitle}{{{EAMT}} 2010}
+      \field{month}{5}
+      \field{title}{Rule-Based {{Breton}} to {{French}} Machine Translation}
+      \field{urlday}{10}
+      \field{urlmonth}{10}
+      \field{urlyear}{2023}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://aclanthology.org/2010.eamt-1.13
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2010.eamt-1.13
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

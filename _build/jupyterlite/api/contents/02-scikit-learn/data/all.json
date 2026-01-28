@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.766136Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2022-10-18T10:08:53.663022Z",
+      "mimetype": "application/x-tar",
+      "name": "imdb_smol.tar.gz",
+      "path": "02-scikit-learn/data/imdb_smol.tar.gz",
+      "size": 336919,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.766136Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.766136Z",
+  "mimetype": null,
+  "name": "data",
+  "path": "02-scikit-learn/data",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

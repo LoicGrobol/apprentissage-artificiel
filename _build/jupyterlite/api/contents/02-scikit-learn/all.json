@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.766136Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:07.766136Z",
+      "mimetype": null,
+      "name": "data",
+      "path": "02-scikit-learn/data",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.767758Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.364063Z",
+      "mimetype": "text/markdown",
+      "name": "scikit-learn-slides.py.md",
+      "path": "02-scikit-learn/scikit-learn-slides.py.md",
+      "size": 13465,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.767514Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.363903Z",
+      "mimetype": null,
+      "name": "scikit-learn-slides.py.ipynb",
+      "path": "02-scikit-learn/scikit-learn-slides.py.ipynb",
+      "size": 21625,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.767514Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.767514Z",
+  "mimetype": null,
+  "name": "02-scikit-learn",
+  "path": "02-scikit-learn",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

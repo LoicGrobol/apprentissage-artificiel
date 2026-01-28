@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contenus pour le cours « Apprentissage automatique » du master Plurital." />
+
+    <title>Apprentissage artificiel — M2 PluriTAL 2025 | Apprentissage artificiel</title>
+
+    <meta property="og:description" content="Contenus pour le cours « Apprentissage automatique » du master Plurital." />
+    <meta property="og:site_name" content="Apprentissage artificiel" />
+    <meta property="og:title" content="Apprentissage artificiel — M2 PluriTAL 2025" />
+    <meta property="og:type" content="website" />
+
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"WebSite",
+        "description":"Contenus pour le cours « Apprentissage automatique » du master Plurital.",
+        "headline":"Apprentissage artificiel — M2 PluriTAL 2025",
+        "name":"Apprentissage artificiel",
+      }
+    </script>
+
+    <link rel="stylesheet" href="http://localhost:5000/assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:5000/assets/favicon.ico" />
+  </head>
+  <body>
+    <div class="container"><header>
+        <span class="title">🤖<a href="http://localhost:5000">Apprentissage artificiel</a>🤖</span>
+      </header><!-- LTeX: language=fr -->
+<h2>News</h2>
+<ul>
+<li><strong>2025-09-23</strong> Premier cours du semestre le 24/09/2025</li>
+</ul>
+<h2>Infos pratiques</h2>
+<ul>
+<li><strong>Quoi</strong> « Apprentissage artificiel »</li>
+<li><strong>Où</strong> Salle R06, BFC</li>
+<li><strong>Quand</strong> 8 séances, les mercredi de 9:30 à 12:30, du 24/09 au ??/11
+<ul>
+<li>Voir le planning pour les dates exactes</li>
+</ul>
+</li>
+<li><strong>Contact</strong> L. Grobol <a href="mailto:lgrobol@parisnanterre.fr"><a href="mailto:lgrobol@parisnanterre.fr">lgrobol@parisnanterre.fr</a></a></li>
+<li><strong>Évaluation</strong> Un TP noté et un projet</li>
+</ul>
+<h2>Liens utiles</h2>
+<ul>
+<li>Prendre rendez-vous pour des <em>office hours</em> en visio :
+<a href="https://calendar.app.google/N9oW2c9BzhXsWrrv9">mon calendrier</a></li>
+<li>Lien Binder de secours :
+<a href="https://mybinder.org/v2/gh/LoicGrobol/apprentissage-artificiel/main"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></li>
+</ul>
+<h2>Séances</h2>
+<p>Les liens dans chaque séance vous permettent de télécharger les fichiers <code>.ipynb</code> à utiliser (et
+données additionnelles éventuelles). Attention : pour les utiliser en local, il faudra installer les
+packages du <code>requirements.txt</code> (dans un environnement virtuel). Si vous ne savez pas comment faire,
+allez voir <a href="#utilisation-en-local">« Utilisation en local »</a></p>
+<h3>2025-09-24 : Outils de travail</h3>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=01-tools/python_crash_course.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/01-tools/python_crash_course.py.ipynb">Crash course Python</a>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=01-tools/python_crash_course-solutions.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/01-tools/python_crash_course-solutions.py.ipynb">Solutions</a></li>
+</ul>
+</li>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=01-tools/numpy-slides.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/01-tools/numpy-slides.py.ipynb">Présentation Numpy</a></li>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=01-tools/polars.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/01-tools/polars.py.ipynb">Présentation Polars</a></li>
+</ul>
+<h3>2025-09-31 : Intuitions et vocabulaire</h3>
+<ul>
+<li><a href="slides/02-intro/intro.pdf">Slides intro</a></li>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=02-scikit-learn/scikit-learn-slides.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/02-scikit-learn/scikit-learn-slides.py.ipynb">TP intro à scikit-learn</a>
+<ul>
+<li><a href="slides/02-scikit-learn/data/imdb_smol.tar.gz"><code>imdb_smol.tar.gz</code></a></li>
+</ul>
+</li>
+</ul>
+<h3>2025-10-08 : Évaluation de modèles, sur- et sous-apprentissage</h3>
+<ul>
+<li>À lire sur les splits train/dev/test : Goot, Rob van der. 2021. ‘<a href="https://aclanthology.org/2021.emnlp-main.368">We Need to Talk About
+Train-Dev-Test Splits</a>’. Proceedings of the 2021
+Conference on Empirical Methods in Natural Language Processing, November, 4485–94..</li>
+</ul>
+<p>TP : full autonomie ! Préparez un notebook (avec du code <strong>et</strong> du texte) où vous utiliserez le
+scikit-learn sur le jeu de données <a href="https://scikit-learn.org/stable/datasets/real_world.html#newsgroups-dataset">20
+newsgroups</a> (récupérez
+le pré-vectorisé en Tf⋅Idf avec
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html"><code>sklearn.datasets.fetch_20newsgroups_vectorized</code></a>)
+pour étudier les capacités de quelques classifieurs.</p>
+<ul>
+<li>Présenter rapidement le jeu de données (origine, composition, quelques stats descriptives). Vous
+devriez probablement aller chercher dans la doc d'où proviennent les données et aller examiner
+leur contenu (quand on fait de la classification de textes, c'est souvent utile de regarder les
+textes en question!).</li>
+<li>Entraîner <a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">des arbres de
+décision</a>
+en faisant varier la profondeur pour étudier dans quelle mesure ils sous-apprennent quand la
+profondeur est trop faible et déterminer à partir de quand ils surapprennent. Penser à la
+validation croisée, penser à faire des courbes d'apprentissage, penser à visualiser les arbres,
+penser à regarder les matrices de confusion, chercher dans <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics">les métriques de
+scikit-learn</a>
+celles qui pourraient être intéressantes.</li>
+<li>Étudier l'influence de la taille du corpus d'apprentissage (mêmes indices)</li>
+<li>Si vous ne l'avez pas déjà fait, allez voir dans la doc à quoi sert le paramètre <code>remove</code> de
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups_vectorized.html"><code>fetch_20newsgroups_vectorized</code></a>,
+et reprenez vos expériences en le modifiant.</li>
+<li>Même jeu avec un
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html">perceptron</a>,
+en étudiant l'influence du paramètre <code>max_iter</code> (commencer à 1)</li>
+</ul>
+<p>Si vous voulez que j'y jette un œil, envoyez  à <code>lgrobol@parisnanterre.fr</code> avec en objet <code>[ML2025] TP Overfit</code>.</p>
+<h3>2025-10-14 : Régression linéaire, régression logistique</h3>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=04-logistic-regression/lr-slides.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/04-logistic-regression/lr-slides.py.ipynb">TP régression logistique</a>
+<ul>
+<li><a href="slides/04-logistic-regression/data/vader_lexicon.txt">Lexique VADER</a></li>
+<li><a href="slides/04-logistic-regression/data/imdb_smol.tar.gz">Jeu de données IMDB smol</a></li>
+</ul>
+</li>
+</ul>
+<h3>2025-10-22 : Descente de gradient</h3>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=04-logistic-regression/lr-slides.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/04-logistic-regression/lr-slides.py.ipynb">TP régression logistique</a>
+<ul>
+<li><a href="slides/04-logistic-regression/data/vader_lexicon.txt">Lexique VADER</a></li>
+<li><a href="slides/04-logistic-regression/data/imdb_smol.tar.gz">Jeu de données IMDB smol</a></li>
+</ul>
+</li>
+</ul>
+<h3>2025-11-05 : Clustering</h3>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=05-unsupervised/unsupervised.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/05-unsupervised/unsupervised.py.ipynb">TP apprentissage non-supervisé</a></li>
+</ul>
+<h3>2025-11-12 : Réduction de dimension</h3>
+<ul>
+<li><a href="http://localhost:5000/jupyterlite/notebooks/index.html?path=05-unsupervised/unsupervised.py.ipynb">
+<img src="http://localhost:5000/assets/badge-launch.svg" alt="Open in Jupyterlite badge" />
+</a>
+<a href="http://localhost:5000/notebooks/05-unsupervised/unsupervised.py.ipynb">TP apprentissage non-supervisé</a></li>
+</ul>
+<h3>2025-11-19 : <em>Failure modes</em></h3>
+<ul>
+<li>Slides <a href="slides/05-stuff/nice.pdf"><em>failure mode</em></a></li>
+<li>Présentations à la journée <a href="https://www.youtube.com/playlist?list=PLRRIu4Z2oc_T2SC-_8t8DLuOU7yYQitE-">Éthique et TAL
+2024</a></li>
+</ul>
+<h2>Évaluations</h2>
+<h3>TP 20ng</h3>
+<p>À rendre au plus tard le 2025-12-19T23:59:59
+(<a href="https://fr.wikipedia.org/wiki/Partout_sur_Terre">UTC-12</a>): un notebook qui récupère les données,
+entraîne un (ou plusieurs) modèle et l'évalue.</p>
+<ul>
+<li>Vous serez évalué⋅es sur les performances du modèle, le temps d'exécution du notebook, la qualité
+du code et la qualité de vos explications.</li>
+<li>Le notebook doit s'exécuter sur une machine standard, avec Python 3.12, 3.13 ou 3.14 et sans
+configuration non-documentéee.</li>
+<li>Si vous utilisez des packages autres que ceux utilisés dans le cours <strong>documentez-les</strong> au début
+du notebook.</li>
+<li>Si votre notebook ne fonctionne pas sans que j'ai à le modifier, ce sera pénalisé.</li>
+<li>Les résultats doivent être clairement affichés à la fin. Cet affichage doit être <em>généré</em> (pas
+écrit à la main).</li>
+<li>Les résultats doivent être exactement les mêmes à chaque exécution du notebook (après un
+redémarrage du kernel). Pensez aux <em>random seed</em>.</li>
+<li>Si vous mettez du texte explicatif, des titres, etc., c'est mieux. <strong>A minima le notebook doit
+contenir vos noms, prénoms et établissement principal</strong>.</li>
+<li>Les données doivent être celles venant de scikit-learn.</li>
+<li>Vous devez utiliser le split train/test standard.</li>
+<li>Vous pouvez utiliser une vectorisation et des prétraitements différents de ceux par défaut.</li>
+<li>Les données <strong>doivent</strong> être chargées avec <code>remove=(&quot;headers&quot;, &quot;footers&quot;, &quot;quotes&quot;)</code> (voir <a href="https://scikit-learn.org/stable/datasets/real_world.html#filtering-text-for-more-realistic-training">la
+doc</a>
+pour savoir pourquoi.)</li>
+<li>Tous les coups sont permis : vous avez droit à tout sauf aux réseaux de neurones (à part
+éventuellement un perceptron).</li>
+<li>Les choix d'hyperparamètres différents de ceux par défauts doivent être justifiés (dans des
+cellules de textes) de façon aussi convaincante que possible). Si vous utilisez des algorithmes de
+recherches (type grid search), ils doivent faire partie du notebook (et donc compter dans le temps
+d'exécution).</li>
+<li>Rendus par mail à <code>lgrobol@parisnanterre.fr</code> avec en objet <code>[ML2025] TP 20ng</code> et vos noms, prénoms
+et établissement dans le corps du mail.</li>
+<li><strong>Si l'objet est différent, je ne verrai pas votre rendu</strong>.</li>
+<li>J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.</li>
+</ul>
+<h3>Projet final</h3>
+<ul>
+<li>Tâche à réaliser : tâche 3 de l'édition 2009 du DÉfi Fouille de Texte (DEFT): apprentissage de
+classification par parti politique d'interventions au parlement européen.</li>
+<li>Les données sont disponibles sur le site de <a href="https://deft.lisn.upsaclay.fr/">DEFT</a>, leur
+description et celle de la tâche dans les
+<a href="https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf">actes</a>.
+<ul>
+<li>Si besoin les données sont aussi disponibles <a href="/data/deft09.tar.gz">ici</a></li>
+</ul>
+</li>
+<li>À faire : proposer un (des) classifieur(s) pour cette tâche, étudier ses (leurs) performances sur
+cette tâche. Comparer aux informations données dans les actes.</li>
+<li>À rendre : rapport sous forme d'un article court dans le <a href="https://github.com/acl-org/acl-style-files">style
+ACL</a> (4 pages+bibliographie, format pdf, anglais ou
+français) décrivant le contexte de la tâche, vos expériences (méthodes et résultats) et vos
+conclusions. Compléter par une archive comprenant vos données et votre code.</li>
+<li>Projet à faire de préférence en groupe de maximum trois personnes, ou individuellement, à rendre
+au plus tard le 2026-01-05T23:59:59
+(<a href="https://fr.wikipedia.org/wiki/Partout_sur_Terre">UTC-12</a>).</li>
+<li>L'évaluation sera faite principalement sur la qualité et la pertinence des expériences réalisées
+et de vos analyses.</li>
+<li>Rendus par mail à <code>lgrobol@parisnanterre.fr</code> avec en objet <code>[ML2025] Projet final</code> et les noms,
+prénoms et établissements de tous les membres du groupe dans le corps du mail.
+<ul>
+<li><strong>Si l'objet est différent, je ne verrai pas votre rendu</strong>. Et si un nom manque, vous risquez de
+ne pas avoir de note.</li>
+<li>J'accuserai réception sous 48h dans la mesure du possible, relancez-moi si ce n'est pas le cas.</li>
+</ul>
+</li>
+</ul>
+<h2>Utilisation en local</h2>
+<h3>Environnements virtuels et packages</h3>
+<p>Je cite le <a href="slides/01-tools/python_crash_course.py.ipynb">Crash course Python</a>:</p>
+<ul>
+<li>Les environnements virtuels sont des installations isolées de Python. Ils vous permettent d'avoir
+des versions indépendantes de Python et des packages que vous installez
+<ul>
+<li>Gérez vos environnements et vos packages avec <a href="https://docs.astral.sh/uv/">uv</a>. Installez-le,
+lisez la doc.</li>
+<li>Pour créer un environnement virtuel : <code>uv venv /chemin/vers/…</code></li>
+<li>La convention, c'est <code>uv venv .venv</code>, ce qui créée un dossier (caché par défaut sous Linux et Mac
+OS car son nom commence par <code>.</code>) : <code>.venv</code> dans le dossier courant (habituellement le dossier
+principal de votre projet). Donc faites ça.</li>
+<li>Il est <strong>obligatoire</strong> de travailler dans un environnement virtuel. L'idéal est d'en avoir un
+par cours, un par projet, etc.
+<ul>
+<li>uv est assez précautionneux avec l'espace disque, il y a donc assez peu de désavantage à avoir
+beaucoup d'environnements virtuels.</li>
+</ul>
+</li>
+<li>Un environnement virtuel doit être <strong>activé</strong> avant de s'en servir. Concrètement ça remplace la
+commande <code>python</code> de votre système par celle de l'environnement.
+<ul>
+<li>Dans Bash par exemple, ça se fait avec <code>source .venv/bin/activate</code> (en remplaçant par le
+chemin de l'environnement s'il est différent)</li>
+<li><code>deactivate</code> pour le désactiver et rétablir votre commande <code>python</code>. À faire avant d'en
+activer un autre.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>On installe des packages avec <code>uv pip</code> ou <code>python -m pip</code> (mais plutôt <code>uv pip</code>, et jamais juste
+<code>pip</code>).
+<ul>
+<li><code>uv pip install numpy</code> pour installer Numpy.</li>
+<li>Si vous avez un fichier avec un nom de package par ligne (par exemple le
+<a href="https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt"><code>requirements.txt</code></a>
+du cours) : <code>uv pip install -U -r requirements.txt</code></li>
+<li>Le flag <code>-U</code> ou <code>--upgrade</code> sert à mettre à jour les packages si possible : <code>uv pip install -U numpy</code> etc.</li>
+</ul>
+</li>
+<li>Je répète : on installe uniquement dans un environnement virtuel, on garde ses environnements bien
+séparés (un par cours, pas un pour tout le M2).
+<ul>
+<li>Dans un projet, on note dans un <code>requirements.txt</code> (ou <code>.lst</code>) les packages dont le projet a
+besoin pour fonctionner.</li>
+<li>Les environnements doivent être légers : ça ne doit pas être un problème de les effacer, de les
+recréer… Si vous ne savez pas recréer un environnement que vous auriez perdu, c'est qu'il y a un
+problème dans votre façon de les gérer.</li>
+</ul>
+</li>
+<li>Si vous voulez en savoir plus, <strong>et je recommande très fortement de vouloir en savoir plus, c'est
+vital de connaître ses outils de travail</strong>, il faut : <em>lire les documentations de <strong>tous</strong> les
+outils et <strong>toutes</strong> les commandes que vous utilisez</em>.</li>
+</ul>
+<p>Maintenant à vous de jouer :</p>
+<ul>
+<li>Installez uv</li>
+<li>Créez un dossier pour ce cours</li>
+<li>Dans ce dossier, créez un environnement virtuel nommé <code>.venv</code></li>
+<li>Activez-le</li>
+<li>Téléchargez le
+<a href="https://github.com/LoicGrobol/apprentissage-artificiel/blob/main/requirements.txt"><code>requirements.txt</code></a>
+et installez les packages qu'il liste</li>
+</ul>
+<h3>Notebooks Jupyter</h3>
+<p>Si vous avez une installation propre (par exemple en suivant les étapes précédentes), vous pouvez
+facilement ouvrir les notebooks du cours :</p>
+<ul>
+<li>Téléchargez le notebook du <a href="slides/01-tools/python_crash_course.py.ipynb">Crash course Python</a> et
+mettez-le dans le dossier que vous utilisez pour ce cours.</li>
+<li>Dans un terminal (avec votre environnement virtuel activé) lancez jupyter avec <code>jupyter notebook python_crash_course.py.ipynb</code>.</li>
+<li>Votre navigateur devrait s'ouvrir directement sur le notebook. Si ça ne marche pas, le terminal
+vous donne dans tous les cas un lien à suivre.</li>
+</ul>
+<p>Alternativement, des IDE comme vscode permettent d'ouvrir directement les fichiers ipynb. Pensez à
+lui préciser que le kernel a utiliser est celui de votre environnement virtuel s'il ne le trouve pas
+tout seul.</p>
+<h3>Utilisation avancée</h3>
+<p>Vous pouvez aussi (mais je ne le recommande pas forcément car ce sera plus compliqué pour vous de le
+maintenir à jour) cloner <a href="https://github.com/loicgrobol/apprentissage-artificiel">le dépôt du
+cours</a>. Tous les supports y sont, sous forme
+de fichiers Markdown assez standards, qui devraient se visualiser correctement sur la plupart des
+plateformes. Pour les utiliser comme des notebooks, il vous faudra utiliser l'extension
+<a href="https://github.com/mwouts/jupytext">Jupytext</a> (qui est dans le <code>requirements.txt</code>). C'est entre
+autres une façon d'avoir un historique git propre.</p>
+<h2>Ressources</h2>
+<h3>Apprentissage artificiel</h3>
+<p>La référence pour le TAL :</p>
+<ul>
+<li><a href="https://web.stanford.edu/~jurafsky/slp3/"><em>Speech and Language Processing</em></a> de Daniel Jurafsky et
+James H. Martin est <strong>indispensable</strong>. Il parle de bien plus de chose que simplement de
+l'apprentissage artificiel, mais sur le plan théorique il contient tout ce dont on parlera
+concernant l'apprentissage pour le TAL. Il est disponible gratuitement et mis à jour tous les ans,
+donc n'hésitez pas à le consulter très fréquemment.</li>
+</ul>
+<p>Les suivants sont des textbooks avec une approche mathématique plus complète et détaillée, c'est
+vers eux qu'il faut se tourner pour répondre aux questions profondes. Ils sont un peu cher alors si
+vous voulez les utiliser, commencez par me demander et je vous prêterai les miens.</p>
+<ul>
+<li><a href="https://link.springer.com/book/9780387310732">Pattern Recognition and Machine Learning</a>
+Christopher M. Bishop (2006), le textbook classique.</li>
+<li><a href="https://mitpress.mit.edu/9780262018029/machine-learning/">Machine Learning: A Probabilistic
+Perspective</a> de Kevin P. Murphy, (2012)
+on peut difficilement faire plus complet.</li>
+<li><a href="https://www.eyrolles.com/Informatique/Livre/apprentissage-artificiel-9782416001048/"><em>Apprentissage artificiel - Concepts et
+algorithmes</em></a>
+d'Antoine Cornuéjols et Laurent Miclet. (En français!)</li>
+</ul>
+<h3>Python général</h3>
+<p>Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qui suit n'est qu'une
+sélection.</p>
+<h4>Livres</h4>
+<p>Ils commencent à dater un peu, les derniers gadget de Python n'y seront donc pas, mais leur lecture
+reste très enrichissante (les algos, ça ne vieillit jamais vraiment).</p>
+<ul>
+<li><em>How to think like a computer scientist</em>, de Jeffrey Elkner, Allen B. Downey, and Chris Meyers.
+Vous pouvez l'acheter. Vous pouvez aussi le lire
+<a href="http://openbookproject.net/thinkcs/python/english3e/">ici</a></li>
+<li><em>Dive into Python</em>, by Mark Pilgrim. <a href="http://www.diveintopython3.net/">Ici</a> vous pouvez le lire ou
+télécharger le pdf.</li>
+<li><em>Learning Python</em>, by Mark Lutz.</li>
+<li><em>Beginning Python</em>, by Magnus Lie Hetland.</li>
+<li><em>Python Algorithms: Mastering Basic Algorithms in the Python Language</em>, par Magnus Lie Hetland.
+Peut-être un peu costaud pour des débutants.</li>
+<li>Programmation Efficace. Les 128 Algorithmes Qu'Il Faut Avoir Compris et Codés en Python au Cours
+de sa Vie, by Christoph Dürr and Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code
+Python est clair, les difficultés sont commentées. Les algos sont très costauds.</li>
+</ul>
+<h4>Web</h4>
+<p>Il vous est vivement conseillé d'utiliser un (ou plus) des sites et tutoriels ci-dessous.</p>
+<ul>
+<li><strong><a href="https://realpython.com">Real Python</a>, des cours et des tutoriels souvent de très bonne qualité
+et pour tous niveaux.</strong></li>
+<li><a href="https://cs231n.github.io/python-numpy-tutorial/">Un bon tuto NumPy</a> qui va de A à Z.</li>
+<li><a href="https://www.codingame.com/home">Coding Game</a>. Vous le retrouverez dans les exercices
+hebdomadaires.</li>
+<li><a href="https://www.codecademy.com/fr/learn/python">Code Academy</a></li>
+<li><a href="http://newcoder.io/">newcoder.io</a>. Des projets commentés, commencer par 'Data Visualization'</li>
+<li><a href="https://developers.google.com/edu/python/">Google's Python Class</a>. Guido a travaillé chez eux.
+Pas <a href="http://vignette2.wikia.nocookie.net/pixar/images/1/10/Guido.png/revision/latest?cb=20140314012724">ce
+Guido</a>,
+<a href="https://en.wikipedia.org/wiki/Guido_van_Rossum#/media/File:Guido_van_Rossum_OSCON_2006.jpg">celui-là</a></li>
+<li><a href="https://www.fun-mooc.fr/courses/inria/41001S03/session03/about#">Mooc Python</a>. Un mooc de
+l'INRIA, carré.</li>
+<li><a href="https://codecombat.com/">Code combat</a></li>
+</ul>
+<h3>Divers</h3>
+<ul>
+<li>La chaîne YouTube <a href="https://www.youtube.com/c/3blue1brown">3blue1brown</a> pour des vidéos de maths
+générales.</li>
+<li>La chaîne YouTube de <a href="https://www.youtube.com/c/Acegikmo">Freya Holmér</a> plutôt orientée <em>game
+design</em>, mais avec d'excellentes vidéos de géométrie computationnelle.</li>
+</ul>
+<h2>Licences</h2>
+<p><a href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="CC BY Licence
+badge" /></a></p>
+<p>Copyright © 2021 Loïc Grobol <a href="mailto:loic.grobol@gmail.com">&lt;loic.grobol@gmail.com&gt;</a></p>
+<p>Sauf indication contraire, les fichiers présents dans ce dépôt sont distribués selon les termes de
+la licence <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0
+International</a>. Voir <a href="README.md#Licences">le README</a>
+pour plus de détails.</p>
+<p>Un résumé simplifié de cette licence est disponible à
+<a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>.</p>
+<p>Le texte intégral de cette licence est disponible à
+<a href="https://creativecommons.org/licenses/by/4.0/legalcode">https://creativecommons.org/licenses/by/4.0/legalcode</a></p>
+
+    </div>
+  </body>
+</html>

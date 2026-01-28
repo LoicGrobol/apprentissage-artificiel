@@ -1,6 +1,0 @@
-classifieur
-perceptron
-toustes
-bigrammes
-unigrammes
-Skłodowska

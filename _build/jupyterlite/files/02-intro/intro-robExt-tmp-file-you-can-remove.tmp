@@ -1,0 +1,8 @@
+# Quit if there is an error
+set -e
+outputTxt="__ROBEXT_OUTPUT_PREFIX__-out.txt"
+outputTex="__ROBEXT_OUTPUT_PREFIX__-out.tex"
+outputPdf="__ROBEXT_OUTPUT_PDF__"
+__ROBEXT_MAIN_CONTENT__
+# Create the pdf file to certify that no compilation error occured
+echo "ok" > "${outputPdf}"

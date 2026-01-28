@@ -1,0 +1,21 @@
+conllu
+ipympl
+ipywidgets
+jupyterlab
+jupyterlab_rise
+jupytext
+nbconvert
+nbgitpuller
+numba >= 0.63
+numpy
+matplotlib
+polars
+plotnine
+pyarrow
+regex
+rich
+seaborn
+scikit-learn
+tol-colors
+umap-learn
+RISE

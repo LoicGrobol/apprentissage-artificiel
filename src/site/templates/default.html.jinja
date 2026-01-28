@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default(site.lang) | default("en-US") }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description | default(site.description) }}" />
+
+    <title>{{ page.title }} | {{ site.title }}</title>
+
+    <meta property="og:description" content="{{ page.description | default(site.description) }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:type" content="website" />
+
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"WebSite",
+        "description":"{{ page.description | default(site.description) }}",
+        "headline":"{{ page.title }}",
+        "name":"{{ site.title }}",
+      }
+    </script>
+
+    <link rel="stylesheet" href="{{ site.domain }}{{ site.baseurl }}/assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ site.domain }}{{ site.baseurl }}/assets/favicon.ico" />
+  </head>
+  <body>
+    <div class="container">
+    {%- if site.title -%}
+      <header>
+        <span class="title">
+        {%- if site.emojicon -%}
+          {{ site.emojicon }}
+        {%- endif -%}
+          <a href="{{ site.domain }}{{ site.baseurl }}">{{ site.title }}</a>
+        {%- if site.emojicon -%}
+          {{ site.emojicon }}
+        {%- endif -%}
+        </span>
+      </header>
+    {%- endif -%}
+        
+      {{ content }}
+    </div>
+  </body>
+</html>

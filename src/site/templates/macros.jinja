@@ -1,0 +1,10 @@
+{% macro notebook_link(path, desc="Notebook") -%}
+    [
+        ![Open in Jupyterlite badge](
+            {{ site.domain }}{{ site.baseurl }}/assets/badge-launch.svg
+        )
+    ](
+        {{ site.domain }}{{ site.baseurl }}/jupyterlite/notebooks/index.html?path={{ path }}
+    )
+    [{{ desc }}]({{site.domain}}{{site.baseurl}}/notebooks/{{ path }})
+{%- endmacro %}

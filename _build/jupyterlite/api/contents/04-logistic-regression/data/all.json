@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.768776Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2022-10-25T10:18:03.790196Z",
+      "mimetype": "text/plain",
+      "name": "vader_lexicon.txt",
+      "path": "04-logistic-regression/data/vader_lexicon.txt",
+      "size": 426786,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.768044Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2023-10-17T15:35:15.597073Z",
+      "mimetype": "application/x-tar",
+      "name": "imdb_smol.tar.gz",
+      "path": "04-logistic-regression/data/imdb_smol.tar.gz",
+      "size": 336919,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.768269Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.768269Z",
+  "mimetype": null,
+  "name": "data",
+  "path": "04-logistic-regression/data",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,4 @@
+\selectlanguage *[]{french}
+\beamer@sectionintoc {1}{Appendix}{70}{1}{1}
+\selectlanguage *[]{english}
+\selectlanguage *[]{french}

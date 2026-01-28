@@ -1,0 +1,44 @@
+\begin{center}
+		\begin{tikzpicture}
+			% Population 1
+			\graphdot[fill=ptolD10] (-5.771476230191826,3.8908509886473874);
+			\graphdot[fill=ptolD10] (-5.731442869057548,2.9834281362704065);
+			\graphdot[fill=ptolD10] (-4.276897414512093,2.863328052867571);
+			\graphdot[fill=ptolD10] (-3.7297748123436194,3.864162081224535);
+			\graphdot[fill=ptolD10] (-5.0108423686405335,3.490517377304602);
+			\graphdot[fill=ptolD10] (-4.74395329441201,2.0626608301819997);
+			\graphdot[fill=ptolD10] (-3.3694745621351125,2.102694191316278);
+			\graphdot[fill=ptolD10] (-2.78231859883236,2.809950238021866);
+			\graphdot[fill=ptolD10] (-3.769808173477898,3.143561580807521);
+			\graphdot[fill=ptolD10] (-3.716430358632193,2.583094524927621);
+			\graphdot[fill=ptolD10] (-5.090909090909091,2.596438978639047);
+			\graphdot[fill=ptolD10] (-4.46371976647206,1.4888493205906734);
+			\graphdot[fill=ptolD10] (-3.06255212677231,1.7957717559534758);
+			\graphdot[fill=ptolD10] (-4.223519599666388,2.1293830987391305);
+
+			% Population 2
+			\graphdot[fill=ptolD26] (2.4487072560467054,-1.3268304125202521);
+			\graphdot[fill=ptolD26] (2.2351959966638866,-2.234253264897233);
+			\graphdot[fill=ptolD26] (2.6488740617180984,-2.4877978854143303);
+			\graphdot[fill=ptolD26] (3.6363636363636362,-2.7813758670657065);
+			\graphdot[fill=ptolD26] (4.91743119266055,-3.301809561811328);
+			\graphdot[fill=ptolD26] (5.3577981651376145,-2.2609421723200853);
+			\graphdot[fill=ptolD26] (4.543786488740617,-2.0607753666486923);
+			\graphdot[fill=ptolD26] (4.610508757297748,-2.7813758670657065);
+			\graphdot[fill=ptolD26] (4.91743119266055,-1.3268304125202521);
+			\graphdot[fill=ptolD26] (3.756463719766472,-1.5136527644802187);
+			\graphdot[fill=ptolD26] (3.489574645537948,-2.3543533483000685);
+			\graphdot[fill=ptolD26] (4.170141784820684,-2.3676978020114947);
+			\graphdot[fill=ptolD26] (3.8899082568807337,-1.8339196535544473);
+			\graphdot[fill=ptolD26] (2.822351959966639,-1.4469304959230878);
+
+			\draw[thick, visible on={2}] (-8, -4.5) -- (8, 4.5);
+			\draw[thick, visible on={3}] (0, -4.5) -- (0, 4.5);
+			\draw[
+				thick,
+				decorate,
+				decoration={snake, amplitude=3em, segment length=6em},
+				visible on={4},
+			] (1, -4.5) -- (-1, 4.5);
+		\end{tikzpicture}
+	\end{center}

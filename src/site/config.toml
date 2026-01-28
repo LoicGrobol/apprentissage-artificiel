@@ -1,0 +1,9 @@
+title = "Apprentissage artificiel"
+description = "Contenus pour le cours « Apprentissage automatique » du master Plurital."
+emojicon = "🤖"
+lang = "fr"
+
+domain = "https://loicgrobol.github.io"
+baseurl = "/apprentissage-artificiel"
+repository = "loicgrobol/apprentissage-artificiel"
+repo_branch = "main"

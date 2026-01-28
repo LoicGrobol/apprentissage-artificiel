@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.772858Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.424045Z",
+      "mimetype": "text/markdown",
+      "name": "whisper.py.md",
+      "path": "08-stuff/demo/whisper.py.md",
+      "size": 1844,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.772678Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.424045Z",
+      "mimetype": null,
+      "name": "whisper.py.ipynb",
+      "path": "08-stuff/demo/whisper.py.ipynb",
+      "size": 4196,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.772858Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.772858Z",
+  "mimetype": null,
+  "name": "demo",
+  "path": "08-stuff/demo",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

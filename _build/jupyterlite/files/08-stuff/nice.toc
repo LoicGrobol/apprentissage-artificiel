@@ -1,0 +1,10 @@
+\xpg@aux {}{french}
+\beamer@sectionintoc {1}{Failure modes}{2}{0}{1}
+\beamer@sectionintoc {2}{Diversity ?}{14}{0}{2}
+\beamer@subsectionintoc {2}{1}{Other crimes}{30}{0}{2}
+\beamer@subsectionintoc {2}{2}{With a little help from field linguistics}{46}{0}{2}
+\beamer@subsectionintoc {2}{3}{What now?}{59}{0}{2}
+\beamer@sectionintoc {3}{Mental illusions}{90}{0}{3}
+\beamer@sectionintoc {4}{Appendix}{92}{1}{4}
+\xpg@aux {}{english}
+\xpg@aux {}{french}

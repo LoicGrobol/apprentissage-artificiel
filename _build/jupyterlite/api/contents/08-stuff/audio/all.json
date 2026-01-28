@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.771816Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-09-05T12:33:48Z",
+      "mimetype": "audio/mpeg",
+      "name": "common_voice_br_21512915.mp3",
+      "path": "08-stuff/audio/common_voice_br_21512915.mp3",
+      "size": 83757,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.771516Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-09-05T12:33:47Z",
+      "mimetype": "audio/mpeg",
+      "name": "common_voice_br_18187629.mp3",
+      "path": "08-stuff/audio/common_voice_br_18187629.mp3",
+      "size": 71853,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.772094Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-09-05T12:33:49Z",
+      "mimetype": "audio/mpeg",
+      "name": "common_voice_br_33181042.mp3",
+      "path": "08-stuff/audio/common_voice_br_33181042.mp3",
+      "size": 57717,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.772094Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.772094Z",
+  "mimetype": null,
+  "name": "audio",
+  "path": "08-stuff/audio",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

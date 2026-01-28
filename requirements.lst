@@ -1,0 +1,9 @@
+click
+jinja2
+jupyterlite[all]
+jupyterlite-pyodide-kernel
+livereload
+markdown-it-py[plugins]
+pathspec
+pyinotify
+pyyaml

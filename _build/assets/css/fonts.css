@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src:
+    local('Atkinson Hyperlegible Next'),
+    url('../fonts/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src:
+    local('Atkinson Hyperlegible Next'),
+    url('../fonts/AtkinsonHyperlegibleNext-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src:
+    local('Atkinson Hyperlegible Next'),
+    url('../fonts/AtkinsonHyperlegibleNext-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src:
+    local('Atkinson Hyperlegible Next'),
+    url('../fonts/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src:
+    local('Fantasque Sans Mono'),
+    url('../fonts/FantasqueSansMono-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src:
+    local('Fantasque Sans Mono'),
+    url('../fonts/FantasqueSansMono-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src:
+    local('Fantasque Sans Mono'),
+    url('../fonts/FantasqueSansMono-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src:
+    local('Fantasque Sans Mono'),
+    url('../fonts/FantasqueSansMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,71 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.769943Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.387830Z",
+      "mimetype": "text/markdown",
+      "name": "lr-slides.py.md",
+      "path": "04-logistic-regression/lr-slides.py.md",
+      "size": 36071,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.768269Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:07.768269Z",
+      "mimetype": null,
+      "name": "data",
+      "path": "04-logistic-regression/data",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.769662Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-01-28T21:00:05.387717Z",
+      "mimetype": null,
+      "name": "lr-slides.py.ipynb",
+      "path": "04-logistic-regression/lr-slides.py.ipynb",
+      "size": 53861,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.770184Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-10-16T13:45:00.320163Z",
+      "mimetype": "text/markdown",
+      "name": "notes.md",
+      "path": "04-logistic-regression/notes.md",
+      "size": 7475,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.769943Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.769943Z",
+  "mimetype": null,
+  "name": "04-logistic-regression",
+  "path": "04-logistic-regression",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.765218Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2024-06-03T12:18:17.869589Z",
+      "mimetype": "image/png",
+      "name": "trends-in-training-dataset-sizes.png",
+      "path": "02-intro/pics/trends-in-training-dataset-sizes.png",
+      "size": 152545,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.764453Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2024-06-03T12:37:42.811321Z",
+      "mimetype": "image/png",
+      "name": "5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine.png",
+      "path": "02-intro/pics/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine.png",
+      "size": 45967,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-01-28T21:00:07.764732Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2024-06-03T12:30:50.494619Z",
+      "mimetype": "image/png",
+      "name": "trends-in-model-sizes.png",
+      "path": "02-intro/pics/trends-in-model-sizes.png",
+      "size": 201434,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-01-28T21:00:07.765218Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-01-28T21:00:07.765218Z",
+  "mimetype": null,
+  "name": "pics",
+  "path": "02-intro/pics",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

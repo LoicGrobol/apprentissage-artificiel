@@ -1,0 +1,179 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{mehta2023SemanticTokenizerEnhanced}{online}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=98cfe40b7d1925ecf9b3849534cb3e10}{%
+           family={Mehta},
+           familyi={M\bibinitperiod},
+           given={Sandeep},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96edffd73b451451b532be6b89055a20}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={Darpan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c92e57cc5b259a8903e747e0c9e7f21b}{%
+           family={Kulkarni},
+           familyi={K\bibinitperiod},
+           given={Ravindra},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ffcc935f6f8406de215942aa187bbc9d}{%
+           family={Caragea},
+           familyi={C\bibinitperiod},
+           given={Cornelia},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{734505e814ddb177b956954721444de0}
+      \strng{fullhash}{6018b3c77217b33c29b1aa30919cc0c5}
+      \strng{fullhashraw}{6018b3c77217b33c29b1aa30919cc0c5}
+      \strng{bibnamehash}{6018b3c77217b33c29b1aa30919cc0c5}
+      \strng{authorbibnamehash}{6018b3c77217b33c29b1aa30919cc0c5}
+      \strng{authornamehash}{734505e814ddb177b956954721444de0}
+      \strng{authorfullhash}{6018b3c77217b33c29b1aa30919cc0c5}
+      \strng{authorfullhashraw}{6018b3c77217b33c29b1aa30919cc0c5}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Traditionally, NLP performance improvement has been focused on improving models and increasing the number of model parameters. NLP vocabulary construction has remained focused on maximizing the number of words represented through subword regularization. We present a novel tokenizer that uses semantics to drive vocabulary construction. The tokenizer includes a trainer that uses stemming to enhance subword formation. Further optimizations and adaptations are implemented to minimize the number of words that cannot be encoded. The encoder is updated to integrate with the trainer. The tokenizer is implemented as a drop-in replacement for the SentencePiece tokenizer. The new tokenizer more than doubles the number of wordforms represented in the vocabulary. The enhanced vocabulary significantly improves NLP model convergence, and improves quality of word and sentence embeddings. Our experimental results show top performance on two Glue tasks using BERT-base, improving on models more than 50X in size.}
+      \field{day}{24}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{month}{4}
+      \field{pubstate}{preprint}
+      \field{title}{Semantic {{Tokenizer}} for {{Enhanced Natural Language Processing}}}
+      \field{urlday}{3}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2304.12404
+      \endverb
+      \verb{eprint}
+      \verb 2304.12404
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2304.12404
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2304.12404
+      \endverb
+      \keyw{Computer Science - Computation and Language}
+    \endentry
+    \entry{vigen2024CapitaConsumptionMargarine}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=33503186af3f989b9ea337b87e3ad950}{%
+           family={Vigen},
+           familyi={V\bibinitperiod},
+           given={Tyler},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{fullhash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{fullhashraw}{33503186af3f989b9ea337b87e3ad950}
+      \strng{bibnamehash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{authorbibnamehash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{authornamehash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{authorfullhash}{33503186af3f989b9ea337b87e3ad950}
+      \strng{authorfullhashraw}{33503186af3f989b9ea337b87e3ad950}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Perhaps as people used less margarine, they became less slippery in their relationships. The lack of artificial spread may have kept the couples from buttering each other up, leading to a decrease in overall marital strife. That's the reality when you can't believe it's not butter - it's a recipe for marital success. Alternatively, it could be that as the margarine consumption decreased, so did the overall slickness in the state, leading to fewer instances of partners feeling like they couldn't grip the marriage.}
+      \field{title}{Per Capita Consumption of Margarine Correlates with {{The}} Divorce Rate in {{Maine}} (R=0.993)}
+      \field{urlday}{3}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine
+      \endverb
+      \verb{url}
+      \verb https://tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine
+      \endverb
+    \endentry
+    \entry{villalobos2022TrendsTrainingDataset}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6f4972e0dae152fa98ef62ceaf32291a}{%
+           family={Villalobos},
+           familyi={V\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {Epoch AI}%
+      }
+      \strng{namehash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{fullhash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{fullhashraw}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{bibnamehash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{authorbibnamehash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{authornamehash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{authorfullhash}{6f4972e0dae152fa98ef62ceaf32291a}
+      \strng{authorfullhashraw}{6f4972e0dae152fa98ef62ceaf32291a}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We collected a database of notable ML models and their training dataset sizes. We use this database to find historical growth trends in dataset size for different domains, particularly language and vision.}
+      \field{day}{20}
+      \field{hour}{9}
+      \field{langid}{english}
+      \field{minute}{52}
+      \field{month}{9}
+      \field{second}{48}
+      \field{timezone}{Z}
+      \field{title}{Trends in {{Training Dataset Sizes}}}
+      \field{urlday}{3}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://epochai.org/blog/trends-in-training-dataset-sizes
+      \endverb
+      \verb{url}
+      \verb https://epochai.org/blog/trends-in-training-dataset-sizes
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
